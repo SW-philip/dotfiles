@@ -1,0 +1,647 @@
+=== NIXOS REPO COLOR AUDIT ===
+Scanning: /home/prepko/nixos
+
+=== ALL HEX COLORS FOUND ===
+   34x  #1a1a1a
+   24x  #e0def4
+   20x  #26233a
+   19x  #9ccfd8
+   13x  #c8101e
+   12x  #f0c060
+   11x  #1f1d2e
+   10x  #f6c177
+   10x  #ebbcba
+    9x  #908caa
+    8x  #eb6f92
+    8x  #c4c0d8
+    8x  #c4a7e7
+    8x  #403d52
+    7x  #6e6a86
+    7x  #191724
+    6x  #e8e0d0
+    5x  #f5f0e8
+    5x  #31748f
+    4x  #c8db38
+    4x  #56949f
+    4x  #163234
+    3x  #f4a0a0
+    3x  #f0a020
+    3x  #f040a0
+    3x  #e2e0dc
+    3x  #c05050
+    3x  #7ab3c0
+    3x  #2a2a30
+    3x  #1e1e22
+    3x  #0d0d0f
+    2x  #ffffff0a
+    2x  #fab387
+    2x  #f9e2af
+    2x  #f38ba8
+    2x  #ea9d34
+    2x  #e0def4ff
+    2x  #d7827e
+    2x  #cba6f7
+    2x  #c9c9c9
+    2x  #b4befe
+    2x  #b4637a
+    2x  #a6e3a1
+    2x  #a0d44e
+    2x  #94e2d5
+    2x  #907aa9
+    2x  #797593
+    2x  #575279
+    2x  #524f67
+    2x  #4e7c5b
+    2x  #286983
+    2x  #21202e
+    2x  #1f1d2eff
+    2x  #1e2810
+    2x  #1e1e24
+    2x  #1a1a1e
+    2x  #111114
+    2x  #0a0a0c
+    1x  #ffffff06
+    1x  #ffffff
+    1x  #fffaf3
+    1x  #fff8f8
+    1x  #ffd070
+    1x  #faf4ed
+    1x  #f4ede8
+    1x  #f2f7f4
+    1x  #f2e9e1
+    1x  #f0c020
+    1x  #f040a0ff
+    1x  #f040a059
+    1x  #e4efe8
+    1x  #e3f4eb
+    1x  #e3ebe7
+    1x  #e0306a
+    1x  #dfdad9
+    1x  #ddd028
+    1x  #d94f3a
+    1x  #cfdad4
+    1x  #cecacd
+    1x  #cccccc
+    1x  #c8e6d4
+    1x  #c8c4be
+    1x  #c0302a
+    1x  #be74c5
+    1x  #b82020
+    1x  #b6ffd0
+    1x  #9ccfd8ff
+    1x  #9ccfd8aa
+    1x  #9893a5
+    1x  #908caaff
+    1x  #8ac8d4
+    1x  #7ecba8
+    1x  #72cc6a
+    1x  #6e9aa8
+    1x  #6dc99a
+    1x  #5ec88c
+    1x  #4e280a
+    1x  #4a320c
+    1x  #4a1a12
+    1x  #481018
+    1x  #44081a
+    1x  #433b0e
+    1x  #42081e
+    1x  #400826
+    1x  #3a4212
+    1x  #3a2810
+    1x  #3a200a
+    1x  #38081e
+    1x  #38081aff
+    1x  #380818
+    1x  #2c4418
+    1x  #2c3012
+    1x  #2c2010
+    1x  #2a4239
+    1x  #2a2e12
+    1x  #2a2a2a
+    1x  #26362f
+    1x  #201e30
+    1x  #1f4420
+    1x  #1f2623
+    1x  #1e3329
+    1x  #1e1e2a
+    1x  #1b2430
+    1x  #1a4228
+    1x  #1a3326
+    1x  #1a2e30
+    1x  #1a1a14
+    1x  #192930
+    1x  #192830
+    1x  #191724ff
+    1x  #182630
+    1x  #173f2d
+    1x  #172e32
+    1x  #163d32
+    1x  #163234ff
+    1x  #161618
+    1x  #153a36ff
+    1x  #153a36
+    1x  #153635
+    1x  #14532d
+    1x  #121916
+
+=== COLORS BY FILE ===
+
+--- /home/prepko/nixos/home/waybar/palette.sh ---
+  5:BASE="#191724"
+  6:SURFACE="#1f1d2e"
+  17:HIGHLIGHT_LOW="#21202e"
+  7:OVERLAY="#26233a"
+  14:PINE="#31748f"
+  36:BATTERY_FULL="#31748f"
+  18:HIGHLIGHT_MED="#403d52"
+  19:HIGHLIGHT_HIGH="#524f67"
+  8:MUTED="#6e6a86"
+  9:SUBTLE="#908caa"
+  23:TEXT_SECONDARY="#908caa"
+  15:FOAM="#9ccfd8"
+  28:ACCENT_SECONDARY="#9ccfd8"
+  29:BLUE_1965_LIGHT="#9ccfd8"
+  35:BATTERY_HIGH="#9ccfd8"
+  16:IRIS="#c4a7e7"
+  27:ACCENT_PRIMARY="#c4a7e7"
+  10:TEXT="#e0def4"
+  22:TEXT_PRIMARY="#e0def4"
+  11:LOVE="#eb6f92"
+  32:BATTERY_CRIT="#eb6f92"
+  13:ROSE="#ebbcba"
+  34:BATTERY_MED="#ebbcba"
+  12:GOLD="#f6c177"
+  33:BATTERY_LOW="#f6c177"
+
+--- /home/prepko/nixos/home/waybar/scripts/weather.py ---
+  161:    "--tb", "#1f1d2e",             # title background (Rosé Pine base)
+  163:    "--fb", "#1f1d2e",             # filter background
+  165:    "--nb", "#1f1d2e",             # normal background
+  171:    "--ab", "#1f1d2e",
+  167:    "--hb", "#26233a",             # highlight background (surface)
+  169:    "--sb", "#26233a",             # selected background
+  173:    "--bdr", "#403d52",            # border (overlay)
+  166:    "--nf", "#908caa",             # normal foreground (subtle)
+  172:    "--af", "#908caa",
+  72:INK     = PALETTE.get("INK", "#e0def4")
+  162:    "--tf", "#e0def4",             # title foreground
+  164:    "--ff", "#e0def4",             # filter foreground
+  168:    "--hf", "#ebbcba",             # highlight foreground (rose)
+  170:    "--sf", "#ebbcba",             # selected foreground
+
+--- /home/prepko/nixos/home/waybar/style.css ---
+  111:#custom-volume.vol-25:hover  { background: #153635; color: #9ccfd8; }
+  112:#custom-volume.vol-30:hover  { background: #153a36; color: #9ccfd8; }
+  93:#custom-battery.full:hover     { color: #9ccfd8; background: #163234; border-color: rgba(156,207,216,0.2); }
+  110:#custom-volume.vol-20:hover  { background: #163234; color: #9ccfd8; }
+  142:#custom-network.wifi.full:hover    { color: #9ccfd8; background: #163234; border-color: rgba(156,207,216,0.2); }
+  143:#custom-network.wired:hover        { color: #9ccfd8; background: #163234; border-color: rgba(156,207,216,0.18); }
+  113:#custom-volume.vol-35:hover  { background: #163d32; color: #7ecba8; }
+  109:#custom-volume.vol-15:hover  { background: #172e32; color: #8ac8d4; }
+  114:#custom-volume.vol-40:hover  { background: #173f2d; color: #6dc99a; }
+  141:#custom-network.wifi.high:hover    { color: #7ab3c0; background: #182630; border-color: rgba(122,179,192,0.16); }
+  64:  background: #191724;
+  84:#custom-cpu_temp.cool:hover    { color: #9ccfd8; background: #192830; border-color: rgba(156,207,216,0.15); }
+  108:#custom-volume.vol-10:hover  { background: #192930; color: #7ab3c0; }
+  94:#custom-battery.high:hover     { color: #7ab3c0; background: #1a2e30; border-color: rgba(122,179,192,0.16); }
+  115:#custom-volume.vol-45:hover  { background: #1a4228; color: #5ec88c; }
+  107:#custom-volume.vol-5:hover   { background: #1b2430; color: #6e9aa8; }
+  106:#custom-volume.vol-0:hover   { background: #1e1e2a; color: #6e6a86; }
+  140:#custom-network.wifi.mid:hover     { color: #c8db38; background: #1e2810; border-color: rgba(200,219,56,0.16); }
+  144:#custom-network.vpn:hover          { color: #c8db38; background: #1e2810; border-color: rgba(200,219,56,0.18); }
+  18:  background: #1f1d2e;
+  58:  background: #1f1d2e;
+  116:#custom-volume.vol-50:hover  { background: #1f4420; color: #72cc6a; }
+  176:  background: #201e30;
+  36:  background: #26233a;
+  50:  background: #26233a;
+  72:#custom-clock:hover    { color: #e0def4; background: #26233a; border-color: rgba(168,96,119,0.25); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 3px 10px rgba(168,96,119,0.15), 0 3px 8px rgba(0,0,0,0.6); }
+  78:#custom-weather:hover  { color: #e0def4; background: #26233a; border-color: rgba(168,96,119,0.25); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 3px 10px rgba(168,96,119,0.15), 0 3px 8px rgba(0,0,0,0.6); }
+  133:#custom-mpris:hover    { color: #e0def4; background: #26233a; border-color: rgba(168,96,119,0.25); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 3px 10px rgba(168,96,119,0.15), 0 3px 8px rgba(0,0,0,0.6); }
+  85:#custom-cpu_temp.warm:hover    { color: #c8db38; background: #2a2e12; border-color: rgba(200,219,56,0.18); }
+  139:#custom-network.wifi.low:hover     { color: #f0a020; background: #2c2010; border-color: rgba(240,160,32,0.2); }
+  95:#custom-battery.medium:hover   { color: #a0d44e; background: #2c3012; border-color: rgba(160,212,78,0.16); }
+  117:#custom-volume.vol-55:hover  { background: #2c4418; color: #a0d44e; }
+  97:#custom-battery.critical:hover { color: #f040a0; background: #380818; border-color: rgba(240,64,160,0.38); }
+  87:#custom-cpu_temp.critical:hover { color: #f040a0; background: #38081e; border-color: rgba(240,64,160,0.38); }
+  96:#custom-battery.low:hover      { color: #f0a020; background: #3a200a; border-color: rgba(240,160,32,0.24); }
+  86:#custom-cpu_temp.hot:hover     { color: #f0a020; background: #3a2810; border-color: rgba(240,160,32,0.22); }
+  118:#custom-volume.vol-60:hover  { background: #3a4212; color: #c8db38; }
+  126:#custom-volume.vol-100:hover { background: #400826; color: #f040a0; border-color: rgba(240,64,160,0.4); }
+  125:#custom-volume.vol-95:hover  { background: #42081e; color: #e0306a; }
+  119:#custom-volume.vol-65:hover  { background: #433b0e; color: #ddd028; }
+  124:#custom-volume.vol-90:hover  { background: #44081a; color: #b82020; }
+  123:#custom-volume.vol-85:hover  { background: #481018; color: #c0302a; }
+  122:#custom-volume.vol-80:hover  { background: #4a1a12; color: #d94f3a; }
+  120:#custom-volume.vol-70:hover  { background: #4a320c; color: #f0c020; }
+  121:#custom-volume.vol-75:hover  { background: #4e280a; color: #f6c177; }
+  115:#custom-volume.vol-45:hover  { background: #1a4228; color: #5ec88c; }
+  114:#custom-volume.vol-40:hover  { background: #173f2d; color: #6dc99a; }
+  103:#custom-volume.muted   { color: #6e6a86; }
+  106:#custom-volume.vol-0:hover   { background: #1e1e2a; color: #6e6a86; }
+  146:#custom-network.offline:hover      { opacity: 0.7; color: #6e6a86; }
+  160:  color: #6e6a86;
+  107:#custom-volume.vol-5:hover   { background: #1b2430; color: #6e9aa8; }
+  116:#custom-volume.vol-50:hover  { background: #1f4420; color: #72cc6a; }
+  94:#custom-battery.high:hover     { color: #7ab3c0; background: #1a2e30; border-color: rgba(122,179,192,0.16); }
+  108:#custom-volume.vol-10:hover  { background: #192930; color: #7ab3c0; }
+  141:#custom-network.wifi.high:hover    { color: #7ab3c0; background: #182630; border-color: rgba(122,179,192,0.16); }
+  113:#custom-volume.vol-35:hover  { background: #163d32; color: #7ecba8; }
+  109:#custom-volume.vol-15:hover  { background: #172e32; color: #8ac8d4; }
+  84:#custom-cpu_temp.cool:hover    { color: #9ccfd8; background: #192830; border-color: rgba(156,207,216,0.15); }
+  93:#custom-battery.full:hover     { color: #9ccfd8; background: #163234; border-color: rgba(156,207,216,0.2); }
+  110:#custom-volume.vol-20:hover  { background: #163234; color: #9ccfd8; }
+  111:#custom-volume.vol-25:hover  { background: #153635; color: #9ccfd8; }
+  112:#custom-volume.vol-30:hover  { background: #153a36; color: #9ccfd8; }
+  95:#custom-battery.medium:hover   { color: #a0d44e; background: #2c3012; border-color: rgba(160,212,78,0.16); }
+  117:#custom-volume.vol-55:hover  { background: #2c4418; color: #a0d44e; }
+  124:#custom-volume.vol-90:hover  { background: #44081a; color: #b82020; }
+  123:#custom-volume.vol-85:hover  { background: #481018; color: #c0302a; }
+  77:#custom-weather        { color: #c4c0d8; }
+  83:#custom-cpu_temp               { color: #c4c0d8; }
+  92:#custom-battery                { color: #c4c0d8; }
+  102:#custom-volume         { color: #c4c0d8; }
+  131:#custom-mpris          { color: #c4c0d8; }
+  85:#custom-cpu_temp.warm:hover    { color: #c8db38; background: #2a2e12; border-color: rgba(200,219,56,0.18); }
+  118:#custom-volume.vol-60:hover  { background: #3a4212; color: #c8db38; }
+  140:#custom-network.wifi.mid:hover     { color: #c8db38; background: #1e2810; border-color: rgba(200,219,56,0.16); }
+  144:#custom-network.vpn:hover          { color: #c8db38; background: #1e2810; border-color: rgba(200,219,56,0.18); }
+  122:#custom-volume.vol-80:hover  { background: #4a1a12; color: #d94f3a; }
+  119:#custom-volume.vol-65:hover  { background: #433b0e; color: #ddd028; }
+  125:#custom-volume.vol-95:hover  { background: #42081e; color: #e0306a; }
+  11:  color: #e0def4;
+  19:  color: #e0def4;
+  37:  color: #e0def4;
+  71:#custom-clock          { font-weight: 600; letter-spacing: 0.05em; color: #e0def4; }
+  72:#custom-clock:hover    { color: #e0def4; background: #26233a; border-color: rgba(168,96,119,0.25); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 3px 10px rgba(168,96,119,0.15), 0 3px 8px rgba(0,0,0,0.6); }
+  87:#custom-cpu_temp.critical:hover { color: #f040a0; background: #38081e; border-color: rgba(240,64,160,0.38); }
+  97:#custom-battery.critical:hover { color: #f040a0; background: #380818; border-color: rgba(240,64,160,0.38); }
+  126:#custom-volume.vol-100:hover { background: #400826; color: #f040a0; border-color: rgba(240,64,160,0.4); }
+  86:#custom-cpu_temp.hot:hover     { color: #f0a020; background: #3a2810; border-color: rgba(240,160,32,0.22); }
+  96:#custom-battery.low:hover      { color: #f0a020; background: #3a200a; border-color: rgba(240,160,32,0.24); }
+  139:#custom-network.wifi.low:hover     { color: #f0a020; background: #2c2010; border-color: rgba(240,160,32,0.2); }
+  120:#custom-volume.vol-70:hover  { background: #4a320c; color: #f0c020; }
+  121:#custom-volume.vol-75:hover  { background: #4e280a; color: #f6c177; }
+
+--- /home/prepko/nixos/home/waybar/wleave.nix ---
+  47:            background-color: #1f1d2e;
+  48:            border: 2px solid #26233a;
+  61:            background-color: #26233a;
+  69:            background-color: #26233a;
+  62:            border-color: #908caa;
+  74:        #lock:hover      { border-color: #9ccfd8; color: #9ccfd8; }
+  70:            border-color: #c4a7e7;
+  76:        #suspend:hover   { border-color: #c4a7e7; color: #c4a7e7; }
+  46:            color: #e0def4;
+  63:            color: #e0def4;
+  75:        #logout:hover    { border-color: #eb6f92; color: #eb6f92; }
+  78:        #shutdown:hover  { border-color: #eb6f92; color: #eb6f92; }
+  79:        #reboot:hover    { border-color: #ebbcba; color: #ebbcba; }
+  77:        #hibernate:hover { border-color: #f6c177; color: #f6c177; }
+
+--- /home/prepko/nixos/home/waybar/palette-light.sh ---
+  14:PINE="#286983"
+  36:BATTERY_FULL="#286983"
+  15:FOAM="#56949f"
+  28:ACCENT_SECONDARY="#56949f"
+  29:BLUE_1965_LIGHT="#56949f"
+  35:BATTERY_HIGH="#56949f"
+  10:TEXT="#575279"
+  22:TEXT_PRIMARY="#575279"
+  9:SUBTLE="#797593"
+  23:TEXT_SECONDARY="#797593"
+  16:IRIS="#907aa9"
+  27:ACCENT_PRIMARY="#907aa9"
+  8:MUTED="#9893a5"
+  11:LOVE="#b4637a"
+  32:BATTERY_CRIT="#b4637a"
+  19:HIGHLIGHT_HIGH="#cecacd"
+  13:ROSE="#d7827e"
+  34:BATTERY_MED="#d7827e"
+  18:HIGHLIGHT_MED="#dfdad9"
+  12:GOLD="#ea9d34"
+  33:BATTERY_LOW="#ea9d34"
+  7:OVERLAY="#f2e9e1"
+  17:HIGHLIGHT_LOW="#f4ede8"
+  5:BASE="#faf4ed"
+  6:SURFACE="#fffaf3"
+
+--- /home/prepko/nixos/home/wofi/style.css ---
+  2:  background-color: #121916;
+  12:  background-color: #1f2623;
+  24:  background-color: #26362f;
+  6:  border: 2px solid #4e7c5b;
+  25:  color: #b6ffd0;
+  20:  color: #cfdad4;
+  13:  color: #e3ebe7;
+  29:  color: #e3f4eb;
+
+--- /home/prepko/nixos/home/wofi/style-light.css ---
+  25:  color: #14532d;
+  29:  color: #1a3326;
+  13:  color: #1e3329;
+  20:  color: #2a4239;
+  6:  border: 2px solid #4e7c5b;
+  24:  background-color: #c8e6d4;
+  12:  background-color: #e4efe8;
+  2:  background-color: #f2f7f4;
+
+--- /home/prepko/nixos/home/mako/default.nix ---
+  27:      progress-color = "over #153a36ff"; # vol-30 teal tint
+  34:        background-color = "#163234ff"; # vol-20 teal bg
+  40:        background-color = "#191724ff"; # BASE
+  22:      background-color = "#1f1d2eff";
+  48:        background-color = "#1f1d2eff"; # SURFACE
+  55:        background-color = "#38081aff"; # battery/cpu critical bg
+  41:        text-color = "#908caaff";       # subtle
+  33:        border-color = "#9ccfd8aa";     # teal accent
+  35:        text-color = "#9ccfd8ff";
+  23:      text-color = "#e0def4ff";
+  49:        text-color = "#e0def4ff";
+  57:        border-color = "#f040a059";     # rgba(240,64,160,0.35)
+  56:        text-color = "#f040a0ff";       # fuchsia — same as vol-100 / cpu critical
+  42:        border-color = "#ffffff06";
+  24:      border-color = "#ffffff0a";       # rgba(255,255,255,0.04)
+  50:        border-color = "#ffffff0a";
+
+--- /home/prepko/nixos/modules/greetd.nix ---
+  22:        /* Base:    #191724   Surface:  #1f1d2e   Overlay: #26233a  */
+  28:          background-color: #191724;
+  100:          color: #191724;
+  114:          color: #191724;
+  22:        /* Base:    #191724   Surface:  #1f1d2e   Overlay: #26233a  */
+  34:          background-color: #1f1d2e;
+  22:        /* Base:    #191724   Surface:  #1f1d2e   Overlay: #26233a  */
+  35:          border: 1px solid #26233a;
+  62:          background-color: #26233a;
+  75:          background-color: #26233a;
+  105:          background-color: #26233a;
+  25:        /* Pine:    #31748f   Foam:     #9ccfd8   Iris:    #c4a7e7  */
+  90:          background-color: #31748f;
+  64:          border: 1px solid #403d52;
+  70:          background-color: #403d52;
+  77:          border: 1px solid #403d52;
+  83:          background-color: #403d52;
+  127:          border: 1px solid #403d52;
+  23:        /* Muted:   #6e6a86   Subtle:   #908caa   Text:    #e0def4  */
+  23:        /* Muted:   #6e6a86   Subtle:   #908caa   Text:    #e0def4  */
+  55:          color: #908caa;
+  76:          color: #908caa;
+  25:        /* Pine:    #31748f   Foam:     #9ccfd8   Iris:    #c4a7e7  */
+  99:          background-color: #9ccfd8;
+  119:          color: #9ccfd8;
+  25:        /* Pine:    #31748f   Foam:     #9ccfd8   Iris:    #c4a7e7  */
+  133:          border-color: #c4a7e7;
+  23:        /* Muted:   #6e6a86   Subtle:   #908caa   Text:    #e0def4  */
+  29:          color: #e0def4;
+  42:          color: #e0def4;
+  63:          color: #e0def4;
+  84:          color: #e0def4;
+  24:        /* Love:    #eb6f92   Gold:     #f6c177   Rose:    #ebbcba  */
+  24:        /* Love:    #eb6f92   Gold:     #f6c177   Rose:    #ebbcba  */
+  47:          color: #ebbcba;
+  85:          border-color: #ebbcba;
+  24:        /* Love:    #eb6f92   Gold:     #f6c177   Rose:    #ebbcba  */
+  106:          color: #f6c177;
+  107:          border: 1px solid #f6c177;
+  113:          background-color: #f6c177;
+
+--- /home/prepko/nixos/modules/gnome-theming.nix ---
+  61:          primary-color = "#be74c5";  # Catppuccin Mocha base
+
+--- /home/prepko/nixos/tools/nix_nerves.py ---
+  189:    "tools":   "#94e2d5",
+  184:    "hosts":   "#9ccfd8",
+  185:    "modules": "#a6e3a1",
+  191:    "misc":    "#b4befe",
+  183:    "flake":   "#c9c9c9",
+  188:    "pkgs":    "#cba6f7",
+  280:            color=CLUSTER_COLOR.get(cname, "#cccccc"),
+  190:    "external":"#f38ba8",
+  186:    "profiles":"#f9e2af",
+  187:    "home":    "#fab387",
+  285:        fill = CLUSTER_COLOR.get(cname, "#ffffff")
+
+--- /home/prepko/nixos/tools/dont-lock-up-the-keahts.html ---
+  35:    border: 8px solid #1a1a1a;
+  36:    outline: 3px solid #1a1a1a;
+  40:    box-shadow: 12px 12px 0 #1a1a1a;
+  49:    border-bottom: 4px solid #1a1a1a;
+  106:    border: 2px solid #1a1a1a;
+  163:    color: #2a2a2a;
+  44:    background: #c8101e;
+  101:      #c8101e,
+  102:      #c8101e 8px,
+  113:    color: #c8101e;
+  115:    border: 2px solid #c8101e;
+  425:              <ellipse cx="80" cy="115" rx="38" ry="30" fill="#e8e0d0" stroke="#1a1a1a" stroke-width="2.5"/>
+  427:              <ellipse cx="80" cy="72" rx="34" ry="32" fill="#e8e0d0" stroke="#1a1a1a" stroke-width="2.5"/>
+  429:              <polygon points="54,46 46,22 68,40" fill="#e8e0d0" stroke="#1a1a1a" stroke-width="2.5" stroke-linejoin="round"/>
+  430:              <polygon points="106,46 114,22 92,40" fill="#e8e0d0" stroke="#1a1a1a" stroke-width="2.5" stroke-linejoin="round"/>
+  457:              <ellipse cx="34" cy="73" rx="7" ry="6" fill="#e8e0d0" stroke="#1a1a1a" stroke-width="2"/>
+  432:              <polygon points="55,43 50,28 65,42" fill="#f4a0a0"/>
+  433:              <polygon points="105,43 110,28 95,42" fill="#f4a0a0"/>
+  446:              <polygon points="80,80 76,85 84,85" fill="#f4a0a0" stroke="#1a1a1a" stroke-width="1.5"/>
+  14:    background-color: #f5f0e8;
+  34:    background: #f5f0e8;
+  103:      #f5f0e8 8px,
+  104:      #f5f0e8 16px
+  302:    color: #f5f0e8;
+  213:    background: #fff8f8;
+
+--- /home/prepko/nixos/tools/hyprdash.py ---
+  183:  background-color: #0a0a0c;
+  279:  background-color: #0a0a0c;
+  96:  background-color: #0d0d0f;
+  197:  color: #0d0d0f;
+  223:  color: #0d0d0f;
+  103:  background-color: #111114;
+  151:  background-color: #111114;
+  241:  background-color: #161618;
+  259:  background-color: #1a1a14;
+  122:  background-color: #1a1a1e;
+  263:  background-color: #1a1a1e;
+  104:  border-right: 1px solid #1e1e22;
+  152:  border: 1px solid #1e1e22;
+  280:  border-top: 1px solid #1e1e22;
+  127:  background-color: #1e1e24;
+  165:  background-color: #1e1e24;
+  184:  border: 1px solid #2a2a30;
+  242:  border: 1px solid #2a2a30;
+  264:  border: 1px solid #2a2a30;
+  213:  border: 1px solid #c05050;
+  214:  color: #c05050;
+  222:  background-color: #c05050;
+  123:  color: #c8c4be;
+  97:  color: #e2e0dc;
+  186:  color: #e2e0dc;
+  253:  color: #e2e0dc;
+  128:  color: #f0c060;
+  129:  border-left: 2px solid #f0c060;
+  136:  color: #f0c060;
+  170:  background-color: #f0c060;
+  175:  background-color: #f0c060;
+  208:  background-color: #ffd070;
+
+--- /home/prepko/nixos/tools/nixarch.py ---
+  54:    "tools":   {"label": "tools",    "color": "#94e2d5"},
+  49:    "hosts":   {"label": "hosts",    "color": "#9ccfd8"},
+  50:    "modules": {"label": "modules",  "color": "#a6e3a1"},
+  56:    "misc":    {"label": "misc",     "color": "#b4befe"},
+  48:    "flake":   {"label": "flake",    "color": "#c9c9c9"},
+  53:    "pkgs":    {"label": "pkgs",     "color": "#cba6f7"},
+  55:    "external":{"label": "external", "color": "#f38ba8"},
+  51:    "profiles":{"label": "profiles", "color": "#f9e2af"},
+  52:    "home":    {"label": "home",     "color": "#fab387"},
+
+--- /home/prepko/nixos/tools/extract-waybar-colors.sh ---
+  48:  ["#191724"]="Base"
+  49:  ["#1f1d2e"]="Surface"
+  62:  ["#21202e"]="HighlightLow"
+  50:  ["#26233a"]="Overlay"
+  60:  ["#31748f"]="Pine"
+  51:  ["#403d52"]="HighlightMed"
+  52:  ["#524f67"]="HighlightHigh"
+  53:  ["#6e6a86"]="Muted"
+  54:  ["#908caa"]="Subtle"
+  58:  ["#9ccfd8"]="Foam"
+  59:  ["#c4a7e7"]="Iris"
+  55:  ["#e0def4"]="Text"
+  56:  ["#eb6f92"]="Love"
+  61:  ["#ebbcba"]="Rose"
+  57:  ["#f6c177"]="Gold"
+
+=== ROSE PINE PALETTE CHECK ===
+Expected Rose Pine colors and their usage across the repo:
+  ✓ #191724     Base                used 8x
+  ✓ #1f1d2e     Surface             used 13x
+  ✓ #21202e     HighlightLow        used 2x
+  ✓ #26233a     Overlay             used 20x
+  ✓ #31748f     Pine                used 5x
+  ✓ #403d52     HighlightMed        used 8x
+  ✓ #524f67     HighlightHigh       used 2x
+  ✓ #6e6a86     Muted               used 7x
+  ✓ #908caa     Subtle              used 10x
+  ✓ #9ccfd8     Foam                used 20x
+  ✓ #c4a7e7     Iris                used 7x
+  ✓ #e0def4     Text                used 26x
+  ✓ #eb6f92     Love                used 6x
+  ✓ #ebbcba     Rose                used 9x
+  ✓ #f6c177     Gold                used 9x
+
+=== COLORS NOT IN ROSE PINE PALETTE ===
+(hardcoded values that don't match any named palette color)
+  #0a0a0c     used 2x
+  #0d0d0f     used 3x
+  #111114     used 2x
+  #121916     used 1x
+  #14532d     used 1x
+  #153635     used 1x
+  #153a36     used 2x
+  #161618     used 1x
+  #163234     used 5x
+  #163d32     used 1x
+  #172e32     used 1x
+  #173f2d     used 1x
+  #182630     used 1x
+  #192830     used 1x
+  #192930     used 1x
+  #1a1a14     used 1x
+  #1a1a1a     used 34x
+  #1a1a1e     used 2x
+  #1a2e30     used 1x
+  #1a3326     used 1x
+  #1a4228     used 1x
+  #1b2430     used 1x
+  #1e1e22     used 3x
+  #1e1e24     used 2x
+  #1e1e2a     used 1x
+  #1e2810     used 2x
+  #1e3329     used 1x
+  #1f2623     used 1x
+  #1f4420     used 1x
+  #201e30     used 1x
+  #26362f     used 1x
+  #286983     used 2x
+  #2a2a2a     used 1x
+  #2a2a30     used 3x
+  #2a2e12     used 1x
+  #2a4239     used 1x
+  #2c2010     used 1x
+  #2c3012     used 1x
+  #2c4418     used 1x
+  #380818     used 1x
+  #38081a     used 1x
+  #38081e     used 1x
+  #3a200a     used 1x
+  #3a2810     used 1x
+  #3a4212     used 1x
+  #400826     used 1x
+  #42081e     used 1x
+  #433b0e     used 1x
+  #44081a     used 1x
+  #481018     used 1x
+  #4a1a12     used 1x
+  #4a320c     used 1x
+  #4e280a     used 1x
+  #4e7c5b     used 2x
+  #56949f     used 4x
+  #575279     used 2x
+  #5ec88c     used 1x
+  #6dc99a     used 1x
+  #6e9aa8     used 1x
+  #72cc6a     used 1x
+  #797593     used 2x
+  #7ab3c0     used 3x
+  #7ecba8     used 1x
+  #8ac8d4     used 1x
+  #907aa9     used 2x
+  #94e2d5     used 2x
+  #9893a5     used 1x
+  #a0d44e     used 2x
+  #a6e3a1     used 2x
+  #b4637a     used 2x
+  #b4befe     used 2x
+  #b6ffd0     used 1x
+  #b82020     used 1x
+  #be74c5     used 1x
+  #c0302a     used 1x
+  #c05050     used 3x
+  #c4c0d8     used 8x
+  #c8101e     used 13x
+  #c8c4be     used 1x
+  #c8db38     used 4x
+  #c8e6d4     used 1x
+  #c9c9c9     used 2x
+  #cba6f7     used 2x
+  #cccccc     used 1x
+  #cecacd     used 1x
+  #cfdad4     used 1x
+  #d7827e     used 2x
+  #d94f3a     used 1x
+  #ddd028     used 1x
+  #dfdad9     used 1x
+  #e0306a     used 1x
+  #e2e0dc     used 3x
+  #e3ebe7     used 1x
+  #e3f4eb     used 1x
+  #e4efe8     used 1x
+  #e8e0d0     used 6x
+  #ea9d34     used 2x
+  #f040a0     used 5x
+  #f0a020     used 3x
+  #f0c020     used 1x
+  #f0c060     used 12x
+  #f2e9e1     used 1x
+  #f2f7f4     used 1x
+  #f38ba8     used 2x
+  #f4a0a0     used 3x
+  #f4ede8     used 1x
+  #f5f0e8     used 5x
+  #f9e2af     used 2x
+  #fab387     used 2x
+  #faf4ed     used 1x
+  #ffd070     used 1x
+  #fff8f8     used 1x
+  #fffaf3     used 1x
+  #ffffff     used 4x

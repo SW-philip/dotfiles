@@ -1,0 +1,86 @@
+{ pkgs, config, ... }:
+let
+  p = import ../../themes/Rose-Pine/moon/palette-moon.nix;
+
+  # --- Helpers ---
+  # ANSI Escape for TrueColor support
+  esc = (builtins.fromTOML "x = \"\\u001B\"").x;
+  toAnsi = color: let
+    hex = builtins.substring 1 6 color;
+    hexDigit = c: builtins.getAttr c {"0"=0;"1"=1;"2"=2;"3"=3;"4"=4;"5"=5;"6"=6;"7"=7;"8"=8;"9"=9;"a"=10;"b"=11;"c"=12;"d"=13;"e"=14;"f"=15;};
+    hb = s: (hexDigit (builtins.substring 0 1 s) * 16) + hexDigit (builtins.substring 1 1 s);
+    r = toString (hb (builtins.substring 0 2 hex));
+    g = toString (hb (builtins.substring 2 2 hex));
+    b = toString (hb (builtins.substring 4 2 hex));
+  in "${esc}[38;2;${r};${g};${b}m";
+  reset = "${esc}[0m";
+
+  # Build the Sticker Logo
+  lixConePng = pkgs.runCommand "lix-cone-sticker.png" { nativeBuildInputs = [ pkgs.librsvg pkgs.imagemagick ]; } ''
+    sed 's/fill="#000000"/fill="none"/g' ${../../assets/lixnowords.svg} > cone.svg
+    rsvg-convert -w 300 -h 300 cone.svg -o cone.png
+    magick cone.png \( +clone -alpha extract -morphology Dilate Disk:10 -background white -alpha shape \) -compose DstOver -composite $out
+  '';
+
+  # Condensed Scripts
+  scripts = {
+    vpn = pkgs.writeShellScript "ff-vpn" "systemctl is-active --quiet wg-quick-protonvpn && echo Connected || echo Off";
+
+    rebuild = pkgs.writeShellScript "ff-rebuild" ''
+      elapsed=$(( $(date +%s) - $(stat -c %Y /run/current-system) ))
+      days=$(( elapsed / 86400 ))
+      (( days >= 14 )) && echo "''${days}d (stale)" || ((( days >= 7 )) && echo "''${days}d (aging)" || echo "''${days}d (fresh)")
+    '';
+
+    enriched = pkgs.writeShellScript "ff-mpris-enriched" ''
+      CACHE="$HOME/.cache/sqlch/enriched.json"
+      [[ ! -f "$CACHE" ]] && exit 0
+      KEY="$(playerctl metadata artist 2>/dev/null)::$(playerctl metadata title 2>/dev/null)"
+      jq -r --arg k "''${KEY,,}" '.[$k] | "\(.year // "") · \(.genres | join(", "))"' "$CACHE" | sed 's/^ · //;s/null//g'
+    '';
+  };
+
+  # Main Fetch Wrapper
+  ff = pkgs.writeShellScriptBin "ff" ''
+    ART_URL=$(playerctl metadata mpris:artUrl 2>/dev/null || jq -r '.cover' "$HOME/.cache/sqlch/enriched.json" 2>/dev/null)
+    if [[ -n "$ART_URL" && "$ART_URL" != "null" ]]; then
+      PATH="$HOME/.cache/sqlch/covers/$(echo $ART_URL | md5sum | cut -f1 -d' ').jpg"
+      [[ ! -f "$PATH" ]] && curl -fsSL "$ART_URL" -o "$PATH"
+      fastfetch --logo-source "$PATH" --logo-type kitty --logo-height 20
+    else
+      fastfetch
+    fi
+  '';
+in
+{
+  home.packages = [ ff ];
+  programs.fastfetch = {
+    enable = true;
+    settings = {
+      logo = { source = "${lixConePng}"; type = "kitty"; width = 22; height = 12; padding = { right = 4; top = 6; }; };
+      display = { separator = "  "; key.width = 13; color.keys = p.IRIS; };
+      modules = [
+        { type = "title"; format = "╭───────────── {1}@{2} ─────────────╮"; color = { user = p.LOVE; host = p.IRIS; }; }
+        { type = "custom"; format = "${toAnsi p.PINE}│ 󰄨  INTERIOR${reset}"; }
+        "host" "cpu" "gpu" "os" "kernel" "uptime" "packages"
+        { type = "memory"; percent.type = 3; }
+        { type = "disk"; folders = "/"; percent.type = 3; }
+        "break"
+        { type = "custom"; format = "${toAnsi p.FOAM}│ 󰄨  EXTERIOR${reset}"; }
+        "wm" "shell" "terminal" "theme" "icons" "cursor"
+        "break"
+        { type = "custom"; format = "${toAnsi p.GOLD}│ 󰄨  SIGNAL${reset}"; }
+        { type = "weather"; location = "Philadelphia"; }
+        { type = "command"; key = "󰖂  vpn"; text = "${scripts.vpn}"; }
+        { type = "command"; key = "󱄅  rebuild"; text = "${scripts.rebuild}"; }
+        "break"
+        { type = "custom"; format = "${toAnsi p.ROSE}│ 󰄨  NOW PLAYING${reset}"; }
+        { type = "media"; key = "󰎈  track"; format = "{3} - {1}"; }
+        { type = "command"; key = "   info"; text = "${scripts.enriched}"; }
+        "break"
+        { type = "custom"; format = "${toAnsi p.IRIS}╰──────────────────────────────────────╯${reset}"; }
+        { type = "custom"; format = "  ${toAnsi p.LOVE}▄▄${toAnsi p.ROSE}▄▄${toAnsi p.GOLD}▄▄${toAnsi p.PINE}▄▄${toAnsi p.FOAM}▄▄${toAnsi p.IRIS}▄▄${reset}"; }
+      ];
+    };
+  };
+}

@@ -1,0 +1,120 @@
+# home/niri/ironbar-dual.toml
+# Dual-monitor layout: DP-2 top bar (main), DP-3 bottom bar (media).
+# Desktop only — eDP-1 (Surface) always uses ironbar-single.toml instead.
+
+[monitors]
+
+# ── Desktop left monitor (DP-2): top bar ────────────────────────────────
+
+[monitors."DP-2"]
+position = "top"
+anchor_to_edges = true
+height = 36
+
+[[monitors."DP-2".start]]
+type = "workspaces"
+name = "workspaces"
+
+[[monitors."DP-2".start]]
+type = "script"
+name = "cpu_temp"
+cmd = "cpu_temp | jq -r '.text'"
+mode = "poll"
+interval = 8
+
+[[monitors."DP-2".start]]
+type = "script"
+name = "battery"
+cmd = "battery | jq -r '.text'"
+mode = "poll"
+interval = 30
+
+[[monitors."DP-2".center]]
+type = "script"
+name = "clock"
+cmd = "caliper-clock"
+mode = "poll"
+interval = 60
+
+[[monitors."DP-2".center]]
+type = "script"
+name = "weather"
+cmd = "waybar-weather | jq -r '.text'"
+mode = "poll"
+interval = 300
+
+[[monitors."DP-2".end]]
+type = "tray"
+name = "tray"
+
+[[monitors."DP-2".end]]
+type = "script"
+name = "bluetooth"
+cmd = "quantum-bluetooth | jq -r '.text'"
+mode = "poll"
+interval = 30
+on_click_left = "quantum-btmenu"
+on_click_right = "quantum-bt-toggle"
+
+[[monitors."DP-2".end]]
+type = "script"
+name = "network"
+cmd = "netstatus | jq -r '.text'"
+mode = "poll"
+interval = 5
+on_click_left = "~/.config/waybar/scripts/quantum-wifimenu.sh"
+on_click_right = "~/.config/waybar/scripts/vpn-toggle.sh"
+
+[[monitors."DP-2".end]]
+type = "script"
+name = "uniremote"
+cmd = "echo '󰑗'"
+mode = "poll"
+interval = 86400
+on_click_left = "uniremote"
+
+[[monitors."DP-2".end]]
+type = "script"
+name = "display_mode"
+cmd = "echo '󰪩'"
+mode = "poll"
+interval = 86400
+on_click_left = "toggle-display-mode"
+
+[[monitors."DP-2".end]]
+type = "script"
+name = "toggle_theme"
+cmd = "echo '󰔎'"
+mode = "poll"
+interval = 86400
+on_click_left = "toggle-theme"
+
+[[monitors."DP-2".end]]
+type = "script"
+name = "wleave"
+cmd = "echo '󰩈'"
+mode = "poll"
+interval = 86400
+on_click_left = "wleave"
+
+# ── Desktop right monitor (DP-3): bottom bar ────────────────────────────
+
+[monitors."DP-3"]
+position = "bottom"
+anchor_to_edges = true
+height = 36
+
+[[monitors."DP-3".center]]
+type = "music"
+name = "music"
+truncate.mode = "end"
+truncate.max_length = 35
+on_click_left = "sqlch-popup"
+on_click_right = "~/.config/waybar/scripts/waybar-sqlch --stop"
+on_click_middle = "~/.config/waybar/scripts/waybar-sqlch --pick"
+on_scroll_up = "~/.config/waybar/scripts/waybar-sqlch --next"
+on_scroll_down = "~/.config/waybar/scripts/waybar-sqlch --prev"
+
+[[monitors."DP-3".end]]
+type = "volume"
+name = "volume"

@@ -1,0 +1,35 @@
+/* Wofi Theme: pikachu - Pikachu Blush */
+window {
+  background-color: #efe0b8;
+}
+
+#entry {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #efe0b8;
+  color: #1a1a1a;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+}
+
+#entry:selected {
+  background-color: #e2bf63;
+  color: #9648f9;
+}
+
+#input {
+  background-color: #efe0b8;
+  color: #1a1a1a;
+  border: 2px solid #9648f9;
+  padding: 6px;
+  margin: 5px;
+}
+
+#text {
+  color: #1a1a1a;
+}
+
+#text:selected {
+  color: #9648f9;
+}

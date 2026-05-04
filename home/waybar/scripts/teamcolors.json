@@ -1,0 +1,2452 @@
+[
+  {
+    "name": "Bayer Leverkusen",
+    "league": "Bundesliga",
+    "primary": "#E32221",
+    "secondary": "#000000",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "bayer leverkusen"
+    ]
+  },
+  {
+    "name": "Bayern Munich",
+    "league": "Bundesliga",
+    "primary": "#dc052d",
+    "secondary": "#ffffff",
+    "tertiary": "#0066b2",
+    "aliases": [
+      "bayern munich"
+    ]
+  },
+  {
+    "name": "Borussia Dortmund",
+    "league": "Bundesliga",
+    "primary": "#FDE100",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "borussia dortmund"
+    ]
+  },
+  {
+    "name": "Borussia M\u00f6nchengladbach",
+    "league": "Bundesliga",
+    "primary": "#000000",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "borussia m\u00f6nchengladbach"
+    ]
+  },
+  {
+    "name": "Eintracht Frankfurt",
+    "league": "Bundesliga",
+    "primary": "#E1000F",
+    "secondary": "#FFFFFF",
+    "tertiary": "#000000",
+    "aliases": [
+      "eintracht frankfurt"
+    ]
+  },
+  {
+    "name": "FC Augsburg",
+    "league": "Bundesliga",
+    "primary": "#ba3733",
+    "secondary": "#ffffff",
+    "tertiary": "#46714d",
+    "aliases": [
+      "fc augsburg"
+    ]
+  },
+  {
+    "name": "FC Heidenheim",
+    "league": "Bundesliga",
+    "primary": "#e2001a",
+    "secondary": "#003b79",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "fc heidenheim"
+    ]
+  },
+  {
+    "name": "FC K\u00f6ln",
+    "league": "Bundesliga",
+    "primary": "#ED1C24",
+    "secondary": "#FFFFFF",
+    "tertiary": "#000000",
+    "aliases": [
+      "fc k\u00f6ln"
+    ]
+  },
+  {
+    "name": "Freiburg",
+    "league": "Bundesliga",
+    "primary": "#000000",
+    "secondary": "#FFFFFF",
+    "tertiary": "#FD1220",
+    "aliases": [
+      "freiburg"
+    ]
+  },
+  {
+    "name": "Hamburg",
+    "league": "Bundesliga",
+    "primary": "#0a3f86",
+    "secondary": "#ffffff",
+    "tertiary": null,
+    "aliases": [
+      "hamburg"
+    ]
+  },
+  {
+    "name": "Hoffenheim",
+    "league": "Bundesliga",
+    "primary": "#1961B5",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "hoffenheim"
+    ]
+  },
+  {
+    "name": "Mainz",
+    "league": "Bundesliga",
+    "primary": "#C3141E",
+    "secondary": "#FFFFFF",
+    "tertiary": "#918F90",
+    "aliases": [
+      "mainz"
+    ]
+  },
+  {
+    "name": "RB Leipzig",
+    "league": "Bundesliga",
+    "primary": "#DD013F",
+    "secondary": "#FFFFFF",
+    "tertiary": "#0C2043",
+    "aliases": [
+      "rb leipzig"
+    ]
+  },
+  {
+    "name": "St Pauli",
+    "league": "Bundesliga",
+    "primary": "#624839",
+    "secondary": "#e30613",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "st pauli"
+    ]
+  },
+  {
+    "name": "Stuttgart",
+    "league": "Bundesliga",
+    "primary": "#E32219",
+    "secondary": "#FFFFFF",
+    "tertiary": "#FFED00",
+    "aliases": [
+      "stuttgart"
+    ]
+  },
+  {
+    "name": "Union Berlin",
+    "league": "Bundesliga",
+    "primary": "#EB1923",
+    "secondary": "#ffffff",
+    "tertiary": "#FDDC02",
+    "aliases": [
+      "union berlin"
+    ]
+  },
+  {
+    "name": "Werder Bremen",
+    "league": "Bundesliga",
+    "primary": "#1d9053",
+    "secondary": "#ffffff",
+    "tertiary": null,
+    "aliases": [
+      "werder bremen"
+    ]
+  },
+  {
+    "name": "Wolfsburg",
+    "league": "Bundesliga",
+    "primary": "#65b32e",
+    "secondary": "#ffffff",
+    "tertiary": null,
+    "aliases": [
+      "wolfsburg"
+    ]
+  },
+  {
+    "name": "Arsenal",
+    "league": "EPL",
+    "primary": "#EF0107",
+    "secondary": "#fbffff",
+    "tertiary": "#013373",
+    "aliases": [
+      "arsenal"
+    ]
+  },
+  {
+    "name": "Aston Villa",
+    "league": "EPL",
+    "primary": "#670E36",
+    "secondary": "#95BFE5",
+    "tertiary": "#FEE505",
+    "aliases": [
+      "aston villa"
+    ]
+  },
+  {
+    "name": "Bournemouth",
+    "league": "EPL",
+    "primary": "#B50E12",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "bournemouth"
+    ]
+  },
+  {
+    "name": "Brentford",
+    "league": "EPL",
+    "primary": "#e30613",
+    "secondary": "#FFFFFF",
+    "tertiary": "#fbb800",
+    "aliases": [
+      "brentford"
+    ]
+  },
+  {
+    "name": "Brighton and Hove Albion",
+    "league": "EPL",
+    "primary": "#0057B8",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "brighton and hove albion"
+    ]
+  },
+  {
+    "name": "Burnley",
+    "league": "EPL",
+    "primary": "#6C1D45",
+    "secondary": "#99D6EA",
+    "tertiary": null,
+    "aliases": [
+      "burnley"
+    ]
+  },
+  {
+    "name": "Chelsea",
+    "league": "EPL",
+    "primary": "#034694",
+    "secondary": "#FFFFFF",
+    "tertiary": "#DBA111",
+    "aliases": [
+      "chelsea"
+    ]
+  },
+  {
+    "name": "Crystal Palace",
+    "league": "EPL",
+    "primary": "#1B458F",
+    "secondary": "#C4122E",
+    "tertiary": null,
+    "aliases": [
+      "crystal palace"
+    ]
+  },
+  {
+    "name": "Everton",
+    "league": "EPL",
+    "primary": "#003399",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "everton"
+    ]
+  },
+  {
+    "name": "Fulham",
+    "league": "EPL",
+    "primary": "#FFFFFF",
+    "secondary": "#000000",
+    "tertiary": "#CC0000",
+    "aliases": [
+      "fulham"
+    ]
+  },
+  {
+    "name": "Leeds United",
+    "league": "EPL",
+    "primary": "#ffffff",
+    "secondary": "#1D428A",
+    "tertiary": "#FFCD00",
+    "aliases": [
+      "leeds united"
+    ]
+  },
+  {
+    "name": "Liverpool",
+    "league": "EPL",
+    "primary": "#C8102E",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "liverpool"
+    ]
+  },
+  {
+    "name": "Manchester City",
+    "league": "EPL",
+    "primary": "#6CABDD",
+    "secondary": "#FFFFFF",
+    "tertiary": "#1C2C5B",
+    "aliases": [
+      "manchester city"
+    ]
+  },
+  {
+    "name": "Manchester United",
+    "league": "EPL",
+    "primary": "#DA291C",
+    "secondary": "#Ffffff",
+    "tertiary": "#000000",
+    "aliases": [
+      "manchester united"
+    ]
+  },
+  {
+    "name": "Newcastle United",
+    "league": "EPL",
+    "primary": "#FFFFFF",
+    "secondary": "#241F20",
+    "tertiary": null,
+    "aliases": [
+      "newcastle united"
+    ]
+  },
+  {
+    "name": "Nottingham Forest",
+    "league": "EPL",
+    "primary": "#E53233",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "nottingham forest"
+    ]
+  },
+  {
+    "name": "Sunderland",
+    "league": "EPL",
+    "primary": "#ff0000",
+    "secondary": "#ffffff",
+    "tertiary": "#000000",
+    "aliases": [
+      "sunderland"
+    ]
+  },
+  {
+    "name": "Tottenham Hotspur",
+    "league": "EPL",
+    "primary": "#FFFFFF",
+    "secondary": "#132257",
+    "tertiary": null,
+    "aliases": [
+      "tottenham hotspur"
+    ]
+  },
+  {
+    "name": "West Ham United",
+    "league": "EPL",
+    "primary": "#7A263A",
+    "secondary": "#1BB1E7",
+    "tertiary": "#F3D459",
+    "aliases": [
+      "west ham united"
+    ]
+  },
+  {
+    "name": "Wolverhampton Wanderers",
+    "league": "EPL",
+    "primary": "#FDB913",
+    "secondary": "#231F20",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "wolverhampton wanderers"
+    ]
+  },
+  {
+    "name": "Athletic Bilbao",
+    "league": "LaLiga",
+    "primary": "#ee2523",
+    "secondary": "#ffffff",
+    "tertiary": "#000000",
+    "aliases": [
+      "athletic bilbao"
+    ]
+  },
+  {
+    "name": "Atl\u00e9tico Madrid",
+    "league": "LaLiga",
+    "primary": "#CB3524",
+    "secondary": "#272e61",
+    "tertiary": "#ffffff",
+    "aliases": [
+      "atl\u00e9tico madrid"
+    ]
+  },
+  {
+    "name": "Barcelona",
+    "league": "LaLiga",
+    "primary": "#004d98",
+    "secondary": "#a50044",
+    "tertiary": null,
+    "aliases": [
+      "barcelona"
+    ]
+  },
+  {
+    "name": "Celta Vigo",
+    "league": "LaLiga",
+    "primary": "#8ac3ee",
+    "secondary": "#E5254E",
+    "tertiary": null,
+    "aliases": [
+      "celta vigo"
+    ]
+  },
+  {
+    "name": "Deportivo Alav\u00e9s",
+    "league": "LaLiga",
+    "primary": "#0761af",
+    "secondary": "#ffffff",
+    "tertiary": "#009ad7",
+    "aliases": [
+      "deportivo alav\u00e9s"
+    ]
+  },
+  {
+    "name": "Elche",
+    "league": "LaLiga",
+    "primary": "#05642c",
+    "secondary": "#ffffff",
+    "tertiary": "#e6c777",
+    "aliases": [
+      "elche"
+    ]
+  },
+  {
+    "name": "Espanyol",
+    "league": "LaLiga",
+    "primary": "#007FC8",
+    "secondary": "#FFFFFF",
+    "tertiary": "#DF1116",
+    "aliases": [
+      "espanyol"
+    ]
+  },
+  {
+    "name": "Getafe",
+    "league": "LaLiga",
+    "primary": "#005999",
+    "secondary": "#C43A2F",
+    "tertiary": "#FCED0B",
+    "aliases": [
+      "getafe"
+    ]
+  },
+  {
+    "name": "Girona",
+    "league": "LaLiga",
+    "primary": "#cd2534",
+    "secondary": "#ffffff",
+    "tertiary": "#edda35",
+    "aliases": [
+      "girona"
+    ]
+  },
+  {
+    "name": "Levante",
+    "league": "LaLiga",
+    "primary": "#C60B46",
+    "secondary": null,
+    "tertiary": null,
+    "aliases": [
+      "levante"
+    ]
+  },
+  {
+    "name": "Mallorca",
+    "league": "LaLiga",
+    "primary": "#E20613",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "mallorca"
+    ]
+  },
+  {
+    "name": "Osasuna",
+    "league": "LaLiga",
+    "primary": "#0A346F",
+    "secondary": "#D91A21",
+    "tertiary": null,
+    "aliases": [
+      "osasuna"
+    ]
+  },
+  {
+    "name": "Rayo Vallecano",
+    "league": "LaLiga",
+    "primary": "#e53027",
+    "secondary": "#ffffff",
+    "tertiary": null,
+    "aliases": [
+      "rayo vallecano"
+    ]
+  },
+  {
+    "name": "Real Betis",
+    "league": "LaLiga",
+    "primary": "#0BB363",
+    "secondary": "#ffffff",
+    "tertiary": null,
+    "aliases": [
+      "real betis"
+    ]
+  },
+  {
+    "name": "Real Madrid",
+    "league": "LaLiga",
+    "primary": "#ffffff",
+    "secondary": "#00529F",
+    "tertiary": null,
+    "aliases": [
+      "real madrid"
+    ]
+  },
+  {
+    "name": "Real Sociedad",
+    "league": "LaLiga",
+    "primary": "#0067B1",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "real sociedad"
+    ]
+  },
+  {
+    "name": "Sevilla",
+    "league": "LaLiga",
+    "primary": "#FFFFFF",
+    "secondary": "#F43333",
+    "tertiary": "#C79100",
+    "aliases": [
+      "sevilla"
+    ]
+  },
+  {
+    "name": "Valencia",
+    "league": "LaLiga",
+    "primary": "#FF671F",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "valencia"
+    ]
+  },
+  {
+    "name": "Villarreal",
+    "league": "LaLiga",
+    "primary": "#005187",
+    "secondary": "#FFE667",
+    "tertiary": null,
+    "aliases": [
+      "villarreal"
+    ]
+  },
+  {
+    "name": "Angers",
+    "league": "Ligue1",
+    "primary": "#000000",
+    "secondary": "#ffffff",
+    "tertiary": "#d9c395",
+    "aliases": [
+      "angers"
+    ]
+  },
+  {
+    "name": "Auxerre",
+    "league": "Ligue1",
+    "primary": "#4087bf",
+    "secondary": "#ffffff",
+    "tertiary": null,
+    "aliases": [
+      "auxerre"
+    ]
+  },
+  {
+    "name": "Brest",
+    "league": "Ligue1",
+    "primary": "#ed1c24",
+    "secondary": "#ffffff",
+    "tertiary": "#000000",
+    "aliases": [
+      "brest"
+    ]
+  },
+  {
+    "name": "Le Havre",
+    "league": "Ligue1",
+    "primary": "#79bce7",
+    "secondary": "#193260",
+    "tertiary": "#ffffff",
+    "aliases": [
+      "le havre"
+    ]
+  },
+  {
+    "name": "Lens",
+    "league": "Ligue1",
+    "primary": "#fff200",
+    "secondary": "#ec1c24",
+    "tertiary": null,
+    "aliases": [
+      "lens"
+    ]
+  },
+  {
+    "name": "Lille",
+    "league": "Ligue1",
+    "primary": "#e01e13",
+    "secondary": "#24216a",
+    "tertiary": "#ffffff",
+    "aliases": [
+      "lille"
+    ]
+  },
+  {
+    "name": "Lorient",
+    "league": "Ligue1",
+    "primary": "#f58113",
+    "secondary": "#000000",
+    "tertiary": "#ffffff",
+    "aliases": [
+      "lorient"
+    ]
+  },
+  {
+    "name": "Lyon",
+    "league": "Ligue1",
+    "primary": "#ffffff",
+    "secondary": "#0f23aa",
+    "tertiary": "#f40043",
+    "aliases": [
+      "lyon"
+    ]
+  },
+  {
+    "name": "Marseille",
+    "league": "Ligue1",
+    "primary": "#00A1DF",
+    "secondary": "#FFFFFF",
+    "tertiary": "#bea064",
+    "aliases": [
+      "marseille"
+    ]
+  },
+  {
+    "name": "Metz",
+    "league": "Ligue1",
+    "primary": "#6E0F12",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "metz"
+    ]
+  },
+  {
+    "name": "Monaco",
+    "league": "Ligue1",
+    "primary": "#e51b22",
+    "secondary": "#cb9f18",
+    "tertiary": "#ffffff",
+    "aliases": [
+      "monaco"
+    ]
+  },
+  {
+    "name": "Nantes",
+    "league": "Ligue1",
+    "primary": "#FCD405",
+    "secondary": "#1B8F3A",
+    "tertiary": null,
+    "aliases": [
+      "nantes"
+    ]
+  },
+  {
+    "name": "Nice",
+    "league": "Ligue1",
+    "primary": "#000000",
+    "secondary": "#ED1C24",
+    "tertiary": "#B59A54",
+    "aliases": [
+      "nice"
+    ]
+  },
+  {
+    "name": "Paris SG",
+    "league": "Ligue1",
+    "primary": "#004170",
+    "secondary": "#FFFFFF",
+    "tertiary": "#DA291C",
+    "aliases": [
+      "paris sg"
+    ]
+  },
+  {
+    "name": "Rennes",
+    "league": "Ligue1",
+    "primary": "#E13327",
+    "secondary": "#000000",
+    "tertiary": "#FCBC17",
+    "aliases": [
+      "rennes"
+    ]
+  },
+  {
+    "name": "Strasbourg",
+    "league": "Ligue1",
+    "primary": "#009FE3",
+    "secondary": "#DC2F34",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "strasbourg"
+    ]
+  },
+  {
+    "name": "Toulouse",
+    "league": "Ligue1",
+    "primary": "#492359",
+    "secondary": "#FFFFFF",
+    "tertiary": "#F0194E",
+    "aliases": [
+      "toulouse"
+    ]
+  },
+  {
+    "name": "Arizona Diamondbacks",
+    "league": "MLB",
+    "primary": "#A71930",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "arizona diamondbacks"
+    ]
+  },
+  {
+    "name": "Athletics",
+    "league": "MLB",
+    "primary": "#003831",
+    "secondary": "#EFB21E",
+    "tertiary": "#A2AAAD",
+    "aliases": [
+      "athletics"
+    ]
+  },
+  {
+    "name": "Atlanta Braves",
+    "league": "MLB",
+    "primary": "#CE1141",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "atlanta braves"
+    ]
+  },
+  {
+    "name": "Baltimore Orioles",
+    "league": "MLB",
+    "primary": "#DF4601",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "baltimore orioles"
+    ]
+  },
+  {
+    "name": "Boston Red Sox",
+    "league": "MLB",
+    "primary": "#BD3039",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "boston red sox"
+    ]
+  },
+  {
+    "name": "Chicago Cubs",
+    "league": "MLB",
+    "primary": "#0E3386",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "chicago cubs"
+    ]
+  },
+  {
+    "name": "Chicago White Sox",
+    "league": "MLB",
+    "primary": "#27251F",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "chicago white sox"
+    ]
+  },
+  {
+    "name": "Cincinnati Reds",
+    "league": "MLB",
+    "primary": "#C6011F",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "cincinnati reds"
+    ]
+  },
+  {
+    "name": "Cleveland Guardians",
+    "league": "MLB",
+    "primary": "#00385D",
+    "secondary": "#E50022",
+    "tertiary": null,
+    "aliases": [
+      "cleveland guardians"
+    ]
+  },
+  {
+    "name": "Colorado Rockies",
+    "league": "MLB",
+    "primary": "#333366",
+    "secondary": "#C4CED4",
+    "tertiary": "#131413",
+    "aliases": [
+      "colorado rockies"
+    ]
+  },
+  {
+    "name": "Detroit Tigers",
+    "league": "MLB",
+    "primary": "#0C2340",
+    "secondary": "#FA4616",
+    "tertiary": null,
+    "aliases": [
+      "detroit tigers"
+    ]
+  },
+  {
+    "name": "Houston Astros",
+    "league": "MLB",
+    "primary": "#002D62",
+    "secondary": "#EB6E1F",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "houston astros"
+    ]
+  },
+  {
+    "name": "Kansas City Royals",
+    "league": "MLB",
+    "primary": "#004687",
+    "secondary": "#BD9B60",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "kansas city royals"
+    ]
+  },
+  {
+    "name": "Los Angeles Angels",
+    "league": "MLB",
+    "primary": "#BA0021",
+    "secondary": "#003263",
+    "tertiary": null,
+    "aliases": [
+      "los angeles angels"
+    ]
+  },
+  {
+    "name": "Los Angeles Dodgers",
+    "league": "MLB",
+    "primary": "#A5ACAF",
+    "secondary": "#005A9C",
+    "tertiary": "#EF3E42",
+    "aliases": [
+      "los angeles dodgers"
+    ]
+  },
+  {
+    "name": "Miami Marlins",
+    "league": "MLB",
+    "primary": "#00A3E0",
+    "secondary": "#EF3340",
+    "tertiary": "#000000",
+    "aliases": [
+      "miami marlins"
+    ]
+  },
+  {
+    "name": "Milwaukee Brewers",
+    "league": "MLB",
+    "primary": "#FFC52F",
+    "secondary": "#12284B",
+    "tertiary": null,
+    "aliases": [
+      "milwaukee brewers"
+    ]
+  },
+  {
+    "name": "Minnesota Twins",
+    "league": "MLB",
+    "primary": "#002B5C",
+    "secondary": "#D31145",
+    "tertiary": null,
+    "aliases": [
+      "minnesota twins"
+    ]
+  },
+  {
+    "name": "New York Mets",
+    "league": "MLB",
+    "primary": "#002D72",
+    "secondary": "#FF5910",
+    "tertiary": null,
+    "aliases": [
+      "new york mets"
+    ]
+  },
+  {
+    "name": "New York Yankees",
+    "league": "MLB",
+    "primary": "#003087",
+    "secondary": "#E4002C",
+    "tertiary": "#0C2340",
+    "aliases": [
+      "new york yankees"
+    ]
+  },
+  {
+    "name": "Philadelphia Phillies",
+    "league": "MLB",
+    "primary": "#E81828",
+    "secondary": "#002D72",
+    "tertiary": null,
+    "aliases": [
+      "philadelphia phillies"
+    ]
+  },
+  {
+    "name": "Pittsburgh Pirates",
+    "league": "MLB",
+    "primary": "#27251F",
+    "secondary": "#FDB827",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "pittsburgh pirates"
+    ]
+  },
+  {
+    "name": "San Diego Padres",
+    "league": "MLB",
+    "primary": "#2F241D",
+    "secondary": "#FFC425",
+    "tertiary": null,
+    "aliases": [
+      "san diego padres"
+    ]
+  },
+  {
+    "name": "San Francisco Giants",
+    "league": "MLB",
+    "primary": "#FD5A1E",
+    "secondary": "#27251F",
+    "tertiary": null,
+    "aliases": [
+      "san francisco giants"
+    ]
+  },
+  {
+    "name": "Seattle Mariners",
+    "league": "MLB",
+    "primary": "#0C2C56",
+    "secondary": "#005C5C",
+    "tertiary": null,
+    "aliases": [
+      "seattle mariners"
+    ]
+  },
+  {
+    "name": "St. Louis Cardinals",
+    "league": "MLB",
+    "primary": "#C41E3A",
+    "secondary": "#0C2340",
+    "tertiary": "#FEDB00",
+    "aliases": [
+      "st. louis cardinals"
+    ]
+  },
+  {
+    "name": "Tampa Bay Rays",
+    "league": "MLB",
+    "primary": "#092C5C",
+    "secondary": "#8FBCE6",
+    "tertiary": null,
+    "aliases": [
+      "tampa bay rays"
+    ]
+  },
+  {
+    "name": "Texas Rangers",
+    "league": "MLB",
+    "primary": "#003278",
+    "secondary": "#C0111F",
+    "tertiary": null,
+    "aliases": [
+      "texas rangers"
+    ]
+  },
+  {
+    "name": "Toronto Blue Jays",
+    "league": "MLB",
+    "primary": "#134A8E",
+    "secondary": "#1D2D5C",
+    "tertiary": "#E8291C",
+    "aliases": [
+      "toronto blue jays"
+    ]
+  },
+  {
+    "name": "Washington Nationals",
+    "league": "MLB",
+    "primary": "#AB0003",
+    "secondary": "#14225A",
+    "tertiary": null,
+    "aliases": [
+      "washington nationals"
+    ]
+  },
+  {
+    "name": "Atlanta United",
+    "league": "MLS",
+    "primary": "#80000A",
+    "secondary": "#A19060",
+    "tertiary": null,
+    "aliases": [
+      "atlanta united"
+    ]
+  },
+  {
+    "name": "Austin FC",
+    "league": "MLS",
+    "primary": "#00B140",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "austin fc"
+    ]
+  },
+  {
+    "name": "CF Montr\u00e9al",
+    "league": "MLS",
+    "primary": "#0033A1",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "cf montr\u00e9al"
+    ]
+  },
+  {
+    "name": "Charlotte FC",
+    "league": "MLS",
+    "primary": "#1A85C8",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "charlotte fc"
+    ]
+  },
+  {
+    "name": "Chicago Fire",
+    "league": "MLS",
+    "primary": "#7CCDEF",
+    "secondary": "#FF0000",
+    "tertiary": null,
+    "aliases": [
+      "chicago fire"
+    ]
+  },
+  {
+    "name": "Colorado Rapids",
+    "league": "MLS",
+    "primary": "#960A2C",
+    "secondary": "#9CC2EA",
+    "tertiary": null,
+    "aliases": [
+      "colorado rapids"
+    ]
+  },
+  {
+    "name": "Columbus Crew",
+    "league": "MLS",
+    "primary": "#FEDD00",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "columbus crew"
+    ]
+  },
+  {
+    "name": "DC United",
+    "league": "MLS",
+    "primary": "#EF3E42",
+    "secondary": "#231F20",
+    "tertiary": null,
+    "aliases": [
+      "dc united"
+    ]
+  },
+  {
+    "name": "FC Cincinnati",
+    "league": "MLS",
+    "primary": "#F05323",
+    "secondary": "#263B80",
+    "tertiary": null,
+    "aliases": [
+      "fc cincinnati"
+    ]
+  },
+  {
+    "name": "FC Dallas",
+    "league": "MLS",
+    "primary": "#E81F3E",
+    "secondary": "#2A4076",
+    "tertiary": null,
+    "aliases": [
+      "fc dallas"
+    ]
+  },
+  {
+    "name": "Houston Dynamo",
+    "league": "MLS",
+    "primary": "#FF6B00",
+    "secondary": "#101820",
+    "tertiary": null,
+    "aliases": [
+      "houston dynamo"
+    ]
+  },
+  {
+    "name": "Inter Miami",
+    "league": "MLS",
+    "primary": "#F7B5CD",
+    "secondary": "#231F20",
+    "tertiary": null,
+    "aliases": [
+      "inter miami"
+    ]
+  },
+  {
+    "name": "LA Galaxy",
+    "league": "MLS",
+    "primary": "#00245D",
+    "secondary": "#FFD200",
+    "tertiary": null,
+    "aliases": [
+      "la galaxy"
+    ]
+  },
+  {
+    "name": "Los Angeles FC",
+    "league": "MLS",
+    "primary": "#C39E6D",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "los angeles fc"
+    ]
+  },
+  {
+    "name": "Minnesota United",
+    "league": "MLS",
+    "primary": "#8CD2F4",
+    "secondary": "#231F20",
+    "tertiary": null,
+    "aliases": [
+      "minnesota united"
+    ]
+  },
+  {
+    "name": "Nashville SC",
+    "league": "MLS",
+    "primary": "#FFFF00",
+    "secondary": "#0F1145",
+    "tertiary": null,
+    "aliases": [
+      "nashville sc"
+    ]
+  },
+  {
+    "name": "New England Revolution",
+    "league": "MLS",
+    "primary": "#CE0E2D",
+    "secondary": "#0A2240",
+    "tertiary": null,
+    "aliases": [
+      "new england revolution"
+    ]
+  },
+  {
+    "name": "New York City FC",
+    "league": "MLS",
+    "primary": "#6CACE4",
+    "secondary": "#F15524",
+    "tertiary": null,
+    "aliases": [
+      "new york city fc"
+    ]
+  },
+  {
+    "name": "New York Red Bulls",
+    "league": "MLS",
+    "primary": "#ED1E36",
+    "secondary": "#23326A",
+    "tertiary": null,
+    "aliases": [
+      "new york red bulls"
+    ]
+  },
+  {
+    "name": "Orlando City",
+    "league": "MLS",
+    "primary": "#633492",
+    "secondary": "#FDE192",
+    "tertiary": null,
+    "aliases": [
+      "orlando city"
+    ]
+  },
+  {
+    "name": "Philadelphia Union",
+    "league": "MLS",
+    "primary": "#B19B69",
+    "secondary": "#071B2C",
+    "tertiary": null,
+    "aliases": [
+      "philadelphia union"
+    ]
+  },
+  {
+    "name": "Portland Timbers",
+    "league": "MLS",
+    "primary": "#00482B",
+    "secondary": "#D69A00",
+    "tertiary": null,
+    "aliases": [
+      "portland timbers"
+    ]
+  },
+  {
+    "name": "Real Salt Lake",
+    "league": "MLS",
+    "primary": "#B30838",
+    "secondary": "#013A81",
+    "tertiary": null,
+    "aliases": [
+      "real salt lake"
+    ]
+  },
+  {
+    "name": "San Diego FC",
+    "league": "MLS",
+    "primary": "#06172b",
+    "secondary": "#f3a01b",
+    "tertiary": null,
+    "aliases": [
+      "san diego fc"
+    ]
+  },
+  {
+    "name": "San Jose Earthquakes",
+    "league": "MLS",
+    "primary": "#0067B1",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "san jose earthquakes"
+    ]
+  },
+  {
+    "name": "Seattle Sounders",
+    "league": "MLS",
+    "primary": "#5D9741",
+    "secondary": "#005595",
+    "tertiary": null,
+    "aliases": [
+      "seattle sounders"
+    ]
+  },
+  {
+    "name": "Sporting Kansas City",
+    "league": "MLS",
+    "primary": "#91B0D5",
+    "secondary": "#002F65",
+    "tertiary": null,
+    "aliases": [
+      "sporting kansas city"
+    ]
+  },
+  {
+    "name": "St. Louis City SC",
+    "league": "MLS",
+    "primary": "#E0004D",
+    "secondary": "#0C2340",
+    "tertiary": null,
+    "aliases": [
+      "st. louis city sc"
+    ]
+  },
+  {
+    "name": "Toronto FC",
+    "league": "MLS",
+    "primary": "#B81137",
+    "secondary": "#455560",
+    "tertiary": null,
+    "aliases": [
+      "toronto fc"
+    ]
+  },
+  {
+    "name": "Vancouver Whitecaps",
+    "league": "MLS",
+    "primary": "#00245E",
+    "secondary": "#9DC2EA",
+    "tertiary": null,
+    "aliases": [
+      "vancouver whitecaps"
+    ]
+  },
+  {
+    "name": "Atlanta Hawks",
+    "league": "NBA",
+    "primary": "#e03a3e",
+    "secondary": "#ffcd00",
+    "tertiary": null,
+    "aliases": [
+      "atlanta hawks"
+    ]
+  },
+  {
+    "name": "Boston Celtics",
+    "league": "NBA",
+    "primary": "#007a33",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "boston celtics"
+    ]
+  },
+  {
+    "name": "Brooklyn Nets",
+    "league": "NBA",
+    "primary": "#000000",
+    "secondary": "#ffffff",
+    "tertiary": null,
+    "aliases": [
+      "brooklyn nets"
+    ]
+  },
+  {
+    "name": "Charlotte Hornets",
+    "league": "NBA",
+    "primary": "#1d1160",
+    "secondary": "#00788c",
+    "tertiary": null,
+    "aliases": [
+      "charlotte hornets"
+    ]
+  },
+  {
+    "name": "Chicago Bulls",
+    "league": "NBA",
+    "primary": "#ce1141",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "chicago bulls"
+    ]
+  },
+  {
+    "name": "Cleveland Cavaliers",
+    "league": "NBA",
+    "primary": "#860038",
+    "secondary": "#041e42",
+    "tertiary": "#fdbb30",
+    "aliases": [
+      "cleveland cavaliers"
+    ]
+  },
+  {
+    "name": "Dallas Mavericks",
+    "league": "NBA",
+    "primary": "#00538c",
+    "secondary": "#002b5e",
+    "tertiary": null,
+    "aliases": [
+      "dallas mavericks"
+    ]
+  },
+  {
+    "name": "Denver Nuggets",
+    "league": "NBA",
+    "primary": "#0e2240",
+    "secondary": "#fec524",
+    "tertiary": null,
+    "aliases": [
+      "denver nuggets"
+    ]
+  },
+  {
+    "name": "Detroit Pistons",
+    "league": "NBA",
+    "primary": "#c8102e",
+    "secondary": "#1d42ba",
+    "tertiary": null,
+    "aliases": [
+      "detroit pistons"
+    ]
+  },
+  {
+    "name": "Golden State Warriors",
+    "league": "NBA",
+    "primary": "#1d428a",
+    "secondary": "#ffc72c",
+    "tertiary": null,
+    "aliases": [
+      "golden state warriors"
+    ]
+  },
+  {
+    "name": "Houston Rockets",
+    "league": "NBA",
+    "primary": "#ce1141",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "houston rockets"
+    ]
+  },
+  {
+    "name": "Indiana Pacers",
+    "league": "NBA",
+    "primary": "#002d62",
+    "secondary": "#fdbb30",
+    "tertiary": null,
+    "aliases": [
+      "indiana pacers"
+    ]
+  },
+  {
+    "name": "Los Angeles Clippers",
+    "league": "NBA",
+    "primary": "#c8102e",
+    "secondary": "#1d428a",
+    "tertiary": null,
+    "aliases": [
+      "los angeles clippers"
+    ]
+  },
+  {
+    "name": "Los Angeles Lakers",
+    "league": "NBA",
+    "primary": "#fdb927",
+    "secondary": "#3a0078",
+    "tertiary": null,
+    "aliases": [
+      "los angeles lakers"
+    ]
+  },
+  {
+    "name": "Memphis Grizzlies",
+    "league": "NBA",
+    "primary": "#5d76a9",
+    "secondary": "#12173f",
+    "tertiary": null,
+    "aliases": [
+      "memphis grizzlies"
+    ]
+  },
+  {
+    "name": "Miami Heat",
+    "league": "NBA",
+    "primary": "#000000",
+    "secondary": "#98002e",
+    "tertiary": null,
+    "aliases": [
+      "miami heat"
+    ]
+  },
+  {
+    "name": "Milwaukee Bucks",
+    "league": "NBA",
+    "primary": "#00471b",
+    "secondary": "#eee1c6",
+    "tertiary": null,
+    "aliases": [
+      "milwaukee bucks"
+    ]
+  },
+  {
+    "name": "Minnesota Timberwolves",
+    "league": "NBA",
+    "primary": "#0c2340",
+    "secondary": "#236192",
+    "tertiary": null,
+    "aliases": [
+      "minnesota timberwolves"
+    ]
+  },
+  {
+    "name": "New Orleans Pelicans",
+    "league": "NBA",
+    "primary": "#002b5c",
+    "secondary": "#b4975a",
+    "tertiary": null,
+    "aliases": [
+      "new orleans pelicans"
+    ]
+  },
+  {
+    "name": "New York Knicks",
+    "league": "NBA",
+    "primary": "#006bb6",
+    "secondary": "#f58426",
+    "tertiary": null,
+    "aliases": [
+      "new york knicks"
+    ]
+  },
+  {
+    "name": "Oklahoma City Thunder",
+    "league": "NBA",
+    "primary": "#007ac1",
+    "secondary": "#ef3b24",
+    "tertiary": "#002d62",
+    "aliases": [
+      "oklahoma city thunder"
+    ]
+  },
+  {
+    "name": "Orlando Magic",
+    "league": "NBA",
+    "primary": "#0077C0",
+    "secondary": "#C4CED4",
+    "tertiary": "#000000",
+    "aliases": [
+      "orlando magic"
+    ]
+  },
+  {
+    "name": "Philadelphia 76ers",
+    "league": "NBA",
+    "primary": "#006bb6",
+    "secondary": "#ED174C",
+    "tertiary": "#C4CED4",
+    "aliases": [
+      "philadelphia 76ers"
+    ]
+  },
+  {
+    "name": "Phoenix Suns",
+    "league": "NBA",
+    "primary": "#1d1160",
+    "secondary": "#e56020",
+    "tertiary": null,
+    "aliases": [
+      "phoenix suns"
+    ]
+  },
+  {
+    "name": "Portland Trail Blazers",
+    "league": "NBA",
+    "primary": "#e03a3e",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "portland trail blazers"
+    ]
+  },
+  {
+    "name": "Sacramento Kings",
+    "league": "NBA",
+    "primary": "#5a2b81",
+    "secondary": "#63727a",
+    "tertiary": null,
+    "aliases": [
+      "sacramento kings"
+    ]
+  },
+  {
+    "name": "San Antonio Spurs",
+    "league": "NBA",
+    "primary": "#000000",
+    "secondary": "#c4ced4",
+    "tertiary": null,
+    "aliases": [
+      "san antonio spurs"
+    ]
+  },
+  {
+    "name": "Toronto Raptors",
+    "league": "NBA",
+    "primary": "#ce1141",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "toronto raptors"
+    ]
+  },
+  {
+    "name": "Utah Jazz",
+    "league": "NBA",
+    "primary": "#002b5c",
+    "secondary": "#00471b",
+    "tertiary": "#f9a01b",
+    "aliases": [
+      "utah jazz"
+    ]
+  },
+  {
+    "name": "Washington Wizards",
+    "league": "NBA",
+    "primary": "#002b5c",
+    "secondary": "#e31837",
+    "tertiary": null,
+    "aliases": [
+      "washington wizards"
+    ]
+  },
+  {
+    "name": "Arizona Cardinals",
+    "league": "NFL",
+    "primary": "#97233F",
+    "secondary": "#FFB612",
+    "tertiary": "#000000",
+    "aliases": [
+      "arizona cardinals"
+    ]
+  },
+  {
+    "name": "Buffalo Bills",
+    "league": "NFL",
+    "primary": "#00338D",
+    "secondary": "#C60C30",
+    "tertiary": null,
+    "aliases": [
+      "buffalo bills"
+    ]
+  },
+  {
+    "name": "Carolina Panthers",
+    "league": "NFL",
+    "primary": "#0085CA",
+    "secondary": "#000000",
+    "tertiary": "#BFC0BF",
+    "aliases": [
+      "carolina panthers"
+    ]
+  },
+  {
+    "name": "Chicago Bears",
+    "league": "NFL",
+    "primary": "#0B162A",
+    "secondary": "#C83803",
+    "tertiary": null,
+    "aliases": [
+      "chicago bears"
+    ]
+  },
+  {
+    "name": "Cincinnati Bengals",
+    "league": "NFL",
+    "primary": "#FB4F14",
+    "secondary": "#000000",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "cincinnati bengals"
+    ]
+  },
+  {
+    "name": "Cleveland Browns",
+    "league": "NFL",
+    "primary": "#FB4F14",
+    "secondary": "#22150C",
+    "tertiary": "#A5ACAF",
+    "aliases": [
+      "cleveland browns"
+    ]
+  },
+  {
+    "name": "Dallas Cowboys",
+    "league": "NFL",
+    "primary": "#002244",
+    "secondary": "#B0B7BC",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "dallas cowboys"
+    ]
+  },
+  {
+    "name": "Denver Broncos",
+    "league": "NFL",
+    "primary": "#002244",
+    "secondary": "#FB4F14",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "denver broncos"
+    ]
+  },
+  {
+    "name": "Detroit Lions",
+    "league": "NFL",
+    "primary": "#005A8B",
+    "secondary": "#B0B7BC",
+    "tertiary": "#000000",
+    "aliases": [
+      "detroit lions"
+    ]
+  },
+  {
+    "name": "Green Bay Packers",
+    "league": "NFL",
+    "primary": "#203731",
+    "secondary": "#FFB612",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "green bay packers"
+    ]
+  },
+  {
+    "name": "Houston Texans",
+    "league": "NFL",
+    "primary": "#03202F",
+    "secondary": "#A71930",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "houston texans"
+    ]
+  },
+  {
+    "name": "Indianapolis Colts",
+    "league": "NFL",
+    "primary": "#002C5F",
+    "secondary": "#A5ACAF",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "indianapolis colts"
+    ]
+  },
+  {
+    "name": "Jacksonville Jaguars",
+    "league": "NFL",
+    "primary": "#006778",
+    "secondary": "#D7A22A",
+    "tertiary": "#000000",
+    "aliases": [
+      "jacksonville jaguars"
+    ]
+  },
+  {
+    "name": "Kansas City Chiefs",
+    "league": "NFL",
+    "primary": "#E31837",
+    "secondary": "#FFB612",
+    "tertiary": "#000000",
+    "aliases": [
+      "kansas city chiefs"
+    ]
+  },
+  {
+    "name": "Las Vegas Raiders",
+    "league": "NFL",
+    "primary": "#000000",
+    "secondary": "#A5ACAF",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "las vegas raiders"
+    ]
+  },
+  {
+    "name": "Los Angeles Chargers",
+    "league": "NFL",
+    "primary": "#FFB612",
+    "secondary": "#0073CF",
+    "tertiary": "#002244",
+    "aliases": [
+      "los angeles chargers"
+    ]
+  },
+  {
+    "name": "Los Angeles Rams",
+    "league": "NFL",
+    "primary": "#002244",
+    "secondary": "#B3995D",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "los angeles rams"
+    ]
+  },
+  {
+    "name": "Miami Dolphins",
+    "league": "NFL",
+    "primary": "#008E97",
+    "secondary": "#F58220",
+    "tertiary": "#005778",
+    "aliases": [
+      "miami dolphins"
+    ]
+  },
+  {
+    "name": "Minnesota Vikings",
+    "league": "NFL",
+    "primary": "#4F2683",
+    "secondary": "#FFC62F",
+    "tertiary": null,
+    "aliases": [
+      "minnesota vikings"
+    ]
+  },
+  {
+    "name": "New England Patriots",
+    "league": "NFL",
+    "primary": "#002244",
+    "secondary": "#C60C30",
+    "tertiary": "#B0B7BC",
+    "aliases": [
+      "new england patriots"
+    ]
+  },
+  {
+    "name": "New Orleans Saints",
+    "league": "NFL",
+    "primary": "#9F8958",
+    "secondary": "#000000",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "new orleans saints"
+    ]
+  },
+  {
+    "name": "New York Giants",
+    "league": "NFL",
+    "primary": "#0B2265",
+    "secondary": "#A71930",
+    "tertiary": "#A5ACAF",
+    "aliases": [
+      "new york giants"
+    ]
+  },
+  {
+    "name": "New York Jets",
+    "league": "NFL",
+    "primary": "#115740",
+    "secondary": "#FFFFFF",
+    "tertiary": "#203731",
+    "aliases": [
+      "new york jets"
+    ]
+  },
+  {
+    "name": "Philadelphia Eagles",
+    "league": "NFL",
+    "primary": "#004C54",
+    "secondary": "#000000",
+    "tertiary": "#A5ACAF",
+    "aliases": [
+      "philadelphia eagles"
+    ]
+  },
+  {
+    "name": "Pittsburgh Steelers",
+    "league": "NFL",
+    "primary": "#FFB612",
+    "secondary": "#C60C30",
+    "tertiary": "#00539b",
+    "aliases": [
+      "pittsburgh steelers"
+    ]
+  },
+  {
+    "name": "San Francisco 49ers",
+    "league": "NFL",
+    "primary": "#AA0000",
+    "secondary": "#B3995D",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "san francisco 49ers"
+    ]
+  },
+  {
+    "name": "Seattle Seahawks",
+    "league": "NFL",
+    "primary": "#002244",
+    "secondary": "#69BE28",
+    "tertiary": "#A5ACAF",
+    "aliases": [
+      "seattle seahawks"
+    ]
+  },
+  {
+    "name": "Tampa Bay Buccaneers",
+    "league": "NFL",
+    "primary": "#d50a0a",
+    "secondary": "#34302b",
+    "tertiary": "#ff7900",
+    "aliases": [
+      "tampa bay buccaneers"
+    ]
+  },
+  {
+    "name": "Tennessee Titans",
+    "league": "NFL",
+    "primary": "#002244",
+    "secondary": "#4b92db",
+    "tertiary": "#c60c30",
+    "aliases": [
+      "tennessee titans"
+    ]
+  },
+  {
+    "name": "Washington Commanders",
+    "league": "NFL",
+    "primary": "#5a1414",
+    "secondary": "#FFB612",
+    "tertiary": null,
+    "aliases": [
+      "washington commanders"
+    ]
+  },
+  {
+    "name": "Anaheim Ducks",
+    "league": "NHL",
+    "primary": "#cf4520",
+    "secondary": "#89734c",
+    "tertiary": "#000000",
+    "aliases": [
+      "anaheim ducks"
+    ]
+  },
+  {
+    "name": "Boston Bruins",
+    "league": "NHL",
+    "primary": "#FFB81C",
+    "secondary": "#FFFFFF",
+    "tertiary": "#000000",
+    "aliases": [
+      "boston bruins"
+    ]
+  },
+  {
+    "name": "Buffalo Sabres",
+    "league": "NHL",
+    "primary": "#003087",
+    "secondary": "#FFB81C",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "buffalo sabres"
+    ]
+  },
+  {
+    "name": "Calgary Flames",
+    "league": "NHL",
+    "primary": "#D2001C",
+    "secondary": "#FAAF19",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "calgary flames"
+    ]
+  },
+  {
+    "name": "Carolina Hurricanes",
+    "league": "NHL",
+    "primary": "#CE1126",
+    "secondary": "#A4A9AD",
+    "tertiary": "#000000",
+    "aliases": [
+      "carolina hurricanes"
+    ]
+  },
+  {
+    "name": "Chicago Blackhawks",
+    "league": "NHL",
+    "primary": "#CF0A2C",
+    "secondary": "#000000",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "chicago blackhawks"
+    ]
+  },
+  {
+    "name": "Colorado Avalanche",
+    "league": "NHL",
+    "primary": "#6F263D",
+    "secondary": "#236192",
+    "tertiary": "#A2AAAD",
+    "aliases": [
+      "colorado avalanche"
+    ]
+  },
+  {
+    "name": "Columbus Blue Jackets",
+    "league": "NHL",
+    "primary": "#002654",
+    "secondary": "#CE1126",
+    "tertiary": "#A4A9AD",
+    "aliases": [
+      "columbus blue jackets"
+    ]
+  },
+  {
+    "name": "Dallas Stars",
+    "league": "NHL",
+    "primary": "#006847",
+    "secondary": "#8F8F8C",
+    "tertiary": "#111111",
+    "aliases": [
+      "dallas stars"
+    ]
+  },
+  {
+    "name": "Detroit Red Wings",
+    "league": "NHL",
+    "primary": "#CE1126",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "detroit red wings"
+    ]
+  },
+  {
+    "name": "Edmonton Oilers",
+    "league": "NHL",
+    "primary": "#041E42",
+    "secondary": "#FF4C00",
+    "tertiary": null,
+    "aliases": [
+      "edmonton oilers"
+    ]
+  },
+  {
+    "name": "Florida Panthers",
+    "league": "NHL",
+    "primary": "#041E42",
+    "secondary": "#C8102E",
+    "tertiary": "#B9975B",
+    "aliases": [
+      "florida panthers"
+    ]
+  },
+  {
+    "name": "Los Angeles Kings",
+    "league": "NHL",
+    "primary": "#111111",
+    "secondary": "#A2AAAD",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "los angeles kings"
+    ]
+  },
+  {
+    "name": "Minnesota Wild",
+    "league": "NHL",
+    "primary": "#154734",
+    "secondary": "#A6192E",
+    "tertiary": "#EAAA00",
+    "aliases": [
+      "minnesota wild"
+    ]
+  },
+  {
+    "name": "Montreal Canadiens",
+    "league": "NHL",
+    "primary": "#AF1E2D",
+    "secondary": "#192168",
+    "tertiary": null,
+    "aliases": [
+      "montreal canadiens"
+    ]
+  },
+  {
+    "name": "Nashville Predators",
+    "league": "NHL",
+    "primary": "#FFB81C",
+    "secondary": "#FFFFFF",
+    "tertiary": "#041E42",
+    "aliases": [
+      "nashville predators"
+    ]
+  },
+  {
+    "name": "New Jersey Devils",
+    "league": "NHL",
+    "primary": "#CE1126",
+    "secondary": "#000000",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "new jersey devils"
+    ]
+  },
+  {
+    "name": "New York Islanders",
+    "league": "NHL",
+    "primary": "#00539B",
+    "secondary": "#F47D30",
+    "tertiary": null,
+    "aliases": [
+      "new york islanders"
+    ]
+  },
+  {
+    "name": "New York Rangers",
+    "league": "NHL",
+    "primary": "#0038A8",
+    "secondary": "#CE1126",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "new york rangers"
+    ]
+  },
+  {
+    "name": "Ottawa Senators",
+    "league": "NHL",
+    "primary": "#000000",
+    "secondary": "#DA1A32",
+    "tertiary": "#B79257",
+    "aliases": [
+      "ottawa senators"
+    ]
+  },
+  {
+    "name": "Philadelphia Flyers",
+    "league": "NHL",
+    "primary": "#F74902",
+    "secondary": "#000000",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "philadelphia flyers"
+    ]
+  },
+  {
+    "name": "Pittsburgh Penguins",
+    "league": "NHL",
+    "primary": "#000000",
+    "secondary": "#FFFFFF",
+    "tertiary": "#FCB514",
+    "aliases": [
+      "pittsburgh penguins"
+    ]
+  },
+  {
+    "name": "San Jose Sharks",
+    "league": "NHL",
+    "primary": "#006D75",
+    "secondary": "#000000",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "san jose sharks"
+    ]
+  },
+  {
+    "name": "Seattle Kraken",
+    "league": "NHL",
+    "primary": "#99D9D9",
+    "secondary": "#FFFFFF",
+    "tertiary": "#001628",
+    "aliases": [
+      "seattle kraken"
+    ]
+  },
+  {
+    "name": "St. Louis Blues",
+    "league": "NHL",
+    "primary": "#002F87",
+    "secondary": "#FCB514",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "st. louis blues"
+    ]
+  },
+  {
+    "name": "Tampa Bay Lightning",
+    "league": "NHL",
+    "primary": "#002868",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "tampa bay lightning"
+    ]
+  },
+  {
+    "name": "Toronto Maple Leafs",
+    "league": "NHL",
+    "primary": "#00205B",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "toronto maple leafs"
+    ]
+  },
+  {
+    "name": "Utah Mammoth",
+    "league": "NHL",
+    "primary": "#010101",
+    "secondary": "#6cace4",
+    "tertiary": "#ffffff",
+    "aliases": [
+      "utah mammoth"
+    ]
+  },
+  {
+    "name": "Vancouver Canucks",
+    "league": "NHL",
+    "primary": "#00205B",
+    "secondary": "#00843D",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "vancouver canucks"
+    ]
+  },
+  {
+    "name": "Vegas Golden Knights",
+    "league": "NHL",
+    "primary": "#B4975A",
+    "secondary": "#333F42",
+    "tertiary": "#C8102E",
+    "aliases": [
+      "vegas golden knights"
+    ]
+  },
+  {
+    "name": "Washington Capitals",
+    "league": "NHL",
+    "primary": "#C8102E",
+    "secondary": "#FFFFFF",
+    "tertiary": "#041E42",
+    "aliases": [
+      "washington capitals"
+    ]
+  },
+  {
+    "name": "Winnipeg Jets",
+    "league": "NHL",
+    "primary": "#041E42",
+    "secondary": "#8E9090",
+    "tertiary": "#AC162C",
+    "aliases": [
+      "winnipeg jets"
+    ]
+  },
+  {
+    "name": "AC Milan",
+    "league": "SerieA",
+    "primary": "#FB090B",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "ac milan"
+    ]
+  },
+  {
+    "name": "Atalanta",
+    "league": "SerieA",
+    "primary": "#1E71B8",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "atalanta"
+    ]
+  },
+  {
+    "name": "Bologna",
+    "league": "SerieA",
+    "primary": "#A21C26",
+    "secondary": "#1A2F48",
+    "tertiary": null,
+    "aliases": [
+      "bologna"
+    ]
+  },
+  {
+    "name": "Cagliari",
+    "league": "SerieA",
+    "primary": "#002350",
+    "secondary": "#AD002A",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "cagliari"
+    ]
+  },
+  {
+    "name": "Como",
+    "league": "SerieA",
+    "primary": "#114169",
+    "secondary": "#114169",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "como"
+    ]
+  },
+  {
+    "name": "Cremonese",
+    "league": "SerieA",
+    "primary": "#808285",
+    "secondary": "#ed1c24",
+    "tertiary": null,
+    "aliases": [
+      "cremonese"
+    ]
+  },
+  {
+    "name": "Fiorentina",
+    "league": "SerieA",
+    "primary": "#482E92",
+    "secondary": "#FFFFFF",
+    "tertiary": "#A29160",
+    "aliases": [
+      "fiorentina"
+    ]
+  },
+  {
+    "name": "Genoa",
+    "league": "SerieA",
+    "primary": "#AD1919",
+    "secondary": "#05232F",
+    "tertiary": "#FFD400",
+    "aliases": [
+      "genoa"
+    ]
+  },
+  {
+    "name": "Hellas Verona",
+    "league": "SerieA",
+    "primary": "#FFE74A",
+    "secondary": "#005395",
+    "tertiary": null,
+    "aliases": [
+      "hellas verona"
+    ]
+  },
+  {
+    "name": "Inter Milan",
+    "league": "SerieA",
+    "primary": "#010E80",
+    "secondary": "#000000",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "inter milan"
+    ]
+  },
+  {
+    "name": "Juventus",
+    "league": "SerieA",
+    "primary": "#000000",
+    "secondary": "#FFFFFF",
+    "tertiary": "#ffc9e1",
+    "aliases": [
+      "juventus"
+    ]
+  },
+  {
+    "name": "Lazio",
+    "league": "SerieA",
+    "primary": "#87D8F7",
+    "secondary": "#FFFFFF",
+    "tertiary": null,
+    "aliases": [
+      "lazio"
+    ]
+  },
+  {
+    "name": "Lecce",
+    "league": "SerieA",
+    "primary": "#FFF200",
+    "secondary": "#ED1B23",
+    "tertiary": null,
+    "aliases": [
+      "lecce"
+    ]
+  },
+  {
+    "name": "Napoli",
+    "league": "SerieA",
+    "primary": "#12A0D7",
+    "secondary": "#003C82",
+    "tertiary": "#FFFFFF",
+    "aliases": [
+      "napoli"
+    ]
+  },
+  {
+    "name": "Parma",
+    "league": "SerieA",
+    "primary": "#ffffff",
+    "secondary": "#1b4094",
+    "tertiary": "#ffd200",
+    "aliases": [
+      "parma"
+    ]
+  },
+  {
+    "name": "Roma",
+    "league": "SerieA",
+    "primary": "#8E1F2F",
+    "secondary": "#F0BC42",
+    "tertiary": "#CACACC",
+    "aliases": [
+      "roma"
+    ]
+  },
+  {
+    "name": "Sassuolo",
+    "league": "SerieA",
+    "primary": "#00A752",
+    "secondary": "#000000",
+    "tertiary": null,
+    "aliases": [
+      "sassuolo"
+    ]
+  },
+  {
+    "name": "Torino",
+    "league": "SerieA",
+    "primary": "#8A1E03",
+    "secondary": "#FFFFFF",
+    "tertiary": "#EEB111",
+    "aliases": [
+      "torino"
+    ]
+  },
+  {
+    "name": "Udinese",
+    "league": "SerieA",
+    "primary": "#FFFFFF",
+    "secondary": "#000000",
+    "tertiary": "#8B7D37",
+    "aliases": [
+      "udinese"
+    ]
+  }
+]
