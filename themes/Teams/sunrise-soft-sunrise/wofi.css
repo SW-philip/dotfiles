@@ -1,0 +1,35 @@
+/* Wofi Theme: sunrise - Soft Sunrise */
+window {
+  background-color: #f0f0f0;
+}
+
+#entry {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+  color: #1a1a1a;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+}
+
+#entry:selected {
+  background-color: #c2bcbc;
+  color: #a9b6d1;
+}
+
+#input {
+  background-color: #f0f0f0;
+  color: #1a1a1a;
+  border: 2px solid #a9b6d1;
+  padding: 6px;
+  margin: 5px;
+}
+
+#text {
+  color: #1a1a1a;
+}
+
+#text:selected {
+  color: #a9b6d1;
+}
