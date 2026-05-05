@@ -10,9 +10,9 @@
     ../../profiles/secure-boot.nix
     ../../profiles/surface.nix
     ../../profiles/niri.nix
-    ../../profiles/vpn-security.nix
     inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
     inputs.sops-nix.nixosModules.sops
+    ../../profiles/sops-shared.nix
     ../../modules/greetd.nix
     ../../modules/protonvpn.nix
     ../../modules/sqlch.nix
@@ -36,14 +36,6 @@
     defaultSopsFile = ../../secrets/surface.yaml;
     age.keyFile = "/var/lib/sops-nix/key.txt";
     secrets.protonvpn_conf = {};
-    secrets.spotify_env = {
-      sopsFile = ../../secrets/shared.yaml;
-      owner = "prepko";
-    };
-    secrets.openweathermap_api_key = {
-      sopsFile = ../../secrets/shared.yaml;
-      owner = "prepko";
-    };
   };
 
   ############################################################

@@ -1,9 +1,6 @@
 # profiles/home/surface.nix
 # Surface-specific home config. Imports base, adds tablet/touch/rotation things.
-{ inputs, pkgs, lib, config, ... }:
-# let
-#   iio-hyprland = inputs.iio-hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
-# in
+{ pkgs, lib, config, ... }:
 {
   imports = [
     ./base.nix
@@ -25,23 +22,6 @@
     };
   };
 
-  # ########################################
-  # # Surface-only systemd user services
-  # ########################################
-  # systemd.user.services.iio-hyprland = {
-  #   Unit = {
-  #     Description = "iio-hyprland auto-rotation daemon";
-  #     After = [ "graphical-session.target" ];
-  #     PartOf = [ "graphical-session.target" ];
-  #     ConditionEnvironment = "XDG_SESSION_DESKTOP=Hyprland";
-  #   };
-  #   Install.WantedBy = [ "graphical-session.target" ];
-  #   Service = {
-  #     ExecStart = "${iio-hyprland}/bin/iio-hyprland";
-  #     Restart = "on-failure";
-  #   };
-  # };
-
   ########################################
   # Surface-only packages
   ########################################
@@ -51,14 +31,5 @@
     xournalpp       # stylus note-taking
     foliate         # ebook reader
     koreader        # ebook reader (alternative)
-    # iio-hyprland
   ];
-
-  # ########################################
-  # # Surface HiDPI cursor overrides (hyprland)
-  # ########################################
-  # wayland.windowManager.hyprland.extraConfig = ''
-  #   env = HYPRCURSOR_SIZE,32
-  #   env = XCURSOR_SIZE,32
-  # '';
 }

@@ -20,8 +20,8 @@
     # Services & modules
     ./services.nix
     inputs.sops-nix.nixosModules.sops
+    ../../profiles/sops-shared.nix
     ../../modules/protonvpn.nix
-    ../../profiles/vpn-security.nix
     ../../modules/jellyfin.nix
     ../../modules/sqlch.nix
     ../../modules/greetd.nix
@@ -44,13 +44,5 @@
   sops = {
     defaultSopsFile = ../../secrets/shared.yaml;
     age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    secrets.spotify_env = {
-      owner = "prepko";
-      path = "/run/secrets/spotify_env";
-    };
-    secrets.openweathermap_api_key = {
-      owner = "prepko";
-      path = "/run/secrets/openweathermap_api_key";
-    };
   };
 }

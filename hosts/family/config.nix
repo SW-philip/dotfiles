@@ -6,6 +6,7 @@
     ./hardware.nix
     ./boot.nix
     ../../profiles/niri.nix
+    ../../modules/greetd.nix
     inputs.sops-nix.nixosModules.sops
   ];
 
@@ -56,34 +57,6 @@
       libvdpau-va-gl
     ];
   };
-
-  ############################################################
-  # Display — Niri + greetd/tuigreet (inline, family greeting)
-  ############################################################
-  services.greetd = {
-    enable = true;
-    settings.default_session = {
-      command = ''${pkgs.tuigreet}/bin/tuigreet \
-        --time \
-        --remember \
-        --remember-session \
-        --greeting "Welcome." \
-        --asterisks \
-        --asterisks-char "•" \
-        --width 80 \
-        --window-padding 1 \
-        --container-padding 4 \
-        --prompt-padding 1 \
-        --greet-align center \
-        --power-shutdown "systemctl poweroff" \
-        --power-reboot "systemctl reboot"'';
-      user = "greeter";
-    };
-  };
-  systemd.services."getty@tty1".enable  = false;
-  systemd.services."autovt@tty1".enable = false;
-  users.users.greeter = { isSystemUser = true; group = "greeter"; };
-  users.groups.greeter = {};
 
   services.xserver.xkb = { layout = "us"; };
 
