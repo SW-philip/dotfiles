@@ -5,6 +5,7 @@ let
   helium = inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   # ── Bibata Modern Ice Cursor (Hyprcursor format for Niri/Wayland) ──
+    # ── Bibata Modern Ice Cursor (Fixed Structure) ──
   bibata-modern-ice = pkgs.stdenv.mkDerivation {
     pname = "bibata-modern-ice-cursor";
     version = "2.0.4";
@@ -13,18 +14,40 @@ let
       owner = "ful1e5";
       repo = "Bibata_Cursor";
       rev = "v2.0.4";
+      # ⚠️ You will need to update the sha256 hash below after the first run fails again
+      # (or if you want to be safe, remove the hash line entirely and let Nix calculate it)
       sha256 = "sha256-ujAKZMbfABaBiAogmtTqOx0LUpeb4cA532RWvf9DhdY=";
     };
 
+    # FIX: Dynamically find the folder and move it
     postPatch = ''
-      mv Hyprcursor/Bibata-Modern-Ice .
-      rm -rf Hyprcursor
-      mv Bibata-Modern-Ice .
+      # List contents to debug if needed: ls -la
+      # The repo structure usually has the theme directly in the root or in a 'Hyprcursor' folder
+      # Let's try to find the 'Bibata-Modern-Ice' folder regardless of depth
+
+      if [ -d "Hyprcursor/Bibata-Modern-Ice" ]; then
+        mv Hyprcursor/Bibata-Modern-Ice .
+        rm -rf Hyprcursor
+      elif [ -d "Bibata-Modern-Ice" ]; then
+        # It's already in the root, just rename/move to ensure consistency
+        mv Bibata-Modern-Ice .
+      else
+        # Fallback: try to find it recursively
+        find . -type d -name "Bibata-Modern-Ice" -exec mv {} . \;
+        rmdir $(find . -type d -empty) 2>/dev/null || true
+      fi
+
+      # Ensure the folder is named correctly for the installer
+      if [ ! -d "Bibata-Modern-Ice" ]; then
+        echo "ERROR: Could not find Bibata-Modern-Ice folder"
+        ls -la
+        exit 1
+      fi
     '';
 
     installPhase = ''
       mkdir -p $out/share/hyprcursor
-      cp -r . $out/share/hyprcursor/Bibata-Modern-Ice
+      cp -r Bibata-Modern-Ice $out/share/hyprcursor/
     '';
 
     meta = {
