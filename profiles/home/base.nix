@@ -14,7 +14,7 @@ let
       repo = "Bibata_Cursor";
       rev = "v2.0.4";
       # ⚠️ You will need to update the sha256 hash below after the first run fails again
-      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+      sha256 = "sha256-ujAKZMbfABaBiAogmtTqOx0LUpeb4cA532RWvf9DhdY=";
     };
 
     # No postPatch needed, we build from source
