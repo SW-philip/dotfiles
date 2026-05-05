@@ -2,7 +2,37 @@
 # Universal home config — shared across all hosts.
 { inputs, pkgs, lib, config, ... }:
 let
-  helium = inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  helium = inputs.helium.packages.$
+
+  bibata-modern-ice = pkgs.stdenv.mkDerivation {
+    pname = "bibata-modern-ice-cursor";
+    version = "2.0.4";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "ful1e5";
+      repo = "Bibata_Cursor";
+      rev = "v2.0.4";
+      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    };
+
+    postPatch = ''
+      mv Hyprcursor/Bibata-Modern-Ice .
+      rm -rf Hyprcursor
+      mv Bibata-Modern-Ice .
+    '';
+
+    installPhase = ''
+      mkdir -p $out/share/hyprcursor
+      cp -r . $out/share/hyprcursor/Bibata-Modern-Ice
+    '';
+
+    meta = {
+      description = "Bibata Modern Ice Cursor Theme (Hyprcursor)";
+      homepage = "https://github.com/ful1e5/Bibata_Cursor";
+      license = pkgs.lib.licenses.mit;
+    };
+  };
+
   pythonEnv = pkgs.python312.withPackages (ps: with ps; [
     # UI / TUI
     pygobject3 textual rich pystray pillow pydbus cairosvg
@@ -39,8 +69,8 @@ in
       package = pkgs.papirus-icon-theme;
     };
     cursorTheme = {
-      name    = "BreezeX-RosePine-Linux";
-      package = pkgs.rose-pine-cursor;
+      name    = "Bibata-Modern-Ice";
+      package = bibata-modern-ice;
       size    = 24;
     };
   };
@@ -497,7 +527,7 @@ home.packages = with pkgs; [
     jq ripgrep fd bat
     gitleaks unzip resvg
     pythonEnv claude-code
-    rose-pine-cursor
+    bibata-modern-ice
     grim slurp wl-clipboard swappy
     fuzzel cliphist
     ffmpeg mediainfo vlc playerctl libnotify
