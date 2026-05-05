@@ -4,8 +4,7 @@
 let
   helium = inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
-  # ── Bibata Modern Ice Cursor (Hyprcursor format for Niri/Wayland) ──
-    # ── Bibata Modern Ice Cursor (Fixed Structure) ──
+  # ── Bibata Modern Ice Cursor (Built from Source) ──
   bibata-modern-ice = pkgs.stdenv.mkDerivation {
     pname = "bibata-modern-ice-cursor";
     version = "2.0.4";
@@ -15,43 +14,35 @@ let
       repo = "Bibata_Cursor";
       rev = "v2.0.4";
       # ⚠️ You will need to update the sha256 hash below after the first run fails again
-      # (or if you want to be safe, remove the hash line entirely and let Nix calculate it)
-      sha256 = "sha256-ujAKZMbfABaBiAogmtTqOx0LUpeb4cA532RWvf9DhdY=";
+      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
     };
 
-    # FIX: Dynamically find the folder and move it
-    postPatch = ''
-      # List contents to debug if needed: ls -la
-      # The repo structure usually has the theme directly in the root or in a 'Hyprcursor' folder
-      # Let's try to find the 'Bibata-Modern-Ice' folder regardless of depth
+    # No postPatch needed, we build from source
+    buildInputs = [ pkgs.nodejs pkgs.yarn ]; # Required for the build script
 
-      if [ -d "Hyprcursor/Bibata-Modern-Ice" ]; then
-        mv Hyprcursor/Bibata-Modern-Ice .
-        rm -rf Hyprcursor
-      elif [ -d "Bibata-Modern-Ice" ]; then
-        # It's already in the root, just rename/move to ensure consistency
-        mv Bibata-Modern-Ice .
-      else
-        # Fallback: try to find it recursively
-        find . -type d -name "Bibata-Modern-Ice" -exec mv {} . \;
-        rmdir $(find . -type d -empty) 2>/dev/null || true
-      fi
-
-      # Ensure the folder is named correctly for the installer
-      if [ ! -d "Bibata-Modern-Ice" ]; then
-        echo "ERROR: Could not find Bibata-Modern-Ice folder"
-        ls -la
-        exit 1
-      fi
+    buildPhase = ''
+      # Install dependencies and build the themes
+      yarn install
+      yarn build
     '';
 
     installPhase = ''
       mkdir -p $out/share/hyprcursor
-      cp -r Bibata-Modern-Ice $out/share/hyprcursor/
+
+      # The build script creates folders like 'Bibata-Modern-Ice' in the root
+      # We need to find the Hyprcursor output folder
+      if [ -d "Hyprcursor/Bibata-Modern-Ice" ]; then
+        cp -r Hyprcursor/Bibata-Modern-Ice $out/share/hyprcursor/
+      elif [ -d "Bibata-Modern-Ice" ]; then
+        cp -r Bibata-Modern-Ice $out/share/hyprcursor/
+      else
+        # Fallback: look for any folder starting with Bibata
+        find . -maxdepth 1 -type d -name "Bibata-*" -exec cp -r {} $out/share/hyprcursor/ \;
+      fi
     '';
 
     meta = {
-      description = "Bibata Modern Ice Cursor Theme (Hyprcursor)";
+      description = "Bibata Modern Ice Cursor Theme (Built from Source)";
       homepage = "https://github.com/ful1e5/Bibata_Cursor";
       license = pkgs.lib.licenses.mit;
     };
