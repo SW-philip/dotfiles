@@ -120,6 +120,8 @@ let
       waybarCss  = pkgs.writeText "waybar-style-${slug}.css"  (import ../waybar/style.nix t.palette);
       waybarSh   = pkgs.writeText "waybar-palette-${slug}.sh" t.shContent;
       nemoCss    = pkgs.writeText "nemo-gtk3-${slug}.css"     (import ../nemo/gtk3.css.nix t.palette);
+      wofiCss    = pkgs.writeText "wofi-style-${slug}.css"    (mkWofiCss t.palette);
+      fuzzelIni  = pkgs.writeText "fuzzel-${slug}.ini"        (mkFuzzelIni t.palette);
       cava          = pkgs.writeText "cava-config-${slug}"       (mkCavaConfig t.palette);
       ghostty       = pkgs.writeText "ghostty-config-${slug}"    (mkGhosttyConfig t.palette);
       pandora       = pkgs.writeText "pandora-${slug}.kdl"       (mkPandoraCfg wallpaper);
@@ -215,6 +217,70 @@ let
     window-padding-x = 12
     window-padding-y = 8
   '';
+
+  mkWofiCss = p: ''
+    window {
+      background-color: ${p.BASE};
+      font-family: "JetBrainsMono Nerd Font";
+      font-size: 12px;
+    }
+
+    #entry {
+      margin: 5px;
+      padding: 8px;
+      border-radius: 6px;
+      background-color: ${p.BASE};
+      color: ${p.TEXT};
+    }
+
+    #entry:selected {
+      background-color: ${p.OVERLAY};
+      color: ${p.PINE};
+    }
+
+    #input {
+      background-color: ${p.SURFACE};
+      color: ${p.TEXT};
+      border: 2px solid ${p.IRIS};
+      padding: 6px;
+      margin: 5px;
+    }
+
+    #text {
+      color: ${p.TEXT};
+    }
+
+    #text:selected {
+      color: ${p.PINE};
+    }
+  '';
+
+  mkFuzzelIni = p:
+    let c = hex: (lib.removePrefix "#" hex) + "ff";
+    in ''
+      [main]
+      font=monospace:size=13
+      dpi-aware=auto
+      prompt=
+      terminal=ghostty -e
+      layer=overlay
+      show-actions=yes
+      width=35
+      lines=8
+
+      [colors]
+      background=${c p.BASE}
+      text=${c p.TEXT}
+      match=${c p.IRIS}
+      selection=${c p.OVERLAY}
+      selection-text=${c p.ROSE}
+      selection-match=${c p.FOAM}
+      border=${c p.PINE}
+
+      [border]
+      width=1
+      radius=6
+    '';
 
   setTheme = pkgs.writeShellScriptBin "set-theme" (
     ''
@@ -410,6 +476,8 @@ in
           WAYBAR_CSS="${cfgs.waybarCss}"
           WAYBAR_PALETTE="${cfgs.waybarSh}"
           NEMO_CSS="${cfgs.nemoCss}"
+          WOFI_CSS="${cfgs.wofiCss}"
+          FUZZEL_INI="${cfgs.fuzzelIni}"
           PANDORA_CFG="${cfgs.pandora}"
           WALLPAPER_PATH="${cfgs.wallpaperPath}"
           CAVA_CFG="${cfgs.cava}"
@@ -437,6 +505,12 @@ in
       $DRY_RUN_CMD cp "$WAYBAR_PALETTE" "$HOME/.config/waybar/palette.sh"
       $DRY_RUN_CMD mkdir -p "$HOME/.config/gtk-3.0"
       $DRY_RUN_CMD cp --remove-destination "$NEMO_CSS" "$HOME/.config/gtk-3.0/gtk.css"
+      $DRY_RUN_CMD mkdir -p "$HOME/.config/wofi"
+      $DRY_RUN_CMD rm -f "$HOME/.config/wofi/style.css"
+      $DRY_RUN_CMD cp "$WOFI_CSS" "$HOME/.config/wofi/style.css"
+      $DRY_RUN_CMD mkdir -p "$HOME/.config/fuzzel"
+      $DRY_RUN_CMD rm -f "$HOME/.config/fuzzel/fuzzel.ini"
+      $DRY_RUN_CMD cp "$FUZZEL_INI" "$HOME/.config/fuzzel/fuzzel.ini"
       $DRY_RUN_CMD mkdir -p "$HOME/.local/state"
       $DRY_RUN_CMD sh -c 'echo "'"$WALLPAPER_PATH"'" > "$HOME/.local/state/wallpaper"'
       $DRY_RUN_CMD mkdir -p "$HOME/.config/cava"
@@ -475,7 +549,6 @@ in
   # Two template configs deployed by nix; config.toml is managed by toggle-display-mode.
   xdg.configFile."ironbar/config-dual.toml".source = ./ironbar-dual.toml;
   xdg.configFile."ironbar/config-single.toml".source = ./ironbar-single.toml;
-  xdg.configFile."fuzzel/fuzzel.ini".source = ./fuzzel.ini;
 
 
   ########################################
