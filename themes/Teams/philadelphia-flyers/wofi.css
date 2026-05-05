@@ -1,0 +1,35 @@
+/* Wofi Theme: Philadelphia Flyers */
+window {
+  background-color: #000000;
+}
+
+#entry {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+}
+
+#entry:selected {
+  background-color: #332f2f;
+  color: #382e2e;
+}
+
+#input {
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #382e2e;
+  padding: 6px;
+  margin: 5px;
+}
+
+#text {
+  color: #ffffff;
+}
+
+#text:selected {
+  color: #382e2e;
+}

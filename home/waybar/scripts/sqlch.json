@@ -1,0 +1,1774 @@
+{
+  "stations": [
+    {
+      "name": "WXPN",
+      "id": "wxpn",
+      "category": "Local",
+      "url": "https://wxpnhi.xpn.org/xpnhi",
+      "_source": "main",
+      "_url_type": "unknown"
+    },
+    {
+      "name": "XPONENTIAL",
+      "id": "xponential",
+      "category": "Local",
+      "url": "https://wxpn.xpn.org/xpn2mp3hi",
+      "_source": "main",
+      "_url_type": "unknown"
+    },
+    {
+      "name": "YNOT",
+      "id": "ynot",
+      "category": "Local",
+      "url": "https://das-edge15-live365-dal02.cdnstream.com/a54553",
+      "_source": "main",
+      "_url_type": "unknown"
+    },
+    {
+      "name": "ADRNPOP",
+      "id": "adrnpop",
+      "category": "Pop",
+      "url": "http://abm21.com.au:8000/CONTAINER97",
+      "_source": "main",
+      "_url_type": "unknown"
+    },
+    {
+      "name": "PUNKROCKDEMONSTRATION",
+      "id": "punkrockdemonstration",
+      "category": "Punk",
+      "url": "https://stream.punkrockers-radio.de:8443/prr.ogg",
+      "_source": "main",
+      "_url_type": "unknown"
+    }
+  ],
+  "channels": [
+    {
+      "name": "A&E",
+      "id": "ae",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/ae-us-eastern-feed/hd",
+      "alts": [
+        "https://tvpass.org/live/ae-us-eastern-feed/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "AMC",
+      "id": "amc",
+      "category": "Entertainment",
+      "url": "https://fl5.moveonjoy.com/AMC_NETWORK/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/AMC/sd",
+        "https://tvpass.org/live/AMC/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Animal Planet",
+      "id": "animalplanet",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/animal-planet-us-east/hd",
+      "alts": [
+        "https://tvpass.org/live/animal-planet-us-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "BBC America",
+      "id": "bbcamerica",
+      "category": "Entertainment",
+      "url": "https://dvrfl04.tulix.tv/teleup-bbca/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/bbc-america-east/sd",
+        "https://tvpass.org/live/bbc-america-east/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "BET",
+      "id": "bet",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/BET_EAST/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/bet-eastern-feed/sd",
+        "https://tvpass.org/live/bet-eastern-feed/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "BET Her",
+      "id": "bether",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/BET_HER/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/bet-her/sd",
+        "https://tvpass.org/live/bet-her/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Bravo",
+      "id": "bravo",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/BRAVO/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/Bravo/sd",
+        "https://tvpass.org/live/Bravo/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Circle",
+      "id": "circle",
+      "category": "Entertainment",
+      "url": "https://circle-roku.amagi.tv/playlist.m3u8",
+      "alts": [
+        "https://tvpass.org/live/circle/sd",
+        "https://tvpass.org/live/circle/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "CMT",
+      "id": "cmt",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/CMT/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/cmt/sd",
+        "https://tvpass.org/live/cmt/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Comedy Central",
+      "id": "comedycentral",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/Comedy_Central/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/comedy-central/sd",
+        "https://tvpass.org/live/comedy-central/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Court TV",
+      "id": "courttv",
+      "category": "Entertainment",
+      "url": "https://content.uplynk.com/channel/6c0bd0f94b1d4526a98676e9699a10ef.m3u8",
+      "alts": [
+        "https://tvpass.org/live/court-tv/sd",
+        "https://tvpass.org/live/court-tv/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Discovery Channel",
+      "id": "discoverychannel",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/discovery-channel-us-eastern-feed/hd",
+      "alts": [
+        "https://tvpass.org/live/discovery-channel-us-eastern-feed/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "E! Entertainment",
+      "id": "eentertainment",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/E_ENTERTAINMENT_TELEVISION/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/e-entertainment-usa-eastern-feed/sd",
+        "https://tvpass.org/live/e-entertainment-usa-eastern-feed/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Food Network",
+      "id": "foodnetwork",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/food-network/hd",
+      "alts": [
+        "https://tvpass.org/live/food-network/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Freeform East",
+      "id": "freeformeast",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/FREE_FORM/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/freeform-east-feed/sd",
+        "https://tvpass.org/live/freeform-east-feed/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "FX",
+      "id": "fx",
+      "category": "Entertainment",
+      "url": "https://fl5.moveonjoy.com/FX/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/FX/sd",
+        "https://tvpass.org/live/FX/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "FX Movie Channel",
+      "id": "fxmoviechannel",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/fx-movie-channel/hd",
+      "alts": [
+        "https://tvpass.org/live/fx-movie-channel/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "FXX",
+      "id": "fxx",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/FXX/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/fxx-usa-eastern/sd",
+        "https://tvpass.org/live/fxx-usa-eastern/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "FYI",
+      "id": "fyi",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/FYI/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/fyi-usa-eastern/sd",
+        "https://tvpass.org/live/fyi-usa-eastern/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Game Show Network",
+      "id": "gameshownetwork",
+      "category": "Entertainment",
+      "url": "https://a-cdn.klowdtv.com/live2/gsn_720p/playlist.m3u8",
+      "alts": [
+        "https://tvpass.org/live/game-show-network-east/sd",
+        "https://tvpass.org/live/game-show-network-east/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Hallmark Channel",
+      "id": "hallmarkchannel",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/HALLMARK_CHANNEL/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/hallmark-eastern-feed/sd",
+        "https://tvpass.org/live/hallmark-eastern-feed/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Hallmark Family",
+      "id": "hallmarkfamily",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/hallmark-family-hd/hd",
+      "alts": [
+        "https://tvpass.org/live/hallmark-family-hd/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Hallmark Mystery",
+      "id": "hallmarkmystery",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/HALLMARK_CHANNEL/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/hallmark-mystery-eastern-hd/sd",
+        "https://tvpass.org/live/hallmark-mystery-eastern-hd/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "HGTV",
+      "id": "hgtv",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/hgtv-usa-eastern-feed/hd",
+      "alts": [
+        "https://tvpass.org/live/hgtv-usa-eastern-feed/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "History",
+      "id": "history",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/history-channel-us-eastern-feed/hd",
+      "alts": [
+        "https://tvpass.org/live/history-channel-us-eastern-feed/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "IFC",
+      "id": "ifc",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/independent-film-channel-us/hd",
+      "alts": [
+        "https://tvpass.org/live/independent-film-channel-us/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Investigation Discovery",
+      "id": "investigationdiscovery",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/investigation-discovery-usa-eastern/hd",
+      "alts": [
+        "https://tvpass.org/live/investigation-discovery-usa-eastern/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "ION",
+      "id": "ion",
+      "category": "Entertainment",
+      "url": "https://apollo.production-public.tubi.io/live/ac-ion.m3u8",
+      "alts": [
+        "https://tvpass.org/live/ion-eastern-feed/sd",
+        "https://tvpass.org/live/ion-eastern-feed/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Lifetime",
+      "id": "lifetime",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/LIFETIME/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/lifetime-network-us-eastern-feed/sd",
+        "https://tvpass.org/live/lifetime-network-us-eastern-feed/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "LMN",
+      "id": "lmn",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/lifetime-movies-east/hd",
+      "alts": [
+        "https://tvpass.org/live/lifetime-movies-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "MTV",
+      "id": "mtv",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/MTV/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/mtv-usa-eastern/sd",
+        "https://tvpass.org/live/mtv-usa-eastern/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "MTV2",
+      "id": "mtv2",
+      "category": "Entertainment",
+      "url": "https://fl5.moveonjoy.com/MTV_2/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/mtv2/sd",
+        "https://tvpass.org/live/mtv2/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Nat Geo WILD",
+      "id": "natgeowild",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/nat-geo-wild/hd",
+      "alts": [
+        "https://tvpass.org/live/nat-geo-wild/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "National Geographic",
+      "id": "nationalgeographic",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/National_Geographic/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/national-geographic/sd",
+        "https://tvpass.org/live/national-geographic/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Ovation",
+      "id": "ovation",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/Ovation/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/ovation/sd",
+        "https://tvpass.org/live/ovation/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "OWN",
+      "id": "own",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/own/hd",
+      "alts": [
+        "https://tvpass.org/live/own/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Oxygen",
+      "id": "oxygen",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/OXYGEN/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/oxygen/sd",
+        "https://tvpass.org/live/oxygen/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Paramount Network",
+      "id": "paramountnetwork",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/PARAMOUNT_NETWORK/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/paramount-network/sd",
+        "https://tvpass.org/live/paramount-network/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Reelz",
+      "id": "reelz",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/REELZ/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/reelz/sd",
+        "https://tvpass.org/live/reelz/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Science Channel",
+      "id": "sciencechannel",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/science-channel/hd",
+      "alts": [
+        "https://tvpass.org/live/science-channel/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Smithsonian Channel",
+      "id": "smithsonianchannel",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/SMITHSONIAN_CHANNEL/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/smithsonian-channel/sd",
+        "https://tvpass.org/live/smithsonian-channel/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "SundanceTV",
+      "id": "sundancetv",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/sundance-tv/hd",
+      "alts": [
+        "https://tvpass.org/live/sundance-tv/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Syfy",
+      "id": "syfy",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/SYFY/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/syfy-eastern-feed/sd",
+        "https://tvpass.org/live/syfy-eastern-feed/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Syfy East",
+      "id": "syfyeast",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/SYFY/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/syfy-eastern-feed/sd",
+        "https://tvpass.org/live/syfy-eastern-feed/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "TBS",
+      "id": "tbs",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/TBS/hd",
+      "alts": [
+        "https://tvpass.org/live/TBS/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "TLC",
+      "id": "tlc",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/tlc-us-eastern-feed/hd",
+      "alts": [
+        "https://tvpass.org/live/tlc-us-eastern-feed/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "TNT",
+      "id": "tnt",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/TNT/hd",
+      "alts": [
+        "https://tvpass.org/live/TNT/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Travel Channel",
+      "id": "travelchannel",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/travel-channel-us/hd",
+      "alts": [
+        "https://tvpass.org/live/travel-channel-us/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "TruTV",
+      "id": "trutv",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/trutv-east/hd",
+      "alts": [
+        "https://tvpass.org/live/trutv-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "USA Network",
+      "id": "usanetwork",
+      "category": "Entertainment",
+      "url": "https://tvpass.org/live/usa-network/hd",
+      "alts": [
+        "https://tvpass.org/live/usa-network/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "VH1",
+      "id": "vh1",
+      "category": "Entertainment",
+      "url": "https://fl3.moveonjoy.com/VH1/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/vh1/sd",
+        "https://tvpass.org/live/vh1/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Viceland",
+      "id": "viceland",
+      "category": "Entertainment",
+      "url": "https://vicetv-vicefast1-firetv.amagi.tv/playlist.m3u8",
+      "alts": [
+        "https://tvpass.org/live/vice/sd",
+        "https://tvpass.org/live/vice/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "WE tv",
+      "id": "wetv",
+      "category": "Entertainment",
+      "url": "https://fl1.moveonjoy.com/WE_TV/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/we-tv/sd",
+        "https://tvpass.org/live/we-tv/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Boomerang",
+      "id": "boomerang",
+      "category": "Kids",
+      "url": "https://tvpass.org/live/boomerang/hd",
+      "alts": [
+        "https://tvpass.org/live/boomerang/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Cartoon Network",
+      "id": "cartoonnetwork",
+      "category": "Kids",
+      "url": "https://tvpass.org/live/cartoon-network/hd",
+      "alts": [
+        "https://tvpass.org/live/cartoon-network/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Disney Channel",
+      "id": "disneychannel",
+      "category": "Kids",
+      "url": "https://fl5.moveonjoy.com/DISNEY/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/disney-eastern-feed/sd",
+        "https://tvpass.org/live/disney-eastern-feed/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Disney Junior",
+      "id": "disneyjunior",
+      "category": "Kids",
+      "url": "https://fl3.moveonjoy.com/DISNEY_JR/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/disney-junior-usa-east/sd",
+        "https://tvpass.org/live/disney-junior-usa-east/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Disney XD",
+      "id": "disneyxd",
+      "category": "Kids",
+      "url": "http://fl3.moveonjoy.com/DISNEY_XD/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/disney-xd-usa-eastern-feed/sd",
+        "https://tvpass.org/live/disney-xd-usa-eastern-feed/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "MeTV Toons",
+      "id": "metvtoons",
+      "category": "Kids",
+      "url": "https://fl3.moveonjoy.com/ME_TV/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/metv-toons-wjlp2-new-jersey/sd",
+        "https://tvpass.org/live/metv-toons-wjlp2-new-jersey/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Nick Jr.",
+      "id": "nickjr",
+      "category": "Kids",
+      "url": "https://fl5.moveonjoy.com/NICK_JR/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/nick-jr/sd",
+        "https://tvpass.org/live/nick-jr/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Nickelodeon",
+      "id": "nickelodeon",
+      "category": "Kids",
+      "url": "https://fl5.moveonjoy.com/NICKELODEON/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/nickelodeon/sd",
+        "https://tvpass.org/live/nickelodeon/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Nicktoons",
+      "id": "nicktoons",
+      "category": "Kids",
+      "url": "https://fl1.moveonjoy.com/NICKTOONS/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/nicktoons-east/sd",
+        "https://tvpass.org/live/nicktoons-east/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Universal Kids",
+      "id": "universalkids",
+      "category": "Kids",
+      "url": "https://tvpass.org/live/universal-kids/hd",
+      "alts": [
+        "https://tvpass.org/live/universal-kids/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "ABC Los Angeles (KABC)",
+      "id": "abclosangeleskabc",
+      "category": "Locals",
+      "url": "http://41.205.93.154/ABC/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/abc-kabc-los-angeles-ca/sd",
+        "https://tvpass.org/live/abc-kabc-los-angeles-ca/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "ABC New York (WABC)",
+      "id": "abcnewyorkwabc",
+      "category": "Locals",
+      "url": "http://41.205.93.154/ABC/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/abc-wabc-new-york-ny/sd",
+        "https://tvpass.org/live/abc-wabc-new-york-ny/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "ABC Philadelphia (WPVI)",
+      "id": "abcphiladelphiawpvi",
+      "category": "Locals",
+      "url": "http://41.205.93.154/ABC/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/abc-wpvi-philadelphia-pa/sd",
+        "https://tvpass.org/live/abc-wpvi-philadelphia-pa/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "CBS Los Angeles (KCBS)",
+      "id": "cbslosangeleskcbs",
+      "category": "Locals",
+      "url": "https://fl3.moveonjoy.com/CBS_News/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/cbs-kcbs-los-angeles-ca/sd",
+        "https://tvpass.org/live/cbs-kcbs-los-angeles-ca/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "CBS New York (WCBS)",
+      "id": "cbsnewyorkwcbs",
+      "category": "Locals",
+      "url": "https://fl3.moveonjoy.com/CBS_News/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/cbs-wcbs-new-york-ny/sd",
+        "https://tvpass.org/live/cbs-wcbs-new-york-ny/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "CBS Philadelphia (KYW)",
+      "id": "cbsphiladelphiakyw",
+      "category": "Locals",
+      "url": "https://fl3.moveonjoy.com/CBS_News/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/cbs-kyw-philadelphia-pa/sd",
+        "https://tvpass.org/live/cbs-kyw-philadelphia-pa/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "FOX Los Angeles (KTTV)",
+      "id": "foxlosangeleskttv",
+      "category": "Locals",
+      "url": "https://tvpass.org/live/fox-kttv-los-angeles-ca/hd",
+      "alts": [
+        "https://tvpass.org/live/fox-kttv-los-angeles-ca/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "FOX New York (WNYW)",
+      "id": "foxnewyorkwnyw",
+      "category": "Locals",
+      "url": "https://tvpass.org/live/fox-wnyw-new-york-ny/hd",
+      "alts": [
+        "https://tvpass.org/live/fox-wnyw-new-york-ny/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "FOX Philadelphia (WTXF)",
+      "id": "foxphiladelphiawtxf",
+      "category": "Locals",
+      "url": "https://tvpass.org/live/fox-wtxf-philadelphia-pa/hd",
+      "alts": [
+        "https://tvpass.org/live/fox-wtxf-philadelphia-pa/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "NBC Los Angeles (KNBC)",
+      "id": "nbclosangelesknbc",
+      "category": "Locals",
+      "url": "https://cors-proxy.cooks.fyi/https://streamer2.nexgen.bz/NBC/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/nbc-knbc-los-angeles-ca/sd",
+        "https://tvpass.org/live/nbc-knbc-los-angeles-ca/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "NBC New York (WNBC)",
+      "id": "nbcnewyorkwnbc",
+      "category": "Locals",
+      "url": "https://cors-proxy.cooks.fyi/https://streamer2.nexgen.bz/NBC/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/nbc-wnbc-new-york-ny/sd",
+        "https://tvpass.org/live/nbc-wnbc-new-york-ny/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "NBC Philadelphia (WCAU)",
+      "id": "nbcphiladelphiawcau",
+      "category": "Locals",
+      "url": "https://cors-proxy.cooks.fyi/https://streamer2.nexgen.bz/NBC/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/nbc-wcau-philadelphia-pa/sd",
+        "https://tvpass.org/live/nbc-wcau-philadelphia-pa/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "ABCAU",
+      "id": "abcau",
+      "category": "Misc",
+      "url": "http://41.205.93.154/ABC/index.m3u8",
+      "alts": [
+        "https://c.mjh.nz/abc-nsw.m3u8"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "FOX29",
+      "id": "fox29",
+      "category": "Misc",
+      "url": "https://apollo.production-public.tubi.io/live/ac-wtxf.m3u8",
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "NBC10",
+      "id": "nbc10",
+      "category": "Misc",
+      "url": "https://amg00884-nbcuniversal-nbcpa-pcr-xumo-q61uw.amagi.tv/playlist.m3u8",
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "BBC News",
+      "id": "bbcnews",
+      "category": "News",
+      "url": "https://fl3.moveonjoy.com/E_ENTERTAINMENT_TELEVISION/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/bbc-news/sd",
+        "https://tvpass.org/live/bbc-news/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Bloomberg TV",
+      "id": "bloombergtv",
+      "category": "News",
+      "url": "https://bloomberg-bloomberg-3-br.samsung.wurl.tv/manifest/playlist.m3u8",
+      "alts": [
+        "https://tvpass.org/live/bloomberg-tv/sd",
+        "https://tvpass.org/live/bloomberg-tv/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "C-SPAN",
+      "id": "cspan",
+      "category": "News",
+      "url": "https://fl3.moveonjoy.com/C-SPAN/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/CSPAN/sd",
+        "https://tvpass.org/live/CSPAN/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "C-SPAN 2",
+      "id": "cspan2",
+      "category": "News",
+      "url": "https://tvpass.org/live/CSPAN2/hd",
+      "alts": [
+        "https://tvpass.org/live/CSPAN2/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "C-SPAN 3",
+      "id": "cspan3",
+      "category": "News",
+      "url": "https://tvpass.org/live/CSPAN3/hd",
+      "alts": [
+        "https://tvpass.org/live/CSPAN3/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "CNBC",
+      "id": "cnbc",
+      "category": "News",
+      "url": "https://fl3.moveonjoy.com/CNBC/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/cnbc/sd",
+        "https://tvpass.org/live/cnbc/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "CNN",
+      "id": "cnn",
+      "category": "News",
+      "url": "https://tvpass.org/live/cnn-us/hd",
+      "alts": [
+        "https://tvpass.org/live/cnn-us/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Fox News",
+      "id": "foxnews",
+      "category": "News",
+      "url": "https://fl1.moveonjoy.com/FOX_NEWS_CHANNEL/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/fox-news-channel/sd",
+        "https://tvpass.org/live/fox-news-channel/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "HLN",
+      "id": "hln",
+      "category": "News",
+      "url": "https://tvpass.org/live/hln/hd",
+      "alts": [
+        "https://tvpass.org/live/hln/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "MSNBC",
+      "id": "msnbc",
+      "category": "News",
+      "url": "http://41.205.93.154/MSNBC/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/msnbc/sd",
+        "https://tvpass.org/live/msnbc/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "NewsNation",
+      "id": "newsnation",
+      "category": "News",
+      "url": "https://fl3.moveonjoy.com/NEWS_NATION/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/newsnation/sd",
+        "https://tvpass.org/live/newsnation/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "The Weather Channel",
+      "id": "theweatherchannel",
+      "category": "News",
+      "url": "https://tvpass.org/live/the-weather-channel/hd",
+      "alts": [
+        "https://tvpass.org/live/the-weather-channel/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "5StarMax",
+      "id": "5starmax",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/5starmax-east/hd",
+      "alts": [
+        "https://tvpass.org/live/5starmax-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "ActionMax",
+      "id": "actionmax",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/actionmax-east/hd",
+      "alts": [
+        "https://tvpass.org/live/actionmax-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Cinemax East",
+      "id": "cinemaxeast",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/cinemax-eastern-feed/hd",
+      "alts": [
+        "https://tvpass.org/live/cinemax-eastern-feed/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "HBO 2 East",
+      "id": "hbo2east",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/hbo-2-eastern-feed/hd",
+      "alts": [
+        "https://tvpass.org/live/hbo-2-eastern-feed/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "HBO Comedy",
+      "id": "hbocomedy",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/hbo-comedy-hd-east/hd",
+      "alts": [
+        "https://tvpass.org/live/hbo-comedy-hd-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "HBO East",
+      "id": "hboeast",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/hbo-eastern-feed/hd",
+      "alts": [
+        "https://tvpass.org/live/hbo-eastern-feed/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "HBO Family",
+      "id": "hbofamily",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/hbo-family-eastern-feed/hd",
+      "alts": [
+        "https://tvpass.org/live/hbo-family-eastern-feed/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "HBO Signature",
+      "id": "hbosignature",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/hbo-signature-hbo-3-eastern/hd",
+      "alts": [
+        "https://tvpass.org/live/hbo-signature-hbo-3-eastern/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "HBO Zone",
+      "id": "hbozone",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/hbo-zone-hd-east/hd",
+      "alts": [
+        "https://tvpass.org/live/hbo-zone-hd-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Hitz",
+      "id": "hitz",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/hitz/hd",
+      "alts": [
+        "https://tvpass.org/live/hitz/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "MoreMax",
+      "id": "moremax",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/moremax-east/hd",
+      "alts": [
+        "https://tvpass.org/live/moremax-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "MovieMax",
+      "id": "moviemax",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/moviemax-east/hd",
+      "alts": [
+        "https://tvpass.org/live/moviemax-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "OuterMax",
+      "id": "outermax",
+      "category": "Premium",
+      "url": "https://fl3.moveonjoy.com/OUTER_MAX/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/outermax-east/sd",
+        "https://tvpass.org/live/outermax-east/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Showtime 2",
+      "id": "showtime2",
+      "category": "Premium",
+      "url": "https://fl3.moveonjoy.com/SHOWTIME_2/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/showtime-2-east/sd",
+        "https://tvpass.org/live/showtime-2-east/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Showtime East",
+      "id": "showtimeeast",
+      "category": "Premium",
+      "url": "https://fl3.moveonjoy.com/SHOWTIME_WEST/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/showtime-eastern-feed/sd",
+        "https://tvpass.org/live/showtime-eastern-feed/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Showtime Extreme",
+      "id": "showtimeextreme",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/showtime-extreme-east/hd",
+      "alts": [
+        "https://tvpass.org/live/showtime-extreme-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Starz Cinema",
+      "id": "starzcinema",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/starz-cinema-east/hd",
+      "alts": [
+        "https://tvpass.org/live/starz-cinema-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Starz Comedy",
+      "id": "starzcomedy",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/starz-comedy-east/hd",
+      "alts": [
+        "https://tvpass.org/live/starz-comedy-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Starz East",
+      "id": "starzeast",
+      "category": "Premium",
+      "url": "https://fl3.moveonjoy.com/STARZ/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/starz-eastern-feed/sd",
+        "https://tvpass.org/live/starz-eastern-feed/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Starz Edge",
+      "id": "starzedge",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/starz-edge-east/hd",
+      "alts": [
+        "https://tvpass.org/live/starz-edge-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Starz Encore East",
+      "id": "starzencoreeast",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/starz-encore-east/hd",
+      "alts": [
+        "https://tvpass.org/live/starz-encore-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Starz Kids & Family",
+      "id": "starzkidsfamily",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/starz-kids-family-east/hd",
+      "alts": [
+        "https://tvpass.org/live/starz-kids-family-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "The Movie Channel",
+      "id": "themoviechannel",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/the-movie-channel-east/hd",
+      "alts": [
+        "https://tvpass.org/live/the-movie-channel-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "ThrillerMax",
+      "id": "thrillermax",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/thrillermax-east/hd",
+      "alts": [
+        "https://tvpass.org/live/thrillermax-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "TMC Xtra",
+      "id": "tmcxtra",
+      "category": "Premium",
+      "url": "https://tvpass.org/live/tmc-xtra-east/hd",
+      "alts": [
+        "https://tvpass.org/live/tmc-xtra-east/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "ACC Network",
+      "id": "accnetwork",
+      "category": "Sports",
+      "url": "https://fl3.moveonjoy.com/ACC_NETWORK/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/acc-network/sd",
+        "https://tvpass.org/live/acc-network/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Altitude Sports",
+      "id": "altitudesports",
+      "category": "Sports",
+      "url": "https://tvpass.org/live/altitude-sports-denver/hd",
+      "alts": [
+        "https://tvpass.org/live/altitude-sports-denver/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "beIN Sports",
+      "id": "beinsports",
+      "category": "Sports",
+      "url": "https://tvpass.org/live/bein-sports/hd",
+      "alts": [
+        "https://tvpass.org/live/bein-sports/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Big Ten Network",
+      "id": "bigtennetwork",
+      "category": "Sports",
+      "url": "https://fl3.moveonjoy.com/BIG_TEN_NETWORK/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/big-ten-network/sd",
+        "https://tvpass.org/live/big-ten-network/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "CBS Sports Network",
+      "id": "cbssportsnetwork",
+      "category": "Sports",
+      "url": "https://fl3.moveonjoy.com/CBS_SPORTS_NETWORK/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/cbs-sports-network/sd",
+        "https://tvpass.org/live/cbs-sports-network/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "ESPN",
+      "id": "espn",
+      "category": "Sports",
+      "url": "https://tvpass.org/live/ESPN/hd",
+      "alts": [
+        "https://tvpass.org/live/ESPN/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "ESPN2",
+      "id": "espn2",
+      "category": "Sports",
+      "url": "https://tvpass.org/live/ESPN2/hd",
+      "alts": [
+        "https://tvpass.org/live/ESPN2/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "ESPNews",
+      "id": "espnews",
+      "category": "Sports",
+      "url": "https://fl3.moveonjoy.com/ESPN_NEWS/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/espn-news/sd",
+        "https://tvpass.org/live/espn-news/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "ESPNU",
+      "id": "espnu",
+      "category": "Sports",
+      "url": "https://fl3.moveonjoy.com/ESPN_U/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/espn-u/sd",
+        "https://tvpass.org/live/espn-u/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Fox Soccer Plus",
+      "id": "foxsoccerplus",
+      "category": "Sports",
+      "url": "https://tvpass.org/live/fox-soccer-plus/hd",
+      "alts": [
+        "https://tvpass.org/live/fox-soccer-plus/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "FOXSPORTS1",
+      "id": "foxsports1",
+      "category": "Sports",
+      "url": "https://tvpass.org/live/FoxSports1/hd",
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "FOXSPORTS2",
+      "id": "foxsports2",
+      "category": "Sports",
+      "url": "http://23.237.104.106:8080/USA_FS2/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/FoxSports2/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "FS1",
+      "id": "fs1",
+      "category": "Sports",
+      "url": "https://tvpass.org/live/FoxSports1/hd",
+      "alts": [
+        "https://tvpass.org/live/FoxSports1/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "FS2",
+      "id": "fs2",
+      "category": "Sports",
+      "url": "http://23.237.104.106:8080/USA_FS2/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/FoxSports2/sd",
+        "https://tvpass.org/live/FoxSports2/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Golf Channel",
+      "id": "golfchannel",
+      "category": "Sports",
+      "url": "https://fl3.moveonjoy.com/GOLF/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/golf-channel/sd",
+        "https://tvpass.org/live/golf-channel/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Longhorn Network",
+      "id": "longhornnetwork",
+      "category": "Sports",
+      "url": "https://tvpass.org/live/longhorn-network/hd",
+      "alts": [
+        "https://tvpass.org/live/longhorn-network/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Marquee Sports Network",
+      "id": "marqueesportsnetwork",
+      "category": "Sports",
+      "url": "https://tvpass.org/live/marquee-sports-network/hd",
+      "alts": [
+        "https://tvpass.org/live/marquee-sports-network/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Mid-Atlantic Sports Network",
+      "id": "midatlanticsportsnetwork",
+      "category": "Sports",
+      "url": "https://tvpass.org/live/midatlantic-sports-network/hd",
+      "alts": [
+        "https://tvpass.org/live/midatlantic-sports-network/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "MLB Network",
+      "id": "mlbnetwork",
+      "category": "Sports",
+      "url": "https://livetv-fa.tubi.video/mlb3/playlist.m3u8",
+      "alts": [
+        "https://tvpass.org/live/mlb-network/sd",
+        "https://tvpass.org/live/mlb-network/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "MSG Network",
+      "id": "msgnetwork",
+      "category": "Sports",
+      "url": "https://fl3.moveonjoy.com/MSG/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/msg-network/sd",
+        "https://tvpass.org/live/msg-network/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "NBA TV",
+      "id": "nbatv",
+      "category": "Sports",
+      "url": "https://amg00556-amg00556c3-firetv-us-6060.playouts.now.amagi.tv/playlist.m3u8",
+      "alts": [
+        "https://tvpass.org/live/nba-tv/sd",
+        "https://tvpass.org/live/nba-tv/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "NBC Sports Philadelphia",
+      "id": "nbcsportsphiladelphia",
+      "category": "Sports",
+      "url": "https://tvpass.org/live/nbc-sports-philadelphia/hd",
+      "alts": [
+        "https://tvpass.org/live/nbc-sports-philadelphia/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "NBCSPORTS",
+      "id": "nbcsports",
+      "category": "Sports",
+      "url": "https://cors-proxy.cooks.fyi/https://streamer2.nexgen.bz/NBC/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/nbc-sports-philadelphia/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "NFLNETWORK",
+      "id": "nflnetwork",
+      "category": "Sports",
+      "url": "https://apollo.production-public.tubi.io/live/ac-nfl2.m3u8",
+      "alts": [
+        "http://fl3.moveonjoy.com/NFL_NETWORK/index.m3u8"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "NHL Network",
+      "id": "nhlnetwork",
+      "category": "Sports",
+      "url": "https://apollo.production-public.tubi.io/live/ac-nhl.m3u8",
+      "alts": [
+        "https://tvpass.org/live/nhl-network/sd",
+        "https://tvpass.org/live/nhl-network/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "SEC Network",
+      "id": "secnetwork",
+      "category": "Sports",
+      "url": "https://tvpass.org/live/sec-network/hd",
+      "alts": [
+        "https://tvpass.org/live/sec-network/sd"
+      ],
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "Stadium",
+      "id": "stadium",
+      "category": "Sports",
+      "url": "https://apollo.production-public.tubi.io/live/ac-stadium2.m3u8",
+      "alts": [
+        "https://tvpass.org/live/stadium/sd",
+        "https://tvpass.org/live/stadium/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "Tennis Channel",
+      "id": "tennischannel",
+      "category": "Sports",
+      "url": "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01444-tennischannelth-tennischnlintl-lggb/playlist.m3u8",
+      "alts": [
+        "https://tvpass.org/live/tennis-channel/sd",
+        "https://tvpass.org/live/tennis-channel/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    },
+    {
+      "name": "TSN2",
+      "id": "tsn2",
+      "category": "Sports",
+      "url": "https://tvpass.org/live/tsn2/hd",
+      "handler": "browser",
+      "_source": "main",
+      "_url_type": "web-page"
+    },
+    {
+      "name": "YES Network",
+      "id": "yesnetwork",
+      "category": "Sports",
+      "url": "https://fl3.moveonjoy.com/YES_NETWORK/index.m3u8",
+      "alts": [
+        "https://tvpass.org/live/yes-network/sd",
+        "https://tvpass.org/live/yes-network/hd"
+      ],
+      "_source": "iptv",
+      "_url_type": "direct-stream"
+    }
+  ],
+  "last_played": {
+    "type": "channel",
+    "id": "foxsoccerplus",
+    "name": "Fox Soccer Plus",
+    "timestamp": "2025-08-10T15:45:12.385338"
+  }
+}
