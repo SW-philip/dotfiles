@@ -4,45 +4,30 @@
 let
   helium = inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
-  # ── Bibata Modern Ice Cursor (Built from Source) ──
+    # ── Bibata Modern Ice Cursor (Pre-built Release) ──
   bibata-modern-ice = pkgs.stdenv.mkDerivation {
     pname = "bibata-modern-ice-cursor";
     version = "2.0.4";
 
-    src = pkgs.fetchFromGitHub {
-      owner = "ful1e5";
-      repo = "Bibata_Cursor";
-      rev = "v2.0.4";
-      # ⚠️ You will need to update the sha256 hash below after the first run fails again
-      sha256 = "sha256-ujAKZMbfABaBiAogmtTqOx0LUpeb4cA532RWvf9DhdY=";
+    # Fetch the pre-built release tarball directly
+    src = pkgs.fetchurl {
+      url = "https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.4/Bibata-Modern-Ice.tar.gz";
+      # ⚠️ UPDATE THIS HASH ON FIRST RUN ⚠️
+      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
     };
 
-    # No postPatch needed, we build from source
-    buildInputs = [ pkgs.nodejs pkgs.yarn ]; # Required for the build script
-
-    buildPhase = ''
-      # Install dependencies and build the themes
-      yarn install
-      yarn build
-    '';
+    # No build needed, just unpack and install
+    dontBuild = true;
 
     installPhase = ''
       mkdir -p $out/share/hyprcursor
-
-      # The build script creates folders like 'Bibata-Modern-Ice' in the root
-      # We need to find the Hyprcursor output folder
-      if [ -d "Hyprcursor/Bibata-Modern-Ice" ]; then
-        cp -r Hyprcursor/Bibata-Modern-Ice $out/share/hyprcursor/
-      elif [ -d "Bibata-Modern-Ice" ]; then
-        cp -r Bibata-Modern-Ice $out/share/hyprcursor/
-      else
-        # Fallback: look for any folder starting with Bibata
-        find . -maxdepth 1 -type d -name "Bibata-*" -exec cp -r {} $out/share/hyprcursor/ \;
-      fi
+      # The tarball usually extracts to a folder named "Bibata-Modern-Ice"
+      # We move it to the hyprcursor directory
+      mv Bibata-Modern-Ice $out/share/hyprcursor/
     '';
 
     meta = {
-      description = "Bibata Modern Ice Cursor Theme (Built from Source)";
+      description = "Bibata Modern Ice Cursor Theme (Pre-built)";
       homepage = "https://github.com/ful1e5/Bibata_Cursor";
       license = pkgs.lib.licenses.mit;
     };
