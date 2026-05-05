@@ -13,14 +13,14 @@
   ############################################################
   # Secrets (SOPS)
   ############################################################
-  sops = {
-    defaultSopsFile = ../../secrets/shared.yaml;
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    secrets.openweathermap_api_key = {
-      owner = "family";
-      path  = "/run/secrets/openweathermap_api_key";
-    };
-  };
+  #  sops = {
+  #  defaultSopsFile = ../../secrets/shared.yaml;
+  #  age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  #  secrets.openweathermap_api_key = {
+  #    owner = "family";
+  #    path  = "/run/secrets/openweathermap_api_key";
+  #  };
+  #  };
 
   ############################################################
   # Identity / Kernel
