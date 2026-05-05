@@ -13,9 +13,7 @@ let
       owner = "ful1e5";
       repo = "Bibata_Cursor";
       rev = "v2.0.4";
-      # ⚠️ REPLACE THIS HASH ON FIRST BUILD ⚠️
-      # Nix will print the correct hash in the error message.
-      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+      sha256 = "sha256-ujAKZMbfABaBiAogmtTqOx0LUpeb4cA532RWvf9DhdY=";
     };
 
     postPatch = ''
