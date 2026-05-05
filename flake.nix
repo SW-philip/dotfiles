@@ -10,6 +10,7 @@
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.1";
     claude-code.url = "github:sadjow/claude-code-nix";
     helium.url = "gitlab:ntgn/helium-flake";
+    ignis.url = "github:linkfrg/ignis";
 
     lix = {
       url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";

@@ -5,6 +5,7 @@
   imports = [
     ./base.nix
     ../packages/fastfetch-desktop.nix
+    inputs.ignis.homeManagerModules.default
   ];
 
   # Hyprland monitor layout – stored under $XDG_CONFIG_HOME/hypr/monitor.conf
@@ -16,6 +17,13 @@
   '';
 
   myConfig.isDesktop = true;
+
+  programs.ignis = {
+    enable = true;
+    services.audio.enable   = true;
+    services.network.enable  = true;
+    services.bluetooth.enable = true;
+  };
 
   home.packages = with pkgs; [
     awww
