@@ -1,10 +1,18 @@
 # profiles/home/surface.nix
 # Surface-specific home config. Imports base, adds tablet/touch/rotation things.
-{ pkgs, lib, config, ... }:
+{ inputs, pkgs, lib, config, ... }:
 {
   imports = [
     ./base.nix
+    inputs.ignis.homeManagerModules.default
   ];
+
+  programs.ignis = {
+    enable = true;
+    services.audio.enable   = true;
+    services.network.enable  = true;
+    services.bluetooth.enable = true;
+  };
 
   ########################################
   # Surface HiDPI cursor override (base sets 24px; Surface needs 32px at 1.5x scale)
