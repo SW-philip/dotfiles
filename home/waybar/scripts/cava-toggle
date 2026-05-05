@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-# Toggle cava: kill if running, launch in a floating ghostty window if not.
-if pgrep -x cava > /dev/null 2>&1; then
-    pkill -x cava
-else
-    ghostty --class=cava-float -e cava &
-fi
