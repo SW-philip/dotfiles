@@ -2,8 +2,9 @@
 # Universal home config — shared across all hosts.
 { inputs, pkgs, lib, config, ... }:
 let
-  helium = inputs.helium.packages.$
+  helium = inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
+  # ── Bibata Modern Ice Cursor (Hyprcursor format for Niri/Wayland) ──
   bibata-modern-ice = pkgs.stdenv.mkDerivation {
     pname = "bibata-modern-ice-cursor";
     version = "2.0.4";
@@ -12,6 +13,8 @@ let
       owner = "ful1e5";
       repo = "Bibata_Cursor";
       rev = "v2.0.4";
+      # ⚠️ REPLACE THIS HASH ON FIRST BUILD ⚠️
+      # Nix will print the correct hash in the error message.
       sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
     };
 
@@ -521,13 +524,14 @@ in
   ########################################
   # Packages
   ########################################
-home.packages = with pkgs; [
+  home.packages = with pkgs; [
     # ── Standard CLI / System Utilities ────────────────
     git neovim wget rsync
     jq ripgrep fd bat
     gitleaks unzip resvg
     pythonEnv claude-code
-    bibata-modern-ice
+    # rose-pine-cursor  # REMOVED
+    bibata-modern-ice   # ADDED
     grim slurp wl-clipboard swappy
     fuzzel cliphist
     ffmpeg mediainfo vlc playerctl libnotify
@@ -573,5 +577,10 @@ home.packages = with pkgs; [
         "$@"
     '')
   ];
-}
 
+  # Environment variables to ensure cursor theme is picked up by all apps
+  home.sessionVariables = {
+    XCURSOR_THEME = "Bibata-Modern-Ice";
+    XCURSOR_SIZE = "24";
+  };
+}
