@@ -367,7 +367,7 @@ def main() -> None:
         sys.exit(0)
 
     # ── Rosé Pine semantic color ladder (loaded from palette.sh) ──────────
-    RP_MUTED  = PALETTE.get("MUTED",  "#6e6a86")   # chrome / label text
+    RP_MUTED  = PALETTE.get("TEXT_SECONDARY", PALETTE.get("MUTED",  "#6e6a86"))   # chrome / label text
     RP_SUBTLE = PALETTE.get("SUBTLE", "#908caa")   # secondary / description
     RP_TEXT   = PALETTE.get("TEXT",   "#e0def4")   # primary values
     RP_FOAM   = PALETTE.get("FOAM",   "#9ccfd8")   # sky / time accent

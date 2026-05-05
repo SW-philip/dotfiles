@@ -1,0 +1,13 @@
+# Niri Theme: Philadelphia 76ers
+[colors]
+background = "#264c66"
+text = "#ffffff"
+cursor = "#53a7e1"
+
+[colors.selection]
+border = "#bfd51d"
+background = "#2b5f7a"
+
+[colors.hints]
+start = "#3018db"
+end = "#aac7dc"
