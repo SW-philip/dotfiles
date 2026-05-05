@@ -271,11 +271,11 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1777555163,
-        "narHash": "sha256-9bCtq5/E+8P0ir/sR4o9bKJvQIJq+X9yJHrdcMVehOc=",
-        "rev": "89f59741256814a8c6344f54db380da17d56b0c8",
+        "lastModified": 1777982606,
+        "narHash": "sha256-c0DdajbOP9Z4luAruWCyKa/pkz/5v2/FKbJIOQaziGU=",
+        "rev": "010d0629261248ad846f9f12b356053514e464eb",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/89f59741256814a8c6344f54db380da17d56b0c8.tar.gz?rev=89f59741256814a8c6344f54db380da17d56b0c8"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/010d0629261248ad846f9f12b356053514e464eb.tar.gz?rev=010d0629261248ad846f9f12b356053514e464eb"
       },
       "original": {
         "type": "tarball",
