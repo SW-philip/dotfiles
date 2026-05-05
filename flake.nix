@@ -6,12 +6,14 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager-unstable.url = "github:nix-community/home-manager/master";
+    bibata-hyprcursor.url = "github:ful1e5/Bibata_Cursor?dir=Hyprcursor";
     sops-nix.url = "github:Mic92/sops-nix";
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.1";
     claude-code.url = "github:sadjow/claude-code-nix";
     helium.url = "gitlab:ntgn/helium-flake";
     ignis.url = "github:linkfrg/ignis";
-
+    nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs"; # Follow your nixpkgs ver
     lix = {
       url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
       flake = false;

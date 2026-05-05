@@ -4,35 +4,6 @@
 let
   helium = inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
-    # ── Bibata Modern Ice Cursor (Pre-built Release) ──
-  bibata-modern-ice = pkgs.stdenv.mkDerivation {
-    pname = "bibata-modern-ice-cursor";
-    version = "2.0.4";
-
-    # Fetch the pre-built release tarball directly
-    src = pkgs.fetchurl {
-      url = "https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.4/Bibata-Modern-Ice.tar.gz";
-      # ⚠️ UPDATE THIS HASH ON FIRST RUN ⚠️
-      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-    };
-
-    # No build needed, just unpack and install
-    dontBuild = true;
-
-    installPhase = ''
-      mkdir -p $out/share/hyprcursor
-      # The tarball usually extracts to a folder named "Bibata-Modern-Ice"
-      # We move it to the hyprcursor directory
-      mv Bibata-Modern-Ice $out/share/hyprcursor/
-    '';
-
-    meta = {
-      description = "Bibata Modern Ice Cursor Theme (Pre-built)";
-      homepage = "https://github.com/ful1e5/Bibata_Cursor";
-      license = pkgs.lib.licenses.mit;
-    };
-  };
-
   pythonEnv = pkgs.python312.withPackages (ps: with ps; [
     # UI / TUI
     pygobject3 textual rich pystray pillow pydbus cairosvg
@@ -52,6 +23,8 @@ in
     ../../home/niri
     # ../../home/hypr
     ../packages/fastfetch.nix
+    inputs.nur.nixosModules.nur  # Add this line
+    ../../modules/home-options.nix
   ];
 
   ########################################
@@ -527,8 +500,7 @@ in
     jq ripgrep fd bat
     gitleaks unzip resvg
     pythonEnv claude-code
-    # rose-pine-cursor  # REMOVED
-    bibata-modern-ice   # ADDED
+    nur.repos.ful1e5.bibata-cursors
     grim slurp wl-clipboard swappy
     fuzzel cliphist
     ffmpeg mediainfo vlc playerctl libnotify
