@@ -6,8 +6,8 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager-unstable.url = "github:nix-community/home-manager/master";
-    bibata-hyprcursor.url = "github:ful1e5/Bibata_Cursor?dir=hyprcursor";
     sops-nix.url = "github:Mic92/sops-nix";
+    phinger.url = "github:phisch/phinger-cursors"; # Add this
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.1";
     claude-code.url = "github:sadjow/claude-code-nix";
     helium.url = "gitlab:ntgn/helium-flake";
