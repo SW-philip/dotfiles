@@ -1,0 +1,13 @@
+# Niri Theme: coconut - Strawberry & Coconut
+[colors]
+background = "#ff6e61"
+text = "#ffffff"
+cursor = "#ffcc66"
+
+[colors.selection]
+border = "#6182ff"
+background = "#ff6247"
+
+[colors.hints]
+start = "#ffe061"
+end = "#ff8f7a"
