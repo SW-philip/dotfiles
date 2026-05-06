@@ -556,22 +556,6 @@
         "type": "github"
       }
     },
-    "nordzy-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1776663469,
-        "narHash": "sha256-0586kd78VRi8ymYo0r6TEu4ZWu4/p9usj5j8rKanE8U=",
-        "owner": "guillaumeboehm",
-        "repo": "Nordzy-cursors",
-        "rev": "c7fc485e9e4fd974c4f4ff9f5f14610fa7835e7b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "guillaumeboehm",
-        "repo": "Nordzy-cursors",
-        "type": "github"
-      }
-    },
     "nur": {
       "inputs": {
         "flake-parts": "flake-parts_3",
@@ -590,6 +574,26 @@
       "original": {
         "owner": "nix-community",
         "repo": "NUR",
+        "type": "github"
+      }
+    },
+    "posys-cursor": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775672286,
+        "narHash": "sha256-w2zx1wFXWuIkMuzRiYbwQ49/PUpfBDxlhckBRV8CWXs=",
+        "owner": "Morxemplum",
+        "repo": "posys-cursor-scalable",
+        "rev": "e2aea7ca0d531ee1f80da963cb512eaeb3e25eaa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Morxemplum",
+        "repo": "posys-cursor-scalable",
         "type": "github"
       }
     },
@@ -633,8 +637,8 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "nordzy-src": "nordzy-src",
         "nur": "nur",
+        "posys-cursor": "posys-cursor",
         "sops-nix": "sops-nix"
       }
     },

@@ -22,9 +22,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.lix.follows = "lix";
     };
-    nordzy-src = {
-    url = "github:guillaumeboehm/Nordzy-cursors";
-    flake = false; # This stops the "does not contain a flake.nix"
+    posys-cursor = {
+      url = "github:Morxemplum/posys-cursor-scalable";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
   };

@@ -41,12 +41,8 @@ in
       package = pkgs.papirus-icon-theme;
     };
     cursorTheme = {
-      name    = "Nordzy-hyprcursors-catppuccin-frappe-sapphire";
-      # This pulls the specific theme folder from the non-flake source
-      package = pkgs.runCommand "nordzy-cursors" {} ''
-        mkdir -p $out/share/icons
-        cp -r ${inputs.nordzy-src}/hyprcursors/themes/Nordzy-hyprcursors-catppuccin-frappe-sapphire $out/share/icons/
-      '';
+      name    = "posys_cursor_scalable";
+      package = inputs.posys-cursor.packages.${pkgs.stdenv.hostPlatform.system}.default;
       size    = 24;
     };
   };
@@ -551,7 +547,7 @@ in
 
   # Environment variables to ensure cursor theme is picked up by all apps
   home.sessionVariables = {
-    XCURSOR_THEME = "Bibata-Modern-Ice";
+    XCURSOR_THEME = "posys_cursor_scalable";
     XCURSOR_SIZE = "24";
   };
 }
