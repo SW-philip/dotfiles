@@ -163,7 +163,6 @@
     connect-timeout = 10;
     stalled-download-timeout = 90;
     # Suppress Lix deprecation warnings from nixpkgs upstream code (not our files)
-    extra-deprecated-features = [ "or-as-identifier" "broken-string-indentation" "broken-string-escape" ];
   };
 
   nix.gc = {
