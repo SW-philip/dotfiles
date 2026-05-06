@@ -1,0 +1,35 @@
+/* Wofi Theme: espresso - Espresso Delight */
+window {
+  background-color: #3c2a2a;
+}
+
+#entry {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #3c2a2a;
+  color: #ffffff;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+}
+
+#entry:selected {
+  background-color: #7b4d4d;
+  color: #365296;
+}
+
+#input {
+  background-color: #3c2a2a;
+  color: #ffffff;
+  border: 2px solid #365296;
+  padding: 6px;
+  margin: 5px;
+}
+
+#text {
+  color: #ffffff;
+}
+
+#text:selected {
+  color: #365296;
+}
