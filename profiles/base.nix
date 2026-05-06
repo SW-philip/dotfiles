@@ -97,6 +97,7 @@
     lm_sensors
     brightnessctl
     bemenu
+    smartmontools
 
     # Filesystem / storage
     btrfs-progs      # btrfs maintenance (balance, scrub, subvolume ops)
