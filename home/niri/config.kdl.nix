@@ -92,7 +92,7 @@ layout {
 prefer-no-csd
 
 cursor {
-    xcursor-theme "BreezeX-RosePine-Linux"
+    xcursor-theme "posys_cursor_scalable"
     xcursor-size 32
 }
 
