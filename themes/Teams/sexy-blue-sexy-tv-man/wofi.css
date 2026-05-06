@@ -1,0 +1,35 @@
+/* Wofi Theme: sexy - Blue Sexy TV Man */
+window {
+  background-color: #1a9bdb;
+}
+
+#entry {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #1a9bdb;
+  color: #ffffff;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+}
+
+#entry:selected {
+  background-color: #65c3f1;
+  color: #eaf301;
+}
+
+#input {
+  background-color: #1a9bdb;
+  color: #ffffff;
+  border: 2px solid #eaf301;
+  padding: 6px;
+  margin: 5px;
+}
+
+#text {
+  color: #ffffff;
+}
+
+#text:selected {
+  color: #eaf301;
+}
