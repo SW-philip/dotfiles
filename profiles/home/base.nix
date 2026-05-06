@@ -23,7 +23,6 @@ in
     ../../home/niri
     # ../../home/hypr
     ../packages/fastfetch.nix
-    inputs.nur.nixosModules.nur  # Add this line
     ../../modules/home-options.nix
   ];
 
