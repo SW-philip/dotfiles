@@ -42,8 +42,12 @@ in
       package = pkgs.papirus-icon-theme;
     };
     cursorTheme = {
-      name    = "Bibata-Modern-Ice";
-      package = bibata-modern-ice;
+      name    = "Nordzy-hyprcursors-catppuccin-frappe-sapphire";
+      # This pulls the specific theme folder from the non-flake source
+      package = pkgs.runCommand "nordzy-cursors" {} ''
+        mkdir -p $out/share/icons
+        cp -r ${inputs.nordzy-src}/hyprcursors/themes/Nordzy-hyprcursors-catppuccin-frappe-sapphire $out/share/icons/
+      '';
       size    = 24;
     };
   };
@@ -500,7 +504,6 @@ in
     jq ripgrep fd bat
     gitleaks unzip resvg
     pythonEnv claude-code
-    nur.repos.ful1e5.bibata-cursors
     grim slurp wl-clipboard swappy
     fuzzel cliphist
     ffmpeg mediainfo vlc playerctl libnotify
