@@ -7,7 +7,6 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager-unstable.url = "github:nix-community/home-manager/master";
     sops-nix.url = "github:Mic92/sops-nix";
-    phinger.url = "github:phisch/phinger-cursors"; # Add this
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.1";
     claude-code.url = "github:sadjow/claude-code-nix";
     helium.url = "gitlab:ntgn/helium-flake";
@@ -22,6 +21,10 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.lix.follows = "lix";
+    };
+    nordzy-src = {
+    url = "github:guillaumeboehm/Nordzy-cursors";
+    flake = false; # This stops the "does not contain a flake.nix"
     };
 
   };
