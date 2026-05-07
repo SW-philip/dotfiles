@@ -12,6 +12,7 @@ let
   # To add a theme: drop files in a new subfolder — no changes needed here.
 
   themesRoot = ../../themes;
+  l          = import "${themesRoot}/layout.nix";
 
   # Returns { slug → { family, slug, palette, shContent, isLight } } for every
   # theme found under themes/[Family]/[folderName]/
@@ -68,7 +69,7 @@ let
     margin=16
     padding=12
     border-size=1
-    border-radius=7
+    border-radius=${toString (l.radiusSm + 1)}
     sort=-time
     max-visible=5
     font=JetBrains Mono 11
@@ -115,9 +116,9 @@ let
                      else "${home}/Images/rothkos_moon_tall.png";
     in {
       mako       = pkgs.writeText "mako-config-${slug}"       (mkMakoConfig t.palette subtleBorder faintBorder);
-      niriKdl    = pkgs.writeText "niri-config-${slug}.kdl"   (import ./config.kdl.nix { p = t.palette; });
+      niriKdl    = pkgs.writeText "niri-config-${slug}.kdl"   (import ./config.kdl.nix { p = t.palette; inherit l; });
       ironbarCss = pkgs.writeText "ironbar-style-${slug}.css" (import ./ironbar-style.nix t.palette);
-      waybarCss  = pkgs.writeText "waybar-style-${slug}.css"  (import ../waybar/style.nix t.palette);
+      waybarCss  = pkgs.writeText "waybar-style-${slug}.css"  (import ../waybar/style.nix { p = t.palette; inherit l; });
       waybarSh   = pkgs.writeText "waybar-palette-${slug}.sh" t.shContent;
       nemoCss    = pkgs.writeText "nemo-gtk3-${slug}.css"     (import ../nemo/gtk3.css.nix t.palette);
       wofiCss    = pkgs.writeText "wofi-style-${slug}.css"    (mkWofiCss t.palette);
@@ -229,7 +230,7 @@ let
     #entry {
       margin: 5px;
       padding: 8px;
-      border-radius: 6px;
+      border-radius: ${toString l.radiusSm}px;
       background-color: ${p.BASE};
       color: ${p.TEXT};
     }
@@ -271,7 +272,7 @@ let
         color: ${p.TEXT};
         background-color: ${p.SURFACE};
         border: 2px solid ${p.OVERLAY};
-        border-radius: 12px;
+        border-radius: ${toString l.radiusLg}px;
         margin: 8px;
         outline-style: none;
         box-shadow: none;
@@ -328,7 +329,7 @@ let
 
       [border]
       width=1
-      radius=6
+      radius=${toString l.radiusSm}
     '';
 
   setTheme = pkgs.writeShellScriptBin "set-theme" (
@@ -405,7 +406,7 @@ button {
     color: $TEXT;
     background-color: $SURFACE;
     border: 2px solid $OVERLAY;
-    border-radius: 12px;
+    border-radius: ${toString l.radiusLg}px;
     margin: 8px;
     outline-style: none;
     box-shadow: none;
