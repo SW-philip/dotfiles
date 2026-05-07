@@ -85,21 +85,22 @@ EOF
   # Waybar CSS — write dark theme on activation
   home.activation.waybarStyleCss = lib.hm.dag.entryAfter ["writeBoundary"] (
   let
-    # Define a more complete layout set
+    # A complete layout set to satisfy style.nix requirements
     l = {
       gap = 10;
       borderW = 2;
-      radiusMd = 8; # Add this!
+      radiusMd = 8;
+      shadowBlur = 12;   # Added to fix current error
+      shadowSpread = 2; # Added to fix current error
     };
   in
   ''
-    # Pass both p and the new l set
+    # Provide both p and the now-complete l set
     CSS="${pkgs.writeText "waybar-style-dark.css" (import ../waybar/style.nix {
       inherit p l;
     })}"
-    mkdir -p "$HOME/.config/waybar"
-    cp --remove-destination "$CSS" "$HOME/.config/waybar/style.css"
 
     mkdir -p "$HOME/.config/waybar"
+    cp --remove-destination "$CSS" "$HOME/.config/waybar/style.css"
   '');
 }
