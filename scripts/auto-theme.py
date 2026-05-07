@@ -687,8 +687,26 @@ def derive_full_palette(mapped: dict) -> dict:
     mapped["MUTED_ICON"] = _adjust(mapped["BASE"], l=0.20 if is_dark else -0.20)
 
     # --- 4. HARMONIC ACCENTS ---
-    mapped["IRIS"] = _adjust(mapped["BASE"], h=0.618, s=0.2)
-    mapped["GOLD"] = _adjust(mapped["BASE"], h=0.12, s=0.25)
+    # Tint + small hue shift from the input team colors — no large hue jumps.
+    # IRIS: cool-accent slot; nudge FOAM slightly toward violet.
+    # GOLD: warm-amber slot; pick whichever of LOVE/ROSE/PINE is closest to
+    #       orange (H≈0.08) and nudge it further toward amber.
+    mapped["IRIS"] = _adjust(mapped["FOAM"], h=0.06, s=0.05)
+
+    def _circ_dist(a, b):
+        d = abs(a - b) % 1.0
+        return min(d, 1.0 - d)
+
+    warm_key = min(["LOVE", "ROSE", "PINE"],
+                   key=lambda k: _circ_dist(_hex_to_hsl(mapped[k])[0], 0.08))
+    wh, ws, wl = _hex_to_hsl(mapped[warm_key])
+    # Nudge 25% toward orange (H=0.08) using the correct circular direction
+    gold_diff = (0.08 - wh + 0.5) % 1.0 - 0.5
+    mapped["GOLD"] = _hsl_to_hex(
+        (wh + gold_diff * 0.25) % 1.0,
+        max(0.0, min(1.0, ws - 0.05)),
+        max(0.0, min(1.0, wl + (0.08 if is_dark else -0.08))),
+    )
 
     # Ensure readability
     for acc in ["LOVE", "PINE", "FOAM", "IRIS", "GOLD", "ROSE"]:

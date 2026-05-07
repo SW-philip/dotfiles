@@ -33,7 +33,7 @@ PALETTE_SH=$(find "$THEME_DIR" -name "palette-*.sh" | head -n1)
 # Default Fallbacks (Prevents B&W if variables are missing)
 BG_DARK="#1a1a1a"; BG_LIGHT="#2a2a2a"
 ICE_SHADOW="#3d2205"; ICE_MID="#d4a030"; ICE_HIGHLIGHT="#fff8e0"
-CONE_SHADOW="#965a28"; CONE_MID="#d28e46"; STICKER_COLOR="#ffffff"
+CONE_SHADOW="#F38D30"; CONE_MID="#F9A454"; STICKER_COLOR="#ffffff"
 
 if [[ -f "$PALETTE_SH" ]]; then
     source "$PALETTE_SH"
@@ -43,9 +43,9 @@ if [[ -f "$PALETTE_SH" ]]; then
     ICE_MID="${LOVE:-${ROSE:-${PINE:-$ICE_MID}}}"
     ICE_HIGHLIGHT="${FOAM:-${GOLD:-${IRIS:-$ICE_HIGHLIGHT}}}"
 
-    # Cone Colors (Orange/Tan tones)[cite: 1]
-    CONE_SHADOW="${GOLD:-#ef7627}"
-    CONE_MID="${ROSE:-#ff9a56}"
+    # Cone Colors — always use Lix brand colors regardless of theme
+    CONE_SHADOW="#F38D30"  # Darker Orange/Tan (Side/Shadow)
+    CONE_MID="#F9A454"     # Lighter Tan (Front Face)
 fi
 
 # Apply manual overrides if they exist
