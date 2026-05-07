@@ -7,7 +7,6 @@
     ./hardware.nix
     ./boot.nix
     ../../profiles/niri.nix
-    ../../modules/greetd.nix
     inputs.sops-nix.nixosModules.sops
   ];
 
@@ -60,6 +59,12 @@
   };
 
   services.xserver.xkb = { layout = "us"; };
+
+  ############################################################
+  # Display manager + GNOME desktop
+  ############################################################
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # ProtonVPN WireGuard — disabled until config file is in place.
   # To enable: add ../../modules/protonvpn.nix to imports, set protonvpn.configFile,
