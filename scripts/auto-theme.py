@@ -1415,10 +1415,12 @@ def activate_theme(slug: str, theme_dir: Path) -> None:
     kate_syntax_dst.parent.mkdir(parents=True, exist_ok=True)
 
     if kate_colors_src.exists():
+        kate_colors_dst.unlink(missing_ok=True)
         shutil.copy2(kate_colors_src, kate_colors_dst)
         print(f"  ✅ Installed Kate Color Scheme")
 
     if kate_syntax_src.exists():
+        kate_syntax_dst.unlink(missing_ok=True)
         shutil.copy2(kate_syntax_src, kate_syntax_dst)
         print(f"  ✅ Installed Kate Syntax Highlighting")
 
@@ -1437,6 +1439,7 @@ def activate_theme(slug: str, theme_dir: Path) -> None:
     wofi_css_dst = Path.home() / ".config/wofi/style.css"
     if wofi_css_src.exists():
         wofi_css_dst.parent.mkdir(parents=True, exist_ok=True)
+        wofi_css_dst.unlink(missing_ok=True)
         shutil.copy2(wofi_css_src, wofi_css_dst)
         print("  → Wofi theme applied")
 
