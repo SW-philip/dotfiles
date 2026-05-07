@@ -40,11 +40,13 @@ in
       name    = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
-    cursorTheme = {
-      name    = "posys_cursor_scalable";
-      package = inputs.posys-cursor.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      size    = 24;
-    };
+  };
+
+  home.pointerCursor = {
+    name    = "posys_cursor_scalable";
+    package = inputs.posys-cursor.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    size    = 48;
+    gtk.enable = true;
   };
 
   xdg.portal.config.common.default = "*";
@@ -545,9 +547,4 @@ in
     '')
   ];
 
-  # Environment variables to ensure cursor theme is picked up by all apps
-  home.sessionVariables = {
-    XCURSOR_THEME = "posys_cursor_scalable";
-    XCURSOR_SIZE = "24";
-  };
 }

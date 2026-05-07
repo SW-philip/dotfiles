@@ -10,16 +10,6 @@
   home.homeDirectory = "/home/family";
 
   ############################################################
-  # Cursor — Rosé Pine, matches desktop/surface
-  ############################################################
-  home.pointerCursor = {
-    name    = "BreezeX-RosePine-Linux";
-    package = pkgs.rose-pine-cursor;
-    size    = 48;   # large for 65" couch display at 3.0 scale
-    gtk.enable = true;
-  };
-
-  ############################################################
   # Niri compositor config — fixed call site
   ############################################################
   home.activation.niriCfg = lib.hm.dag.entryAfter ["writeBoundary"] (

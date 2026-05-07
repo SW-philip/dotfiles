@@ -93,11 +93,12 @@ prefer-no-csd
 
 cursor {
     xcursor-theme "posys_cursor_scalable"
-    xcursor-size 32
+    xcursor-size 48
 }
 
 environment {
-    XCURSOR_SIZE "32"
+    XCURSOR_THEME "posys_cursor_scalable"
+    XCURSOR_SIZE "48"
     XDG_CURRENT_DESKTOP "niri"
     // xwayland-satellite binds to :0; set DISPLAY here so all niri-spawned
     // apps (Steam, etc.) inherit it rather than racing import-environment.
