@@ -1,7 +1,7 @@
 # Waybar dark theme CSS — generated from palette.nix
 # Derived tinted hover backgrounds (thermal gradient) are kept as literal hex;
 # everything else references palette variables.
-p:
+{ p, l }:
 let
   tooltipBg = if p ? OVERLAY_RGB then "rgba(${p.OVERLAY_RGB},0.99)" else p.WB_BASE;
 in
@@ -28,7 +28,7 @@ window#waybar {
   text-shadow: ${p.ICON_SHADOW};
   padding: 4px 14px;
   margin: 5px 3px;
-  border-radius: 8px;
+  border-radius: ${toString l.radiusMd}px;
   border: 1px solid rgba(${p.BORDER_ACCENT_RGB},0.18);
   border-top-color: rgba(255,255,255,${p.BORDER_TOP_A});
   box-shadow:
@@ -36,7 +36,7 @@ window#waybar {
     0 -1px 0 rgba(${p.SHADOW_RGB},${p.INSET_BOT_A}) inset,
     0 0 0 1px rgba(${p.SHADOW_RGB},${p.SHADOW_A_OUTER}),
     0 2px 8px rgba(${p.BORDER_ACCENT_RGB},0.10),
-    0 4px 10px rgba(${p.SHADOW_RGB},${p.SHADOW_A_DROP});
+    0 4px ${toString l.shadowBlur}px ${toString l.shadowSpread}px rgba(${p.SHADOW_RGB},${p.SHADOW_A_DROP});
   transition:
     background 0.15s ease,
     color 0.15s ease,
@@ -53,8 +53,8 @@ window#waybar {
     0 1px 0 rgba(255,255,255,${p.INSET_TOP_A}) inset,
     0 -1px 0 rgba(${p.SHADOW_RGB},${p.INSET_BOT_A}) inset,
     0 0 0 1px rgba(${p.SHADOW_RGB},${p.SHADOW_A_OUTER}),
-    0 4px 14px rgba(${p.BORDER_ACCENT_RGB},0.20),
-    0 5px 12px rgba(${p.SHADOW_RGB},${p.SHADOW_A_HOVER});
+    0 4px ${toString (l.shadowBlur + 4)}px ${toString l.shadowSpread}px rgba(${p.BORDER_ACCENT_RGB},0.20),
+    0 5px ${toString (l.shadowBlur + 2)}px ${toString l.shadowSpread}px rgba(${p.SHADOW_RGB},${p.SHADOW_A_HOVER});
 }
 
 /* -----------------------------------------------------------------
@@ -277,7 +277,7 @@ window#waybar {
 #toggles {
   background: ${p.WB_BASE};
   border: 1px solid rgba(${p.BORDER_ACCENT_RGB},0.08);
-  border-radius: 12px;
+  border-radius: ${toString l.radiusLg}px;
   margin: 5px 3px;
   padding: 0;
 
@@ -286,7 +286,7 @@ window#waybar {
     0 -1px 0 rgba(${p.SHADOW_RGB},${p.INSET_BOT_A}) inset,
     0 0 0 1px rgba(${p.SHADOW_RGB},${p.SHADOW_A_OUTER}),
     0 2px 8px rgba(${p.BORDER_ACCENT_RGB},0.10),
-    0 4px 10px rgba(${p.SHADOW_RGB},${p.SHADOW_A_DROP});
+    0 4px ${toString l.shadowBlur}px ${toString l.shadowSpread}px rgba(${p.SHADOW_RGB},${p.SHADOW_A_DROP});
   transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -297,8 +297,8 @@ window#waybar {
     0 1px 0 rgba(255,255,255,${p.INSET_TOP_A}) inset,
     0 -1px 0 rgba(${p.SHADOW_RGB},${p.INSET_BOT_A}) inset,
     0 0 0 1px rgba(${p.SHADOW_RGB},${p.SHADOW_A_OUTER}),
-    0 4px 14px rgba(${p.BORDER_ACCENT_RGB},0.20),
-    0 5px 12px rgba(${p.SHADOW_RGB},${p.SHADOW_A_HOVER});
+    0 4px ${toString (l.shadowBlur + 4)}px ${toString l.shadowSpread}px rgba(${p.BORDER_ACCENT_RGB},0.20),
+    0 5px ${toString (l.shadowBlur + 2)}px ${toString l.shadowSpread}px rgba(${p.SHADOW_RGB},${p.SHADOW_A_HOVER});
 }
 
 /* shared chip hover for all group pill interiors */
@@ -309,7 +309,7 @@ window#waybar {
 #storage > widget > * {
   background: rgba(255,255,255,0.04);
   border: none;
-  border-radius: 10px;
+  border-radius: ${toString (l.radiusLg - 2)}px;
   margin: 0 1px;
   box-shadow: none;
   padding: 4px 10px;
@@ -322,7 +322,7 @@ window#waybar {
 #system-stats > widget > *:hover,
 #storage > widget > *:hover {
   background: rgba(255,255,255,0.12);
-  border-radius: 10px;
+  border-radius: ${toString (l.radiusLg - 2)}px;
   box-shadow: none;
   border: none;
 }
@@ -345,7 +345,7 @@ window#waybar {
 #connectivity {
   background: ${p.WB_BASE};
   border: 1px solid rgba(${p.BORDER_ACCENT_RGB},0.08);
-  border-radius: 12px;
+  border-radius: ${toString l.radiusLg}px;
   margin: 5px 3px;
   padding: 0;
 
@@ -354,7 +354,7 @@ window#waybar {
     0 -1px 0 rgba(${p.SHADOW_RGB},${p.INSET_BOT_A}) inset,
     0 0 0 1px rgba(${p.SHADOW_RGB},${p.SHADOW_A_OUTER}),
     0 2px 8px rgba(${p.BORDER_ACCENT_RGB},0.10),
-    0 4px 10px rgba(${p.SHADOW_RGB},${p.SHADOW_A_DROP});
+    0 4px ${toString l.shadowBlur}px ${toString l.shadowSpread}px rgba(${p.SHADOW_RGB},${p.SHADOW_A_DROP});
   transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -365,8 +365,8 @@ window#waybar {
     0 1px 0 rgba(255,255,255,${p.INSET_TOP_A}) inset,
     0 -1px 0 rgba(${p.SHADOW_RGB},${p.INSET_BOT_A}) inset,
     0 0 0 1px rgba(${p.SHADOW_RGB},${p.SHADOW_A_OUTER}),
-    0 4px 14px rgba(${p.BORDER_ACCENT_RGB},0.20),
-    0 5px 12px rgba(${p.SHADOW_RGB},${p.SHADOW_A_HOVER});
+    0 4px ${toString (l.shadowBlur + 4)}px ${toString l.shadowSpread}px rgba(${p.BORDER_ACCENT_RGB},0.20),
+    0 5px ${toString (l.shadowBlur + 2)}px ${toString l.shadowSpread}px rgba(${p.SHADOW_RGB},${p.SHADOW_A_HOVER});
 }
 
 
@@ -376,7 +376,7 @@ window#waybar {
 #actions {
   background: ${p.WB_BASE};
   border: 1px solid rgba(${p.BORDER_ACCENT_RGB},0.08);
-  border-radius: 12px;
+  border-radius: ${toString l.radiusLg}px;
   margin: 5px 3px;
   padding: 0;
 
@@ -385,7 +385,7 @@ window#waybar {
     0 -1px 0 rgba(${p.SHADOW_RGB},${p.INSET_BOT_A}) inset,
     0 0 0 1px rgba(${p.SHADOW_RGB},${p.SHADOW_A_OUTER}),
     0 2px 8px rgba(${p.BORDER_ACCENT_RGB},0.10),
-    0 4px 10px rgba(${p.SHADOW_RGB},${p.SHADOW_A_DROP});
+    0 4px ${toString l.shadowBlur}px ${toString l.shadowSpread}px rgba(${p.SHADOW_RGB},${p.SHADOW_A_DROP});
   transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -396,8 +396,8 @@ window#waybar {
     0 1px 0 rgba(255,255,255,${p.INSET_TOP_A}) inset,
     0 -1px 0 rgba(${p.SHADOW_RGB},${p.INSET_BOT_A}) inset,
     0 0 0 1px rgba(${p.SHADOW_RGB},${p.SHADOW_A_OUTER}),
-    0 4px 14px rgba(${p.BORDER_ACCENT_RGB},0.20),
-    0 5px 12px rgba(${p.SHADOW_RGB},${p.SHADOW_A_HOVER});
+    0 4px ${toString (l.shadowBlur + 4)}px ${toString l.shadowSpread}px rgba(${p.BORDER_ACCENT_RGB},0.20),
+    0 5px ${toString (l.shadowBlur + 2)}px ${toString l.shadowSpread}px rgba(${p.SHADOW_RGB},${p.SHADOW_A_HOVER});
 }
 
 
@@ -407,7 +407,7 @@ window#waybar {
 #system-stats {
   background: ${p.WB_OVERLAY};
   border: 1px solid rgba(${p.BORDER_IRIS_RGB},0.14);
-  border-radius: 12px;
+  border-radius: ${toString l.radiusLg}px;
   margin: 5px 3px;
   padding: 0;
 
@@ -416,7 +416,7 @@ window#waybar {
     0 -1px 0 rgba(${p.SHADOW_RGB},${p.INSET_BOT_A}) inset,
     0 0 0 1px rgba(${p.SHADOW_RGB},${p.SHADOW_A_OUTER}),
     0 2px 8px rgba(${p.BORDER_ACCENT_RGB},0.10),
-    0 4px 10px rgba(${p.SHADOW_RGB},${p.SHADOW_A_DROP});
+    0 4px ${toString l.shadowBlur}px ${toString l.shadowSpread}px rgba(${p.SHADOW_RGB},${p.SHADOW_A_DROP});
   transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -427,8 +427,8 @@ window#waybar {
     0 1px 0 rgba(255,255,255,${p.INSET_TOP_A}) inset,
     0 -1px 0 rgba(${p.SHADOW_RGB},${p.INSET_BOT_A}) inset,
     0 0 0 1px rgba(${p.SHADOW_RGB},${p.SHADOW_A_OUTER}),
-    0 4px 14px rgba(${p.BORDER_ACCENT_RGB},0.20),
-    0 5px 12px rgba(${p.SHADOW_RGB},${p.SHADOW_A_HOVER});
+    0 4px ${toString (l.shadowBlur + 4)}px ${toString l.shadowSpread}px rgba(${p.BORDER_ACCENT_RGB},0.20),
+    0 5px ${toString (l.shadowBlur + 2)}px ${toString l.shadowSpread}px rgba(${p.SHADOW_RGB},${p.SHADOW_A_HOVER});
 }
 
 
@@ -438,7 +438,7 @@ window#waybar {
 #storage {
   background: ${p.WB_BASE};
   border: 1px solid rgba(${p.BORDER_ACCENT_RGB},0.08);
-  border-radius: 12px;
+  border-radius: ${toString l.radiusLg}px;
   margin: 5px 3px;
   padding: 0;
 
@@ -447,7 +447,7 @@ window#waybar {
     0 -1px 0 rgba(${p.SHADOW_RGB},${p.INSET_BOT_A}) inset,
     0 0 0 1px rgba(${p.SHADOW_RGB},${p.SHADOW_A_OUTER}),
     0 2px 8px rgba(${p.BORDER_ACCENT_RGB},0.10),
-    0 4px 10px rgba(${p.SHADOW_RGB},${p.SHADOW_A_DROP});
+    0 4px ${toString l.shadowBlur}px ${toString l.shadowSpread}px rgba(${p.SHADOW_RGB},${p.SHADOW_A_DROP});
   transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -458,8 +458,8 @@ window#waybar {
     0 1px 0 rgba(255,255,255,${p.INSET_TOP_A}) inset,
     0 -1px 0 rgba(${p.SHADOW_RGB},${p.INSET_BOT_A}) inset,
     0 0 0 1px rgba(${p.SHADOW_RGB},${p.SHADOW_A_OUTER}),
-    0 4px 14px rgba(${p.BORDER_ACCENT_RGB},0.20),
-    0 5px 12px rgba(${p.SHADOW_RGB},${p.SHADOW_A_HOVER});
+    0 4px ${toString (l.shadowBlur + 4)}px ${toString l.shadowSpread}px rgba(${p.BORDER_ACCENT_RGB},0.20),
+    0 5px ${toString (l.shadowBlur + 2)}px ${toString l.shadowSpread}px rgba(${p.SHADOW_RGB},${p.SHADOW_A_HOVER});
 }
 
 
@@ -471,7 +471,7 @@ window#waybar {
   color: ${p.MUTED};
   padding: 0 7px;
   margin: 0 1px;
-  border-radius: 6px;
+  border-radius: ${toString l.radiusSm}px;
   border: 1px solid transparent;
   transition: background 0.1s ease, color 0.1s ease;
 }
@@ -503,17 +503,17 @@ window#waybar {
    corners aren't filled by GTK's own background paint. */
 window.background.tooltip {
   background-color: transparent;
-  border-radius: 8px;
+  border-radius: ${toString l.radiusMd}px;
 }
 
 tooltip {
   background: ${tooltipBg};
   border: 1px solid ${p.HIGHLIGHT_MED};
-  border-radius: 8px;
+  border-radius: ${toString l.radiusMd}px;
   padding: 4px 2px;
   box-shadow:
     0 0 0 1px rgba(${p.SHADOW_RGB},${p.SHADOW_A_OUTER}),
-    0 4px 12px rgba(${p.SHADOW_RGB},${p.SHADOW_A_DROP});
+    0 4px ${toString l.shadowBlur}px ${toString l.shadowSpread}px rgba(${p.SHADOW_RGB},${p.SHADOW_A_DROP});
 }
 
 tooltip label {
