@@ -9,7 +9,10 @@
   config = {
     networking.wg-quick.interfaces.protonvpn = {
       configFile = config.protonvpn.configFile;
+      # This ensures the service doesn't start automatically on boot if you don't want it to
+      autostart = false;
     };
+
     networking.networkmanager.unmanaged = [ "protonvpn" ];
     networking.firewall.trustedInterfaces = [ "protonvpn" ];
 
@@ -18,11 +21,11 @@
         users = [ "prepko" ];
         commands = [
           {
-            command = "${pkgs.systemd}/bin/systemctl start wg-quick-protonvpn.service";
+            command = "/run/current-system/sw/bin/systemctl start wg-quick-protonvpn.service";
             options = [ "NOPASSWD" ];
           }
           {
-            command = "${pkgs.systemd}/bin/systemctl stop wg-quick-protonvpn.service";
+            command = "/run/current-system/sw/bin/systemctl stop wg-quick-protonvpn.service";
             options = [ "NOPASSWD" ];
           }
         ];
