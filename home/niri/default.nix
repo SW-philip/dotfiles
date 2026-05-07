@@ -122,6 +122,7 @@ let
       nemoCss    = pkgs.writeText "nemo-gtk3-${slug}.css"     (import ../nemo/gtk3.css.nix t.palette);
       wofiCss    = pkgs.writeText "wofi-style-${slug}.css"    (mkWofiCss t.palette);
       fuzzelIni  = pkgs.writeText "fuzzel-${slug}.ini"        (mkFuzzelIni t.palette);
+      wleaveCss     = pkgs.writeText "wleave-style-${slug}.css"  (mkWleaveCSS t.palette);
       cava          = pkgs.writeText "cava-config-${slug}"       (mkCavaConfig t.palette);
       ghostty       = pkgs.writeText "ghostty-config-${slug}"    (mkGhosttyConfig t.palette);
       pandora       = pkgs.writeText "pandora-${slug}.kdl"       (mkPandoraCfg wallpaper);
@@ -255,6 +256,54 @@ let
     }
   '';
 
+  mkWleaveCSS = p: ''
+    * {
+        background-image: none;
+        font-family: "JetBrainsMono Nerd Font", monospace;
+        font-size: 36px;
+    }
+
+    window {
+        background-color: ${p.BASE};
+    }
+
+    button {
+        color: ${p.TEXT};
+        background-color: ${p.SURFACE};
+        border: 2px solid ${p.OVERLAY};
+        border-radius: 12px;
+        margin: 8px;
+        outline-style: none;
+        box-shadow: none;
+        text-shadow: none;
+        background-repeat: no-repeat;
+        background-position: center 35%;
+        background-size: 20%;
+        transition: all 0.2s ease-in-out;
+    }
+
+    button:hover {
+        background-color: ${p.OVERLAY};
+        border-color: ${p.SUBTLE};
+        color: ${p.TEXT};
+        background-size: 23%;
+        outline-style: none;
+    }
+
+    button:focus {
+        background-color: ${p.OVERLAY};
+        border-color: ${p.IRIS};
+        outline-style: none;
+    }
+
+    #lock:hover      { border-color: ${p.FOAM}; color: ${p.FOAM}; }
+    #logout:hover    { border-color: ${p.LOVE}; color: ${p.LOVE}; }
+    #suspend:hover   { border-color: ${p.IRIS}; color: ${p.IRIS}; }
+    #hibernate:hover { border-color: ${p.GOLD}; color: ${p.GOLD}; }
+    #shutdown:hover  { border-color: ${p.LOVE}; color: ${p.LOVE}; }
+    #reboot:hover    { border-color: ${p.ROSE}; color: ${p.ROSE}; }
+  '';
+
   mkFuzzelIni = p:
     let c = hex: (lib.removePrefix "#" hex) + "ff";
     in ''
@@ -334,6 +383,64 @@ let
         echo "⚠️  No wallpaper found in $THEME_DIR"
       fi
       # ───────────────────────────────────────────────────────────────────────────────
+
+      # ── wleave CSS — generated inline from palette.sh ─────────────────────────
+      PALETTE_SH=$(find "$THEME_DIR" -name "palette-*.sh" | head -n1)
+      if [ -f "$PALETTE_SH" ]; then
+        (
+          . "$PALETTE_SH"
+          mkdir -p "$HOME/.config/wleave"
+          cat > "$HOME/.config/wleave/style.css" <<WLEAVECSS
+* {
+    background-image: none;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 36px;
+}
+
+window {
+    background-color: $BASE;
+}
+
+button {
+    color: $TEXT;
+    background-color: $SURFACE;
+    border: 2px solid $OVERLAY;
+    border-radius: 12px;
+    margin: 8px;
+    outline-style: none;
+    box-shadow: none;
+    text-shadow: none;
+    background-repeat: no-repeat;
+    background-position: center 35%;
+    background-size: 20%;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: $OVERLAY;
+    border-color: $SUBTLE;
+    color: $TEXT;
+    background-size: 23%;
+    outline-style: none;
+}
+
+button:focus {
+    background-color: $OVERLAY;
+    border-color: $IRIS;
+    outline-style: none;
+}
+
+#lock:hover      { border-color: $FOAM; color: $FOAM; }
+#logout:hover    { border-color: $LOVE; color: $LOVE; }
+#suspend:hover   { border-color: $IRIS; color: $IRIS; }
+#hibernate:hover { border-color: $GOLD; color: $GOLD; }
+#shutdown:hover  { border-color: $LOVE; color: $LOVE; }
+#reboot:hover    { border-color: $ROSE; color: $ROSE; }
+WLEAVECSS
+        )
+        echo "  → wleave theme applied"
+      fi
+      # ──────────────────────────────────────────────────────────────────────────
 
       # Reload Zsh colors (if they source palette.sh)
       pkill -USR1 zsh 2>/dev/null || true
@@ -480,6 +587,7 @@ in
           FUZZEL_INI="${cfgs.fuzzelIni}"
           PANDORA_CFG="${cfgs.pandora}"
           WALLPAPER_PATH="${cfgs.wallpaperPath}"
+          WLEAVE_CSS="${cfgs.wleaveCss}"
           CAVA_CFG="${cfgs.cava}"
           GHOSTTY_CFG="${cfgs.ghostty}"
           ;;
@@ -519,6 +627,9 @@ in
       $DRY_RUN_CMD mkdir -p "$HOME/.config/ghostty"
       $DRY_RUN_CMD rm -f "$HOME/.config/ghostty/config"
       $DRY_RUN_CMD cp "$GHOSTTY_CFG" "$HOME/.config/ghostty/config"
+      $DRY_RUN_CMD mkdir -p "$HOME/.config/wleave"
+      $DRY_RUN_CMD rm -f "$HOME/.config/wleave/style.css"
+      $DRY_RUN_CMD cp "$WLEAVE_CSS" "$HOME/.config/wleave/style.css"
     ''
   );
 
