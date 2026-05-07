@@ -1,7 +1,8 @@
 { config, pkgs, lib, ... }:
 let
   isDesktop = config.myConfig.isDesktop;
-  bar = if isDesktop then "rightBar" else "surfaceTopBar";
+  bar = if config.waybar.barName != "" then config.waybar.barName
+        else if isDesktop then "rightBar" else "surfaceTopBar";
 
   # --- FIX: Define the missing variable here ---
   volScript = pkgs.writeShellScriptBin "volume" ''

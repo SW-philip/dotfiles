@@ -3,7 +3,8 @@
 let
   isDesktop = config.myConfig.isDesktop;
   # Keeping your previous logic for clock placement
-  bar = if isDesktop then "leftBar" else "surfaceBottomBar";
+  bar = if config.waybar.barName != "" then config.waybar.barName
+        else if isDesktop then "leftBar" else "surfaceBottomBar";
 
   clockScript = pkgs.writeShellScriptBin "quantum-clock" ''
     exec ${pkgs.bash}/bin/bash ${config.home.homeDirectory}/.config/waybar/scripts/quantum_clock.sh "$@"

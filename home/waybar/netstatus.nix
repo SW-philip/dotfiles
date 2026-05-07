@@ -1,7 +1,8 @@
 { config, pkgs, lib, ... }:
 let
   isDesktop = config.myConfig.isDesktop;
-  bar = if isDesktop then "rightBar" else "surfaceBottomBar";
+  bar = if config.waybar.barName != "" then config.waybar.barName
+        else if isDesktop then "rightBar" else "surfaceBottomBar";
 
   netstatusScript = pkgs.writeShellScriptBin "netstatus" ''
     exec ${pkgs.bash}/bin/bash ${config.home.homeDirectory}/.config/waybar/scripts/netstatus.sh "$@"

@@ -4,7 +4,8 @@ let
   isDesktop = config.myConfig.isDesktop;
 
   # Match surfaceBottomBar where it is listed in modules-center
-  bar = if isDesktop then "leftBar" else "surfaceTopBar";
+  bar = if config.waybar.barName != "" then config.waybar.barName
+        else if isDesktop then "leftBar" else "surfaceTopBar";
 
   python = pkgs.python3.withPackages (ps: with ps; [ requests ]);
 

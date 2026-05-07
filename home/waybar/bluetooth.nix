@@ -1,7 +1,8 @@
 { config, pkgs, lib, ... }:
 let
   isDesktop = config.myConfig.isDesktop;
-  bar = if isDesktop then "rightBar" else "surfaceBottomBar";
+  bar = if config.waybar.barName != "" then config.waybar.barName
+        else if isDesktop then "rightBar" else "surfaceBottomBar";
 
   # This script handles the JSON output for the Waybar display
   bluetoothScript = pkgs.writeShellScriptBin "quantum-bluetooth" ''
