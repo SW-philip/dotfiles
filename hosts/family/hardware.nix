@@ -18,10 +18,22 @@
     options = [ "subvol=@" ];
   };
 
-  boot.initrd.luks.devices."cryptroot".device =
-    # This MUST be the UUID of the PHYSICAL partition (/dev/sda2)
-    # Run 'blkid /dev/sda2' to get this ID if it isn't 0d20425e...
-    "/dev/disk/by-uuid/YOUR-FAMILY-LUKS-UUID";
+  boot.initrd.systemd.enable = true;
+
+  boot.initrd.luks.devices."cryptroot" = {
+    device = "/dev/disk/by-uuid/YOUR-FAMILY-LUKS-UUID";
+    allowDiscards = true;
+    crypttabExtraOpts = [
+      "tpm2-device=auto"
+      "tpm2-pcrs=7"
+    ];
+  };
+
+  security.tpm2 = {
+    enable = true;
+    pkcs11.enable = true;
+    tctiEnvironment.enable = true;
+  };
 
   fileSystems."/home" = {
     device = "/dev/mapper/cryptroot";

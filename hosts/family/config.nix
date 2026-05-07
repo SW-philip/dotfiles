@@ -3,6 +3,7 @@
 {
   imports = [
     ../../profiles/base.nix
+    ../../profiles/secure-boot.nix
     ./hardware.nix
     ./boot.nix
     ../../profiles/niri.nix

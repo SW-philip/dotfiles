@@ -1,8 +1,12 @@
 # hosts/family/boot.nix
-{ ... }:
+{ lib, ... }:
 {
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
-  boot.kernelParams = [ ];
+  boot.initrd.kernelModules = [ "i915" ];
+
+  boot.kernelParams = lib.mkAfter [
+    "quiet" "splash" "loglevel=0"
+    "rd.systemd.show_status=false"
+    "systemd.show_status=false"
+    "vt.handoff=7"
+  ];
 }

@@ -138,6 +138,7 @@
         modules = [
           overlayModule
           allowUnfreeModule
+          lanzaboote.nixosModules.lanzaboote
           ./hosts/family/config.nix
           home-manager.nixosModules.home-manager
           hmBase

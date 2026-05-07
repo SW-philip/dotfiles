@@ -34,6 +34,12 @@ case "$(hostname)" in
       ["YOUR-SURFACE-LUKS-UUID"]="cryptroot (nvme)"
     )
     ;;
+  family)
+    MACHINE="family"
+    LUKS_DESCS=(
+      ["YOUR-FAMILY-LUKS-UUID"]="cryptroot (ssd)"
+    )
+    ;;
   *)
     echo "ERROR: Unrecognised hostname '$(hostname)'. Edit this script to add your machine."
     exit 1
