@@ -4,27 +4,33 @@ let
   isDesktop = config.myConfig.isDesktop;
   p = import ../../themes/Rose-Pine/main/palette-main.nix;
 
-  # Reads ~/.local/state/theme at waybar startup and displays current theme name.
   chooseModeExec = pkgs.writeShellScript "choose-mode" ''
     export PATH="${pkgs.lib.makeBinPath [ pkgs.jq pkgs.coreutils ]}:$PATH"
     THEME=$(cat "$HOME/.local/state/theme" 2>/dev/null || echo "main")
+
     case "$THEME" in
-      moon)          L=moon ;;
-      dawn|light)    L=dawn ;;
-      lilac-juniper) L="lilac·juniper" ;;
-      *)              L=main ;;
+      main|moon|dawn|light|lilac-juniper|dark)
+        case "$THEME" in
+          moon)          L=moon ;;
+          dawn|light)    L=dawn ;;
+          lilac-juniper) L="lilac·juniper" ;;
+          *)             L=main ;;
+        esac
+        _s() {
+          if [ "$1" = "$L" ]; then
+            printf '<span foreground="${p.IRIS}"><b>%s</b></span>' "$1"
+          else
+            printf '<span foreground="${p.MUTED}">%s</span>' "$1"
+          fi
+        }
+        TIP="$(_s main)  →  $(_s moon)  →  $(_s dawn)  →  $(_s "lilac·juniper")"
+        ;;
+      *)
+        TIP="<span foreground=\"${p.IRIS}\">$THEME</span>"
+        ;;
     esac
 
-    _s() {
-      if [ "$1" = "$L" ]; then
-        printf '<span foreground="${p.IRIS}"><b>%s</b></span>' "$1"
-      else
-        printf '<span foreground="${p.MUTED}">%s</span>' "$1"
-      fi
-    }
-
-    SEQ="$(_s main)  →  $(_s moon)  →  $(_s dawn)  →  $(_s "lilac·juniper")"
-    jq -cn --arg text "󰔎" --arg tip "$SEQ" '{text: $text, tooltip: $tip}'
+    jq -cn --arg text "󰔎" --arg tip "$TIP" '{text: $text, tooltip: $tip}'
   '';
 in
 {
@@ -103,6 +109,7 @@ in
         "custom/choose_mode" = {
           exec = "${chooseModeExec}";
           on-click = "toggle-theme";
+          on-right-click = "python3 ${./scripts/theme-picker.py}";
           return-type = "json";
           interval = "once";
         };
@@ -170,6 +177,7 @@ in
         "custom/choose_mode" = {
           exec = "${chooseModeExec}";
           on-click = "toggle-theme";
+          on-right-click = "python3 ${./scripts/theme-picker.py}";
           return-type = "json";
           interval = "once";
         };
