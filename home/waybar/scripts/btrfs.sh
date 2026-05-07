@@ -57,19 +57,19 @@ BAR_TEXT="󰋊 ${pct}%"
 # ── Tooltip ───────────────────────────────────────────────────────
 NL=$'\n'
 TT="<span foreground='${IRIS}'><b>󰋊 btrfs /</b></span>${NL}"
-TT+="<span foreground='${MUTED}'>Used:</span>  <span foreground='${COLOR}'>$used</span>  "
-TT+="<span foreground='${MUTED}'>Free:</span> <span foreground='${FOAM}'>$avail</span>${NL}"
+TT+="<span foreground='${SUBTLE}'>Used:</span>  <span foreground='${COLOR}'>$used</span>  "
+TT+="<span foreground='${SUBTLE}'>Free:</span> <span foreground='${FOAM}'>$avail</span>${NL}"
 
 if [[ -n "$data_used_g" ]]; then
-    TT+="<span foreground='${MUTED}'>Data:</span>  <span foreground='${SUBTLE}'>$data_used_g G / $data_total_g G</span>${NL}"
-    TT+="<span foreground='${MUTED}'>Meta:</span>  <span foreground='${SUBTLE}'>$meta_used_g G used</span>${NL}"
+    TT+="<span foreground='${SUBTLE}'>Data:</span>  <span foreground='${SUBTLE}'>$data_used_g G / $data_total_g G</span>${NL}"
+    TT+="<span foreground='${SUBTLE}'>Meta:</span>  <span foreground='${SUBTLE}'>$meta_used_g G used</span>${NL}"
 fi
 
 TT+="${NL}"
-TT+="<span foreground='${MUTED}'>Generation:</span>  "
+TT+="<span foreground='${SUBTLE}'>Generation:</span>  "
 TT+="<span foreground='${TEXT}'>$current_gen</span>"
-TT+=" <span foreground='${MUTED}'>($gen_total total)</span>${NL}"
-TT+="<span foreground='${MUTED}'>Snapshots:</span>   "
+TT+=" <span foreground='${SUBTLE}'>($gen_total total)</span>${NL}"
+TT+="<span foreground='${SUBTLE}'>Snapshots:</span>   "
 TT+="<span foreground='${TEXT}'>$snap_count</span>"
 
 if [[ -n "$backup_used" ]]; then
@@ -78,8 +78,8 @@ if [[ -n "$backup_used" ]]; then
     else                              BCOL="$FOAM"
     fi
     TT+="${NL}${NL}<span foreground='${IRIS}'><b>󰋊 /mnt/backup</b></span>${NL}"
-    TT+="<span foreground='${MUTED}'>Used:</span>  <span foreground='${BCOL}'>$backup_used</span>  "
-    TT+="<span foreground='${MUTED}'>Free:</span> <span foreground='${FOAM}'>$backup_avail</span>"
+    TT+="<span foreground='${SUBTLE}'>Used:</span>  <span foreground='${BCOL}'>$backup_used</span>  "
+    TT+="<span foreground='${SUBTLE}'>Free:</span> <span foreground='${FOAM}'>$backup_avail</span>"
 fi
 
 jq -nc \

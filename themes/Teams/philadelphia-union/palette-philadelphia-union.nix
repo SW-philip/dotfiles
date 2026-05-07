@@ -13,15 +13,15 @@
   TEXT   = "#ffffff";
   LOVE   = "#419fee";
   ROSE   = "#B49759";
-  GOLD   = "#1c0099";
+  GOLD   = "#bca37a";
   PINE   = "#5090CD";
   FOAM   = "#ffc621";
-  IRIS   = "#7f9900";
+  IRIS   = "#e8ff21";
 
   # ── Extended ──────────────────────────────────────────────────
   CRITICAL   = "#419fee";
   WARNING    = "#416bee";
-  CAUTION    = "#1c0099";
+  CAUTION    = "#bca37a";
   MUTED_ICON = "#155184";
 
   # ── Structural ────────────────────────────────────────────────
@@ -43,7 +43,7 @@
 
   # ── Borders ───────────────────────────────────────────────────
   BORDER_ACCENT_RGB = "65,159,238";
-  BORDER_IRIS_RGB   = "127,153,0";
+  BORDER_IRIS_RGB   = "232,255,33";
 
   # ── Tints ─────────────────────────────────────────────────────
   TINT_PINE_DARK   = "#295d8e";
@@ -54,7 +54,7 @@
   HOVER_MUTED_BG  = "#1c6cb0";
   HOVER_TEAL_BG   = "#ffda6e";
   HOVER_GREEN_BG  = "#84b6e5";
-  HOVER_GOLD_BG   = "#2a00e5";
+  HOVER_GOLD_BG   = "#dcc8a7";
   HOVER_ORANGE_BG = "#87a2f4";
 
   # ── Typography ────────────────────────────────────────────────
@@ -74,12 +74,12 @@
   BATTERY_FULL = "#5090CD";
   BATTERY_HIGH = "#ffc621";
   BATTERY_MED  = "#B49759";
-  BATTERY_LOW  = "#1c0099";
+  BATTERY_LOW  = "#bca37a";
   BATTERY_CRIT = "#419fee";
 
   # ── Roles ─────────────────────────────────────────────────────
   BORDER_ACCENT    = "#2a93ec";
-  ACCENT_PRIMARY   = "#7f9900";
+  ACCENT_PRIMARY   = "#e8ff21";
   TEXT_PRIMARY     = "#ffffff";
   TEXT_SECONDARY   = "#bfbfbf";
   ACCENT_SECONDARY = "#ffc621";

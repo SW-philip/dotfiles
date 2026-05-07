@@ -34,13 +34,13 @@ button:hover {
 
 button:focus {
     background-color: #30748f;
-    border-color: #bfd51d;
+    border-color: #728ce0;
     outline-style: none;
 }
 
 #lock:hover      { border-color: #76b3dc; color: #76b3dc; }
 #logout:hover    { border-color: #53a7e1; color: #53a7e1; }
-#suspend:hover   { border-color: #bfd51d; color: #bfd51d; }
-#hibernate:hover { border-color: #3018db; color: #3018db; }
+#suspend:hover   { border-color: #728ce0; color: #728ce0; }
+#hibernate:hover { border-color: #5bedbd; color: #5bedbd; }
 #shutdown:hover  { border-color: #53a7e1; color: #53a7e1; }
 #reboot:hover    { border-color: #aac7dc; color: #aac7dc; }

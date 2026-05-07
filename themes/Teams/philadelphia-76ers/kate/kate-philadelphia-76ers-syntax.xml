@@ -22,10 +22,10 @@
     </contexts>
     <itemDatas>
       <itemData name="Normal Text" defStyleNum="dsNormal" spellChecking="false" />
-      <itemData name="Keyword" defStyleNum="dsKeyword" color="#bfd51d" selColor="#3b82b3" />
+      <itemData name="Keyword" defStyleNum="dsKeyword" color="#728ce0" selColor="#3b82b3" />
       <itemData name="Function" defStyleNum="dsFunction" color="#76b3dc" selColor="#3b82b3" />
-      <itemData name="Decimal" defStyleNum="dsDecVal" color="#3018db" selColor="#3b82b3" />
-      <itemData name="Float" defStyleNum="dsFloat" color="#3018db" selColor="#3b82b3" />
+      <itemData name="Decimal" defStyleNum="dsDecVal" color="#5bedbd" selColor="#3b82b3" />
+      <itemData name="Float" defStyleNum="dsFloat" color="#5bedbd" selColor="#3b82b3" />
       <itemData name="String" defStyleNum="dsString" color="#31a1ee" selColor="#3b82b3" />
       <itemData name="Comment" defStyleNum="dsComment" color="#467393" selColor="#3b82b3" />
       <itemData name="Alert" defStyleNum="dsAlert" color="#53a7e1" selColor="#3b82b3" />
