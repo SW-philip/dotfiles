@@ -82,16 +82,17 @@ EOF
     fi
   '';
 
-  # Waybar CSS — write dark theme on activation (no toggle-theme on family)
   # Waybar CSS — write dark theme on activation
   home.activation.waybarStyleCss = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    # Use the 'p' variable we already imported at the top
-    CSS="${pkgs.writeText "waybar-style-dark.css" (import ../waybar/style.nix p)}"
+    # Provide both p and l to style.nix
+    CSS="${pkgs.writeText "waybar-style-dark.css" (import ../waybar/style.nix {
+      inherit p;
+      l = { gap = 10; borderW = 2; }; # Add the layout settings style.nix wants
+    })}"
     mkdir -p "$HOME/.config/waybar"
     cp --remove-destination "$CSS" "$HOME/.config/waybar/style.css"
 
-    # Use the same 'p' variable to generate the palette shell script
-    # This avoids using builtins.readFile on a path that might be wrong
+    # Rest of your activation script...
     mkdir -p "$HOME/.config/waybar"
   '';
 
