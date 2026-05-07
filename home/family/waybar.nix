@@ -83,22 +83,23 @@ EOF
   '';
 
   # Waybar CSS — write dark theme on activation
-  home.activation.waybarStyleCss = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    # Provide both p and l to style.nix
+  home.activation.waybarStyleCss = lib.hm.dag.entryAfter ["writeBoundary"] (
+  let
+    # Define a more complete layout set
+    l = {
+      gap = 10;
+      borderW = 2;
+      radiusMd = 8; # Add this!
+    };
+  in
+  ''
+    # Pass both p and the new l set
     CSS="${pkgs.writeText "waybar-style-dark.css" (import ../waybar/style.nix {
-      inherit p;
-      l = { gap = 10; borderW = 2; }; # Add the layout settings style.nix wants
+      inherit p l;
     })}"
     mkdir -p "$HOME/.config/waybar"
     cp --remove-destination "$CSS" "$HOME/.config/waybar/style.css"
 
-    # Rest of your activation script...
     mkdir -p "$HOME/.config/waybar"
-  '';
-
-  # Restrict waybar to niri sessions only
-  xdg.configFile."systemd/user/waybar.service.d/session-guard.conf".text = ''
-    [Unit]
-    ConditionEnvironment=XDG_SESSION_DESKTOP=niri
-  '';
+  '');
 }
