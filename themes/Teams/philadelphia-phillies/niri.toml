@@ -5,9 +5,9 @@ text = "#ffffff"
 cursor = "#1874ff"
 
 [colors.selection]
-border = "#94d800"
+border = "#4048f5"
 background = "#003f8c"
 
 [colors.hints]
-start = "#4600d8"
+start = "#e48882"
 end = "#7691d2"
