@@ -1,0 +1,13 @@
+# Niri Theme: syracuse - Syracuse Sunset
+[colors]
+background = "#d95d30"
+text = "#ffffff"
+cursor = "#f4a462"
+
+[colors.selection]
+border = "#e2ec64"
+background = "#df6343"
+
+[colors.hints]
+start = "#f3bb8b"
+end = "#50ddcd"
