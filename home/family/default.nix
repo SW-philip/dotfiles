@@ -20,22 +20,26 @@
   };
 
   ############################################################
-  # Niri compositor config — dark theme, no toggle-theme
+  # Niri compositor config — fixed call site
   ############################################################
   home.activation.niriCfg = lib.hm.dag.entryAfter ["writeBoundary"] (
   let
-    # Pull the palette in here so it's scoped specifically for this activation script
     palette = import ../../themes/Rose-Pine/main/palette-main.nix;
 
-    # Generate the config file using the imported nix-kdl module
+    # Define the 'l' layout settings here
+    layoutSettings = {
+      gap = 10;      # Used by l.gap in your template
+      borderW = 2;   # Used by l.borderW in your template
+    };
+
     niriConfig = pkgs.writeText "niri-config.kdl" (import ../niri/config.kdl.nix {
       p = palette;
+      l = layoutSettings; # <--- This satisfies the 'l' argument
       barHeight = 64;
     });
   in
   ''
     mkdir -p "$HOME/.config/niri"
-    # Use cp --remove-destination to overwrite the existing file safely
     cp --remove-destination "${niriConfig}" "$HOME/.config/niri/config.kdl"
     chmod 644 "$HOME/.config/niri/config.kdl"
   '');
