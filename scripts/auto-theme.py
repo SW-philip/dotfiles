@@ -1251,43 +1251,31 @@ button:focus {{
 """
     path.write_text(content)
 
-def write_wofi(path: Path, p: dict, name: str):
-    """Generates a static CSS file for Wofi using the current palette."""
-    content = f"""/* Wofi Theme: {name} */
-window {{
-  background-color: {p['BASE']};
-}}
+def write_fuzzel(path: Path, p: dict, name: str):
+    """Generates fuzzel.ini mirroring mkFuzzelIni in home/niri/default.nix."""
+    c = lambda hex: hex.lstrip('#') + 'ff'
+    content = f"""[main]
+font=monospace:size=13
+dpi-aware=auto
+prompt=
+terminal=ghostty -e
+layer=overlay
+show-actions=yes
+width=35
+lines=8
 
-#entry {{
-  margin: 5px;
-  padding: 8px;
-  border-radius: {LAYOUT['RADIUS_SM']}px;
-  background-color: {p['BASE']};
-  color: {p['TEXT']};
-  font-family: "JetBrainsMono Nerd Font";
-  font-size: 12px;
-}}
+[colors]
+background={c(p['BASE'])}
+text={c(p['TEXT'])}
+match={c(p['IRIS'])}
+selection={c(p['OVERLAY'])}
+selection-text={c(p['ROSE'])}
+selection-match={c(p['FOAM'])}
+border={c(p['PINE'])}
 
-#entry:selected {{
-  background-color: {p['HIGHLIGHT_MED']};
-  color: {p['IRIS']};
-}}
-
-#input {{
-  background-color: {p['BASE']};
-  color: {p['TEXT']};
-  border: 2px solid {p['IRIS']};
-  padding: 6px;
-  margin: 5px;
-}}
-
-#text {{
-  color: {p['TEXT']};
-}}
-
-#text:selected {{
-  color: {p['IRIS']};
-}}
+[border]
+width=1
+radius={LAYOUT['RADIUS_SM']}
 """
     path.write_text(content)
 
@@ -1359,7 +1347,7 @@ def register_theme(name: str, palette: dict, source: str) -> tuple[str, bool]:
     write_nemo(theme_dir / "nemo.css", palette, name)
     write_ghostty(theme_dir / "ghostty.conf", palette, name)
     write_niri(theme_dir / "niri.toml", palette, name)
-    write_wofi(theme_dir / "wofi.css", palette, name)
+    write_fuzzel(theme_dir / "fuzzel.ini", palette, name)
     write_wleave(theme_dir / "wleave.css", palette, name)
     write_waybar_css(theme_dir / "waybar-style.css", palette, name)
 
@@ -1434,14 +1422,14 @@ def activate_theme(slug: str, theme_dir: Path) -> None:
         (state_dir / "wallpaper").write_text(str(wallpapers[0]))
         subprocess.run(["systemctl", "--user", "restart", "swaybg"], capture_output=True)
 
-    # ── Wofi ──────────────────────────────────────────────────────────────────
-    wofi_css_src = theme_dir / "wofi.css"
-    wofi_css_dst = Path.home() / ".config/wofi/style.css"
-    if wofi_css_src.exists():
-        wofi_css_dst.parent.mkdir(parents=True, exist_ok=True)
-        wofi_css_dst.unlink(missing_ok=True)
-        shutil.copy2(wofi_css_src, wofi_css_dst)
-        print("  → Wofi theme applied")
+    # ── Fuzzel ────────────────────────────────────────────────────────────────
+    fuzzel_src = theme_dir / "fuzzel.ini"
+    fuzzel_dst = Path.home() / ".config/fuzzel/fuzzel.ini"
+    if fuzzel_src.exists():
+        fuzzel_dst.parent.mkdir(parents=True, exist_ok=True)
+        fuzzel_dst.unlink(missing_ok=True)
+        shutil.copy2(fuzzel_src, fuzzel_dst)
+        print("  → Fuzzel theme applied")
 
     # ── Ghostty ───────────────────────────────────────────────────────────────
     ghostty_src = theme_dir / "ghostty.conf"
