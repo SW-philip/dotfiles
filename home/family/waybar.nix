@@ -4,7 +4,14 @@
 { config, pkgs, lib, ... }:
 let
   # TV-scaled palette: bump font size for 55" couch viewing at scale 2.0
-  p = (import ../../themes/Rose-Pine/main/palette-main.nix) // { FONT_SIZE_BAR = "16px"; };
+  # Updated palette at the top of waybar.nix
+  p = (import ../../themes/Rose-Pine/main/palette-main.nix) // {
+    FONT_SIZE_BAR = "16px";
+    # Ensure these exist if style.nix needs them
+    BORDER_ACCENT_RGB = "235, 111, 146";
+    SHADOW_RGB = "25, 23, 36";
+    SHADOW_A_DROP = "0.4";
+  };
 in
 {
   imports = [
@@ -82,20 +89,22 @@ EOF
     fi
   '';
 
-  # Waybar CSS — write dark theme on activation
+ # Waybar CSS — write dark theme on activation
   home.activation.waybarStyleCss = lib.hm.dag.entryAfter ["writeBoundary"] (
   let
-    # A complete layout set to satisfy style.nix requirements
+    # Comprehensive layout set to satisfy all template requirements
     l = {
       gap = 10;
       borderW = 2;
+      radiusSm = 4;
       radiusMd = 8;
-      shadowBlur = 12;   # Added to fix current error
-      shadowSpread = 2; # Added to fix current error
+      radiusLg = 12;    # Fixed: added missing radiusLg
+      shadowBlur = 12;
+      shadowSpread = 2;
     };
   in
   ''
-    # Provide both p and the now-complete l set
+    # Pass both p and the completed l set
     CSS="${pkgs.writeText "waybar-style-dark.css" (import ../waybar/style.nix {
       inherit p l;
     })}"

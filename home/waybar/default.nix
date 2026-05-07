@@ -109,7 +109,7 @@ in
         "custom/choose_mode" = {
           exec = "${chooseModeExec}";
           on-click = "toggle-theme";
-          on-right-click = "python3 ${./scripts/theme-picker.py}";
+          on-click-right = "python3 ${./scripts/theme-picker.py}";
           return-type = "json";
           interval = "once";
         };
@@ -177,7 +177,7 @@ in
         "custom/choose_mode" = {
           exec = "${chooseModeExec}";
           on-click = "toggle-theme";
-          on-right-click = "python3 ${./scripts/theme-picker.py}";
+          on-click-right = "python3 ${./scripts/theme-picker.py}";
           return-type = "json";
           interval = "once";
         };
