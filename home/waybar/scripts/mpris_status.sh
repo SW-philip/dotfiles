@@ -54,15 +54,15 @@ find_player_by_prefix() {
 }
 
 pick_player() {
+  # ncspot/spotify are intentional foreground listens — check before always-on players
+  for prefix in ncspot spotify; do
+    p="$(find_player_by_prefix "$prefix")"
+    [[ -n "$p" ]] && echo "$p" && return
+  done
   for p in "${PREFERRED_PLAYERS[@]}"; do
     if playerctl -p "$p" status 2>/dev/null | grep -q "Playing\|Paused"; then
       echo "$p"; return
     fi
-  done
-  # ncspot/spotify use instance-suffixed names — check by prefix, prefer Playing
-  for prefix in ncspot spotify; do
-    p="$(find_player_by_prefix "$prefix")"
-    [[ -n "$p" ]] && echo "$p" && return
   done
   playerctl -l 2>/dev/null | while read -r p; do
     if playerctl -p "$p" status 2>/dev/null | grep -q "Playing"; then
