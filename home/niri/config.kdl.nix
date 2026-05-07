@@ -52,10 +52,10 @@ output "eDP-1" {
     mode "2736x1824@60.000"
     scale 2.0
 }
-// Family: 55" TV — scale 2.25 makes 4K appear as ~1707×960 logical (couch-readable)
-// If TV is 1080p, drop to scale 1.5 (→ 1280×720 logical). Check name with: niri msg outputs
+// Family: 65" Samsung 4K TV — scale 3.0 makes 4K appear as 1280×720 logical (couch-readable)
+// If still too small try scale 2.5 (→ 1536×864). Check name with: niri msg outputs
 output "HDMI-A-1" {
-    scale 2.25
+    scale 3.0
 }
 
 // ── Layout ────────────────────────────────────────────────

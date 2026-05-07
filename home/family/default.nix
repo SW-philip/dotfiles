@@ -15,7 +15,7 @@
   home.pointerCursor = {
     name    = "BreezeX-RosePine-Linux";
     package = pkgs.rose-pine-cursor;
-    size    = 32;   # large for 55" couch display at 2.0 scale
+    size    = 48;   # large for 65" couch display at 3.0 scale
     gtk.enable = true;
   };
 
@@ -44,10 +44,10 @@
     chmod 644 "$HOME/.config/niri/config.kdl"
   '');
 
-  # Set XWayland DPI to 192 (2× the standard 96) to match the TV's scale 2.0.
+  # Set XWayland DPI to 288 (3× the standard 96) to match the TV's scale 3.0.
   # Appended to the generated niri config so xrdb loads it after xwayland-satellite starts.
   home.file.".Xresources".text = ''
-    Xft.dpi: 216
+    Xft.dpi: 288
   '';
 
   home.activation.niriXresources = lib.hm.dag.entryAfter ["niriCfg"] ''
