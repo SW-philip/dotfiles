@@ -25,7 +25,7 @@ window#waybar {
     0 -1px 0 rgba(0,0,0,0.30) inset,
     0 0 0 1px rgba(0,0,0,0.50),
     0 2px 8px rgba(0,188,215,0.10),
-    0 4px 10px rgba(0,0,0,0.55);
+    0 4px 10px -1px rgba(0,0,0,0.55);
   transition:
     background 0.15s ease,
     color 0.15s ease,
@@ -42,14 +42,14 @@ window#waybar {
     0 1px 0 rgba(255,255,255,0.08) inset,
     0 -1px 0 rgba(0,0,0,0.30) inset,
     0 0 0 1px rgba(0,0,0,0.50),
-    0 4px 14px rgba(0,188,215,0.20),
-    0 5px 12px rgba(0,0,0,0.65);
+    0 4px 14px -1px rgba(0,188,215,0.20),
+    0 5px 12px -1px rgba(0,0,0,0.65);
 }
 
 #custom-clock,
 #custom-battery {
   background: #1b1819;
-  border-color: rgba(56,46,46,0.14);
+  border-color: rgba(0,127,245,0.14);
 }
 
 #custom-weather,
@@ -67,9 +67,9 @@ window#waybar {
 }
 
 #custom-start {
-  color: #382e2e;
+  color: #007ff5;
   background: linear-gradient(180deg, #1b1819 0%, #1b1819 100%);
-  border-color: rgba(56,46,46,0.35);
+  border-color: rgba(0,127,245,0.35);
   font-weight: 600;
   letter-spacing: 0.04em;
   padding-left: 16px;
@@ -78,10 +78,10 @@ window#waybar {
 #custom-start:hover {
   color: #ffffff;
   background: #1b1819;
-  border-color: rgba(56,46,46,0.55);
+  border-color: rgba(0,127,245,0.55);
   box-shadow:
     0 1px 0 rgba(255,255,255,0.08) inset,
-    0 3px 10px rgba(56,46,46,0.20),
+    0 3px 10px rgba(0,127,245,0.20),
     0 3px 8px rgba(0,0,0,0.65);
 }
 
@@ -93,7 +93,7 @@ window#waybar {
 
 #custom-cpu_temp               { color: #333333; }
 #custom-cpu_temp.cool:hover     { color: #05d3f0; }
-#custom-cpu_temp.warm:hover     { color: #382e2e; }
+#custom-cpu_temp.warm:hover     { color: #2cf381; }
 #custom-cpu_temp.hot:hover      { color: #007bd7; }
 #custom-cpu_temp.critical:hover { color: #00bcd7; }
 
@@ -120,10 +120,10 @@ window#waybar {
 #custom-volume.vol-45:hover  { background: #43efff; color: #5ec88c; }
 #custom-volume.vol-50:hover  { background: #43efff; color: #72cc6a; }
 #custom-volume.vol-55:hover  { background: #43efff; color: #a0d44e; }
-#custom-volume.vol-60:hover  { background: #6b4848; color: #382e2e; }
-#custom-volume.vol-65:hover  { background: #6b4848; color: #ddd028; }
+#custom-volume.vol-60:hover  { background: #6dfeab; color: #2cf381; }
+#custom-volume.vol-65:hover  { background: #6dfeab; color: #ddd028; }
 #custom-volume.vol-70:hover  { background: #24a2ff; color: #f0c020; }
-#custom-volume.vol-75:hover  { background: #24a2ff; color: #382e2e; }
+#custom-volume.vol-75:hover  { background: #24a2ff; color: #2cf381; }
 #custom-volume.vol-80:hover  { background: #51d8ec; color: #d94f3a; }
 #custom-volume.vol-85:hover  { background: #51d8ec; color: #c0302a; }
 #custom-volume.vol-90:hover  { background: #51d8ec; color: #b82020; }
@@ -145,11 +145,11 @@ window#waybar {
 
 #custom-network                    { color: #333333; }
 #custom-network.wifi.low:hover     { color: #007bd7; }
-#custom-network.wifi.mid:hover     { color: #382e2e; }
+#custom-network.wifi.mid:hover     { color: #2cf381; }
 #custom-network.wifi.high:hover    { color: #7ab3c0; }
 #custom-network.wifi.full:hover    { color: #05d3f0; }
 #custom-network.wired:hover        { color: #05d3f0; }
-#custom-network.vpn:hover          { color: #382e2e; }
+#custom-network.vpn:hover          { color: #007ff5; }
 #custom-network.offline            { opacity: 0.45; }
 #custom-network.offline:hover      { opacity: 0.7; color: #262626; }
 
@@ -159,19 +159,19 @@ window#waybar {
 
 #custom-btrfs                  { color: #333333; }
 #custom-btrfs.fresh:hover      { color: #05d3f0; }
-#custom-btrfs.ok:hover         { color: #382e2e; }
+#custom-btrfs.ok:hover         { color: #2cf381; }
 #custom-btrfs.warn:hover       { color: #007bd7; }
 #custom-btrfs.critical:hover   { color: #00bcd7; }
 
 #custom-flake-drift              { color: #333333; }
 #custom-flake-drift.fresh:hover  { color: #05d3f0; }
-#custom-flake-drift.ok:hover     { color: #382e2e; }
+#custom-flake-drift.ok:hover     { color: #2cf381; }
 #custom-flake-drift.aging:hover  { color: #007bd7; }
 #custom-flake-drift.stale:hover  { color: #00bcd7; }
 
 #custom-perf                   { color: #333333; }
 #custom-perf.idle:hover        { color: #05d3f0; }
-#custom-perf.active:hover      { color: #382e2e; }
+#custom-perf.active:hover      { color: #2cf381; }
 #custom-perf.warn:hover        { color: #007bd7; }
 #custom-perf.critical:hover    { color: #00bcd7; }
 
@@ -186,7 +186,7 @@ window#waybar {
 #custom-idle_inhibit:hover     { color: #ffffff; opacity: 1; }
 
 #custom-dnd          { color: #333333; }
-#custom-dnd.dnd      { color: #382e2e; }
+#custom-dnd.dnd      { color: #2cf381; }
 #custom-dnd:hover    { color: #ffffff; }
 
 #custom-utilities-handle       { color: #262626; }
@@ -211,7 +211,7 @@ window#waybar {
     0 -1px 0 rgba(0,0,0,0.30) inset,
     0 0 0 1px rgba(0,0,0,0.50),
     0 2px 8px rgba(0,188,215,0.10),
-    0 4px 10px rgba(0,0,0,0.55);
+    0 4px 10px -1px rgba(0,0,0,0.55);
   transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 #toggles:hover {
@@ -221,8 +221,8 @@ window#waybar {
     0 1px 0 rgba(255,255,255,0.08) inset,
     0 -1px 0 rgba(0,0,0,0.30) inset,
     0 0 0 1px rgba(0,0,0,0.50),
-    0 4px 14px rgba(0,188,215,0.20),
-    0 5px 12px rgba(0,0,0,0.65);
+    0 4px 14px -1px rgba(0,188,215,0.20),
+    0 5px 12px -1px rgba(0,0,0,0.65);
 }
 
 #connectivity {
@@ -236,7 +236,7 @@ window#waybar {
     0 -1px 0 rgba(0,0,0,0.30) inset,
     0 0 0 1px rgba(0,0,0,0.50),
     0 2px 8px rgba(0,188,215,0.10),
-    0 4px 10px rgba(0,0,0,0.55);
+    0 4px 10px -1px rgba(0,0,0,0.55);
   transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 #connectivity:hover {
@@ -246,8 +246,8 @@ window#waybar {
     0 1px 0 rgba(255,255,255,0.08) inset,
     0 -1px 0 rgba(0,0,0,0.30) inset,
     0 0 0 1px rgba(0,0,0,0.50),
-    0 4px 14px rgba(0,188,215,0.20),
-    0 5px 12px rgba(0,0,0,0.65);
+    0 4px 14px -1px rgba(0,188,215,0.20),
+    0 5px 12px -1px rgba(0,0,0,0.65);
 }
 
 #actions {
@@ -261,7 +261,7 @@ window#waybar {
     0 -1px 0 rgba(0,0,0,0.30) inset,
     0 0 0 1px rgba(0,0,0,0.50),
     0 2px 8px rgba(0,188,215,0.10),
-    0 4px 10px rgba(0,0,0,0.55);
+    0 4px 10px -1px rgba(0,0,0,0.55);
   transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 #actions:hover {
@@ -271,13 +271,13 @@ window#waybar {
     0 1px 0 rgba(255,255,255,0.08) inset,
     0 -1px 0 rgba(0,0,0,0.30) inset,
     0 0 0 1px rgba(0,0,0,0.50),
-    0 4px 14px rgba(0,188,215,0.20),
-    0 5px 12px rgba(0,0,0,0.65);
+    0 4px 14px -1px rgba(0,188,215,0.20),
+    0 5px 12px -1px rgba(0,0,0,0.65);
 }
 
 #system-stats {
   background: #1b1819;
-  border: 1px solid rgba(56,46,46,0.14);
+  border: 1px solid rgba(0,127,245,0.14);
   border-radius: 12px;
   margin: 5px 3px;
   padding: 0;
@@ -286,18 +286,18 @@ window#waybar {
     0 -1px 0 rgba(0,0,0,0.30) inset,
     0 0 0 1px rgba(0,0,0,0.50),
     0 2px 8px rgba(0,188,215,0.10),
-    0 4px 10px rgba(0,0,0,0.55);
+    0 4px 10px -1px rgba(0,0,0,0.55);
   transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 #system-stats:hover {
   background: #1b1819;
-  border-color: rgba(56,46,46,0.28);
+  border-color: rgba(0,127,245,0.28);
   box-shadow:
     0 1px 0 rgba(255,255,255,0.08) inset,
     0 -1px 0 rgba(0,0,0,0.30) inset,
     0 0 0 1px rgba(0,0,0,0.50),
-    0 4px 14px rgba(0,188,215,0.20),
-    0 5px 12px rgba(0,0,0,0.65);
+    0 4px 14px -1px rgba(0,188,215,0.20),
+    0 5px 12px -1px rgba(0,0,0,0.65);
 }
 
 #storage {
@@ -311,7 +311,7 @@ window#waybar {
     0 -1px 0 rgba(0,0,0,0.30) inset,
     0 0 0 1px rgba(0,0,0,0.50),
     0 2px 8px rgba(0,188,215,0.10),
-    0 4px 10px rgba(0,0,0,0.55);
+    0 4px 10px -1px rgba(0,0,0,0.55);
   transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 #storage:hover {
@@ -321,8 +321,8 @@ window#waybar {
     0 1px 0 rgba(255,255,255,0.08) inset,
     0 -1px 0 rgba(0,0,0,0.30) inset,
     0 0 0 1px rgba(0,0,0,0.50),
-    0 4px 14px rgba(0,188,215,0.20),
-    0 5px 12px rgba(0,0,0,0.65);
+    0 4px 14px -1px rgba(0,188,215,0.20),
+    0 5px 12px -1px rgba(0,0,0,0.65);
 }
 
 #toggles > widget > *,
@@ -400,7 +400,7 @@ tooltip {
   padding: 4px 2px;
   box-shadow:
     0 0 0 1px rgba(0,0,0,0.50),
-    0 4px 12px rgba(0,0,0,0.55);
+    0 4px 10px -1px rgba(0,0,0,0.55);
 }
 
 tooltip label {
