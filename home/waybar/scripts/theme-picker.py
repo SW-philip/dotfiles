@@ -6,6 +6,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 import unicodedata
 from pathlib import Path
@@ -119,10 +120,17 @@ def main() -> None:
     line_to_slug = {d: s for d, s in entries}
     lines = "\n".join(d for d, _ in entries)
 
+    fuzzel_cfg = "[main]\nmarkup=yes\nfont=monospace:size=13\nlines=20\nwidth=35\ndpi-aware=auto\nlayer=overlay\n"
+    with tempfile.NamedTemporaryFile("w", suffix=".ini", delete=False) as f:
+        f.write(fuzzel_cfg)
+        cfg_path = f.name
+
     result = subprocess.run(
-        ["fuzzel", "--dmenu", "--markup", "--prompt", " theme: "],
+        ["fuzzel", "--dmenu", "--prompt", " theme: ", "--config", cfg_path],
         input=lines, capture_output=True, text=True,
     )
+
+    Path(cfg_path).unlink(missing_ok=True)
 
     if result.returncode != 0 or not result.stdout.strip():
         sys.exit(0)
