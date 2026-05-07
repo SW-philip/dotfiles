@@ -20,7 +20,7 @@ fi
 
 BAR_TEXT="󱄅 ${label}"
 TOOLTIP=$(printf \
-    "<span foreground='${MUTED}'>Last rebuild:</span> <span foreground='${TEXT}'>%s</span>\n<span foreground='${MUTED}'>Age:</span>          <span foreground='${COLOR}'>%dd %dh</span>" \
+    "<span foreground='${SUBTLE}'>Last rebuild:</span> <span foreground='${TEXT}'>%s</span>\n<span foreground='${SUBTLE}'>Age:</span>          <span foreground='${COLOR}'>%dd %dh</span>" \
     "$built_date" "$days" "$rem_h")
 
 jq -nc \

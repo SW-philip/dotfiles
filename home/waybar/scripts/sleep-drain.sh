@@ -42,7 +42,7 @@ no_data() {
     local msg="$1"
     jq -nc \
         --arg text "󰒲 --" \
-        --arg tooltip "$(printf "<span foreground='${MUTED}'>Sleep drain</span>\n<span foreground='${SUBTLE}'>%s</span>" "$msg")" \
+        --arg tooltip "$(printf "<span foreground='${SUBTLE}'>Sleep drain</span>\n<span foreground='${SUBTLE}'>%s</span>" "$msg")" \
         --arg class "unknown" \
         '{text:$text, tooltip:$tooltip, class:$class}'
 }
@@ -85,7 +85,7 @@ fi
 
 BAR_TEXT="󰒲 <span foreground='${COLOR}'>${display}</span>"
 TOOLTIP=$(printf \
-    "<span foreground='${MUTED}'>Sleep drain</span>\n<span foreground='${MUTED}'>Duration:</span> <span foreground='${TEXT}'>%dh %dm</span>\n<span foreground='${MUTED}'>Drained:</span>  <span foreground='${COLOR}'>%s</span>\n<span foreground='${MUTED}'>Rate:</span>     <span foreground='${SUBTLE}'>%s%%/hr</span>" \
+    "<span foreground='${SUBTLE}'>Sleep drain</span>\n<span foreground='${SUBTLE}'>Duration:</span> <span foreground='${TEXT}'>%dh %dm</span>\n<span foreground='${SUBTLE}'>Drained:</span>  <span foreground='${COLOR}'>%s</span>\n<span foreground='${SUBTLE}'>Rate:</span>     <span foreground='${SUBTLE}'>%s%%/hr</span>" \
     "$sleep_h" "$sleep_m" "$display" "$drain_hr")
 
 jq -nc \

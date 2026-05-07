@@ -113,7 +113,7 @@ case "$bucket" in
   *)      VOL_COLOR="$TEXT_PRIMARY" ;;
 esac
 
-TOOLTIP="$(printf "<span foreground='${MUTED}'>Volume:</span> <span foreground='${VOL_COLOR}'>%s</span>\n<span foreground='${MUTED}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$VALUE" "$snark")"
+TOOLTIP="$(printf "<span foreground='${SUBTLE}'>Volume:</span> <span foreground='${VOL_COLOR}'>%s</span>\n<span foreground='${SUBTLE}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$VALUE" "$snark")"
 
 # ------------------------------------------------------------
 # 6️⃣ Emit JSON – pass class as an array so Waybar applies BOTH CSS classes

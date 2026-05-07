@@ -40,9 +40,9 @@ if [[ -f "$SNARK_FILE" ]]; then
     snark=$(jq -r ".battery.${bucket} | .[]" "$SNARK_FILE" | shuf -n1 || echo "System operational.")
 fi
 
-TOOLTIP="<span foreground='${MUTED}'>Status:</span> ${status}
-<span foreground='${MUTED}'>Charge:</span> ${PERCENT}%
-<span foreground='${MUTED}'>────────────────────</span>
+TOOLTIP="<span foreground='${SUBTLE}'>Status:</span> ${status}
+<span foreground='${SUBTLE}'>Charge:</span> ${PERCENT}%
+<span foreground='${SUBTLE}'>────────────────────</span>
 <span foreground='${IRIS}'>${snark}</span>"
 
 jq -nc \

@@ -110,7 +110,7 @@ _tooltip_base() {
     6|7) weekend_line="" ;;
   esac
 
-  echo "<span foreground='${SUBTLE}'>${weekday}</span>, <span foreground='${TEXT}'>${datestr}</span>\n<span foreground='${MUTED}'>Week ${weeknum} · Day ${dayofyear} of ${total_days}</span>${weekend_line}\n<span foreground='${FOAM}'>$(_fmt_sec "$ep")</span>"
+  echo "<span foreground='${SUBTLE}'>${weekday}</span>, <span foreground='${TEXT}'>${datestr}</span>\n<span foreground='${SUBTLE}'>Week ${weeknum} · Day ${dayofyear} of ${total_days}</span>${weekend_line}\n<span foreground='${FOAM}'>$(_fmt_sec "$ep")</span>"
 }
 
 # ── Lunar phase ───────────────────────────────────────────
@@ -339,7 +339,7 @@ case "$mode" in
     else                        illum_color="$GOLD"
     fi
     text="<span foreground=\"${IRIS}\">${glyph}</span> $(_fmt "$ep")"
-    tip="<span foreground='${IRIS}'>${name}</span> · <span foreground='${illum_color}'>${illum}%</span> illuminated\n<span foreground='${FOAM}'>${days_to_full}d</span> <span foreground='${MUTED}'>to full moon</span>  ·  <span foreground='${MUTED}'>${days_to_new}d to new moon</span>\n\n${base_tip}"
+    tip="<span foreground='${IRIS}'>${name}</span> · <span foreground='${illum_color}'>${illum}%</span> illuminated\n<span foreground='${FOAM}'>${days_to_full}d</span> <span foreground='${SUBTLE}'>to full moon</span>  ·  <span foreground='${SUBTLE}'>${days_to_new}d to new moon</span>\n\n${base_tip}"
     ;;
   hex)
     text="󰅩 $(_hex)"

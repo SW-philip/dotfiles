@@ -55,7 +55,7 @@ case "$STATE" in
 esac
 
 TEXT=" ${TEMP}°C"
-TOOLTIP=$(printf "<span foreground='${MUTED}'>CPU:</span> <span foreground='${TEMP_COLOR}'>%s°C</span>\n<span foreground='${MUTED}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$TEMP" "$SNARK")
+TOOLTIP=$(printf "<span foreground='${SUBTLE}'>CPU:</span> <span foreground='${TEMP_COLOR}'>%s°C</span>\n<span foreground='${SUBTLE}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$TEMP" "$SNARK")
 
 jq -nc \
   --arg text "$TEXT" \

@@ -19,8 +19,8 @@ bt_powered=$(busctl get-property org.bluez "$ADAPTER" org.bluez.Adapter1 Powered
 
 if [[ "$bt_powered" != "true" ]]; then
     jq -cn \
-        --arg text "<span foreground='$C_MUTED'>$ICON_OFF</span>" \
-        --arg tooltip "Bluetooth <span foreground='$C_MUTED'>off</span>" \
+        --arg text "<span foreground='$C_SUBTLE'>$ICON_OFF</span>" \
+        --arg tooltip "Bluetooth <span foreground='$C_SUBTLE'>off</span>" \
         --arg class "off" \
         '{text: $text, tooltip: $tooltip, class: $class}'
     exit 0

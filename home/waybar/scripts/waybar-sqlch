@@ -150,7 +150,7 @@ def cmd_status():
     if not resp or not resp.get("ok"):
         print(json.dumps({
             "text": ICON_IDLE,
-            "tooltip": f"<span foreground='{MUTED}'>sqlch: daemon not running</span>",
+            "tooltip": f"<span foreground='{SUBTLE}'>sqlch: daemon not running</span>",
             "class": "inactive"
         }))
         return
@@ -184,9 +184,9 @@ def cmd_status():
             f"{track_line}"
             f"{genres_line}"
             f"<span foreground='{TEXT}'>{html.escape(name)}</span>  "
-            f"<span foreground='{MUTED}'>|  Plays:</span> <span foreground='{FOAM}'>{play_count}</span>\n"
-            f"<span foreground='{MUTED}'>{html.escape(url)}</span>\n\n"
-            f"<span foreground='{MUTED}'>Scroll: next/prev  |  Click: album art  |  Middle: pick  |  Right: stop</span>"
+            f"<span foreground='{SUBTLE}'>|  Plays:</span> <span foreground='{FOAM}'>{play_count}</span>\n"
+            f"<span foreground='{SUBTLE}'>{html.escape(url)}</span>\n\n"
+            f"<span foreground='{SUBTLE}'>Scroll: next/prev  |  Click: album art  |  Middle: pick  |  Right: stop</span>"
         )
         max_len = 35
         display_name = name if len(name) <= max_len else name[:max_len - 1] + "…"
@@ -198,7 +198,7 @@ def cmd_status():
     else:
         print(json.dumps({
             "text": ICON_IDLE,
-            "tooltip": f"<span foreground='{MUTED}'>sqlch: idle</span>\n<span foreground='{SUBTLE}'>Click to resume last station</span>",
+            "tooltip": f"<span foreground='{SUBTLE}'>sqlch: idle</span>\n<span foreground='{SUBTLE}'>Click to resume last station</span>",
             "class": "idle"
         }))
 

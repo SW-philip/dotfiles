@@ -47,7 +47,7 @@ fi
 
 TEXT="󰻠 ${cpu_pct}%  󰍛 ${mem_pct}%"
 TOOLTIP=$(printf \
-    "<span foreground='${MUTED}'>CPU:</span>  <span foreground='${CPU_COLOR}'>%d%%</span>\n<span foreground='${MUTED}'>RAM:</span>  <span foreground='${MEM_COLOR}'>%s / %s GiB</span>  <span foreground='${SUBTLE}'>(%d%%)</span>" \
+    "<span foreground='${SUBTLE}'>CPU:</span>  <span foreground='${CPU_COLOR}'>%d%%</span>\n<span foreground='${SUBTLE}'>RAM:</span>  <span foreground='${MEM_COLOR}'>%s / %s GiB</span>  <span foreground='${SUBTLE}'>(%d%%)</span>" \
     "$cpu_pct" "$mem_used_g" "$mem_total_g" "$mem_pct")
 
 jq -nc \

@@ -49,7 +49,7 @@ if [[ -f "$SNARK_FILE" ]] && command -v jq >/dev/null; then
     [[ -n "$snark" && "$snark" != "null" ]] && SNARK="$snark"
 fi
 
-TOOLTIP=$(printf "<span foreground='${MUTED}'>Profile:</span> <span foreground='${PROFILE_COLOR}'>%s</span>\n<span foreground='${SUBTLE}'>Click to cycle</span>\n<span foreground='${MUTED}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$current" "$SNARK")
+TOOLTIP=$(printf "<span foreground='${SUBTLE}'>Profile:</span> <span foreground='${PROFILE_COLOR}'>%s</span>\n<span foreground='${SUBTLE}'>Click to cycle</span>\n<span foreground='${SUBTLE}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$current" "$SNARK")
 
 jq -nc \
     --arg text "$icon" \

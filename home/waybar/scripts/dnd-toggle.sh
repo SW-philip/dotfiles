@@ -31,12 +31,12 @@ if [[ "$CMD" == "toggle" ]]; then
 fi
 
 if is_dnd; then
-    TOOLTIP=$(printf "<span foreground='${MUTED}'>Do Not Disturb:</span> <span foreground='${GOLD}'>on</span>\n<span foreground='${SUBTLE}'>Click to disable</span>\n<span foreground='${MUTED}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$(snark_for on 'The world will wait.')")
+    TOOLTIP=$(printf "<span foreground='${SUBTLE}'>Do Not Disturb:</span> <span foreground='${GOLD}'>on</span>\n<span foreground='${SUBTLE}'>Click to disable</span>\n<span foreground='${SUBTLE}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$(snark_for on 'The world will wait.')")
     jq -nc --arg t "󰂛" \
         --arg tooltip "$TOOLTIP" \
         '{text:$t, tooltip:$tooltip, class:"dnd"}'
 else
-    TOOLTIP=$(printf "<span foreground='${MUTED}'>Notifications:</span> <span foreground='${FOAM}'>on</span>\n<span foreground='${SUBTLE}'>Click to enable DND</span>\n<span foreground='${MUTED}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$(snark_for off 'Notifications flowing.')")
+    TOOLTIP=$(printf "<span foreground='${SUBTLE}'>Notifications:</span> <span foreground='${FOAM}'>on</span>\n<span foreground='${SUBTLE}'>Click to enable DND</span>\n<span foreground='${SUBTLE}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$(snark_for off 'Notifications flowing.')")
     jq -nc --arg t "󰂚" \
         --arg tooltip "$TOOLTIP" \
         '{text:$t, tooltip:$tooltip, class:"active"}'

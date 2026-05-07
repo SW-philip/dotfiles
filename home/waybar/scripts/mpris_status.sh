@@ -204,15 +204,15 @@ BAR_TEXT="$ICON $TITLE — $ARTIST"
 TOOLTIP=""
 if [[ -n "$ALBUM" || -n "$YEAR" ]]; then
   TOOLTIP+="<span foreground='${FOAM}'>$(pango_escape "$ALBUM")</span>"
-  [[ -n "$YEAR" ]] && TOOLTIP+=" <span foreground='${MUTED}'>($(pango_escape "$YEAR"))</span>"
+  [[ -n "$YEAR" ]] && TOOLTIP+=" <span foreground='${SUBTLE}'>($(pango_escape "$YEAR"))</span>"
   TOOLTIP+=$'\n'
 fi
 [[ -n "$GENRES" ]] && TOOLTIP+="<span foreground='${IRIS}'>$(pango_escape "$GENRES")</span>"$'\n'
 [[ -n "$TIME_REMAINING" ]] && TOOLTIP+="<span foreground='${GOLD}'>$TIME_REMAINING</span>"$'\n'
-TOOLTIP+="<span foreground='${MUTED}'>$PLAYER</span>"
+TOOLTIP+="<span foreground='${SUBTLE}'>$PLAYER</span>"
 if [[ -f "$SNARK_FILE" ]] && command -v jq >/dev/null; then
   _snark=$(jq -r ".mpris.$(echo "$STATUS" | tr '[:upper:]' '[:lower:]')[]?" "$SNARK_FILE" 2>/dev/null | shuf -n1 || true)
-  [[ -n "$_snark" && "$_snark" != "null" ]] && TOOLTIP+=$'\n'"<span foreground='${MUTED}'>────────────────────</span>"$'\n'"<span foreground='${IRIS}'>$_snark</span>"
+  [[ -n "$_snark" && "$_snark" != "null" ]] && TOOLTIP+=$'\n'"<span foreground='${SUBTLE}'>────────────────────</span>"$'\n'"<span foreground='${IRIS}'>$_snark</span>"
 fi
 
 json_out "$BAR_TEXT" "$TOOLTIP" "$CLASS"

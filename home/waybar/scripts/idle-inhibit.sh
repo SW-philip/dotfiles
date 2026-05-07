@@ -32,12 +32,12 @@ if [[ "$CMD" == "toggle" ]]; then
 fi
 
 if is_active; then
-    TOOLTIP=$(printf "<span foreground='${FOAM}'>Screen lock: active</span>\n<span foreground='${SUBTLE}'>Click to inhibit</span>\n<span foreground='${MUTED}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$(snark_for active 'Hypridle watching.')")
+    TOOLTIP=$(printf "<span foreground='${FOAM}'>Screen lock: active</span>\n<span foreground='${SUBTLE}'>Click to inhibit</span>\n<span foreground='${SUBTLE}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$(snark_for active 'Hypridle watching.')")
     jq -nc --arg t "󰒲" \
         --arg tooltip "$TOOLTIP" \
         '{text:$t, tooltip:$tooltip, class:"active"}'
 else
-    TOOLTIP=$(printf "<span foreground='${MUTED}'>Screen lock: inhibited</span>\n<span foreground='${SUBTLE}'>Click to re-enable</span>\n<span foreground='${MUTED}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$(snark_for inhibited 'Screen lock dismissed.')")
+    TOOLTIP=$(printf "<span foreground='${SUBTLE}'>Screen lock: inhibited</span>\n<span foreground='${SUBTLE}'>Click to re-enable</span>\n<span foreground='${SUBTLE}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$(snark_for inhibited 'Screen lock dismissed.')")
     jq -nc --arg t "󰅶" \
         --arg tooltip "$TOOLTIP" \
         '{text:$t, tooltip:$tooltip, class:"inhibited"}'

@@ -25,13 +25,13 @@ ICON_AIRPLANE="󰀝"
 
 class="offline"
 text="$ICON_OFFLINE"
-tooltip=$(printf "<span foreground='${MUTED}'>Offline</span>\n<span foreground='${MUTED}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$(snark_for offline 'communing with nature.')")
+tooltip=$(printf "<span foreground='${SUBTLE}'>Offline</span>\n<span foreground='${SUBTLE}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$(snark_for offline 'communing with nature.')")
 
 # Airplane mode check (if rfkill exists)
 if command -v rfkill >/dev/null; then
   if rfkill list all | grep -qi "Soft blocked: yes"; then
     jq -nc --arg text "$ICON_AIRPLANE" \
-           --arg tooltip "$(printf "<span foreground='${GOLD}'>Airplane mode</span>\n<span foreground='${MUTED}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$(snark_for airplane 'Airplane mode engaged.')")" \
+           --arg tooltip "$(printf "<span foreground='${GOLD}'>Airplane mode</span>\n<span foreground='${SUBTLE}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$(snark_for airplane 'Airplane mode engaged.')")" \
            --arg class "airplane" \
            '{text:$text, tooltip:$tooltip, class:$class}'
     exit 0
@@ -67,7 +67,7 @@ get_speed() {
 if systemctl is-active --quiet wg-quick-protonvpn.service 2>/dev/null; then
   vpn_status="<span foreground='${IRIS}'>VPN on</span>"
 else
-  vpn_status="<span foreground='${MUTED}'>VPN off</span>"
+  vpn_status="<span foreground='${SUBTLE}'>VPN off</span>"
 fi
 
 # Detect active network interface dynamically
@@ -107,7 +107,7 @@ case "$mode" in
     fi
 
     text="$ICON_WIFI $text"
-    tooltip=$(printf "<span foreground='${MUTED}'>Wi-Fi:</span> <span foreground='${FOAM}'>%s%%</span> signal\n<span foreground='${MUTED}'>IP:</span> <span foreground='${TEXT}'>%s</span>\n%s\n<span foreground='${SUBTLE}'>%s</span>\n<span foreground='${MUTED}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" \
+    tooltip=$(printf "<span foreground='${SUBTLE}'>Wi-Fi:</span> <span foreground='${FOAM}'>%s%%</span> signal\n<span foreground='${SUBTLE}'>IP:</span> <span foreground='${TEXT}'>%s</span>\n%s\n<span foreground='${SUBTLE}'>%s</span>\n<span foreground='${SUBTLE}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" \
       "$signal" "${iface_ip:-no IP}" "$vpn_status" "$iface_speed" \
       "$(snark_for "$bucket" 'Signal present.')")
     ;;
@@ -115,7 +115,7 @@ case "$mode" in
   wired)
     text="$ICON_WIRED"
     class="wired"
-    tooltip=$(printf "<span foreground='${TEXT}'>Wired</span>\n<span foreground='${MUTED}'>IP:</span> <span foreground='${TEXT}'>%s</span>\n%s\n<span foreground='${SUBTLE}'>%s</span>\n<span foreground='${MUTED}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" \
+    tooltip=$(printf "<span foreground='${TEXT}'>Wired</span>\n<span foreground='${SUBTLE}'>IP:</span> <span foreground='${TEXT}'>%s</span>\n%s\n<span foreground='${SUBTLE}'>%s</span>\n<span foreground='${SUBTLE}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" \
       "${iface_ip:-no IP}" "$vpn_status" "$iface_speed" \
       "$(snark_for wired 'unbothered, unstoppable.')")
     ;;
@@ -123,7 +123,7 @@ case "$mode" in
   vpn)
     text="$ICON_VPN"
     class="vpn"
-    tooltip=$(printf "<span foreground='${IRIS}'>VPN active</span>\n<span foreground='${MUTED}'>IP:</span> <span foreground='${TEXT}'>%s</span>\n<span foreground='${SUBTLE}'>%s</span>\n<span foreground='${MUTED}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" \
+    tooltip=$(printf "<span foreground='${IRIS}'>VPN active</span>\n<span foreground='${SUBTLE}'>IP:</span> <span foreground='${TEXT}'>%s</span>\n<span foreground='${SUBTLE}'>%s</span>\n<span foreground='${SUBTLE}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" \
       "${iface_ip:-no IP}" "$iface_speed" \
       "$(snark_for vpn 'anonymous-ish hero mode.')")
     ;;
@@ -131,7 +131,7 @@ case "$mode" in
   *)
     text="$ICON_OFFLINE"
     class="offline"
-    tooltip=$(printf "<span foreground='${MUTED}'>Offline</span>\n<span foreground='${MUTED}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$(snark_for offline 'touching grass.')")
+    tooltip=$(printf "<span foreground='${SUBTLE}'>Offline</span>\n<span foreground='${SUBTLE}'>────────────────────</span>\n<span foreground='${IRIS}'>%s</span>" "$(snark_for offline 'touching grass.')")
     ;;
 esac
 
