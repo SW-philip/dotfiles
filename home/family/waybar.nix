@@ -89,7 +89,7 @@ in
       name      = "main-bar";
       layer     = "top";
       position  = "top";
-      exclusive = false;
+      exclusive = true;
       height    = 64;
 
       modules-left = [
