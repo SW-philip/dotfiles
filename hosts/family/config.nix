@@ -63,8 +63,11 @@
   ############################################################
   # Display manager + GNOME desktop
   ############################################################
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+  services.desktopManager.plasma6.enable = true;
 
   # ProtonVPN WireGuard — disabled until config file is in place.
   # To enable: add ../../modules/protonvpn.nix to imports, set protonvpn.configFile,
