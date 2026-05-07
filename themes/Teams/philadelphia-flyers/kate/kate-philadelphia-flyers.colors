@@ -11,22 +11,22 @@ ForegroundInactive=#262626
 ForegroundLink=#ec6643
 ForegroundVisited=#dab3a4
 ForegroundNegative=#fa4616
-ForegroundNeutral=#382e2e
+ForegroundNeutral=#eb8855
 ForegroundPositive=#ec642b
-ForegroundNotice=#382e2e
+ForegroundNotice=#f1a43e
 Cursor=#fa4616
 CursorText=#ffffff
 SelectionBackground=#332f2f
 SelectionForeground=#ffffff
 HighlightWord=#1b1819
-MatchBackground=#382e2e
+MatchBackground=#eb8855
 MatchForeground=#000000
 
 [View]
 LineNumbers=#262626
 CurrentLine=#1b1819
-BracketMatching=#382e2e
-SearchHighlight=#382e2e
+BracketMatching=#f1a43e
+SearchHighlight=#eb8855
 SearchHighlightCurrent=#fa4616
 WordWrapMarker=#4c4c4c
 ModifiedLine=#dab3a4
