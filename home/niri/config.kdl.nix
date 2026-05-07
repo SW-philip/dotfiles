@@ -99,6 +99,9 @@ cursor {
 environment {
     XCURSOR_SIZE "32"
     XDG_CURRENT_DESKTOP "niri"
+    // xwayland-satellite binds to :0; set DISPLAY here so all niri-spawned
+    // apps (Steam, etc.) inherit it rather than racing import-environment.
+    DISPLAY ":0"
 }
 
 // ── Animations ────────────────────────────────────────────
