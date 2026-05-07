@@ -1,7 +1,7 @@
 # home/niri/config.kdl.nix
 # Generates niri/config.kdl with colors sourced from the palette.
 # All other KDL settings are inert — only the color fields interpolate.
-{ p, barHeight ? 45 }: ''
+{ p, l, barHeight ? 45 }: ''
 // home/niri/config.kdl — niri cleanroom compositor config
 
 // ── Input ──────────────────────────────────────────────────
@@ -60,10 +60,10 @@ output "HDMI-A-1" {
 
 // ── Layout ────────────────────────────────────────────────
 layout {
-    gaps 6
+    gaps ${toString l.gap}
 
     border {
-        width 2
+        width ${toString l.borderW}
         active-color "${p.IRIS}"
         inactive-color "${p.INACTIVE_BORDER}"
         urgent-color "${p.LOVE}"
