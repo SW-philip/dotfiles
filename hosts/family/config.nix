@@ -6,8 +6,6 @@
     ../../profiles/secure-boot.nix
     ./hardware.nix
     ./boot.nix
-    ../../profiles/niri.nix
-    ../../modules/greetd.nix
     inputs.sops-nix.nixosModules.sops
   ];
 
@@ -59,7 +57,12 @@
     ];
   };
 
-  services.xserver.xkb = { layout = "us"; };
+  services.xserver = {
+    enable = true;
+    xkb.layout = "us";
+  };
+  services.xserver.desktopManager.xfce.enable = true;
+  services.displayManager.lightdm.enable = true;
 
   # ProtonVPN WireGuard — disabled until config file is in place.
   # To enable: add ../../modules/protonvpn.nix to imports, set protonvpn.configFile,
