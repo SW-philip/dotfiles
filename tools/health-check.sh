@@ -51,21 +51,26 @@ else
   fail "no TPM2 device found at /dev/tpm0 or /dev/tpmrm0"
 fi
 
-luks_dev=$(lsblk -o NAME,TYPE | grep crypt | head -1 | awk '{print $1}' || true)
-if [ -n "$luks_dev" ]; then
-  pass "LUKS device active: $luks_dev"
+luks_count=$(lsblk -o TYPE | grep -c "^crypt$" || true)
+if [ "$luks_count" -ge 2 ]; then
+  pass "both LUKS devices active ($luks_count crypt devices)"
+elif [ "$luks_count" -eq 1 ]; then
+  warn "only 1 LUKS device active — /srv or root drive may not be unlocked"
 else
-  fail "no active LUKS device found"
+  fail "no active LUKS devices found"
 fi
 
-# Check TPM2 slot enrollment
-luks_partition=$(lsblk -o NAME,TYPE,FSTYPE | awk '$3=="crypto_LUKS"{print $1}' | head -1 | tr -d '└─')
-tpm_enrolled=$(sudo systemd-cryptenroll /dev/$luks_partition 2>/dev/null | grep -c "tpm2" || true)
-if [ "$tpm_enrolled" -gt 0 ]; then
-  pass "TPM2 slot enrolled in LUKS ($luks_partition)"
-else
-  warn "TPM2 slot not found in LUKS — run: sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7 /dev/$luks_partition"
-fi
+# Check TPM2 enrollment on all crypto_LUKS partitions
+while IFS= read -r raw; do
+  part=$(echo "$raw" | tr -d ' └─├─')
+  [ -z "$part" ] && continue
+  tpm_enrolled=$(sudo systemd-cryptenroll "/dev/$part" 2>/dev/null | grep -c "tpm2" || true)
+  if [ "$tpm_enrolled" -gt 0 ]; then
+    pass "TPM2 enrolled in /dev/$part"
+  else
+    warn "TPM2 not enrolled in /dev/$part — run: sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7 /dev/$part"
+  fi
+done < <(lsblk -o NAME,TYPE,FSTYPE | awk '$3=="crypto_LUKS"{print $1}')
 
 ########################################
 echo "── CPU & Thermals"
@@ -92,6 +97,15 @@ else
   warn "could not read CPU idle from /proc/stat"
 fi
 
+governor=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 2>/dev/null || true)
+if [ "$governor" = "powersave" ]; then
+  pass "CPU governor: powersave (intel_pstate + HWP active)"
+elif [ -n "$governor" ]; then
+  warn "CPU governor: $governor — expected powersave; EPP writes may be broken"
+else
+  warn "could not read CPU governor"
+fi
+
 if command -v sensors &>/dev/null; then
   max_temp=$(sensors 2>/dev/null | awk '/^coretemp/,/^$/' | grep -E "^(Package|Core)" | grep -oP '^\S.*?\+\K[0-9]+(?=\.[0-9]°C)' | sort -n | tail -1 || true)
   if [ -n "$max_temp" ]; then
@@ -107,6 +121,34 @@ if command -v sensors &>/dev/null; then
   fi
 else
   warn "sensors not installed — add lm_sensors to systemPackages"
+fi
+
+########################################
+echo "── GPU (NVIDIA)"
+########################################
+
+nvidia_mod=$(lsmod 2>/dev/null | grep -c "^nvidia " || true)
+if [ "$nvidia_mod" -gt 0 ]; then
+  pass "nvidia kernel module loaded"
+else
+  fail "nvidia module not loaded — check: lsmod | grep nvidia"
+fi
+
+if command -v nvidia-smi &>/dev/null; then
+  gpu_temp=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader 2>/dev/null | head -1 | tr -d ' ' || true)
+  if [ -n "$gpu_temp" ] && [[ "$gpu_temp" =~ ^[0-9]+$ ]]; then
+    if [ "$gpu_temp" -le 50 ]; then
+      pass "GPU temp OK at ${gpu_temp}°C idle"
+    elif [ "$gpu_temp" -le 70 ]; then
+      warn "GPU temp elevated at ${gpu_temp}°C idle"
+    else
+      fail "GPU temp high at ${gpu_temp}°C idle"
+    fi
+  else
+    warn "nvidia-smi available but no temp returned"
+  fi
+else
+  warn "nvidia-smi not available — add linuxPackages.nvidia_x11 tools to PATH"
 fi
 
 ########################################
@@ -138,16 +180,17 @@ echo "── Disk Health"
 ########################################
 
 if command -v smartctl &>/dev/null; then
-  health=$(sudo smartctl -H /dev/nvme0n1 2>/dev/null | grep -i "overall\|result" | head -1 || true)
-  health=$(sudo smartctl -H /dev/sda 2>/dev/null | grep -i "overall\|result" | head -1 || true)
-  health2=$(sudo smartctl -H /dev/sdb 2>/dev/null | grep -i "overall\|result" | head -1 || true)
-  if echo "$health" | grep -qi "PASSED\|OK"; then
-    pass "NVMe health: $health"
-  elif [ -n "$health" ]; then
-    fail "NVMe health check: $health"
-  else
-    warn "smartctl returned no health data"
-  fi
+  for dev in /dev/nvme0n1 /dev/sda /dev/sdb; do
+    [ -e "$dev" ] || continue
+    h=$(sudo smartctl -H "$dev" 2>/dev/null | grep -i "overall\|result" | head -1 || true)
+    if echo "$h" | grep -qi "PASSED\|OK"; then
+      pass "$dev health: $h"
+    elif [ -n "$h" ]; then
+      fail "$dev health: $h"
+    else
+      warn "$dev: smartctl returned no health data"
+    fi
+  done
 else
   warn "smartctl not available — add smartmontools to systemPackages"
 fi
@@ -169,6 +212,41 @@ elif [ "$boot_pct" -le 85 ]; then
 else
   fail "/boot ${boot_pct}% full — clean old boot entries"
 fi
+
+if mountpoint -q /srv 2>/dev/null; then
+  srv_pct=$(df /srv | awk 'NR==2{print $5}' | tr -d '%')
+  if [ "$srv_pct" -le 80 ]; then
+    pass "/srv ${srv_pct}% full"
+  elif [ "$srv_pct" -le 92 ]; then
+    warn "/srv ${srv_pct}% full — media drive filling up"
+  else
+    fail "/srv ${srv_pct}% full — running low on media storage"
+  fi
+else
+  fail "/srv not mounted — second LUKS drive may not have unlocked"
+fi
+
+if mountpoint -q /mnt/backup 2>/dev/null; then
+  bak_pct=$(df /mnt/backup | awk 'NR==2{print $5}' | tr -d '%')
+  pass "/mnt/backup mounted (${bak_pct}% full)"
+else
+  warn "/mnt/backup not mounted (nofail — may be expected if drive is off)"
+fi
+
+########################################
+echo "── btrfs Device Errors"
+########################################
+
+for mp in / /srv; do
+  if mountpoint -q "$mp" 2>/dev/null; then
+    errors=$(sudo btrfs device stats "$mp" 2>/dev/null | awk '{sum += $2} END {print sum+0}')
+    if [ "$errors" -eq 0 ]; then
+      pass "btrfs $mp: no device errors"
+    else
+      fail "btrfs $mp: $errors error(s) — check: sudo btrfs device stats $mp"
+    fi
+  fi
+done
 
 ########################################
 echo "── Battery"
@@ -238,6 +316,9 @@ services=(
   "sshd"
   "bluetooth"
   "pipewire"
+  "smartd"
+  "deluge"
+  "iptv-serve"
 )
 
 for svc in "${services[@]}"; do
