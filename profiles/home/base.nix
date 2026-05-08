@@ -508,7 +508,7 @@ in
     # ── GUI Apps ──────────────────────────────────────
     zoom kdePackages.kdenlive
     brave thunderbird libreoffice
-    nemo kdePackages.kate krita uniremote ghostty
+    nemo zed-editor krita uniremote ghostty
     librewolf ladybird helium
 
     # ── Development & Helpers ──────────────────────────
