@@ -1,6 +1,6 @@
 # profiles/niri.nix
 # Niri compositor (system-level) — mirrors profiles/hyprland.nix
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   ############################################################
   # Niri compositor (system-level)
@@ -26,7 +26,6 @@
   # xwayland-satellite bridges rootful XWayland for niri sessions.
   ############################################################
   programs.xwayland.enable = true;
-  environment.systemPackages = [ pkgs.xwayland-satellite ];
 
   ############################################################
   # XDG portal — gnome portal handles niri sessions
@@ -37,6 +36,18 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
   };
+
+  ############################################################
+  # GPU Screen Recorder — cap_sys_admin wrapper for KMS capture
+  # The module overrides the package with wrapperDir so the binary
+  # finds gsr-kms-server in /run/wrappers/bin/ (capability-aware).
+  ############################################################
+  programs.gpu-screen-recorder.enable = true;
+  environment.systemPackages = with pkgs; [
+    xwayland-satellite
+    config.programs.gpu-screen-recorder.package
+    gpu-screen-recorder-gtk
+  ];
 
   ############################################################
   # Gnome Keyring — service + PAM integration for niri sessions

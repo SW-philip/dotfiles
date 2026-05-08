@@ -504,7 +504,6 @@ in
     grim slurp wl-clipboard swappy
     fuzzel cliphist
     ffmpeg mediainfo vlc playerctl libnotify
-    gpu-screen-recorder gpu-screen-recorder-gtk
 
     # ── GUI Apps ──────────────────────────────────────
     zoom kdePackages.kdenlive
