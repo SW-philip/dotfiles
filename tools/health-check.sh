@@ -18,6 +18,9 @@ echo "date:  $(date)"
 echo "user:  $(whoami)"
 echo
 
+# Sample CPU before any work; delta is computed at end of script
+read -r _cpu _user _nice _system _idle _iowait _irq _softirq _steal _ < /proc/stat 2>/dev/null || true
+
 ########################################
 echo "── Secure Boot"
 ########################################
@@ -77,25 +80,7 @@ echo "── CPU & Thermals"
 ########################################
 
 # Use /proc/stat for reliable idle %
-read -r cpu user nice system idle iowait irq softirq steal _ < /proc/stat 2>/dev/null || true
-if [ -n "${idle:-}" ]; then
-  total=$((user + nice + system + idle + iowait + irq + softirq + steal))
-  sleep 3
-  read -r cpu2 user2 nice2 system2 idle2 iowait2 irq2 softirq2 steal2 _ < /proc/stat
-  total2=$((user2 + nice2 + system2 + idle2 + iowait2 + irq2 + softirq2 + steal2))
-  dtotal=$((total2 - total))
-  didle=$((idle2 - idle))
-  idle_pct=$((100 * didle / dtotal))
-  if [ "$idle_pct" -ge 60 ]; then
-    pass "CPU idle at ${idle_pct}%"
-  elif [ "$idle_pct" -ge 20 ]; then
-    warn "CPU idle at ${idle_pct}% — somewhat busy at rest"
-  else
-    fail "CPU idle at ${idle_pct}% — high load at rest"
-  fi
-else
-  warn "could not read CPU idle from /proc/stat"
-fi
+# CPU idle % is evaluated at end of script using samples taken at start/finish
 
 governor=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 2>/dev/null || true)
 if [ "$governor" = "powersave" ]; then
@@ -317,7 +302,6 @@ services=(
   "bluetooth"
   "pipewire"
   "smartd"
-  "deluge"
   "iptv-serve"
 )
 
@@ -372,6 +356,26 @@ if [ "$user_failed" -eq 0 ]; then
 else
   fail "$user_failed failed user unit(s):"
   systemctl --user --failed --no-legend 2>/dev/null | while read -r line; do echo "       $line"; done
+fi
+
+########################################
+echo "── CPU Idle (measured over script runtime)"
+########################################
+
+if [ -n "${_idle:-}" ]; then
+  read -r _ u2 n2 s2 i2 w2 r2 f2 t2 _ < /proc/stat 2>/dev/null || true
+  _dtotal=$(( (u2+n2+s2+i2+w2+r2+f2+t2) - (_user+_nice+_system+_idle+_iowait+_irq+_softirq+_steal) ))
+  _didle=$(( i2 - _idle ))
+  _idle_pct=$(( 100 * _didle / _dtotal ))
+  if [ "$_idle_pct" -ge 60 ]; then
+    pass "CPU idle at ${_idle_pct}% (over script runtime)"
+  elif [ "$_idle_pct" -ge 20 ]; then
+    warn "CPU idle at ${_idle_pct}% — somewhat busy at rest"
+  else
+    fail "CPU idle at ${_idle_pct}% — high load at rest"
+  fi
+else
+  warn "could not read CPU idle from /proc/stat"
 fi
 
 ########################################

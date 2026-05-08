@@ -7,11 +7,6 @@
   ############################################################
   services = {
     fwupd.enable = true;
-    deluge = {
-      enable = true;
-      openFirewall = false;
-      web.enable = false;
-    };
   };
 
   ############################################################
