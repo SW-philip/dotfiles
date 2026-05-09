@@ -167,6 +167,7 @@
       grep = "grep --color=auto";
       ip   = "ip --color=auto";
       diff = "delta";
+      lb   = "sudo rm -f /boot/EFI/systemd/systemd-bootx64.efi /boot/EFI/BOOT/BOOTX64.EFI && sudo rm -f /boot/EFI/Linux/nixos-*.efi";
     };
 
     oh-my-zsh = {
