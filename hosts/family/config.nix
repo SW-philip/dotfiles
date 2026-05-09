@@ -60,9 +60,9 @@
   services.xserver = {
     enable = true;
     xkb.layout = "us";
+    dpi = 288;  # TV at 3× scale — matches Xft.dpi in .Xresources, fixes greeter size
   };
   services.xserver.desktopManager.xfce.enable = true;
-  services.displayManager.lightdm.enable = true;
 
   # ProtonVPN WireGuard — disabled until config file is in place.
   # To enable: add ../../modules/protonvpn.nix to imports, set protonvpn.configFile,
