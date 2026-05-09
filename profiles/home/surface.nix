@@ -15,9 +15,9 @@
   };
 
   ########################################
-  # Surface HiDPI cursor override (base sets 24px; Surface needs 32px at 1.5x scale)
+  # Surface HiDPI cursor override (base sets 48px; Surface needs 32px at 1.5x scale)
   ########################################
-  gtk.cursorTheme.size = lib.mkForce 32;
+  home.pointerCursor.size = lib.mkForce 32;
 
   ########################################
   # GNOME session — dark mode + cursor
