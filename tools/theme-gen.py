@@ -12,7 +12,47 @@ import subprocess
 import sys
 import colorsys
 from pathlib import Path
-from typing import Tuple, Optional
+from typing import Tuple, Optional, List
+
+
+# ─── ColorHunt source ─────────────────────────────────────────────────────────
+
+def parse_colorhunt_url(url: str) -> List[str]:
+    """
+    Extract 4 hex colors from a colorhunt.co palette URL.
+    The slug is 4×6-char hex codes concatenated: no HTTP needed.
+    e.g. colorhunt.co/palette/222831393e4600adb5eeeeee → ['#222831','#393e46','#00adb5','#eeeeee']
+    """
+    slug = url.rstrip("/").split("/")[-1]
+    if not re.fullmatch(r"[0-9a-fA-F]{24}", slug):
+        raise ValueError(f"Not a valid ColorHunt palette slug: {slug!r} (expected 24 hex chars)")
+    return [f"#{slug[i:i+6].lower()}" for i in range(0, 24, 6)]
+
+
+def map_colorhunt_to_slots(colors: List[str]) -> List[Optional[str]]:
+    """
+    Map 4 ColorHunt colors onto the 7 theme slots:
+        [BASE, LOVE, ROSE, PINE, FOAM, IRIS, GOLD]
+
+    Called before the TUI opens; slots left as None are picked interactively.
+
+    The strategy: luminance-detect BASE, assign remaining 3 (in palette order)
+    to LOVE/PINE/IRIS. ROSE, FOAM, GOLD are left None for TUI picking — those
+    secondary accents aren't represented in a 4-color colorhunt palette anyway.
+    """
+    by_lum = sorted(colors, key=ColorMath.relative_luminance)
+    # Dark theme if the darkest color is clearly a background shade
+    base = by_lum[0] if ColorMath.relative_luminance(by_lum[0]) < 0.2 else by_lum[-1]
+    base_idx = colors.index(base)
+    accents = [c for i, c in enumerate(colors) if i != base_idx]
+
+    slots: List[Optional[str]] = [None] * 7
+    slots[0] = base        # BASE
+    slots[1] = accents[0]  # LOVE
+    slots[3] = accents[1]  # PINE
+    slots[5] = accents[2]  # IRIS
+    # ROSE (2), FOAM (4), GOLD (6) → picked in TUI
+    return slots
 
 from PIL import Image, ImageDraw, ImageChops
 
@@ -165,15 +205,19 @@ if _TUI:
             Binding("escape",    "bye",   "Cancel"),
         ]
 
-        def __init__(self, name0=""):
+        def __init__(self, name0="", initial_cols=None):
             super().__init__()
             self._name0 = name0
             self._h = 0.0
             self._s = 0.8
             self._v = 0.7
-            self._slot = 0
-            self._cols: list = [None] * 7
+            self._cols: list = list(initial_cols) if initial_cols else [None] * 7
             self.result: Optional[dict] = None
+            # Start on the first unfilled slot
+            self._slot = next((i for i, c in enumerate(self._cols) if c is None), 0)
+            # Seed picker position from pre-filled slot if all slots are filled
+            if self._cols[self._slot]:
+                self._h, self._s, self._v = _hex2hsv(self._cols[self._slot])
 
         def compose(self) -> ComposeResult:
             yield Header(show_clock=False)
@@ -316,8 +360,8 @@ if _TUI:
             self.exit()
 
 
-    def _tui_pick(name0="") -> Optional[dict]:
-        app = ThemePickerApp(name0)
+    def _tui_pick(name0="", initial_cols=None) -> Optional[dict]:
+        app = ThemePickerApp(name0, initial_cols=initial_cols)
         app.run()
         return app.result
 
@@ -471,7 +515,7 @@ class ThemeGenerator:
                  primary: Optional[str] = None, secondary: Optional[str] = None,
                  pine: Optional[str] = None, accent: Optional[str] = None,
                  gold: Optional[str] = None, rose: Optional[str] = None,
-                 foam: Optional[str] = None):
+                 foam: Optional[str] = None, initial_cols: Optional[List] = None):
         self.folder = folder or self.DEFAULT_FOLDER
         self.theme_name = theme_name
         self.primary_color = primary
@@ -481,6 +525,7 @@ class ThemeGenerator:
         self.gold_color = gold
         self.rose_color = rose
         self.foam_color = foam
+        self.initial_cols = initial_cols  # pre-populated from a color source (e.g. ColorHunt)
         self.script_dir = Path(__file__).parent.resolve()
         self.harmonizer = self.script_dir / "harmonize-themes.sh"
 
@@ -496,7 +541,7 @@ class ThemeGenerator:
                 self.accent_color, self.gold_color]):
             return
         if _TUI:
-            result = _tui_pick(self.theme_name or "")
+            result = _tui_pick(self.theme_name or "", initial_cols=self.initial_cols)
             if result is None:
                 print("Cancelled.")
                 sys.exit(0)
@@ -1579,8 +1624,23 @@ def main():
     parser.add_argument("--foam", default=None, help="Foam/seafoam color (hex)")
     parser.add_argument("-w", "--wallpaper-only", metavar="PATH",
                         help="Regenerate wallpaper for an existing theme (file or directory)")
+    parser.add_argument("--colorhunt", metavar="URL",
+                        help="Pre-populate colors from a colorhunt.co palette URL")
 
     args = parser.parse_args()
+
+    initial_cols = None
+    if args.colorhunt:
+        try:
+            ch_colors = parse_colorhunt_url(args.colorhunt)
+            print(f"ColorHunt palette: {' '.join(ch_colors)}")
+            initial_cols = map_colorhunt_to_slots(ch_colors)
+            filled = [s for s in zip(["BASE","LOVE","ROSE","PINE","FOAM","IRIS","GOLD"], initial_cols) if s[1]]
+            if filled:
+                print(f"Pre-filled slots: {', '.join(f'{n}={c}' for n, c in filled)}")
+        except ValueError as e:
+            print(f"❌ {e}", file=sys.stderr)
+            sys.exit(1)
 
     generator = ThemeGenerator(
         folder=args.folder,
@@ -1592,6 +1652,7 @@ def main():
         foam=args.foam,
         accent=args.accent,
         gold=args.gold,
+        initial_cols=initial_cols,
     )
 
     if args.wallpaper_only:
