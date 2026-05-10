@@ -97,6 +97,7 @@ in
 
   home.stateVersion = "25.11";
   home.sessionPath = [ "$HOME/.local/bin" ];
+  home.file.".local/bin/zed".source = "${pkgs.zed-editor}/bin/zeditor";
 
   ########################################
   # systemd user services

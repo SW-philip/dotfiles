@@ -1,12 +1,13 @@
 # hosts/desktop/gpu-nvidia.nix
-# Intel iGPU is primary (default for apps/VA-API/Vulkan).
-# NVIDIA is used exclusively by Hyprland via AQ_DRM_DEVICES.
+# NVIDIA GTX 1660 drives both DP-2 and DP-3. Intel iGPU (card1) has no
+# connected displays and is used solely for VA-API hardware decode.
+# No PRIME offload — NVIDIA is the uncontested KMS master for its card.
 { config, pkgs, lib, ... }:
 
 {
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # Intel graphics (Mesa + VA-API) — default for everything except Hyprland
+  # Intel graphics (Mesa + VA-API) — hardware decode for mpv, Firefox, etc.
   hardware.graphics = {
     enable      = true;
     enable32Bit = true;
@@ -18,17 +19,14 @@
 
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = false;
+    # Required on desktop: pairs with NVreg_PreserveVideoMemoryAllocations
+    # and prevents P-state drops causing missed vblanks during idle repaints.
+    powerManagement.enable = true;
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-    # PRIME offload: Intel is primary DRM provider, NVIDIA is offload target
-    prime = {
-      offload.enable = true;
-      intelBusId  = "PCI:0:2:0";   # 00:02.0 Intel UHD 630
-      nvidiaBusId = "PCI:1:0:0";   # 01:00.0 GTX 1660
-    };
+    # No PRIME: both monitors are on the NVIDIA card. Intel loads via i915
+    # for VA-API but is not a DRM primary/offload participant.
   };
 
   boot.kernelParams = lib.mkAfter [
@@ -36,7 +34,7 @@
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
 
-  # Load i915 early so Intel is the primary DRM device at boot
+  # Load i915 early for VA-API availability; not a PRIME dependency anymore
   boot.initrd.kernelModules = [ "i915" ];
 
   services.udev.extraRules = ''
@@ -44,17 +42,11 @@
   '';
 
   environment.sessionVariables = {
-    # Wayland cursor safety — smithay/wlroots both respect this on NVIDIA
-    WLR_NO_HARDWARE_CURSORS = "1";
-    # Hyprland compositor runs on NVIDIA; all other apps default to Intel
-    AQ_DRM_DEVICES    = "/dev/dri/nvidia-gpu";
     # Intel VA-API for video decode (mpv, Firefox, etc.)
     LIBVA_DRIVER_NAME = "iHD";
-    # NVIDIA render tuning (only applies when NVIDIA is actually rendering)
-    __GL_GSYNC_ALLOWED  = "0";
-    __GL_VRR_ALLOWED    = "0";
-    __GL_SYNC_TO_VBLANK = "1";
-    NVD_BACKEND         = "auto";
+    # Force NVIDIA's GLX for xwayland-satellite (X11 apps under niri)
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    NVD_BACKEND               = "auto";
   };
 
   programs.steam.enable = true;
