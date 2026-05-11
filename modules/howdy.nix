@@ -1,15 +1,53 @@
 # modules/howdy.nix
 # Facial recognition login via howdy (from unstable — not in 25.11).
-# After rebuild: sudo howdy add    (enroll face)
-# To test:       sudo howdy test
-# Camera note: uses ov5693 at /dev/video32 (likely front camera).
-#   If face recognition fails entirely, try device_path = /dev/video8.
-#   IR camera (ov7251) is not functional on this kernel — power supplier unresolved.
-{ pkgsUnstable, ... }:
+#
+# Camera setup: the Surface Pro 7+ uses Intel IPU6 which can't be read
+# directly by OpenCV. libcamera CAN access the ov5693 front camera, so
+# we bridge it into a v4l2loopback device (/dev/video100) that howdy reads.
+#
+# After rebuild:
+#   sudo howdy add    (enroll face)
+#   sudo howdy test   (verify)
+{ pkgs, pkgsUnstable, config, ... }:
 let
-  howdy = pkgsUnstable.howdy;
+  howdy    = pkgsUnstable.howdy;
+  libcam   = pkgs.libcamera;
+  gst      = pkgs.gst_all_1;
+  loopDev  = "/dev/video100";
+
+  cameraBridge = pkgs.writeShellScript "howdy-camera-bridge" ''
+    export GST_PLUGIN_PATH="${libcam}/lib/gstreamer-1.0:${gst.gst-plugins-base}/lib/gstreamer-1.0:${gst.gst-plugins-good}/lib/gstreamer-1.0"
+    export LIBCAMERA_IPA_MODULE_PATH="${libcam}/lib/libcamera"
+    export LIBCAMERA_IPA_PROXY_PATH="${libcam}/libexec/libcamera"
+    exec ${gst.gstreamer}/bin/gst-launch-1.0 -v \
+      libcamerasrc ! \
+      video/x-raw,width=320,height=240,framerate=15/1 ! \
+      videoconvert ! \
+      video/x-raw,format=YUY2,width=320,height=240,framerate=15/1 ! \
+      v4l2sink device=${loopDev}
+  '';
 in
 {
+  # v4l2loopback kernel module — virtual V4L2 device that OpenCV can read.
+  boot.kernelModules        = [ "v4l2loopback" ];
+  boot.extraModulePackages  = [ config.boot.kernelPackages.v4l2loopback ];
+  boot.extraModprobeConfig  = ''
+    options v4l2loopback devices=1 video_nr=100 card_label="Howdy Camera" exclusive_caps=1
+  '';
+
+  # Bridge libcamera → v4l2loopback. Restarts automatically if camera is
+  # briefly unavailable (e.g. another app held it).
+  systemd.services.howdy-camera-bridge = {
+    description = "Bridge IPU6 camera to v4l2loopback for howdy";
+    wantedBy    = [ "multi-user.target" ];
+    after       = [ "systemd-modules-load.service" ];
+    serviceConfig = {
+      ExecStart   = cameraBridge;
+      Restart     = "on-failure";
+      RestartSec  = "3s";
+    };
+  };
+
   systemd.tmpfiles.rules = [
     "d /var/lib/howdy         0755 root root -"
     "d /var/lib/howdy/models  0700 root root -"
@@ -31,7 +69,7 @@ in
     [video]
     certainty = 3.5
     timeout = 5
-    device_path = /dev/video32
+    device_path = ${loopDev}
     warn_no_device = true
     max_height = 240
     frame_width = -1
@@ -55,14 +93,14 @@ in
   # Insert howdy before password check in both greetd and sudo.
   # sufficient: on success → done; on failure → continue to pam_unix (password fallback).
   security.pam.services.greetd.rules.auth.howdy = {
-    control = "sufficient";
+    control    = "sufficient";
     modulePath = "${howdy}/lib/security/pam_howdy.so";
-    order = 11500;
+    order      = 11500;
   };
   security.pam.services.sudo.rules.auth.howdy = {
-    control = "sufficient";
+    control    = "sufficient";
     modulePath = "${howdy}/lib/security/pam_howdy.so";
-    order = 11000;
+    order      = 11000;
   };
 
   environment.systemPackages = [ howdy ];
