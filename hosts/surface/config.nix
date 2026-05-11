@@ -1,5 +1,5 @@
 # hosts/surface/config.nix
-{ inputs, pkgs, config, ... }:
+{ inputs, pkgs, ... }:
 
 {
   ############################################################
@@ -35,13 +35,13 @@
   sops = {
     defaultSopsFile = ../../secrets/surface.yaml;
     age.keyFile = "/var/lib/sops-nix/key.txt";
-    secrets.protonvpn_conf = {};
   };
 
   ############################################################
-  # ProtonVPN
+  # ProtonVPN — file-based like desktop; put server .conf files in
+  # ~/.config/wireguard/ and the selection menu symlinks protonvpn.conf.
   ############################################################
-  protonvpn.configFile = config.sops.secrets.protonvpn_conf.path;
+  protonvpn.configFile = "/home/prepko/.config/wireguard/protonvpn.conf";
   
 
   ############################################################
