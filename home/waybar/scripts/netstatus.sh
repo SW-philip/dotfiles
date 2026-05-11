@@ -64,8 +64,20 @@ get_speed() {
 }
 
 # VPN status
-if systemctl is-active --quiet wg-quick-protonvpn.service 2>/dev/null; then
-  vpn_status="<span foreground='${IRIS}'>VPN on</span>"
+vpn_region=""
+for _name in protonvpn-ny protonvpn-au protonvpn-ca; do
+  if systemctl is-active --quiet "wg-quick-${_name}.service" 2>/dev/null; then
+    case "$_name" in
+      protonvpn-ny) vpn_region="NY" ;;
+      protonvpn-au) vpn_region="AU" ;;
+      protonvpn-ca) vpn_region="CA" ;;
+    esac
+    break
+  fi
+done
+
+if [ -n "$vpn_region" ]; then
+  vpn_status="<span foreground='${IRIS}'>VPN on (${vpn_region})</span>"
 else
   vpn_status="<span foreground='${SUBTLE}'>VPN off</span>"
 fi

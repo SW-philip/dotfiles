@@ -36,7 +36,7 @@
   sops = {
     defaultSopsFile = ../../secrets/surface.yaml;
     age.keyFile = "/var/lib/sops-nix/key.txt";
-    secrets.protonvpn_conf    = {};
+    secrets.protonvpn_ny_conf = { sopsFile = ../../secrets/shared.yaml; };
     secrets.protonvpn_au_conf = { sopsFile = ../../secrets/shared.yaml; };
     secrets.protonvpn_ca_conf = { sopsFile = ../../secrets/shared.yaml; };
   };
@@ -45,7 +45,7 @@
   # ProtonVPN
   ############################################################
   protonvpn.configs = {
-    protonvpn    = config.sops.secrets.protonvpn_conf.path;
+    protonvpn-ny = config.sops.secrets.protonvpn_ny_conf.path;
     protonvpn-au = config.sops.secrets.protonvpn_au_conf.path;
     protonvpn-ca = config.sops.secrets.protonvpn_ca_conf.path;
   };
