@@ -4,6 +4,11 @@
 
 set -uo pipefail
 
+HOST=$(hostname)
+IS_SURFACE=false; IS_DESKTOP=false
+[[ "$HOST" == "surface" ]] && IS_SURFACE=true
+[[ "$HOST" == "desktop"   ]] && IS_DESKTOP=true
+
 PASS=0
 WARN=0
 FAIL=0
@@ -55,12 +60,20 @@ else
 fi
 
 luks_count=$(lsblk -o TYPE | grep -c "^crypt$" || true)
-if [ "$luks_count" -ge 2 ]; then
-  pass "both LUKS devices active ($luks_count crypt devices)"
-elif [ "$luks_count" -eq 1 ]; then
-  warn "only 1 LUKS device active — /srv or root drive may not be unlocked"
+if $IS_DESKTOP; then
+  if [ "$luks_count" -ge 2 ]; then
+    pass "both LUKS devices active ($luks_count crypt devices)"
+  elif [ "$luks_count" -eq 1 ]; then
+    warn "only 1 LUKS device active — /srv or root drive may not be unlocked"
+  else
+    fail "no active LUKS devices found"
+  fi
 else
-  fail "no active LUKS devices found"
+  if [ "$luks_count" -ge 1 ]; then
+    pass "LUKS device active ($luks_count crypt device(s))"
+  else
+    fail "no active LUKS devices found"
+  fi
 fi
 
 # Check TPM2 enrollment on all crypto_LUKS partitions
@@ -109,31 +122,40 @@ else
 fi
 
 ########################################
-echo "── GPU (NVIDIA)"
+echo "── GPU"
 ########################################
 
-nvidia_mod=$(lsmod 2>/dev/null | grep -c "^nvidia " || true)
-if [ "$nvidia_mod" -gt 0 ]; then
-  pass "nvidia kernel module loaded"
-else
-  fail "nvidia module not loaded — check: lsmod | grep nvidia"
-fi
+if $IS_DESKTOP; then
+  nvidia_mod=$(lsmod 2>/dev/null | grep -c "^nvidia " || true)
+  if [ "$nvidia_mod" -gt 0 ]; then
+    pass "nvidia kernel module loaded"
+  else
+    fail "nvidia module not loaded — check: lsmod | grep nvidia"
+  fi
 
-if command -v nvidia-smi &>/dev/null; then
-  gpu_temp=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader 2>/dev/null | head -1 | tr -d ' ' || true)
-  if [ -n "$gpu_temp" ] && [[ "$gpu_temp" =~ ^[0-9]+$ ]]; then
-    if [ "$gpu_temp" -le 50 ]; then
-      pass "GPU temp OK at ${gpu_temp}°C idle"
-    elif [ "$gpu_temp" -le 70 ]; then
-      warn "GPU temp elevated at ${gpu_temp}°C idle"
+  if command -v nvidia-smi &>/dev/null; then
+    gpu_temp=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader 2>/dev/null | head -1 | tr -d ' ' || true)
+    if [ -n "$gpu_temp" ] && [[ "$gpu_temp" =~ ^[0-9]+$ ]]; then
+      if [ "$gpu_temp" -le 50 ]; then
+        pass "GPU temp OK at ${gpu_temp}°C idle"
+      elif [ "$gpu_temp" -le 70 ]; then
+        warn "GPU temp elevated at ${gpu_temp}°C idle"
+      else
+        fail "GPU temp high at ${gpu_temp}°C idle"
+      fi
     else
-      fail "GPU temp high at ${gpu_temp}°C idle"
+      warn "nvidia-smi available but no temp returned"
     fi
   else
-    warn "nvidia-smi available but no temp returned"
+    warn "nvidia-smi not available — add linuxPackages.nvidia_x11 tools to PATH"
   fi
 else
-  warn "nvidia-smi not available — add linuxPackages.nvidia_x11 tools to PATH"
+  # Surface: Intel Iris Xe — check via i915 module
+  if lsmod 2>/dev/null | grep -q "^i915 "; then
+    pass "i915 (Intel GPU) kernel module loaded"
+  else
+    warn "i915 module not loaded — check: lsmod | grep i915"
+  fi
 fi
 
 ########################################
@@ -165,7 +187,9 @@ echo "── Disk Health"
 ########################################
 
 if command -v smartctl &>/dev/null; then
-  for dev in /dev/nvme0n1 /dev/sda /dev/sdb; do
+  devs=(/dev/nvme0n1)
+  $IS_DESKTOP && devs+=(/dev/sda /dev/sdb)
+  for dev in "${devs[@]}"; do
     [ -e "$dev" ] || continue
     h=$(sudo smartctl -H "$dev" 2>/dev/null | grep -i "overall\|result" | head -1 || true)
     if echo "$h" | grep -qi "PASSED\|OK"; then
@@ -198,17 +222,19 @@ else
   fail "/boot ${boot_pct}% full — clean old boot entries"
 fi
 
-if mountpoint -q /srv 2>/dev/null; then
-  srv_pct=$(df /srv | awk 'NR==2{print $5}' | tr -d '%')
-  if [ "$srv_pct" -le 80 ]; then
-    pass "/srv ${srv_pct}% full"
-  elif [ "$srv_pct" -le 92 ]; then
-    warn "/srv ${srv_pct}% full — media drive filling up"
+if $IS_DESKTOP; then
+  if mountpoint -q /srv 2>/dev/null; then
+    srv_pct=$(df /srv | awk 'NR==2{print $5}' | tr -d '%')
+    if [ "$srv_pct" -le 80 ]; then
+      pass "/srv ${srv_pct}% full"
+    elif [ "$srv_pct" -le 92 ]; then
+      warn "/srv ${srv_pct}% full — media drive filling up"
+    else
+      fail "/srv ${srv_pct}% full — running low on media storage"
+    fi
   else
-    fail "/srv ${srv_pct}% full — running low on media storage"
+    fail "/srv not mounted — second LUKS drive may not have unlocked"
   fi
-else
-  fail "/srv not mounted — second LUKS drive may not have unlocked"
 fi
 
 if mountpoint -q /mnt/backup 2>/dev/null; then
@@ -222,7 +248,9 @@ fi
 echo "── btrfs Device Errors"
 ########################################
 
-for mp in / /srv; do
+btrfs_mps=(/)
+$IS_DESKTOP && btrfs_mps+=(/srv)
+for mp in "${btrfs_mps[@]}"; do
   if mountpoint -q "$mp" 2>/dev/null; then
     errors=$(sudo btrfs device stats "$mp" 2>/dev/null | awk '{sum += $2} END {print sum+0}')
     if [ "$errors" -eq 0 ]; then
@@ -256,8 +284,10 @@ if [ -n "$bat_path" ]; then
   fi
 
   [ -n "$state" ] && [ -n "$percentage" ] && pass "battery state: $state at ${percentage}%"
-else
+elif $IS_DESKTOP; then
   pass "no battery (desktop)"
+else
+  warn "no battery detected — upower found no battery device"
 fi
 
 ########################################
@@ -295,15 +325,18 @@ fi
 echo "── Key Services"
 ########################################
 
+# common services
 services=(
   "NetworkManager"
   "wg-quick-protonvpn"
   "sshd"
   "bluetooth"
   "pipewire"
-  "smartd"
-  "iptv-serve"
 )
+# desktop-only services
+if $IS_DESKTOP; then
+  services+=("smartd" "iptv-serve")
+fi
 
 for svc in "${services[@]}"; do
   if systemctl is-active --quiet "$svc" 2>/dev/null || \

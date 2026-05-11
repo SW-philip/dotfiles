@@ -1,0 +1,13 @@
+# Niri Theme: pennsylvania - Pennsylvania
+[colors]
+background = "#3f5b92"
+text = "#ffffff"
+cursor = "#5c7ca3"
+
+[colors.selection]
+border = "#f4f93e"
+background = "#446ba6"
+
+[colors.hints]
+start = "#c4e8d7"
+end = "#8eb1d2"

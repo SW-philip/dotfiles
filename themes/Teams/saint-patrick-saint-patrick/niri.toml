@@ -1,0 +1,13 @@
+# Niri Theme: saint patrick - Saint Patrick
+[colors]
+background = "#4cae4f"
+text = "#ffffff"
+cursor = "#6fbe8d"
+
+[colors.selection]
+border = "#b1f674"
+background = "#429e4a"
+
+[colors.hints]
+start = "#c0d73d"
+end = "#52c945"

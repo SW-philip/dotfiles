@@ -1,0 +1,13 @@
+# Niri Theme: pecan pie - Pecan Pie
+[colors]
+background = "#795a39"
+text = "#ffffff"
+cursor = "#a86e4d"
+
+[colors.selection]
+border = "#f2faad"
+background = "#8c623f"
+
+[colors.hints]
+start = "#f7dcc5"
+end = "#d09671"
