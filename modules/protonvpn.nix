@@ -1,39 +1,43 @@
 # ~/nixos/modules/protonvpn.nix
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
+let
+  cfg = config.protonvpn;
+  names = lib.attrNames cfg.configs;
+in
 {
-  options.protonvpn.configFile = lib.mkOption {
-    type = lib.types.path;
-    description = "Path to the wg-quick .conf file for ProtonVPN";
+  options.protonvpn.configs = lib.mkOption {
+    type = lib.types.attrsOf lib.types.path;
+    default = {};
+    description = "Attrset of interface name → wg-quick .conf file path";
+    example = lib.literalExpression ''
+      {
+        protonvpn    = config.sops.secrets.protonvpn_conf.path;
+        protonvpn-ca = config.sops.secrets.protonvpn_ca_conf.path;
+      }
+    '';
   };
 
-  config = {
-    networking.wg-quick.interfaces.protonvpn = {
-      configFile = config.protonvpn.configFile;
+  config = lib.mkIf (names != []) {
+    networking.wg-quick.interfaces = lib.mapAttrs (_: confFile: {
+      configFile = confFile;
       autostart = false;
-    };
+    }) cfg.configs;
 
-    # Don't fail during switch if the config file hasn't been placed yet
-    systemd.services.wg-quick-protonvpn = {
-      unitConfig.ConditionPathExists = config.protonvpn.configFile;
-    };
+    networking.networkmanager.unmanaged = names;
+    networking.firewall.trustedInterfaces = names;
 
-    networking.networkmanager.unmanaged = [ "protonvpn" ];
-    networking.firewall.trustedInterfaces = [ "protonvpn" ];
-
-    security.sudo.extraRules = [
-      {
-        users = [ "prepko" ];
-        commands = [
-          {
-            command = "/run/current-system/sw/bin/systemctl start wg-quick-protonvpn.service";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/systemctl stop wg-quick-protonvpn.service";
-            options = [ "NOPASSWD" ];
-          }
-        ];
-      }
-    ];
+    security.sudo.extraRules = [{
+      users = [ "prepko" ];
+      commands = lib.concatMap (name: [
+        {
+          command = "/run/current-system/sw/bin/systemctl start wg-quick-${name}.service";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "/run/current-system/sw/bin/systemctl stop wg-quick-${name}.service";
+          options = [ "NOPASSWD" ];
+        }
+      ]) names;
+    }];
   };
 }

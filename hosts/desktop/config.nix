@@ -44,5 +44,15 @@
   sops = {
     defaultSopsFile = ../../secrets/shared.yaml;
     age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    secrets.protonvpn_au_conf = {};
+    secrets.protonvpn_ca_conf = {};
+  };
+
+  ############################################################
+  # ProtonVPN
+  ############################################################
+  protonvpn.configs = {
+    protonvpn-au = config.sops.secrets.protonvpn_au_conf.path;
+    protonvpn-ca = config.sops.secrets.protonvpn_ca_conf.path;
   };
 }

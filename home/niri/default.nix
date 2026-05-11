@@ -567,6 +567,22 @@ in
 
 
   ########################################
+  # XDG portal routing for niri — override the system niri-portals.conf
+  # (installed by programs.niri.enable) to explicitly route FileChooser to gtk.
+  # Without this, the gnome portal claims FileChooser but refuses dialogs outside
+  # a real GNOME session, leaving file pickers empty in browsers and apps.
+  ########################################
+  xdg.configFile."xdg-desktop-portal/niri-portals.conf".text = ''
+    [preferred]
+    default=gtk
+    org.freedesktop.impl.portal.FileChooser=gtk
+    org.freedesktop.impl.portal.Access=gtk
+    org.freedesktop.impl.portal.Notification=gtk
+    org.freedesktop.impl.portal.Secret=gnome-keyring
+    org.freedesktop.impl.portal.Settings=gtk
+  '';
+
+  ########################################
   # Suppress GNOME autostart apps that duplicate custom ironbar modules
   # (blueman-applet and nm-applet autostart via GNOME XDG entries even in niri)
   ########################################

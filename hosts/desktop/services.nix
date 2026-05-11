@@ -203,8 +203,4 @@ EOF
   ############################################################
   networking.firewall.allowedTCPPorts = [ 8096 8080 8765 ];
 
-  ############################################################
-  # ProtonVPN
-  ############################################################
-  protonvpn.configFile = "/home/prepko/.config/wireguard/protonvpn.conf";
 }

@@ -28,13 +28,14 @@
   programs.xwayland.enable = true;
 
   ############################################################
-  # XDG portal — gnome portal handles niri sessions
-  # (programs.niri.enable registers the niri-portals.conf;
-  #  we ensure xdg-desktop-portal-gnome is present as backend)
+  # XDG portal — gtk backend for file chooser, access, notifications.
+  # programs.niri.enable installs niri-portals.conf; user-level override
+  # at ~/.config/xdg-desktop-portal/niri-portals.conf routes FileChooser
+  # explicitly to gtk (gnome portal refuses dialogs outside a GNOME session).
   ############################################################
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   ############################################################

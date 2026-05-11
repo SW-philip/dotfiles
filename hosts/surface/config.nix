@@ -1,5 +1,5 @@
 # hosts/surface/config.nix
-{ inputs, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   ############################################################
@@ -36,22 +36,27 @@
   sops = {
     defaultSopsFile = ../../secrets/surface.yaml;
     age.keyFile = "/var/lib/sops-nix/key.txt";
+    secrets.protonvpn_conf    = {};
+    secrets.protonvpn_au_conf = { sopsFile = ../../secrets/shared.yaml; };
+    secrets.protonvpn_ca_conf = { sopsFile = ../../secrets/shared.yaml; };
   };
 
   ############################################################
-  # ProtonVPN — file-based like desktop; put server .conf files in
-  # ~/.config/wireguard/ and the selection menu symlinks protonvpn.conf.
+  # ProtonVPN
   ############################################################
-  protonvpn.configFile = "/home/prepko/.config/wireguard/protonvpn.conf";
-  
+  protonvpn.configs = {
+    protonvpn    = config.sops.secrets.protonvpn_conf.path;
+    protonvpn-au = config.sops.secrets.protonvpn_au_conf.path;
+    protonvpn-ca = config.sops.secrets.protonvpn_ca_conf.path;
+  };
 
   ############################################################
   # Swap / zram
   ############################################################
   zramSwap = {
-      enable = true;
-      algorithm = "zstd";
-      memoryPercent = 100;
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 100;
   };
 
 }
