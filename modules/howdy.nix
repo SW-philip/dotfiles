@@ -13,6 +13,7 @@ in
   systemd.tmpfiles.rules = [
     "d /var/lib/howdy         0755 root root -"
     "d /var/lib/howdy/models  0700 root root -"
+    "d /var/log/howdy         0755 root root -"
   ];
 
   environment.etc."howdy/config.ini".text = ''
@@ -25,7 +26,7 @@ in
     abort_if_lid_closed = false
     disabled = false
     use_cnn = false
-    workaround = off
+    workaround = pam
 
     [video]
     certainty = 3.5
@@ -52,14 +53,14 @@ in
   '';
 
   # Insert howdy before password check in both greetd and sudo.
-  # Control [success=end default=ignore]: on success → done; on any failure → skip (fallback to password).
+  # sufficient: on success → done; on failure → continue to pam_unix (password fallback).
   security.pam.services.greetd.rules.auth.howdy = {
-    control = "[success=end default=ignore]";
+    control = "sufficient";
     modulePath = "${howdy}/lib/security/pam_howdy.so";
     order = 11500;
   };
   security.pam.services.sudo.rules.auth.howdy = {
-    control = "[success=end default=ignore]";
+    control = "sufficient";
     modulePath = "${howdy}/lib/security/pam_howdy.so";
     order = 11000;
   };
