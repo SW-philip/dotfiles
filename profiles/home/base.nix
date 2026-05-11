@@ -51,6 +51,14 @@ in
 
   xdg.portal.config.common.default = "*";
 
+  # xdg-desktop-portal-gnome logs "GDK backend forced via env var, portal
+  # dialogs will not work properly" if it inherits GDK_BACKEND from the session
+  # environment — degrades to settings-only mode, breaking Brave file dialogs.
+  xdg.configFile."systemd/user/xdg-desktop-portal-gnome.service.d/unset-gdk-backend.conf".text = ''
+    [Service]
+    UnsetEnvironment=GDK_BACKEND
+  '';
+
   # Register .nix and .conf as distinct mimetypes so file managers icon them separately.
   xdg.dataFile."mime/packages/custom-dev.xml".text = ''
     <?xml version="1.0" encoding="UTF-8"?>

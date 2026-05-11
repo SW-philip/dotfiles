@@ -37,15 +37,6 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
   };
 
-  # xdg-desktop-portal-gnome logs "GDK backend forced via env var, portal
-  # dialogs will not work properly" if it sees GDK_BACKEND from the session
-  # environment — it degrades to settings-only mode and file picker dialogs
-  # in Brave and other apps stop working. Unset it for this service only.
-  environment.etc."systemd/user/xdg-desktop-portal-gnome.service.d/unset-gdk-backend.conf".text = ''
-    [Service]
-    UnsetEnvironment=GDK_BACKEND
-  '';
-
   ############################################################
   # GPU Screen Recorder — cap_sys_admin wrapper for KMS capture
   # The module overrides the package with wrapperDir so the binary
