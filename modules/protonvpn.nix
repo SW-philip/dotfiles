@@ -9,8 +9,12 @@
   config = {
     networking.wg-quick.interfaces.protonvpn = {
       configFile = config.protonvpn.configFile;
-      # This ensures the service doesn't start automatically on boot if you don't want it to
       autostart = false;
+    };
+
+    # Don't fail during switch if the config file hasn't been placed yet
+    systemd.services.wg-quick-protonvpn = {
+      unitConfig.ConditionPathExists = config.protonvpn.configFile;
     };
 
     networking.networkmanager.unmanaged = [ "protonvpn" ];
