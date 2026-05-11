@@ -14,7 +14,6 @@
     inputs.sops-nix.nixosModules.sops
     ../../profiles/sops-shared.nix
     ../../modules/greetd.nix
-    ../../modules/howdy.nix
     ../../modules/protonvpn.nix
     ../../modules/sqlch.nix
     ./hardware.nix
