@@ -24,8 +24,7 @@ let
       libcamerasrc camera-name='${frontCam}' ! \
       videoconvert ! \
       videoscale ! \
-      videorate ! \
-      'video/x-raw,format=YUY2,width=320,height=240,framerate=15/1' ! \
+      'video/x-raw,width=320,height=240' ! \
       v4l2sink device=${loopDev}
   '';
 in
@@ -34,7 +33,7 @@ in
   boot.kernelModules       = [ "v4l2loopback" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
   boot.extraModprobeConfig = ''
-    options v4l2loopback devices=1 video_nr=100 card_label="Howdy Camera" exclusive_caps=1
+    options v4l2loopback devices=1 video_nr=100 card_label="Howdy Camera"
   '';
 
   # Bridge libcamera → v4l2loopback. Starts before greetd so the device is
