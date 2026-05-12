@@ -51,6 +51,20 @@
   };
 
   ############################################################
+  # Distributed builds — offload to desktop (desktop)
+  ############################################################
+  nix.distributedBuilds = true;
+  nix.buildMachines = [{
+    hostName = "desktop.local";
+    systems = [ "x86_64-linux" ];
+    sshUser = "prepko";
+    sshKey = "/home/prepko/.ssh/id_ed25519";
+    maxJobs = 6;
+    supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+  }];
+  nix.settings.builders-use-substitutes = true;
+
+  ############################################################
   # Swap / zram
   ############################################################
   zramSwap = {

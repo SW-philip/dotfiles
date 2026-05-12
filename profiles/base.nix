@@ -163,7 +163,16 @@
     http-connections = 25;
     connect-timeout = 10;
     stalled-download-timeout = 90;
-    # Suppress Lix deprecation warnings from nixpkgs upstream code (not our files)
+    trusted-users = [ "prepko" ];
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      addresses = true;
+    };
   };
 
   nix.gc = {
