@@ -7,14 +7,14 @@ let
   frontCam = "_SB_.PC00.I2C2.CAMF";
 
   cameraBridge = pkgs.writeShellScript "howdy-camera-bridge" ''
+    set -o pipefail
     export GST_PLUGIN_PATH="${libcam}/lib/gstreamer-1.0:${gst.gst-plugins-base}/lib/gstreamer-1.0:${gst.gst-plugins-good}/lib/gstreamer-1.0"
     export LIBCAMERA_IPA_MODULE_PATH="${libcam}/lib/libcamera"
     ${gst.gstreamer}/bin/gst-launch-1.0 \
       libcamerasrc camera-name='${frontCam}' ! \
       videoconvert ! videoscale ! videorate ! \
       'video/x-raw,format=BGR,width=320,height=240,framerate=30/1' ! \
-      fdsink fd=1 \
-      2>/dev/null | \
+      fdsink fd=1 | \
     ${pkgs.ffmpeg}/bin/ffmpeg -nostdin -loglevel error \
       -f rawvideo -pix_fmt bgr24 -video_size 320x240 -r 30 \
       -i pipe:0 \
@@ -37,7 +37,7 @@ in
     before      = [ "greetd.service" ];
     serviceConfig = {
       ExecStart  = cameraBridge;
-      Restart    = "on-failure";
+      Restart    = "always";
       RestartSec = "3s";
     };
   };
