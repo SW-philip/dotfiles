@@ -8,21 +8,35 @@ let
   # libcamerasrc (GStreamer) has a CameraManager::get() race condition with
   # libcamera 0.6.0 — it calls get() before start() finishes enumerating.
   # Use libcamera's own `cam` tool instead; it handles enumeration correctly.
-  # cam --file=/dev/stdout writes raw BGR frames to the pipe; ffmpeg bridges
-  # to v4l2loopback (OpenCV can read v4l2loopback but not IPU6 directly).
+  #
+  # cam's --file writes raw BGR frames per-frame (open/write/close each time).
+  # A FIFO is used with a write-end holder (fd 9) so the per-frame close does
+  # not signal EOF to ffmpeg between frames.
   cameraBridge = pkgs.writeShellScript "howdy-camera-bridge" ''
-    set -o pipefail
     export LIBCAMERA_IPA_MODULE_PATH="${libcam}/lib/libcamera/ipa"
+    FIFO=/run/howdy-cam.fifo
+    rm -f "$FIFO"
+    mkfifo "$FIFO"
+    cleanup() {
+      exec 9>&- 2>/dev/null || true
+      kill "$CAM_PID" "$FFMPEG_PID" 2>/dev/null || true
+      rm -f "$FIFO"
+    }
+    trap cleanup EXIT INT TERM
+    ${pkgs.ffmpeg}/bin/ffmpeg -nostdin -loglevel error \
+      -f rawvideo -pix_fmt bgr24 -video_size 320x240 \
+      -i "$FIFO" \
+      -f v4l2 -pix_fmt yuyv422 \
+      ${loopDev} &
+    FFMPEG_PID=$!
+    exec 9>"$FIFO"
     ${libcam}/bin/cam \
       --camera '${frontCam}' \
       --stream role=viewfinder,width=320,height=240,pixelformat=BGR888 \
       --capture \
-      --file=/dev/stdout 2>/dev/null | \
-    ${pkgs.ffmpeg}/bin/ffmpeg -nostdin -loglevel error \
-      -f rawvideo -pix_fmt bgr24 -video_size 320x240 \
-      -i pipe:0 \
-      -f v4l2 -pix_fmt yuyv422 \
-      ${loopDev}
+      --file="$FIFO" >/dev/null 2>/dev/null
+    exec 9>&-
+    wait "$FFMPEG_PID"
   '';
 in
 {
