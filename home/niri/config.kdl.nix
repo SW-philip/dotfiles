@@ -121,6 +121,24 @@ animations {
 }
 
 // ── Window rules ──────────────────────────────────────────
+// Lock windows to the right side of the left monitor (DP-2)
+window-rule {
+    match on-output="eDP-1"
+    window-column-alignment "center"
+}
+
+window-rule {
+    match on-output="DP-2"
+    window-column-alignment "end"
+}
+
+// Lock windows to the left side of the right monitor (DP-3)
+// This is technically the default, but explicit is better for this setup.
+window-rule {
+    match on-output="DP-3"
+    window-column-alignment "start"
+}
+
 window-rule {
     match is-floating=true
     shadow {
