@@ -265,7 +265,7 @@ done
 echo "── Battery"
 ########################################
 
-bat_path=$(upower -e 2>/dev/null | grep battery | head -1 || true)
+bat_path=$(upower -e 2>/dev/null | grep -i battery | head -1 || true)
 if [ -n "$bat_path" ]; then
   bat_info=$(upower -i "$bat_path" 2>/dev/null)
   capacity=$(echo "$bat_info" | grep -i "capacity:" | awk '{print $2}' | tr -d '%' || true)
@@ -284,10 +284,32 @@ if [ -n "$bat_path" ]; then
   fi
 
   [ -n "$state" ] && [ -n "$percentage" ] && pass "battery state: $state at ${percentage}%"
-elif $IS_DESKTOP; then
-  pass "no battery (desktop)"
 else
-  warn "no battery detected — upower found no battery device"
+  # upower fallback: read directly from sysfs (works without upowerd)
+  bat_sysfs=$(ls -d /sys/class/power_supply/BAT* 2>/dev/null | head -1 || true)
+  if [ -n "$bat_sysfs" ]; then
+    percentage=$(cat "$bat_sysfs/capacity" 2>/dev/null || true)
+    state=$(cat "$bat_sysfs/status" 2>/dev/null || true)
+    charge_full=$(cat "$bat_sysfs/charge_full" "$bat_sysfs/energy_full" 2>/dev/null | head -1 || true)
+    charge_design=$(cat "$bat_sysfs/charge_full_design" "$bat_sysfs/energy_full_design" 2>/dev/null | head -1 || true)
+
+    if [ -n "$charge_full" ] && [ -n "$charge_design" ] && [ "$charge_design" -gt 0 ]; then
+      cap_int=$(( charge_full * 100 / charge_design ))
+      if [ "$cap_int" -ge 80 ]; then
+        pass "battery health ${cap_int}% capacity"
+      elif [ "$cap_int" -ge 60 ]; then
+        warn "battery health ${cap_int}% — degraded"
+      else
+        fail "battery health ${cap_int}% — significantly degraded"
+      fi
+    fi
+
+    [ -n "$state" ] && [ -n "$percentage" ] && pass "battery state: $state at ${percentage}%"
+  elif $IS_DESKTOP; then
+    pass "no battery (desktop)"
+  else
+    warn "no battery detected — check: ls /sys/class/power_supply/"
+  fi
 fi
 
 ########################################
