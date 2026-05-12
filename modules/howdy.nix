@@ -24,7 +24,8 @@ let
       libcamerasrc camera-name='${frontCam}' ! \
       videoconvert ! \
       videoscale ! \
-      'video/x-raw,width=320,height=240' ! \
+      videoconvert ! \
+      'video/x-raw,format=YUY2,width=320,height=240' ! \
       v4l2sink device=${loopDev}
   '';
 in
