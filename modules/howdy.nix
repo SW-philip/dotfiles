@@ -3,15 +3,14 @@ let
   howdy    = pkgsUnstable.howdy;
   libcam   = pkgs.libcamera;
   loopDev  = "/dev/video100";
-  frontCam = "_SB_.PC00.I2C2.CAMF";
-
-  # libcamerasrc (GStreamer) has a CameraManager::get() race condition with
-  # libcamera 0.6.0 — it calls get() before start() finishes enumerating.
-  # Use libcamera's own `cam` tool instead; it handles enumeration correctly.
+  # Camera index 2 = front camera (_SB_.PC00.I2C2.CAMF, ov5693).
+  # CameraManager::get(id) has a race condition in libcamera 0.6.0 where
+  # start() returns before enumeration completes. Index-based selection
+  # (cameras()[n-1]) works because cam calls it later in its code path.
   #
-  # cam's --file writes raw BGR frames per-frame (open/write/close each time).
-  # A FIFO is used with a write-end holder (fd 9) so the per-frame close does
-  # not signal EOF to ffmpeg between frames.
+  # cam outputs ABGR8888 (4 bytes/pixel). V4L2_PIX_FMT_ABGR32 maps to
+  # AV_PIX_FMT_BGRA in ffmpeg. cam's --file opens/closes per frame, so a
+  # FIFO with a write-end holder (fd 9) prevents spurious EOF to ffmpeg.
   cameraBridge = pkgs.writeShellScript "howdy-camera-bridge" ''
     export LIBCAMERA_IPA_MODULE_PATH="${libcam}/lib/libcamera/ipa"
     FIFO=/run/howdy-cam.fifo
@@ -19,20 +18,20 @@ let
     mkfifo "$FIFO"
     cleanup() {
       exec 9>&- 2>/dev/null || true
-      kill "$CAM_PID" "$FFMPEG_PID" 2>/dev/null || true
+      kill "$FFMPEG_PID" 2>/dev/null || true
       rm -f "$FIFO"
     }
     trap cleanup EXIT INT TERM
     ${pkgs.ffmpeg}/bin/ffmpeg -nostdin -loglevel error \
-      -f rawvideo -pix_fmt bgr24 -video_size 320x240 \
+      -f rawvideo -pix_fmt bgra -video_size 320x240 \
       -i "$FIFO" \
       -f v4l2 -pix_fmt yuyv422 \
       ${loopDev} &
     FFMPEG_PID=$!
     exec 9>"$FIFO"
     ${libcam}/bin/cam \
-      --camera '${frontCam}' \
-      --stream role=viewfinder,width=320,height=240,pixelformat=BGR888 \
+      --camera 2 \
+      --stream role=viewfinder,width=320,height=240 \
       --capture \
       --file="$FIFO" >/dev/null 2>/dev/null
     exec 9>&-
