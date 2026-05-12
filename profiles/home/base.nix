@@ -121,6 +121,9 @@ in
       Service = {
         ExecStart = "${pkgs.bash}/bin/bash -c 'set -a; . /run/secrets/spotify_env; set +a; exec ${pkgs.sqlch}/bin/sqlch daemon'";
         Restart = "on-failure";
+        MemoryMax = "300M";
+        MemorySwapMax = "0";
+        Environment = "MALLOC_ARENA_MAX=2";
       };
       Install.WantedBy = [ "graphical-session.target" ];
     };

@@ -71,17 +71,14 @@
   };
 
   ############################################################
-  # RGB & Hardware Control
+  # Journal limits
   ############################################################
-  services.hardware.openrgb.enable = true;
-  services.hardware.openrgb.motherboard = "intel";
+  services.journald.extraConfig = ''
+    SystemMaxUse=500M
+    RuntimeMaxUse=64M
+    MaxFileSec=1month
+  '';
 
-  # Ensure the i2c bus is active and accessible
-  hardware.i2c.enable = true;
-
-  # Explicitly load the intel i2c driver and allow resource access
-  boot.kernelModules = [ "i2c-dev" "i2c-i801" ];
-  boot.kernelParams = [ "acpi_enforce_resources=lax" ];
 
 
   ############################################################
