@@ -9,7 +9,7 @@ let
   cameraBridge = pkgs.writeShellScript "howdy-camera-bridge" ''
     set -o pipefail
     export GST_PLUGIN_PATH="${libcam}/lib/gstreamer-1.0:${gst.gstreamer.out}/lib/gstreamer-1.0:${gst.gst-plugins-base}/lib/gstreamer-1.0:${gst.gst-plugins-good}/lib/gstreamer-1.0"
-    export LIBCAMERA_IPA_MODULE_PATH="${libcam}/lib/libcamera"
+    export LIBCAMERA_IPA_MODULE_PATH="${libcam}/lib/libcamera/ipa"
     ${gst.gstreamer}/bin/gst-launch-1.0 \
       libcamerasrc camera-name='${frontCam}' ! \
       videoconvert ! videoscale ! videorate ! \
