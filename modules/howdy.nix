@@ -17,16 +17,22 @@ let
   # Camera ID as reported by `cam --list` (front camera = CAMF)
   frontCam = "_SB_.PC00.I2C2.CAMF";
 
+  # GStreamer 1.26.x v4l2sink fails to negotiate with v4l2loopback 0.15.3.
+  # Workaround: pipe raw BGR frames from fdsink → ffmpeg → v4l2loopback.
   cameraBridge = pkgs.writeShellScript "howdy-camera-bridge" ''
     export GST_PLUGIN_PATH="${libcam}/lib/gstreamer-1.0:${gst.gst-plugins-base}/lib/gstreamer-1.0:${gst.gst-plugins-good}/lib/gstreamer-1.0"
     export LIBCAMERA_IPA_MODULE_PATH="${libcam}/lib/libcamera"
-    exec ${gst.gstreamer}/bin/gst-launch-1.0 \
+    ${gst.gstreamer}/bin/gst-launch-1.0 \
       libcamerasrc camera-name='${frontCam}' ! \
-      videoconvert ! \
-      videoscale ! \
-      videoconvert ! \
-      'video/x-raw,format=YUY2,width=320,height=240' ! \
-      v4l2sink device=${loopDev}
+      videoconvert ! videoscale ! videorate ! \
+      'video/x-raw,format=BGR,width=320,height=240,framerate=30/1' ! \
+      fdsink fd=1 \
+      2>/dev/null | \
+    ${pkgs.ffmpeg}/bin/ffmpeg -nostdin -loglevel error \
+      -f rawvideo -pix_fmt bgr24 -video_size 320x240 -r 30 \
+      -i pipe:0 \
+      -f v4l2 -pix_fmt yuyv422 \
+      ${loopDev}
   '';
 in
 {
