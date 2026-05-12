@@ -5,13 +5,22 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  ############################################################
+############################################################
   # Initrd / Kernel modules
   ############################################################
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" "coretemp" ];
-  boot.extraModulePackages = [ ];
+
+  # 1. Add v4l2loopback to the kernel modules to load at boot
+  boot.kernelModules = [ "kvm-intel" "coretemp" "v4l2loopback" ];
+
+  # 2. Add the actual package to the kernel's module path
+  boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+
+  # 3. Force the "Capture" capability and set the device ID
+  boot.extraModprobeConfig = ''
+    options v4l2loopback exclusive_caps=1 card_label="Surface Camera" video_nr=100
+  '';
 
   ############################################################
   # Kernel (linux-surface forced in features.nix)
