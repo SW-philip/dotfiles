@@ -91,7 +91,7 @@ let
       [[ ! -f "$ART_FILE" ]] && curl -fsSL "$ART_URL" -o "$ART_FILE"
       TMP=$(mktemp --suffix=.json)
       trap "rm -f '$TMP'" EXIT
-      jq --arg s "$ART_FILE" '.logo.source = $s' \
+      jq --arg s "$ART_FILE" '.logo.source = $s | .logo.height = 11' \
         "''${XDG_CONFIG_HOME:-$HOME/.config}/fastfetch/config.jsonc" > "$TMP"
       fastfetch --config "$TMP"
     else
