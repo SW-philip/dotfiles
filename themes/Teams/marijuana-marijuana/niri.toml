@@ -1,0 +1,13 @@
+# Niri Theme: marijuana - Marijuana
+[colors]
+background = "#6fbf4f"
+text = "#ffffff"
+cursor = "#5a9f3c"
+
+[colors.selection]
+border = "#1b6523"
+background = "#5ab63f"
+
+[colors.hints]
+start = "#4f6927"
+end = "#4b8b2d"

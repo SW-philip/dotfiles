@@ -1,0 +1,13 @@
+# Niri Theme: olive - Olive Grove Harmony
+[colors]
+background = "#3b3f31"
+text = "#ffffff"
+cursor = "#7a7d4f"
+
+[colors.selection]
+border = "#d4ebb7"
+background = "#4a4f3b"
+
+[colors.hints]
+start = "#908c65"
+end = "#9dbb77"
