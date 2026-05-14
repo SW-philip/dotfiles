@@ -92,7 +92,7 @@ in
         { type = "weather"; key = "󰖐  Weather"; location = "Philadelphia"; }
         { type = "command"; key = "󰖂  vpn"; text = "${scripts.vpn}"; }
         # --- Updated Rebuild Glyph to Hard Hat ---
-        { type = "command"; key = "󰘥  rebuild"; text = "${scripts.rebuild}"; }
+        { type = "command"; key = "󱁤 rebuild"; text = "${scripts.rebuild}"; }
         "break"
         { type = "custom"; format = "${toAnsi p.ROSE}│ 󰄨  NOW PLAYING${reset}"; }
         { type = "media"; key = "󰎈  track"; format = "{3} - {1}"; }
