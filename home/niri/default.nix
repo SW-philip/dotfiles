@@ -248,6 +248,9 @@ let
     selection-background = ${p.HIGHLIGHT_MED}
     selection-foreground = ${p.TEXT}
 
+    font-family = JetBrainsMono Nerd Font
+    font-family = Symbols Nerd Font Mono
+
     window-padding-x = 12
     window-padding-y = 8
   '';
