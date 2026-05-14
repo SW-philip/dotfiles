@@ -39,17 +39,25 @@ let
       CACHE="$HOME/.cache/sqlch/enriched.json"
       [[ ! -f "$CACHE" ]] && exit 0
       KEY="$(playerctl metadata artist 2>/dev/null)::$(playerctl metadata title 2>/dev/null)"
-      jq -r --arg k "''${KEY,,}" '.[$k] | "\(.year // "") · \(.genres | join(", "))"' "$CACHE" | sed 's/^ · //;s/null//g'
+      jq -r --arg k "''${KEY,,}" '.[$k] | "\(.year // "") · \(.genres | join(", "))"' "$CACHE" | sed 's/^ · //;s/ · $//;s/null//g'
+    '';
+
+    album = pkgs.writeShellScript "ff-album" ''
+      CACHE="$HOME/.cache/sqlch/enriched.json"
+      KEY="$(playerctl metadata artist 2>/dev/null)::$(playerctl metadata title 2>/dev/null)"
+      ALBUM=$(jq -r --arg k "''${KEY,,}" '.[$k].album // empty' "$CACHE" 2>/dev/null)
+      [[ -z "$ALBUM" ]] && ALBUM=$(playerctl metadata xesam:album 2>/dev/null)
+      echo "$ALBUM"
     '';
   };
 
   # Main Fetch Wrapper
   ff = pkgs.writeShellScriptBin "ff" ''
-    ART_URL=$(playerctl metadata mpris:artUrl 2>/dev/null || jq -r '.cover' "$HOME/.cache/sqlch/enriched.json" 2>/dev/null)
+    ART_URL=$(playerctl metadata mpris:artUrl 2>/dev/null)
     if [[ -n "$ART_URL" && "$ART_URL" != "null" ]]; then
-      PATH="$HOME/.cache/sqlch/covers/$(echo $ART_URL | md5sum | cut -f1 -d' ').jpg"
-      [[ ! -f "$PATH" ]] && curl -fsSL "$ART_URL" -o "$PATH"
-      fastfetch --logo-source "$PATH" --logo-type kitty --logo-height 20
+      ART_FILE="$HOME/.cache/sqlch/covers/$(echo "$ART_URL" | md5sum | cut -f1 -d' ').jpg"
+      [[ ! -f "$ART_FILE" ]] && curl -fsSL "$ART_URL" -o "$ART_FILE"
+      fastfetch --logo-source "$ART_FILE" --logo-type kitty --logo-height 20
     else
       fastfetch
     fi
@@ -69,7 +77,7 @@ in
         { type = "cpu"; key = "󰻠  CPU"; }
         { type = "gpu"; key = "󰾲  GPU"; }
         { type = "os"; key = "󱄅  OS"; }
-        { type = "command"; key = "🍦  Lix"; text = "${scripts.lix}"; }
+        { type = "command"; key = "🍦 Lix"; text = "${scripts.lix}"; }
         # --- Updated Kernel Glyph to Tux ---
         { type = "kernel"; key = "  Kernel"; }
         { type = "uptime"; key = "󰔛  Uptime"; }
@@ -95,7 +103,9 @@ in
         { type = "command"; key = "󱁤 rebuild"; text = "${scripts.rebuild}"; }
         "break"
         { type = "custom"; format = "${toAnsi p.ROSE}│ 󰄨  NOW PLAYING${reset}"; }
-        { type = "media"; key = "󰎈  track"; format = "{3} - {1}"; }
+        { type = "media"; key = "󰎈  title"; format = "{1}"; }
+        { type = "media"; key = "󰠃  artist"; format = "{2}"; }
+        { type = "command"; key = "󰀾  album"; text = "${scripts.album}"; }
         { type = "command"; key = "    info"; text = "${scripts.enriched}"; }
         "break"
         { type = "custom"; format = "${toAnsi p.IRIS}╰──────────────────────────────────────╯${reset}"; }
