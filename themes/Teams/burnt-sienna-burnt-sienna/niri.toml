@@ -1,0 +1,13 @@
+# Niri Theme: burnt sienna - Burnt Sienna
+[colors]
+background = "#da7d4e"
+text = "#ffffff"
+cursor = "#e4a058"
+
+[colors.selection]
+border = "#e0ff38"
+background = "#d87637"
+
+[colors.hints]
+start = "#d88b3b"
+end = "#e8b65e"

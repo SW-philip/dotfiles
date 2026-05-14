@@ -1,0 +1,13 @@
+# Niri Theme: cypress - Cypress
+[colors]
+background = "#4e7e6d"
+text = "#ffffff"
+cursor = "#699b8e"
+
+[colors.selection]
+border = "#ebfae0"
+background = "#559078"
+
+[colors.hints]
+start = "#eef1e3"
+end = "#8dbfb0"

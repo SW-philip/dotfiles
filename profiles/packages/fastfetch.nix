@@ -65,20 +65,30 @@ in
       modules = [
         { type = "title"; format = "╭───────────── {1}@{2} ─────────────╮"; color = { user = p.LOVE; host = p.IRIS; }; }
         { type = "custom"; format = "${toAnsi p.PINE}│ 󰄨  INTERIOR${reset}"; }
-        "host" "cpu" "gpu" "os"
-        { type = "command"; key = "󱄅  Lix"; text = "${scripts.lix}"; }
-        "kernel" "uptime" "packages"
-        { type = "memory"; percent.type = 3; }
-        { type = "disk"; folders = "/"; percent.type = 3; }
+        { type = "host"; key = "󰋑  Host"; }
+        { type = "cpu"; key = "󰻠  CPU"; }
+        { type = "gpu"; key = "󰾲  GPU"; }
+        { type = "os"; key = "  OS"; }
+        { type = "command"; key = "🍦  Lix"; text = "${scripts.lix}"; }
+        { type = "kernel"; key = "  Kernel"; }
+        { type = "uptime"; key = "󰔛  Uptime"; }
+        { type = "packages"; key = "󰏖  Packages"; }
+        { type = "memory"; key = "󰍛  Memory"; percent.type = 3; }
+        { type = "disk"; key = "󰋊  Disk (/)"; folders = "/"; percent.type = 3; }
       ] ++ (if config.myConfig.isDesktop then [
         { type = "disk"; key = "󱘲  srv"; folders = "/srv"; percent.type = 3; }
       ] else []) ++ [
         "break"
         { type = "custom"; format = "${toAnsi p.FOAM}│ 󰄨  EXTERIOR${reset}"; }
-        "wm" "shell" "terminal" "theme" "icons" "cursor"
+        { type = "wm"; key = "󰖲  WM"; }
+        { type = "shell"; key = "󱆃  Shell"; }
+        { type = "terminal"; key = "󰆿  Terminal"; }
+        { type = "theme"; key = "󰏘  Theme"; }
+        { type = "icons"; key = "󰀻  Icons"; }
+        { type = "cursor"; key = "󰳾  Cursor"; }
         "break"
         { type = "custom"; format = "${toAnsi p.GOLD}│ 󰄨  SIGNAL${reset}"; }
-        { type = "weather"; location = "Philadelphia"; }
+        { type = "weather"; key = "󰖐  Weather"; location = "Philadelphia"; }
         { type = "command"; key = "󰖂  vpn"; text = "${scripts.vpn}"; }
         { type = "command"; key = "󱄅  rebuild"; text = "${scripts.rebuild}"; }
         "break"

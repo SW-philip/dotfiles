@@ -1,0 +1,13 @@
+# Niri Theme: sienna - Sienna Sunrise
+[colors]
+background = "#d27e46"
+text = "#ffffff"
+cursor = "#ea9a3e"
+
+[colors.selection]
+border = "#f7d05a"
+background = "#cf792f"
+
+[colors.hints]
+start = "#e08420"
+end = "#f6c76f"
