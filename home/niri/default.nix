@@ -117,7 +117,6 @@ let
     in {
       mako       = pkgs.writeText "mako-config-${slug}"       (mkMakoConfig t.palette subtleBorder faintBorder);
       niriKdl    = pkgs.writeText "niri-config-${slug}.kdl"   (import ./config.kdl.nix { p = t.palette; inherit l; });
-      ironbarCss = pkgs.writeText "ironbar-style-${slug}.css" (import ./ironbar-style.nix t.palette);
       waybarCss  = pkgs.writeText "waybar-style-${slug}.css"  (import ../waybar/style.nix { p = t.palette; inherit l; });
       waybarSh   = pkgs.writeText "waybar-palette-${slug}.sh" t.shContent;
       nemoCss    = pkgs.writeText "nemo-gtk3-${slug}.css"     (import ../nemo/gtk3.css.nix t.palette);
@@ -420,8 +419,6 @@ let
     ''
   );
 
-  # Backward-compat cycle wrapper — kept so ironbar/waybar buttons still work
-  # while the UI for specific theme selection is being built out.
   # Cycles: main → moon → dawn → lilac-juniper → main
   toggleTheme = pkgs.writeShellScriptBin "toggle-theme" ''
     STATE="$HOME/.local/state/theme"
@@ -435,7 +432,7 @@ let
     exec set-theme "$NEXT"
   '';
 
-  # Script that symlinks the right ironbar config and switches the kanshi profile.
+  # Switches kanshi profile between dual and single monitor mode.
   # State is tracked in ~/.local/state/monitor-mode ("dual" or "single").
   toggleDisplayMode = pkgs.writeShellScriptBin "toggle-display-mode" ''
     STATE="$HOME/.local/state/monitor-mode"
@@ -443,12 +440,9 @@ let
     CURRENT=$(cat "$STATE" 2>/dev/null || echo "dual")
 
     if [ "$CURRENT" = "dual" ]; then
-      ln -sf "$HOME/.config/ironbar/config-single.toml" "$HOME/.config/ironbar/config.toml"
       kanshictl switch desktop-solo && echo "single" > "$STATE"
     else
-      ln -sf "$HOME/.config/ironbar/config-dual.toml" "$HOME/.config/ironbar/config.toml"
       kanshictl switch desktop-dual && echo "dual" > "$STATE"
-      sleep 1 && systemctl --user restart ironbar
     fi
   '';
 
@@ -556,15 +550,7 @@ in
     };
   };
 
-  ########################################
-  # Ironbar status bar
-  ########################################
-  home.packages = [ pkgs.ironbar pkgs.swaybg pkgs.cava toggleDisplayMode applyThemeScript setTheme toggleTheme sqlchPopup mprisWatch ];
-
-  # Two template configs deployed by nix; config.toml is managed by toggle-display-mode.
-  xdg.configFile."ironbar/config-dual.toml".source = ./ironbar-dual.toml;
-  xdg.configFile."ironbar/config-single.toml".source = ./ironbar-single.toml;
-
+  home.packages = [ pkgs.swaybg pkgs.cava toggleDisplayMode applyThemeScript setTheme toggleTheme sqlchPopup mprisWatch ];
 
   ########################################
   # XDG portal routing for niri — override the system niri-portals.conf
@@ -583,7 +569,7 @@ in
   '';
 
   ########################################
-  # Suppress GNOME autostart apps that duplicate custom ironbar modules
+  # Suppress GNOME autostart apps that conflict with custom bar modules
   # (blueman-applet and nm-applet autostart via GNOME XDG entries even in niri)
   ########################################
   xdg.configFile."autostart/blueman.desktop".text = "[Desktop Entry]\nHidden=true\n";
@@ -592,9 +578,7 @@ in
   ########################################
   # Kanshi — dynamic output management
   # Profiles are matched by which connectors are physically connected.
-  # Ironbar silently ignores connectors not reported by the compositor,
-  # so disabling an output here is enough — no second ironbar config needed
-  # for physical changes. The toggle script handles config swaps for manual switching.
+  # Output changes are handled by kanshi; toggle-display-mode switches profiles manually.
   ########################################
   services.kanshi = {
     enable = true;
@@ -606,7 +590,6 @@ in
             { criteria = "DP-2"; status = "enable"; mode = "1920x1080@60.000"; position = "0,0"; scale = 1.0; }
             { criteria = "DP-3"; status = "enable"; mode = "1920x1080@60.000"; position = "1920,0"; scale = 1.0; }
           ];
-          exec = [ "systemctl --user restart ironbar" ];
         };
       }
       # Desktop: manual single-monitor mode — both connected but DP-3 disabled.
@@ -618,7 +601,6 @@ in
             { criteria = "DP-2"; status = "enable"; mode = "1920x1080@60.000"; position = "0,0"; scale = 1.0; }
             { criteria = "DP-3"; status = "disable"; }
           ];
-          exec = [ "systemctl --user restart ironbar" ];
         };
       }
       # Desktop: only left monitor connected (DP-3 physically unplugged)
@@ -627,7 +609,6 @@ in
           outputs = [
             { criteria = "DP-2"; status = "enable"; mode = "1920x1080@60.000"; position = "0,0"; scale = 1.0; }
           ];
-          exec = [ "systemctl --user restart ironbar" ];
         };
       }
       # Desktop: manual single-monitor mode — DP-2 off, DP-3 as primary at 0,0
@@ -637,10 +618,9 @@ in
             { criteria = "DP-2"; status = "disable"; }
             { criteria = "DP-3"; status = "enable"; mode = "1920x1080@60.000"; position = "0,0"; scale = 1.0; }
           ];
-          exec = [ "systemctl --user restart ironbar" ];
         };
       }
-      # Surface: internal display only — waybar starts via systemd, not ironbar
+      # Surface: internal display only — waybar starts via systemd
       { profile = {
           name = "surface";
           outputs = [

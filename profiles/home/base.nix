@@ -455,7 +455,7 @@ in
     yazi = { enable = true; shellWrapperName = "yy"; };
     zoxide.enable    = true;
     fzf.enable       = true;
-    firefox.enable   = true;
+    firefox = { enable = true; configPath = ".mozilla/firefox"; };
     gpg.enable       = true;
   };
 
