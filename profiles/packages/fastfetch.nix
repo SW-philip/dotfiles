@@ -89,7 +89,11 @@ let
     if [[ -n "$ART_URL" && "$ART_URL" != "null" ]]; then
       ART_FILE="$HOME/.cache/sqlch/covers/$(echo "$ART_URL" | md5sum | cut -f1 -d' ').jpg"
       [[ ! -f "$ART_FILE" ]] && curl -fsSL "$ART_URL" -o "$ART_FILE"
-      fastfetch --logo-source "$ART_FILE" --logo-type kitty --logo-height 20
+      TMP=$(mktemp --suffix=.json)
+      trap "rm -f '$TMP'" EXIT
+      jq --arg s "$ART_FILE" '.logo.source = $s | .logo.height = 20' \
+        "''${XDG_CONFIG_HOME:-$HOME/.config}/fastfetch/config.jsonc" > "$TMP"
+      fastfetch --config "$TMP"
     else
       fastfetch
     fi
