@@ -19,7 +19,7 @@ let
   scripts = {
     vpn = pkgs.writeShellScript "ff-vpn" "systemctl is-active --quiet wg-quick-protonvpn && echo Connected || echo Off";
 
-    lix = pkgs.writeShellScript "ff-lix" "nix --version | awk '{print $NF}'";
+    lix = pkgs.writeShellScript "ff-lix" "nix --version 2>&1 | head -1 | awk '{print $NF}'";
 
     rebuild = pkgs.writeShellScript "ff-rebuild" ''
       elapsed=$(( $(date +%s) - $(stat -c %Y /run/current-system) ))
