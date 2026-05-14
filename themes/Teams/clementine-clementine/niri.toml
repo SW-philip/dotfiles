@@ -1,0 +1,13 @@
+# Niri Theme: clementine - Clementine
+[colors]
+background = "#ff6d1f"
+text = "#ffffff"
+cursor = "#ff8b42"
+
+[colors.selection]
+border = "#ffff7f"
+background = "#ff6b05"
+
+[colors.hints]
+start = "#faa247"
+end = "#ff8705"
