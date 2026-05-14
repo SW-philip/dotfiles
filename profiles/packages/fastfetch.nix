@@ -68,9 +68,9 @@ in
         { type = "host"; key = "󰋑  Host"; }
         { type = "cpu"; key = "󰻠  CPU"; }
         { type = "gpu"; key = "󰾲  GPU"; }
-        { type = "os"; key = "  OS"; }
+        { type = "os"; key = "󱄅  OS"; }
         { type = "command"; key = "🍦  Lix"; text = "${scripts.lix}"; }
-        { type = "kernel"; key = "  Kernel"; }
+        { type = "kernel"; key = "󰒏  Kernel"; }
         { type = "uptime"; key = "󰔛  Uptime"; }
         { type = "packages"; key = "󰏖  Packages"; }
         { type = "memory"; key = "󰍛  Memory"; percent.type = 3; }
@@ -90,7 +90,7 @@ in
         { type = "custom"; format = "${toAnsi p.GOLD}│ 󰄨  SIGNAL${reset}"; }
         { type = "weather"; key = "󰖐  Weather"; location = "Philadelphia"; }
         { type = "command"; key = "󰖂  vpn"; text = "${scripts.vpn}"; }
-        { type = "command"; key = "󱄅  rebuild"; text = "${scripts.rebuild}"; }
+        { type = "command"; key = "󱅵  rebuild"; text = "${scripts.rebuild}"; }
         "break"
         { type = "custom"; format = "${toAnsi p.ROSE}│ 󰄨  NOW PLAYING${reset}"; }
         { type = "media"; key = "󰎈  track"; format = "{3} - {1}"; }

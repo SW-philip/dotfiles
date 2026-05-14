@@ -126,6 +126,7 @@
     noto-fonts-color-emoji
     nerd-fonts.hack
     nerd-fonts.jetbrains-mono
+    nerd-fonts.symbols-only
   ];
 
   ############################################################
