@@ -80,6 +80,12 @@ let
   # Main Fetch Wrapper
   ff = pkgs.writeShellScriptBin "ff" ''
     ART_URL=$(playerctl --ignore-player=sqlch metadata mpris:artUrl 2>/dev/null)
+    # Fallback: look up cover from enriched cache (covers streams that don't expose artUrl)
+    if [[ -z "$ART_URL" || "$ART_URL" == "null" ]]; then
+      mapfile -t NP < <(${scripts.npArtistTitle})
+      KEY="''${NP[0],,}::''${NP[1],,}"
+      ART_URL=$(jq -r --arg k "$KEY" '.[$k].cover // empty' "$HOME/.cache/sqlch/enriched.json" 2>/dev/null)
+    fi
     if [[ -n "$ART_URL" && "$ART_URL" != "null" ]]; then
       ART_FILE="$HOME/.cache/sqlch/covers/$(echo "$ART_URL" | md5sum | cut -f1 -d' ').jpg"
       [[ ! -f "$ART_FILE" ]] && curl -fsSL "$ART_URL" -o "$ART_FILE"
