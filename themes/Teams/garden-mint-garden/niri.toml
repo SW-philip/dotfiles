@@ -1,0 +1,13 @@
+# Niri Theme: garden - Mint Garden
+[colors]
+background = "#c3f4eb"
+text = "#1a1a1a"
+cursor = "#45d3b7"
+
+[colors.selection]
+border = "#256792"
+background = "#acf1e9"
+
+[colors.hints]
+start = "#83d295"
+end = "#7cc5be"
