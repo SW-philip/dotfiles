@@ -1,0 +1,13 @@
+# Niri Theme: Philadelphia Eagles
+[colors]
+background = "#000000"
+text = "#ffffff"
+cursor = "#00bcd7"
+
+[colors.selection]
+border = "#007ff5"
+background = "#0d0c0d"
+
+[colors.hints]
+start = "#2cf381"
+end = "#c0cdd1"

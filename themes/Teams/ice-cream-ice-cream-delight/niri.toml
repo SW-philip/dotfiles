@@ -1,0 +1,13 @@
+# Niri Theme: ice cream - Ice Cream Delight
+[colors]
+background = "#f9c8d4"
+text = "#1a1a1a"
+cursor = "#f4bf52"
+
+[colors.selection]
+border = "#5cb4ff"
+background = "#f7b0bd"
+
+[colors.hints]
+start = "#ffa95c"
+end = "#f4d739"

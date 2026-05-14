@@ -1,0 +1,13 @@
+# Niri Theme: Philadelphia Phillies
+[colors]
+background = "#002D72"
+text = "#ffffff"
+cursor = "#1874ff"
+
+[colors.selection]
+border = "#4048f5"
+background = "#003f8c"
+
+[colors.hints]
+start = "#e48882"
+end = "#7691d2"

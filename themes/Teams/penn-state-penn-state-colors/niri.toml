@@ -1,0 +1,13 @@
+# Niri Theme: penn state - Penn State Colors
+[colors]
+background = "#2b2e6e"
+text = "#ffffff"
+cursor = "#4c5d9a"
+
+[colors.selection]
+border = "#f3f2f7"
+background = "#303982"
+
+[colors.hints]
+start = "#8465aa"
+end = "#7c90bb"

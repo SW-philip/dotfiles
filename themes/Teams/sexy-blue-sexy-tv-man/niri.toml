@@ -1,0 +1,13 @@
+# Niri Theme: sexy - Blue Sexy TV Man
+[colors]
+background = "#1a9bdb"
+text = "#ffffff"
+cursor = "#51b2dc"
+
+[colors.selection]
+border = "#eaf301"
+background = "#27b3e8"
+
+[colors.hints]
+start = "#0d00f5"
+end = "#506e91"

@@ -1,0 +1,35 @@
+/* Wofi Theme: tottenham - Tottenham Tide */
+window {
+  background-color: #1d4e72;
+}
+
+#entry {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #1d4e72;
+  color: #ffffff;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+}
+
+#entry:selected {
+  background-color: #2b84c6;
+  color: #cbe80d;
+}
+
+#input {
+  background-color: #1d4e72;
+  color: #ffffff;
+  border: 2px solid #cbe80d;
+  padding: 6px;
+  margin: 5px;
+}
+
+#text {
+  color: #ffffff;
+}
+
+#text:selected {
+  color: #cbe80d;
+}

@@ -1,0 +1,13 @@
+# Niri Theme: rainstorm - Brainstorm
+[colors]
+background = "#1f8fff"
+text = "#ffffff"
+cursor = "#32cd32"
+
+[colors.selection]
+border = "#bc6cdf"
+background = "#39a8ff"
+
+[colors.hints]
+start = "#fa6f2e"
+end = "#ffcc00"

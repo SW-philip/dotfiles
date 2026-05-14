@@ -1,0 +1,13 @@
+# Niri Theme: woodstock - Woodstock 1994
+[colors]
+background = "#d1a65c"
+text = "#1a1a1a"
+cursor = "#e2ba6a"
+
+[colors.selection]
+border = "#af7522"
+background = "#cea446"
+
+[colors.hints]
+start = "#ca6c20"
+end = "#f7a212"

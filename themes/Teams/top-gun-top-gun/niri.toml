@@ -1,0 +1,13 @@
+# Niri Theme: top gun - Top Gun
+[colors]
+background = "#1d3f72"
+text = "#ffffff"
+cursor = "#3b5b9b"
+
+[colors.selection]
+border = "#f3d2a0"
+background = "#205088"
+
+[colors.hints]
+start = "#724db2"
+end = "#5f7fa5"

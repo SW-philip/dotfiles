@@ -1,0 +1,35 @@
+/* Wofi Theme: ocean - Midnight Ocean */
+window {
+  background-color: #50437a;
+}
+
+#entry {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #50437a;
+  color: #ffffff;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+}
+
+#entry:selected {
+  background-color: #7b69b5;
+  color: #58d251;
+}
+
+#input {
+  background-color: #50437a;
+  color: #ffffff;
+  border: 2px solid #58d251;
+  padding: 6px;
+  margin: 5px;
+}
+
+#text {
+  color: #ffffff;
+}
+
+#text:selected {
+  color: #58d251;
+}

@@ -1,0 +1,13 @@
+# Niri Theme: Philadelphia Flyers
+[colors]
+background = "#000000"
+text = "#ffffff"
+cursor = "#fa4616"
+
+[colors.selection]
+border = "#f1a43e"
+background = "#0d0c0d"
+
+[colors.hints]
+start = "#eb8855"
+end = "#dab3a4"

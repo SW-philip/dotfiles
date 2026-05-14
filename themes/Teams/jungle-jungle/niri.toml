@@ -1,0 +1,13 @@
+# Niri Theme: jungle - Jungle
+[colors]
+background = "#4cae4f"
+text = "#ffffff"
+cursor = "#8bc34b"
+
+[colors.selection]
+border = "#e3ff05"
+background = "#429e4a"
+
+[colors.hints]
+start = "#f9cc1a"
+end = "#cbdc38"

@@ -1,0 +1,13 @@
+# Niri Theme: dark - Dark Academia
+[colors]
+background = "#3c2a30"
+text = "#ffffff"
+cursor = "#a0716e"
+
+[colors.selection]
+border = "#e9ecd0"
+background = "#4c333d"
+
+[colors.hints]
+start = "#d2cac1"
+end = "#79676c"

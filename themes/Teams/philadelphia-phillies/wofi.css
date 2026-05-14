@@ -1,0 +1,35 @@
+/* Wofi Theme: Philadelphia Phillies */
+window {
+  background-color: #002D72;
+}
+
+#entry {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #002D72;
+  color: #ffffff;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+}
+
+#entry:selected {
+  background-color: #0054d4;
+  color: #94d800;
+}
+
+#input {
+  background-color: #002D72;
+  color: #ffffff;
+  border: 2px solid #94d800;
+  padding: 6px;
+  margin: 5px;
+}
+
+#text {
+  color: #ffffff;
+}
+
+#text:selected {
+  color: #94d800;
+}
