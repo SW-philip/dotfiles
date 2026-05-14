@@ -70,7 +70,8 @@ in
         { type = "gpu"; key = "󰾲  GPU"; }
         { type = "os"; key = "󱄅  OS"; }
         { type = "command"; key = "🍦  Lix"; text = "${scripts.lix}"; }
-        { type = "kernel"; key = "󰒏  Kernel"; }
+        # --- Updated Kernel Glyph to Tux ---
+        { type = "kernel"; key = "  Kernel"; }
         { type = "uptime"; key = "󰔛  Uptime"; }
         { type = "packages"; key = "󰏖  Packages"; }
         { type = "memory"; key = "󰍛  Memory"; percent.type = 3; }
@@ -90,11 +91,12 @@ in
         { type = "custom"; format = "${toAnsi p.GOLD}│ 󰄨  SIGNAL${reset}"; }
         { type = "weather"; key = "󰖐  Weather"; location = "Philadelphia"; }
         { type = "command"; key = "󰖂  vpn"; text = "${scripts.vpn}"; }
-        { type = "command"; key = "󱅵  rebuild"; text = "${scripts.rebuild}"; }
+        # --- Updated Rebuild Glyph to Hard Hat ---
+        { type = "command"; key = "󰘥  rebuild"; text = "${scripts.rebuild}"; }
         "break"
         { type = "custom"; format = "${toAnsi p.ROSE}│ 󰄨  NOW PLAYING${reset}"; }
         { type = "media"; key = "󰎈  track"; format = "{3} - {1}"; }
-        { type = "command"; key = "   info"; text = "${scripts.enriched}"; }
+        { type = "command"; key = "    info"; text = "${scripts.enriched}"; }
         "break"
         { type = "custom"; format = "${toAnsi p.IRIS}╰──────────────────────────────────────╯${reset}"; }
         { type = "custom"; format = "  ${toAnsi p.LOVE}▄▄${toAnsi p.ROSE}▄▄${toAnsi p.GOLD}▄▄${toAnsi p.PINE}▄▄${toAnsi p.FOAM}▄▄${toAnsi p.IRIS}▄▄${reset}"; }
