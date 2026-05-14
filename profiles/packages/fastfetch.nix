@@ -35,25 +35,51 @@ let
       (( days >= 14 )) && echo "''${days}d (stale)" || ((( days >= 7 )) && echo "''${days}d (aging)" || echo "''${days}d (fresh)")
     '';
 
+    # Resolve artist + title from the active player (excluding sqlch db cache).
+    # Streams report "Artist - Title" as a combined xesam:title with no xesam:artist —
+    # detect and split on " - " as a fallback.
+    npArtistTitle = pkgs.writeShellScript "ff-np-resolve" ''
+      TITLE=$(playerctl --ignore-player=sqlch metadata xesam:title 2>/dev/null)
+      ARTIST=$(playerctl --ignore-player=sqlch metadata xesam:artist 2>/dev/null)
+      if [[ -z "$ARTIST" && "$TITLE" =~ " - " ]]; then
+        ARTIST="''${TITLE%% - *}"
+        TITLE="''${TITLE#* - }"
+      fi
+      echo "$ARTIST"
+      echo "$TITLE"
+    '';
+
+    nowTitle = pkgs.writeShellScript "ff-np-title" ''
+      mapfile -t NP < <(${scripts.npArtistTitle})
+      echo "''${NP[1]}"
+    '';
+
+    nowArtist = pkgs.writeShellScript "ff-np-artist" ''
+      mapfile -t NP < <(${scripts.npArtistTitle})
+      echo "''${NP[0]}"
+    '';
+
     enriched = pkgs.writeShellScript "ff-mpris-enriched" ''
       CACHE="$HOME/.cache/sqlch/enriched.json"
       [[ ! -f "$CACHE" ]] && exit 0
-      KEY="$(playerctl metadata artist 2>/dev/null)::$(playerctl metadata title 2>/dev/null)"
-      jq -r --arg k "''${KEY,,}" '.[$k] | "\(.year // "") · \(.genres | join(", "))"' "$CACHE" | sed 's/^ · //;s/ · $//;s/null//g'
+      mapfile -t NP < <(${scripts.npArtistTitle})
+      KEY="''${NP[0],,}::''${NP[1],,}"
+      jq -r --arg k "$KEY" '.[$k] | "\(.year // "") · \(.genres | join(", "))"' "$CACHE" | sed 's/^ · //;s/ · $//;s/null//g'
     '';
 
     album = pkgs.writeShellScript "ff-album" ''
       CACHE="$HOME/.cache/sqlch/enriched.json"
-      KEY="$(playerctl metadata artist 2>/dev/null)::$(playerctl metadata title 2>/dev/null)"
-      ALBUM=$(jq -r --arg k "''${KEY,,}" '.[$k].album // empty' "$CACHE" 2>/dev/null)
-      [[ -z "$ALBUM" ]] && ALBUM=$(playerctl metadata xesam:album 2>/dev/null)
+      mapfile -t NP < <(${scripts.npArtistTitle})
+      KEY="''${NP[0],,}::''${NP[1],,}"
+      ALBUM=$(jq -r --arg k "$KEY" '.[$k].album // empty' "$CACHE" 2>/dev/null)
+      [[ -z "$ALBUM" ]] && ALBUM=$(playerctl --ignore-player=sqlch metadata xesam:album 2>/dev/null)
       echo "$ALBUM"
     '';
   };
 
   # Main Fetch Wrapper
   ff = pkgs.writeShellScriptBin "ff" ''
-    ART_URL=$(playerctl metadata mpris:artUrl 2>/dev/null)
+    ART_URL=$(playerctl --ignore-player=sqlch metadata mpris:artUrl 2>/dev/null)
     if [[ -n "$ART_URL" && "$ART_URL" != "null" ]]; then
       ART_FILE="$HOME/.cache/sqlch/covers/$(echo "$ART_URL" | md5sum | cut -f1 -d' ').jpg"
       [[ ! -f "$ART_FILE" ]] && curl -fsSL "$ART_URL" -o "$ART_FILE"
@@ -103,8 +129,8 @@ in
         { type = "command"; key = "󱁤 rebuild"; text = "${scripts.rebuild}"; }
         "break"
         { type = "custom"; format = "${toAnsi p.ROSE}│ 󰄨  NOW PLAYING${reset}"; }
-        { type = "media"; key = "󰎈  title"; format = "{1}"; }
-        { type = "media"; key = "󰠃  artist"; format = "{2}"; }
+        { type = "command"; key = "󰎈  title"; text = "${scripts.nowTitle}"; }
+        { type = "command"; key = "󰠃  artist"; text = "${scripts.nowArtist}"; }
         { type = "command"; key = "󰀾  album"; text = "${scripts.album}"; }
         { type = "command"; key = "    info"; text = "${scripts.enriched}"; }
         "break"
