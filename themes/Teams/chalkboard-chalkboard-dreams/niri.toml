@@ -1,0 +1,13 @@
+# Niri Theme: chalkboard - Chalkboard Dreams
+[colors]
+background = "#1d1f2a"
+text = "#ffffff"
+cursor = "#5b668a"
+
+[colors.selection]
+border = "#c1bcd7"
+background = "#262b3a"
+
+[colors.hints]
+start = "#837599"
+end = "#8291ab"
