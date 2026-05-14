@@ -42,7 +42,7 @@ let
 
           p = import "${dir}/${nixName}";
         in {
-          inherit family slug wallpaper;
+          inherit family slug wallpaper dir;
           palette   = p;
           shContent = builtins.readFile "${dir}/${shName}";
           # isLight explicit wins; fall back to FONT_SIZE_BAR heuristic ("13px" = light)
@@ -106,6 +106,38 @@ let
     invisible=1
   '';
 
+  # ── Per-theme fastfetch logo (color-injected cone PNG) ───────────────────
+  mkFastfetchLogo = t:
+    let
+      p            = t.palette;
+      iceDefault   = p.BASE  or "#1a1830";
+      iceMid       = p.LOVE  or (p.IRIS  or "#b55690");
+      iceHighlight = p.FOAM  or (p.IRIS  or "#d162a4");
+      hasOverrides = builtins.pathExists "${t.dir}/wallpaper-colors.sh";
+    in pkgs.runCommand "fastfetch-logo-${t.slug}.png" {
+      nativeBuildInputs = [ pkgs.librsvg ];
+    } ''
+      cp ${../../assets/just-the-cone-web.svg} cone.svg
+
+      ICE_SHADOW="${iceDefault}"
+      ICE_MID="${iceMid}"
+      ICE_HIGHLIGHT="${iceHighlight}"
+      CONE_SHADOW="#F38D30"
+      CONE_MID="#F9A454"
+
+      ${lib.optionalString hasOverrides "source ${t.dir}/wallpaper-colors.sh"}
+
+      sed -i \
+        "s|#a30262|''${ICE_SHADOW}|g; \
+         s|#b55690|''${ICE_MID}|g; \
+         s|#d162a4|''${ICE_HIGHLIGHT}|g; \
+         s|#ef7627|''${CONE_SHADOW}|g; \
+         s|#ff9a56|''${CONE_MID}|g" \
+        cone.svg
+
+      rsvg-convert -w 280 cone.svg -o $out
+    '';
+
   # ── Per-theme derivations — generated from allThemes ─────────────────────
   themeConfigs = lib.mapAttrs (slug: t:
     let
@@ -127,6 +159,7 @@ let
       ghostty       = pkgs.writeText "ghostty-config-${slug}"    (mkGhosttyConfig t.palette);
       pandora       = pkgs.writeText "pandora-${slug}.kdl"       (mkPandoraCfg wallpaper);
       wallpaperPath = wallpaper;
+      fastfetchLogo = mkFastfetchLogo t;
     }
   ) allThemes;
 
@@ -354,6 +387,7 @@ let
           WLEAVE_CSS="${cfgs.wleaveCss}"
           CAVA_CFG="${cfgs.cava}"
           GHOSTTY_CFG="${cfgs.ghostty}"
+          FASTFETCH_LOGO="${cfgs.fastfetchLogo}"
           ;;
       '') themeConfigs)
     + ''
@@ -383,6 +417,8 @@ let
       cp "$GHOSTTY_CFG" "$HOME/.config/ghostty/config"
       mkdir -p "$HOME/.config/wleave"
       cp "$WLEAVE_CSS" "$HOME/.config/wleave/style.css"
+      mkdir -p "$HOME/.local/share/fastfetch"
+      ln -sf "$FASTFETCH_LOGO" "$HOME/.local/share/fastfetch/logo.png"
       echo "apply-theme: applied ''${THEME}"
     ''
   );

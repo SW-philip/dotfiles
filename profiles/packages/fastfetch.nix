@@ -15,16 +15,11 @@ let
   in "${esc}[38;2;${r};${g};${b}m";
   reset = "${esc}[0m";
 
-  # Build the Sticker Logo
-  lixConePng = pkgs.runCommand "lix-cone-sticker.png" { nativeBuildInputs = [ pkgs.librsvg pkgs.imagemagick ]; } ''
-    sed 's/fill="#000000"/fill="none"/g' ${../../assets/lixnowords.svg} > cone.svg
-    rsvg-convert -w 300 -h 300 cone.svg -o cone.png
-    magick cone.png \( +clone -alpha extract -morphology Dilate Disk:10 -background white -alpha shape \) -compose DstOver -composite $out
-  '';
-
   # Condensed Scripts
   scripts = {
     vpn = pkgs.writeShellScript "ff-vpn" "systemctl is-active --quiet wg-quick-protonvpn && echo Connected || echo Off";
+
+    lix = pkgs.writeShellScript "ff-lix" "nix --version | awk '{print $NF}'";
 
     rebuild = pkgs.writeShellScript "ff-rebuild" ''
       elapsed=$(( $(date +%s) - $(stat -c %Y /run/current-system) ))
@@ -57,12 +52,14 @@ in
   programs.fastfetch = {
     enable = true;
     settings = {
-      logo = { source = "${lixConePng}"; type = "kitty"; width = 22; height = 12; padding = { right = 4; top = 6; }; };
+      logo = { source = "${config.home.homeDirectory}/.local/share/fastfetch/logo.png"; type = "kitty"; width = 22; height = 16; padding = { right = 4; top = 2; }; };
       display = { separator = "  "; key.width = 13; color.keys = p.IRIS; };
       modules = [
         { type = "title"; format = "╭───────────── {1}@{2} ─────────────╮"; color = { user = p.LOVE; host = p.IRIS; }; }
         { type = "custom"; format = "${toAnsi p.PINE}│ 󰄨  INTERIOR${reset}"; }
-        "host" "cpu" "gpu" "os" "kernel" "uptime" "packages"
+        "host" "cpu" "gpu" "os"
+        { type = "command"; key = "󱄅  Lix"; text = "${scripts.lix}"; }
+        "kernel" "uptime" "packages"
         { type = "memory"; percent.type = 3; }
         { type = "disk"; folders = "/"; percent.type = 3; }
         "break"

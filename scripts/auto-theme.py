@@ -1027,6 +1027,8 @@ def write_nemo(path: Path, p: dict, name: str):
 @define-color nemo_pine {p['PINE']};
 @define-color nemo_foam {p['FOAM']};
 @define-color nemo_critical {p['CRITICAL']};
+@define-color nemo_hl_low {p['HIGHLIGHT_LOW']};
+@define-color nemo_hl_med {p['HIGHLIGHT_MED']};
 
 /* 2. Main Window */
 .nemo-window {{
@@ -1149,6 +1151,172 @@ def write_nemo(path: Path, p: dict, name: str):
 
 .nemo-window scrollbar slider:active {{
     background-color: @nemo_love !important;
+}}
+
+/* ═══════════════════════════════════════════════════════════
+ * Deluge — same palette, broad selectors (no app CSS class)
+ * ═══════════════════════════════════════════════════════════ */
+
+window {{
+    background-color: @nemo_base_bg;
+    color: @nemo_text;
+}}
+
+treeview {{
+    background-color: @nemo_base_bg;
+    color: @nemo_text;
+}}
+
+treeview row:hover {{
+    background-color: @nemo_hl_low;
+}}
+
+treeview row:selected,
+treeview row:selected:focus {{
+    background-color: alpha(@nemo_iris, 0.25);
+    color: @nemo_text;
+}}
+
+treeview header button {{
+    background-color: @nemo_surface_bg;
+    color: @nemo_subtle;
+    border-right: 1px solid @nemo_overlay_bg;
+    border-bottom: 1px solid @nemo_overlay_bg;
+    padding: 3px 6px;
+}}
+
+treeview header button:hover {{
+    background-color: @nemo_overlay_bg;
+    color: @nemo_text;
+}}
+
+/* Download/upload progress bars in torrent list cells */
+progressbar trough {{
+    background-color: @nemo_overlay_bg;
+    border-radius: 3px;
+    min-height: 6px;
+}}
+
+progressbar progress {{
+    background-color: @nemo_pine;
+    border-radius: 3px;
+}}
+
+/* Detail tabs: Files / Peers / Trackers / Options */
+notebook > header {{
+    background-color: @nemo_surface_bg;
+    border-bottom: 1px solid @nemo_overlay_bg;
+}}
+
+notebook > header > tabs > tab {{
+    color: @nemo_muted;
+    padding: 4px 12px;
+    border-radius: 5px 5px 0 0;
+}}
+
+notebook > header > tabs > tab:hover {{
+    color: @nemo_subtle;
+    background-color: alpha(@nemo_overlay_bg, 0.5);
+}}
+
+notebook > header > tabs > tab:checked {{
+    background-color: @nemo_base_bg;
+    color: @nemo_iris;
+    border-bottom: 2px solid @nemo_iris;
+}}
+
+/* Toolbar: Add / Remove / Pause / Resume buttons */
+toolbar {{
+    background-color: @nemo_surface_bg;
+    border-bottom: 1px solid @nemo_overlay_bg;
+    padding: 2px;
+}}
+
+toolbar button {{
+    color: @nemo_subtle;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}}
+
+toolbar button:hover {{
+    color: @nemo_text;
+    background-color: @nemo_overlay_bg;
+}}
+
+toolbar button:active,
+toolbar button:checked {{
+    background-color: alpha(@nemo_iris, 0.2);
+    color: @nemo_iris;
+}}
+
+statusbar {{
+    background-color: @nemo_surface_bg;
+    border-top: 1px solid @nemo_overlay_bg;
+    color: @nemo_muted;
+    font-size: 11px;
+    padding: 2px 8px;
+}}
+
+entry {{
+    background-color: @nemo_surface_bg;
+    color: @nemo_text;
+    border: 1px solid @nemo_overlay_bg;
+    border-radius: 4px;
+    padding: 3px 6px;
+}}
+
+entry:focus {{
+    border-color: @nemo_iris;
+}}
+
+menu {{
+    background-color: @nemo_surface_bg;
+    border: 1px solid @nemo_overlay_bg;
+    border-radius: 6px;
+    padding: 4px;
+}}
+
+menu > menuitem {{
+    border-radius: 4px;
+    color: @nemo_text;
+    padding: 3px 10px;
+}}
+
+menu > menuitem:hover {{
+    background-color: alpha(@nemo_iris, 0.2);
+    color: @nemo_text;
+}}
+
+menu > separator {{
+    background-color: @nemo_overlay_bg;
+    margin: 4px 8px;
+}}
+
+scrollbar {{
+    background-color: transparent;
+}}
+
+scrollbar slider {{
+    background-color: @nemo_overlay_bg;
+    border-radius: 4px;
+    min-width: 6px;
+    min-height: 6px;
+}}
+
+scrollbar slider:hover {{
+    background-color: @nemo_subtle;
+}}
+
+tooltip {{
+    background-color: @nemo_surface_bg;
+    border: 1px solid @nemo_overlay_bg;
+    border-radius: 6px;
+    color: @nemo_text;
+}}
+
+tooltip * {{
+    color: @nemo_text;
 }}
 """
     path.write_text(content)
@@ -1458,6 +1626,15 @@ def activate_theme(slug: str, theme_dir: Path) -> None:
         shutil.copy2(ghostty_src, ghostty_dst)
         subprocess.run(["pkill", "-SIGUSR2", "ghostty"], capture_output=True)
         print("  → Ghostty theme applied (new windows pick it up immediately)")
+
+    # ── GTK3 (Nemo + Deluge) ─────────────────────────────────────────────────
+    nemo_css_src = theme_dir / "nemo.css"
+    gtk3_css_dst = Path.home() / ".config/gtk-3.0/gtk.css"
+    if nemo_css_src.exists():
+        gtk3_css_dst.parent.mkdir(parents=True, exist_ok=True)
+        gtk3_css_dst.unlink(missing_ok=True)
+        shutil.copy2(nemo_css_src, gtk3_css_dst)
+        print("  → GTK3 theme applied (Nemo + Deluge; restart apps to pick up)")
 
     # ── wleave ────────────────────────────────────────────────────────────────
     wleave_css_src = theme_dir / "wleave.css"
