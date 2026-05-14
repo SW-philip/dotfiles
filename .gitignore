@@ -1,0 +1,14 @@
+# Nix build artifacts
+result
+result-*
+
+# VM disk images
+*.qcow2
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Theme wallpapers and generated team themes (stay on disk, not in git)
+themes/**/wallpaper-*.png
+themes/Teams/
