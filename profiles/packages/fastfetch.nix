@@ -17,7 +17,15 @@ let
 
   # Condensed Scripts
   scripts = {
-    vpn = pkgs.writeShellScript "ff-vpn" "systemctl is-active --quiet wg-quick-protonvpn && echo Connected || echo Off";
+    vpn = pkgs.writeShellScript "ff-vpn" ''
+      iface=$(ip link show type wireguard 2>/dev/null | grep -oP '(?<=\d: )protonvpn-\S+(?=:)' | head -1)
+      if [[ -n "$iface" ]]; then
+        region=$(echo "''${iface#protonvpn-}" | tr '[:lower:]' '[:upper:]')
+        echo "On ($region)"
+      else
+        echo "Off"
+      fi
+    '';
 
     lix = pkgs.writeShellScript "ff-lix" "nix --version 2>&1 | head -1 | awk '{print $NF}'";
 
@@ -62,6 +70,9 @@ in
         "kernel" "uptime" "packages"
         { type = "memory"; percent.type = 3; }
         { type = "disk"; folders = "/"; percent.type = 3; }
+      ] ++ (if config.myConfig.isDesktop then [
+        { type = "disk"; key = "󱘲  srv"; folders = "/srv"; percent.type = 3; }
+      ] else []) ++ [
         "break"
         { type = "custom"; format = "${toAnsi p.FOAM}│ 󰄨  EXTERIOR${reset}"; }
         "wm" "shell" "terminal" "theme" "icons" "cursor"
