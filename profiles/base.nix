@@ -7,6 +7,8 @@
     default     = "prepko";
     description = "Primary user account name, used wherever a literal username is needed.";
   };
+
+  config = {
   ############################################################
   # Documentation
   ############################################################
@@ -187,4 +189,5 @@
   };
 
   hardware.enableRedistributableFirmware = true;
+  }; # end config
 }
