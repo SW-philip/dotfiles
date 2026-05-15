@@ -168,7 +168,7 @@ let
   # swaybg launcher — reads wallpaper path from state file so the
   # systemd service can be restarted with a new image without changing the unit.
   # Uses output '*' to cover all connected outputs (works for both single eDP-1
-  # and dual DP-2/DP-3 setups).
+  # and dual DP-4/DP-3 setups).
   swaybgLauncher = pkgs.writeShellScript "swaybg-launcher" ''
     exec ${pkgs.swaybg}/bin/swaybg -o '*' -i "$(cat "$HOME/.local/state/wallpaper")" -m fill
   '';
@@ -179,7 +179,7 @@ let
           image "${wallpaper}"
           mode "scroll-vertical"
       }
-      output "DP-2" {
+      output "DP-4" {
           image "${wallpaper}"
           mode "scroll-vertical"
       }
@@ -626,7 +626,7 @@ in
       { profile = {
           name = "desktop-dual";
           outputs = [
-            { criteria = "DP-2"; status = "enable"; mode = "1920x1080@60.000"; position = "0,0"; scale = 1.0; }
+            { criteria = "DP-4"; status = "enable"; mode = "1920x1080@60.000"; position = "0,0"; scale = 1.0; }
             { criteria = "DP-3"; status = "enable"; mode = "1920x1080@60.000"; position = "1920,0"; scale = 1.0; }
           ];
         };
@@ -637,7 +637,7 @@ in
       { profile = {
           name = "desktop-solo";
           outputs = [
-            { criteria = "DP-2"; status = "enable"; mode = "1920x1080@60.000"; position = "0,0"; scale = 1.0; }
+            { criteria = "DP-4"; status = "enable"; mode = "1920x1080@60.000"; position = "0,0"; scale = 1.0; }
             { criteria = "DP-3"; status = "disable"; }
           ];
         };
@@ -646,15 +646,15 @@ in
       { profile = {
           name = "desktop-single";
           outputs = [
-            { criteria = "DP-2"; status = "enable"; mode = "1920x1080@60.000"; position = "0,0"; scale = 1.0; }
+            { criteria = "DP-4"; status = "enable"; mode = "1920x1080@60.000"; position = "0,0"; scale = 1.0; }
           ];
         };
       }
-      # Desktop: manual single-monitor mode — DP-2 off, DP-3 as primary at 0,0
+      # Desktop: manual single-monitor mode — DP-4 off, DP-3 as primary at 0,0
       { profile = {
           name = "desktop-single-dp3";
           outputs = [
-            { criteria = "DP-2"; status = "disable"; }
+            { criteria = "DP-4"; status = "disable"; }
             { criteria = "DP-3"; status = "enable"; mode = "1920x1080@60.000"; position = "0,0"; scale = 1.0; }
           ];
         };

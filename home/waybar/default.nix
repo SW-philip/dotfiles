@@ -68,7 +68,7 @@ in
         name = "top-left";
         layer = "top";
         position = "top";
-        output = "DP-2";
+        output = "DP-4";
         height = 46;
         modules-left   = [ "niri/workspaces" ];
         modules-center = [ "custom/clock" "custom/weather" ];
@@ -78,7 +78,7 @@ in
         name = "bottom-left";
         layer = "top";
         position = "bottom";
-        output = "DP-2";
+        output = "DP-4";
         height = 46;
         modules-left   = [ "group/system-stats" "group/storage" ];
         modules-right  = [ "group/toggles" "group/actions" ];

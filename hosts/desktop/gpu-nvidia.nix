@@ -1,5 +1,5 @@
 # hosts/desktop/gpu-nvidia.nix
-# NVIDIA GTX 1660 drives both DP-2 and DP-3. Intel iGPU (card1) has no
+# NVIDIA GTX 1660 drives both DP-4 and DP-3. Intel iGPU (card1) has no
 # connected displays and is used solely for VA-API hardware decode.
 # No PRIME offload — NVIDIA is the uncontested KMS master for its card.
 { config, pkgs, lib, ... }:

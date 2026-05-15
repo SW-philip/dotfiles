@@ -42,7 +42,7 @@ output "DP-3" {
     position x=1920 y=0
     scale 1.0
 }
-output "DP-2" {
+output "DP-4" {
     mode "1920x1080@60.000"
     position x=0 y=0
     scale 1.0
@@ -121,14 +121,14 @@ animations {
 }
 
 // ── Window rules ──────────────────────────────────────────
-// Lock windows to the right side of the left monitor (DP-2)
+// Lock windows to the right side of the left monitor (DP-4)
 window-rule {
     match on-output="eDP-1"
     window-column-alignment "center"
 }
 
 window-rule {
-    match on-output="DP-2"
+    match on-output="DP-4"
     window-column-alignment "end"
 }
 

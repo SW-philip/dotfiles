@@ -10,7 +10,7 @@
 
   # Hyprland monitor layout – stored under $XDG_CONFIG_HOME/hypr/monitor.conf
   xdg.configFile."hypr/monitor.conf".text = ''
-    monitor = DP-2, 1920x1080@60, 0x0, 1.0
+    monitor = DP-4, 1920x1080@60, 0x0, 1.0
     monitor = DP-3, 1920x1080@60, 1920x0, 1.0
     monitor = eDP-1, disabled
     monitor = , preferred, auto, 1
