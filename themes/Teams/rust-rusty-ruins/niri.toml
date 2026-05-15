@@ -1,0 +1,13 @@
+# Niri Theme: rust - Rusty Ruins
+[colors]
+background = "#6a4e4e"
+text = "#ffffff"
+cursor = "#b34d4d"
+
+[colors.selection]
+border = "#f7f6e3"
+background = "#7b5759"
+
+[colors.hints]
+start = "#e8b283"
+end = "#e69c5c"

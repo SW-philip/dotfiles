@@ -53,8 +53,8 @@
   ############################################################
   # RGB & Hardware Control (desktop only — Surface has no RGB)
   ############################################################
-  services.hardware.openrgb.enable = true;
-  services.hardware.openrgb.motherboard = "intel";
+  # services.hardware.openrgb.enable = true;
+  # services.hardware.openrgb.motherboard = "intel";
   hardware.i2c.enable = true;
   boot.kernelModules = [ "i2c-dev" "i2c-i801" ];
   boot.kernelParams = [ "acpi_enforce_resources=lax" ];

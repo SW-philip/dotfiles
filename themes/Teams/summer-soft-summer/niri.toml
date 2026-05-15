@@ -1,0 +1,13 @@
+# Niri Theme: summer - Soft Summer
+[colors]
+background = "#a9d9ea"
+text = "#1a1a1a"
+cursor = "#f06666"
+
+[colors.selection]
+border = "#effa52"
+background = "#93cce6"
+
+[colors.hints]
+start = "#ebad32"
+end = "#f4c652"

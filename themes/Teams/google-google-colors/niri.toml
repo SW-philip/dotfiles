@@ -1,0 +1,13 @@
+# Niri Theme: google - Google Colors
+[colors]
+background = "#4387f4"
+text = "#ffffff"
+cursor = "#34a853"
+
+[colors.selection]
+border = "#f3f2f7"
+background = "#599ff7"
+
+[colors.hints]
+start = "#f6b832"
+end = "#fbbd04"
