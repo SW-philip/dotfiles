@@ -27,7 +27,7 @@ in
     networking.firewall.trustedInterfaces = names;
 
     security.sudo.extraRules = [{
-      users = [ "prepko" ];
+      users = [ config.myConfig.user ];
       commands = lib.concatMap (name: [
         {
           command = "/run/current-system/sw/bin/systemctl start wg-quick-${name}.service";

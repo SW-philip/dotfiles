@@ -1,6 +1,12 @@
 { config, pkgs, lib, ... }:
 {
   imports = [ ../cachix.nix ];
+
+  options.myConfig.user = lib.mkOption {
+    type        = lib.types.str;
+    default     = "prepko";
+    description = "Primary user account name, used wherever a literal username is needed.";
+  };
   ############################################################
   # Documentation
   ############################################################
@@ -161,7 +167,7 @@
     http-connections = 25;
     connect-timeout = 10;
     stalled-download-timeout = 90;
-    trusted-users = [ "prepko" ];
+    trusted-users = [ config.myConfig.user ];
   };
 
   services.avahi = {

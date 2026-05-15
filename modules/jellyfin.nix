@@ -19,7 +19,7 @@
 
     serviceConfig = {
       ProtectHome = lib.mkForce false;
-      ReadWritePaths = [ "/home/prepko/Videos" "/srv/Videos" ];
+      ReadWritePaths = [ "/home/${config.myConfig.user}/Videos" "/srv/Videos" ];
     };
   };
 }
