@@ -2,3 +2,35 @@
 # generated: Fri May 15 05:01:41 PM EDT 2026
 # root: /home/prepko/nixos
 
+── home/family/waybar.nix
+  3: TV-scaled palette: bump font size for 55" couch viewing at scale 2.0
+  119: Pre-seed weather location
+
+── home/mako/default.nix
+  3: Config file is deployed via home.activation in home/niri/default.nix
+
+── home/niri/default.nix
+  536: swaybg — wallpaper daemon for all machines
+  572: Desktop: both monitors connected and active
+
+── hosts/family/config.nix
+  30: GPU — Intel UHD 620 (Kaby Lake GT2)
+  90: Lid is closed permanently (broken screen) — don't suspend on lid events
+
+── hosts/surface/config.nix
+  53: Distributed builds — offload to desktop (desktop)
+
+── modules/howdy.nix
+  26: v4l2loopback kernel module — virtual V4L2 device that OpenCV can read.
+
+── profiles/desktop.nix
+  52: i2c — required for RGB and hardware sensor access
+
+── profiles/home/surface.nix
+  16: Surface HiDPI cursor override (base sets 48px; Surface needs 32px at 1.5x scale)
+  21: GNOME session — dark mode + cursor
+
+── profiles/surface.nix
+  5: Lix 2.93.3 still requires nix-command and flakes to be listed explicitly.
+
+# total: 13 comments
