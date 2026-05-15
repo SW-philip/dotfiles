@@ -32,6 +32,7 @@
   boot.kernelParams = lib.mkAfter [
     "nvidia-drm.modeset=1"
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    "nvidia.NVreg_EnableGpuFirmware=0"   # disable GSP — fixes Turing Wayland stalls
   ];
 
   # Load i915 early for VA-API availability; not a PRIME dependency anymore
