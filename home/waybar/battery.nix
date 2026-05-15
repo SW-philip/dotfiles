@@ -2,7 +2,6 @@
 
 let
   isDesktop = config.myConfig.isDesktop;
-  # Placed in the center of the surface bottom bar
   bar = if isDesktop then "leftBottomBar" else "surfaceBottomBar";
 
   batteryScript = pkgs.writeShellScriptBin "battery" ''
@@ -20,16 +19,9 @@ in
       return-type = "json";
       interval = 30;
 
-      # Important: We just use {} here.
-      # The script now provides the Glyph, the stacked stats, and the Pango markup.
       format = "{}";
-
       tooltip = true;
-      # This is now handled entirely by the jq output in your battery.sh
       tooltip-format = "{}";
-
-      # Since we removed wleave, keeping this empty or pointing it to a
-      # power manager (like 'tlp-stat' in a terminal) is a good move.
       on-click = "";
     };
   };

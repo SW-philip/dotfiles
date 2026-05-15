@@ -1,6 +1,3 @@
-# Waybar dark theme CSS — generated from palette.nix
-# Derived tinted hover backgrounds (thermal gradient) are kept as literal hex;
-# everything else references palette variables.
 { p, l }:
 let
   tooltipBg = if p ? OVERLAY_RGB then "rgba(${p.OVERLAY_RGB},0.99)" else p.WB_BASE;

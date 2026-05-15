@@ -9,14 +9,9 @@
   home.username = "family";
   home.homeDirectory = "/home/family";
 
-  ############################################################
-  # Niri compositor config — fixed call site
-  ############################################################
   home.activation.niriCfg = lib.hm.dag.entryAfter ["writeBoundary"] (
   let
     palette = import ../../themes/Rose-Pine/main/palette-main.nix;
-
-    # Define the 'l' layout settings here
     layoutSettings = {
       gap = 10;      # Used by l.gap in your template
       borderW = 2;   # Used by l.borderW in your template
@@ -34,8 +29,6 @@
     chmod 644 "$HOME/.config/niri/config.kdl"
   '');
 
-  # Set XWayland DPI to 288 (3× the standard 96) to match the TV's scale 3.0.
-  # Appended to the generated niri config so xrdb loads it after xwayland-satellite starts.
   home.file.".Xresources".text = ''
     Xft.dpi: 288
   '';
@@ -56,7 +49,7 @@
     fastfetch
     sqlch
     wofi
-    fuzzel 
+    fuzzel
 
     # zsh toolchain
     eza bat fd delta lazygit nix-your-shell
@@ -100,11 +93,6 @@
     classicube               # Minecraft-style sandbox (no account needed)
   ];
 
-  ############################################################
-  # Steam desktop entry — override system one to remove
-  # PrefersNonDefaultGPU=true, which sets DRI_PRIME=1 on
-  # single-GPU machines and breaks the CEF renderer.
-  ############################################################
   xdg.desktopEntries.steam = {
     name     = "Steam";
     exec     = "env STEAM_FORCE_DESKTOPUI_SCALING=2 LIBVA_DRIVER_NAME=iHD steam -no-cef-sandbox %U";

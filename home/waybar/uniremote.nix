@@ -2,7 +2,6 @@
 let
   cfg = config.waybar.uniremote;
   isDesktop = config.myConfig.isDesktop;
-  # Match surfaceBottomBar where uniremote lives in the actions group
   bar = if isDesktop then "leftBottomBar" else "surfaceBottomBar";
   p = import ../../themes/Rose-Pine/main/palette-main.nix;
 in

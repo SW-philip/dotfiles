@@ -199,7 +199,6 @@ in
     };
     Service = {
       Environment = [
-        # This list provides every tool your scripts are currently missing
         "PATH=${pkgs.lib.makeBinPath [
           pkgs.bash
           pkgs.bluez

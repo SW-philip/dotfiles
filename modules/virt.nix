@@ -1,5 +1,3 @@
-# modules/virt.nix
-# Host-side QEMU/KVM + libvirtd + virt-manager
 { pkgs, ... }:
 {
   ############################################################
@@ -11,13 +9,11 @@
       package = pkgs.qemu_kvm;
       runAsRoot = false;
       swtpm.enable = true;
-      # OVMF is bundled with QEMU on nixpkgs-unstable — no separate config needed
     };
   };
 
   programs.virt-manager.enable = true;
 
-  # SPICE USB redirection (tablet / USB passthrough into VMs)
   virtualisation.spiceUSBRedirection.enable = true;
 
   ############################################################

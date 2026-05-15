@@ -1,4 +1,3 @@
-# hosts/family/boot.nix
 { lib, ... }:
 {
   boot.initrd.kernelModules = [ "i915" ];

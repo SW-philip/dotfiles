@@ -1,5 +1,3 @@
-# profiles/home/surface.nix
-# Surface-specific home config. Imports base, adds tablet/touch/rotation things.
 { inputs, pkgs, lib, config, ... }:
 {
   imports = [

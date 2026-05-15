@@ -18,7 +18,6 @@ in {
       tooltip = true;
       format = "{}";
 
-      # Use absolute bash calls for the menus
       on-click = "bash ${config.home.homeDirectory}/.config/waybar/scripts/quantum-wifimenu.sh";
       on-click-right = "bash ${config.home.homeDirectory}/.config/waybar/scripts/vpn-toggle.sh";
     };

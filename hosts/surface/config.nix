@@ -1,4 +1,3 @@
-# hosts/surface/config.nix
 { inputs, config, pkgs, ... }:
 
 {

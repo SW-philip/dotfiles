@@ -1,0 +1,4 @@
+# comment review list
+# generated: Fri May 15 05:01:41 PM EDT 2026
+# root: /home/prepko/nixos
+

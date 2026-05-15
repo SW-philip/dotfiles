@@ -1,4 +1,3 @@
-# hosts/desktop/services.nix
 { pkgs, lib, ... }:
 
 {
@@ -56,9 +55,6 @@
     };
   };
 
-  ############################################################
-  # /srv/live + /srv/tools ownership (lets prepko write without sudo)
-  ############################################################
   systemd.tmpfiles.rules = [
     "z /srv/live  0775 prepko users -"
     "z /srv/tools 0775 prepko users -"
@@ -192,9 +188,6 @@ EOF
 
   ############################################################
   # CPU power management
-  # "powersave" is required for intel_pstate active + HWP — it unlocks the EPP
-  # interface so power-profiles-daemon can cycle profiles. "performance" governor
-  # locks EPP writes with EBUSY and breaks powerprofilesctl.
   ############################################################
   powerManagement.cpuFreqGovernor = "powersave";
 

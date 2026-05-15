@@ -1,12 +1,9 @@
-# hosts/desktop/boot.nix
 { lib, ... }:
 
 {
   imports = [ ../../modules/plymouth.nix ];
 
   boot.initrd.systemd.enable = true;
-
-  # Cosmetic / quiet boot
   boot.kernelParams = lib.mkAfter [
     "8250.nr_uarts=0"
     "quiet" "splash" "loglevel=0"

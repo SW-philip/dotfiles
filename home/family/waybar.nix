@@ -1,6 +1,3 @@
-# home/family/waybar.nix
-# Waybar for the family (Dell Latitude) niri session.
-# Imports only the modules actually used — not the full waybar/default.nix.
 { config, pkgs, lib, ... }:
 let
   # TV-scaled palette: bump font size for 55" couch viewing at scale 2.0
@@ -23,8 +20,6 @@ let
 
   themesRoot = ../../themes;
 
-  # Minimal set-theme for family: swaps palette.sh and reloads waybar.
-  # Does not manage wallpaper, niri config, or ironbar (not used here).
   setTheme = pkgs.writeShellScriptBin "set-theme" ''
     THEME="''${1:-}"
     THEMES_ROOT="${themesRoot}"
@@ -67,7 +62,6 @@ in
     ../waybar/eggclock.nix
   ];
 
-  # Route all modules into the single family bar
   waybar.barName = "mainBar";
 
   waybar.clock.enable     = true;
@@ -116,14 +110,13 @@ in
     };
   };
 
-  # Scripts and static assets
   xdg.configFile."waybar/snark.json".source = ../waybar/snark.json;
   xdg.configFile."waybar/scripts" = {
     source    = ../waybar/scripts;
     recursive = true;
   };
 
-  # Pre-seed weather location (Norristown home) — only written once, not overwritten
+  # Pre-seed weather location
   home.activation.weatherLocation = lib.hm.dag.entryAfter ["writeBoundary"] ''
     LOC="$HOME/.config/waybar/weather_location.json"
     if [ ! -f "$LOC" ]; then
@@ -139,8 +132,6 @@ EOF
     fi
   '';
 
-  # Deploy style.css and palette.sh, respecting the current theme state.
-  # set-theme overwrites palette.sh at runtime; this block syncs on every nrs.
   home.activation.waybarAssets = lib.hm.dag.entryAfter ["writeBoundary"] (
     let
       css = pkgs.writeText "waybar-style-family.css" (import ../waybar/style.nix { inherit p l; });

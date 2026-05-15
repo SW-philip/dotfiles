@@ -1,21 +1,9 @@
-# home/niri/default.nix
-# Niri home-manager config — cleanroom compositor for focused work
 { config, pkgs, lib, ... }:
 let
-  # ── Theme auto-discovery ─────────────────────────────────────────────────
-  # Convention: themes/[Family]/[folderName]/
-  #   palette-[camelCase].sh   — shell palette for zsh/fzf at runtime
-  #   palette-[hyphenated].nix — Nix attrs for CSS/config generation at build time
-  # Slug (theme state key) is derived from the .nix filename, not the folder name,
-  # so folder naming is flexible (e.g. "original/" → slug "original-lix").
-  # Light vs dark is inferred from FONT_SIZE_BAR ("13px" = light).
-  # To add a theme: drop files in a new subfolder — no changes needed here.
-
+  # ── Theme auto-discovery ────────────────────────────────────────────────
   themesRoot = ../../themes;
   l          = import "${themesRoot}/layout.nix";
 
-  # Returns { slug → { family, slug, palette, shContent, isLight } } for every
-  # theme found under themes/[Family]/[folderName]/
   allThemes =
     let
       loadTheme = family: folderName:
@@ -23,7 +11,6 @@ let
           dir   = "${themesRoot}/${family}/${folderName}";
           files = builtins.readDir dir;
 
-          # Slug comes from the .nix filename: "palette-rocky-road.nix" → "rocky-road"
           nixName = builtins.head (builtins.attrNames (
             lib.filterAttrs (n: _: lib.hasPrefix "palette-" n && lib.hasSuffix ".nix" n) files));
           slug = lib.removeSuffix ".nix" (lib.removePrefix "palette-" nixName);
@@ -35,7 +22,6 @@ let
             lib.hasPrefix "wallpaper-" n && lib.hasSuffix ".png" n
           ) files;
 
-          # Explicitly find the png, don't just take the first result of an unsorted list
           wallpaper = if wallpaperFiles != {}
                       then "${dir}/${builtins.head (builtins.attrNames wallpaperFiles)}"
                       else null;
@@ -45,7 +31,6 @@ let
           inherit family slug wallpaper dir;
           palette   = p;
           shContent = builtins.readFile "${dir}/${shName}";
-          # isLight explicit wins; fall back to FONT_SIZE_BAR heuristic ("13px" = light)
           isLight   = p.isLight or ((p.FONT_SIZE_BAR or "12px") == "13px");
         };
 
@@ -165,10 +150,6 @@ let
 
   home = config.home.homeDirectory;
 
-  # swaybg launcher — reads wallpaper path from state file so the
-  # systemd service can be restarted with a new image without changing the unit.
-  # Uses output '*' to cover all connected outputs (works for both single eDP-1
-  # and dual DP-4/DP-3 setups).
   swaybgLauncher = pkgs.writeShellScript "swaybg-launcher" ''
     exec ${pkgs.swaybg}/bin/swaybg -o '*' -i "$(cat "$HOME/.local/state/wallpaper")" -m fill
   '';
@@ -331,13 +312,6 @@ let
         border-color: ${p.IRIS};
         outline-style: none;
     }
-
-    #lock:hover      { border-color: ${p.FOAM}; color: ${p.FOAM}; }
-    #logout:hover    { border-color: ${p.LOVE}; color: ${p.LOVE}; }
-    #suspend:hover   { border-color: ${p.IRIS}; color: ${p.IRIS}; }
-    #hibernate:hover { border-color: ${p.GOLD}; color: ${p.GOLD}; }
-    #shutdown:hover  { border-color: ${p.LOVE}; color: ${p.LOVE}; }
-    #reboot:hover    { border-color: ${p.ROSE}; color: ${p.ROSE}; }
   '';
 
   mkFuzzelIni = p:
@@ -367,8 +341,6 @@ let
       radius=${toString l.radiusSm}
     '';
 
-  # Standalone runtime script — baked-in nix store paths for every theme.
-  # Called by set-theme at runtime and by home.activation.applyTheme on nrs.
   applyThemeScript = pkgs.writeShellScriptBin "apply-theme" (
     ''
       THEME="''${1:-$(cat "$HOME/.local/state/theme" 2>/dev/null || echo "main")}"
@@ -458,7 +430,6 @@ let
     ''
   );
 
-  # Cycles: main → moon → dawn → lilac-juniper → main
   toggleTheme = pkgs.writeShellScriptBin "toggle-theme" ''
     STATE="$HOME/.local/state/theme"
     CURRENT=$(cat "$STATE" 2>/dev/null || echo "main")
@@ -471,8 +442,6 @@ let
     exec set-theme "$NEXT"
   '';
 
-  # Switches kanshi profile between dual and single monitor mode.
-  # State is tracked in ~/.local/state/monitor-mode ("dual" or "single").
   toggleDisplayMode = pkgs.writeShellScriptBin "toggle-display-mode" ''
     STATE="$HOME/.local/state/monitor-mode"
     mkdir -p "$HOME/.local/state"
@@ -498,9 +467,6 @@ let
     if [[ "$STATUS" == "Playing" || "$STATUS" == "Paused" ]] && [[ -n "$TITLE" ]]; then
       rm -f "$SNARK_CACHE"
 
-      # iHeart/terrestrial ICY metadata blob — two formats (same as mpris_status.sh)
-      # Format 1: title="Song",artist="Artist",url="song_spot=F" MediaBaseId=...
-      # Format 2: Artist - text="Song" song_spot="M" MediaBaseId=...  (M=music, T/C=ad)
       _icy_f1='^title="([^"]*)".*,artist="([^"]*)"'
       _icy_spot=' song_spot="([^"]*)"'
       _icy_text=' text="([^"]*)"'
@@ -523,7 +489,6 @@ let
         fi
       fi
 
-      # Fallback: "Artist - Track" packed into title with no separate artist field
       if [[ -z "$ARTIST" && "$TITLE" == *" - "* ]]; then
         ARTIST="''${TITLE%% - *}"
         TITLE="''${TITLE#* - }"
@@ -562,10 +527,7 @@ let
   '';
 in
 {
-  ########################################
-  # Niri compositor config + all theme-driven configs — single activation block
-  # set-theme calls apply-theme at runtime; this syncs on every nrs.
-  ########################################
+
   home.activation.applyTheme = lib.hm.dag.entryAfter ["writeBoundary"] ''
     $DRY_RUN_CMD ${applyThemeScript}/bin/apply-theme
   '';
@@ -591,12 +553,6 @@ in
 
   home.packages = [ pkgs.swaybg pkgs.cava toggleDisplayMode applyThemeScript setTheme toggleTheme sqlchPopup mprisWatch ];
 
-  ########################################
-  # XDG portal routing for niri — override the system niri-portals.conf
-  # (installed by programs.niri.enable) to explicitly route FileChooser to gtk.
-  # Without this, the gnome portal claims FileChooser but refuses dialogs outside
-  # a real GNOME session, leaving file pickers empty in browsers and apps.
-  ########################################
   xdg.configFile."xdg-desktop-portal/niri-portals.conf".text = ''
     [preferred]
     default=gtk
@@ -607,18 +563,9 @@ in
     org.freedesktop.impl.portal.Settings=gtk
   '';
 
-  ########################################
-  # Suppress GNOME autostart apps that conflict with custom bar modules
-  # (blueman-applet and nm-applet autostart via GNOME XDG entries even in niri)
-  ########################################
   xdg.configFile."autostart/blueman.desktop".text = "[Desktop Entry]\nHidden=true\n";
   xdg.configFile."autostart/nm-applet.desktop".text = "[Desktop Entry]\nHidden=true\n";
 
-  ########################################
-  # Kanshi — dynamic output management
-  # Profiles are matched by which connectors are physically connected.
-  # Output changes are handled by kanshi; toggle-display-mode switches profiles manually.
-  ########################################
   services.kanshi = {
     enable = true;
     settings = [
@@ -631,9 +578,6 @@ in
           ];
         };
       }
-      # Desktop: manual single-monitor mode — both connected but DP-3 disabled.
-      # Named "desktop-solo" so it sorts after "desktop-dual" and is never auto-matched
-      # ahead of it; reached only via kanshictl switch (toggle-display-mode).
       { profile = {
           name = "desktop-solo";
           outputs = [
@@ -642,7 +586,6 @@ in
           ];
         };
       }
-      # Desktop: only left monitor connected (DP-3 physically unplugged)
       { profile = {
           name = "desktop-single";
           outputs = [
@@ -650,7 +593,6 @@ in
           ];
         };
       }
-      # Desktop: manual single-monitor mode — DP-4 off, DP-3 as primary at 0,0
       { profile = {
           name = "desktop-single-dp3";
           outputs = [
@@ -659,7 +601,6 @@ in
           ];
         };
       }
-      # Surface: internal display only — waybar starts via systemd
       { profile = {
           name = "surface";
           outputs = [
@@ -670,8 +611,6 @@ in
     ];
   };
 
-  # Restrict kanshi to niri sessions — hyprland manages its own outputs via monitor.conf
-  # mkForce needed because the kanshi HM module already sets ConditionEnvironment = "WAYLAND_DISPLAY"
   systemd.user.services.kanshi.Unit.ConditionEnvironment = lib.mkForce [ "WAYLAND_DISPLAY" "XDG_SESSION_DESKTOP=niri" ];
 
 }

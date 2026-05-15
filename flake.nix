@@ -65,20 +65,20 @@
     allowUnfreeModule = {
       nixpkgs.config.allowUnfree = true;
     };
-    # Shared HM options
+
     hmBase = {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.extraSpecialArgs = { inherit inputs; };
     };
-    # Per-host home profiles for prepko
+
     hmPrepkoDesktop = {
       home-manager.users.prepko = ./profiles/home/desktop.nix;
     };
     hmPrepkoSurface = {
       home-manager.users.prepko = ./profiles/home/surface.nix;
     };
-    # Family home profile
+
     hmFamily = {
       home-manager.users.family = ./profiles/home/family.nix;
     };

@@ -10,7 +10,7 @@ python3Packages.buildPythonApplication {
     rev   = "0545f0c6c11634b8c1590d5594a497966566f471";
     sha256 = "0f31l3b6s3zvm4wlbr188ss0wgidl8qpasi5gz61xl9fy3j6z9c7";
   };
-  
+
   pyproject = true;
 
   nativeBuildInputs = with python3Packages; [
@@ -27,14 +27,12 @@ python3Packages.buildPythonApplication {
     pydbus
   ];
 
-  # Runtime tools sqlch shells out to
   buildInputs = [
     pkgs.mpv
     pkgs.procps
     pkgs.mpvScripts.mpris
   ];
 
-  # Inject runtime paths cleanly (no hardcoded /nix/store in Python)
   postFixup = ''
     wrapProgram $out/bin/sqlch \
       --set MPV_BIN ${pkgs.mpv}/bin/mpv \

@@ -1,24 +1,11 @@
-# modules/howdy.nix
-# Facial recognition login via howdy (from unstable — not in 25.11).
-#
-# Camera setup: the Surface Pro 7+ uses Intel IPU6 which can't be read
-# directly by OpenCV. libcamera CAN access the ov5693 front camera, so
-# we bridge it into a v4l2loopback device (/dev/video100) that howdy reads.
-#
-# After rebuild:
-#   sudo howdy add    (enroll face)
-#   sudo howdy test   (verify)
 { pkgs, pkgsUnstable, config, ... }:
 let
   howdy    = pkgsUnstable.howdy;
   libcam   = pkgs.libcamera;
   gst      = pkgs.gst_all_1;
   loopDev  = "/dev/video100";
-  # Camera ID as reported by `cam --list` (front camera = CAMF)
   frontCam = "_SB_.PC00.I2C2.CAMF";
 
-  # GStreamer 1.26.x v4l2sink fails to negotiate with v4l2loopback 0.15.3.
-  # Workaround: pipe raw BGR frames from fdsink → ffmpeg → v4l2loopback.
   cameraBridge = pkgs.writeShellScript "howdy-camera-bridge" ''
     export GST_PLUGIN_PATH="${libcam}/lib/gstreamer-1.0:${gst.gst-plugins-base}/lib/gstreamer-1.0:${gst.gst-plugins-good}/lib/gstreamer-1.0"
     export LIBCAMERA_IPA_MODULE_PATH="${libcam}/lib/libcamera"
@@ -43,8 +30,6 @@ in
     options v4l2loopback devices=1 video_nr=100 card_label="Howdy Camera"
   '';
 
-  # Bridge libcamera → v4l2loopback. Starts before greetd so the device is
-  # ready at the login screen. Restarts automatically on failure.
   systemd.services.howdy-camera-bridge = {
     description = "Bridge IPU6 front camera to v4l2loopback for howdy";
     wantedBy    = [ "multi-user.target" ];
@@ -99,8 +84,6 @@ in
     end_report = false
   '';
 
-  # Insert howdy before password check in both greetd and sudo.
-  # sufficient: on success → done; on failure → continue to pam_unix (password fallback).
   security.pam.services.greetd.rules.auth.howdy = {
     control    = "sufficient";
     modulePath = "${howdy}/lib/security/pam_howdy.so";

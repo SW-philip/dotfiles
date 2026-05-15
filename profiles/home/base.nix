@@ -1,17 +1,11 @@
-# profiles/home/base.nix
-# Universal home config — shared across all hosts.
 { inputs, pkgs, lib, config, ... }:
 let
   helium = inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   pythonEnv = pkgs.python312.withPackages (ps: with ps; [
-    # UI / TUI
     pygobject3 textual rich pystray pillow pydbus cairosvg
-    # Networking / data
     requests watchdog python-dateutil
-    # Infra / logging
     loguru platformdirs attrs typing-extensions
-    # Build tooling
     build setuptools wheel pyyaml
   ]);
 in
@@ -21,7 +15,6 @@ in
     ../../home/waybar
     ../../home/mako
     ../../home/niri
-    # ../../home/hypr
     ../packages/fastfetch.nix
     ../../modules/home-options.nix
   ];
@@ -51,15 +44,11 @@ in
 
   xdg.portal.config.common.default = "*";
 
-  # xdg-desktop-portal-gnome logs "GDK backend forced via env var, portal
-  # dialogs will not work properly" if it inherits GDK_BACKEND from the session
-  # environment — degrades to settings-only mode, breaking Brave file dialogs.
   xdg.configFile."systemd/user/xdg-desktop-portal-gnome.service.d/unset-gdk-backend.conf".text = ''
     [Service]
     UnsetEnvironment=GDK_BACKEND
   '';
 
-  # Register .nix and .conf as distinct mimetypes so file managers icon them separately.
   xdg.dataFile."mime/packages/custom-dev.xml".text = ''
     <?xml version="1.0" encoding="UTF-8"?>
     <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
@@ -76,8 +65,6 @@ in
     </mime-info>
   '';
 
-  # Copy Papirus-Dark to a writable local path, tint folders violet (IRIS),
-  # and wire up icons for custom mimetypes. Re-runs when the package changes.
   home.activation.papirus-violet = lib.hm.dag.entryAfter ["writeBoundary"] ''
     export PATH="${pkgs.gawk}/bin:${pkgs.coreutils}/bin:$PATH"
     _ICONS="$HOME/.local/share/icons"
@@ -89,7 +76,6 @@ in
       $DRY_RUN_CMD cp -rL "$_SRC" "$_THEME"
       $DRY_RUN_CMD chmod -R u+w "$_THEME"
       $DRY_RUN_CMD ${pkgs.papirus-folders}/bin/papirus-folders -C violet -t Papirus-Dark
-      # .nix → lambda/functional feel (Haskell icon); .conf → gear/config feel
       for _SIZE in 16x16 22x22 24x24 32x32 48x48 64x64; do
         _DIR="$_THEME/$_SIZE/mimetypes"
         [ -d "$_DIR" ] || continue
@@ -98,7 +84,6 @@ in
       done
       $DRY_RUN_CMD printf '%s' "${pkgs.papirus-icon-theme}" > "$_STAMP"
     fi
-    # Update user mime database so file managers see the new types.
     $DRY_RUN_CMD ${pkgs.shared-mime-info}/bin/update-mime-database \
       "$HOME/.local/share/mime"
   '';
@@ -142,8 +127,6 @@ in
       Install.WantedBy = [ "graphical-session.target" ];
     };
 
-    # cliphist: watch the clipboard and store history in ~/.cache/cliphist/
-    # Two watchers — one for text, one for images
     cliphist-text = {
       Unit = {
         Description = "cliphist text clipboard watcher";
@@ -216,7 +199,6 @@ in
 
     oh-my-zsh = {
       enable = true;
-      # Removed "fzf" from here so it doesn't fight our custom color logic
       plugins = [ "git" "sudo" "zoxide" "extract" "copypath" "copyfile" ];
     };
 
@@ -238,8 +220,6 @@ in
       }
     ];
 
-    # Using mkAfter ensures this block is at the BOTTOM of .zshrc
-    # This prevents Oh-My-Zsh or plugins from overwriting your colors.
     initContent = lib.mkAfter ''
       # 1. Color Refresh Function
       _refresh_colors() {
@@ -249,11 +229,9 @@ in
         if [ -f "$PALETTE_FILE" ]; then
           source "$PALETTE_FILE"
 
-          # Export variables for fzf/subshells
           export BASE SURFACE OVERLAY MUTED SUBTLE TEXT LOVE GOLD ROSE PINE FOAM IRIS \
                  HIGHLIGHT_LOW HIGHLIGHT_MED HIGHLIGHT_HIGH
 
-          # Re-apply FZF options with the new palette values
           export FZF_DEFAULT_OPTS="
             --height=50% --layout=reverse --border=rounded
             --info=inline --cycle
@@ -265,25 +243,20 @@ in
             --color=border:''${HIGHLIGHT_MED},gutter:''${BASE}
           "
 
-          # Update syntax highlighting for comments
           if [[ -v ZSH_HIGHLIGHT_STYLES ]]; then
             ZSH_HIGHLIGHT_STYLES[comment]="fg=''${MUTED:-#6e6a86}"
           fi
         fi
       }
 
-      # 2. Initialize colors on shell startup
       _refresh_colors
 
-      # 3. The Signal Trap (Reactive Theme Switching)
-      # This responds to 'pkill -USR1 zsh' from your toggle-theme script
       TRAPUSR1() {
         _refresh_colors
         # Force prompt redraw so colors update without pressing Enter
         zle && zle reset-prompt
       }
 
-      # 4. Final Sourcing & Bindings
       [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
       [ -f "$HOME/.config/sqlch/env" ] && source "$HOME/.config/sqlch/env"
 
@@ -309,7 +282,6 @@ in
     '';
   };
 
-  # ── atuin: SQLite-powered shell history with fuzzy TUI (ctrl+r) ──
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;
@@ -322,7 +294,6 @@ in
     };
   };
 
-  # ── direnv: auto-load .envrc per directory; nix-direnv for nix develop ──
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
@@ -508,7 +479,6 @@ in
   # Packages
   ########################################
   home.packages = with pkgs; [
-    # ── Standard CLI / System Utilities ────────────────
     git neovim wget rsync
     jq ripgrep fd bat
     gitleaks unzip resvg
@@ -517,13 +487,11 @@ in
     fuzzel cliphist
     ffmpeg mediainfo vlc playerctl libnotify
 
-    # ── GUI Apps ──────────────────────────────────────
     zoom kdePackages.kdenlive
     brave thunderbird libreoffice
     nemo zed-editor krita uniremote ghostty
     librewolf ladybird helium
 
-    # ── Development & Helpers ──────────────────────────
     eza sshfs yt-dlp aria2 imagemagick
     delta lazygit tealdeer nix-your-shell comma helix
     dua mtr sqlite nodejs pavucontrol nvd
@@ -531,7 +499,6 @@ in
     (pkgs.supertux or pkgs.superTux)
     (pkgs.supertuxkart or pkgs.superTuxKart)
 
-    # ── Custom Wrappers / Binaries ─────────────────────
     (writeShellScriptBin "get-theme" ''
       exec ${pythonEnv}/bin/python3 ~/nixos/scripts/auto-theme.py "$@"
     '')
@@ -540,7 +507,6 @@ in
       # Source your dynamic palette
       [ -f "$HOME/.config/waybar/palette.sh" ] && . "$HOME/.config/waybar/palette.sh"
 
-      # Run bemenu with theme-aware colors
       exec bemenu \
         --nb "''${BASE:-#191724}" \
         --nf "''${TEXT:-#e0def4}" \

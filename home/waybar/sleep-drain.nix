@@ -19,10 +19,8 @@ in
   config = lib.mkIf config.waybar.sleepDrain.enable {
     home.packages = [ sleepDrainScript ];
 
-    # Fix: Map the module directly to the bar attribute
     programs.waybar.settings.surfaceBottomBar = lib.mkIf (!isDesktop) {
       "custom/sleep_drain" = {
-        # Using the absolute store path is safer than relying on $PATH
         exec        = "${sleepDrainScript}/bin/waybar-sleep-drain";
         return-type = "json";
         interval    = 60;

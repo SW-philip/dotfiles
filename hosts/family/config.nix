@@ -1,4 +1,3 @@
-# hosts/family/config.nix
 { pkgs, lib, inputs, ... }:
 {
   imports = [
@@ -10,30 +9,15 @@
   ];
 
   ############################################################
-  # Secrets (SOPS)
-  ############################################################
-  #  sops = {
-  #  defaultSopsFile = ../../secrets/shared.yaml;
-  #  age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-  #  secrets.openweathermap_api_key = {
-  #    owner = "family";
-  #    path  = "/run/secrets/openweathermap_api_key";
-  #  };
-  #  };
-
-  ############################################################
   # Identity / Kernel
   ############################################################
   networking.hostName = "family";
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  # Disable broken internal panel at DRM level — lid is permanently closed.
-  # Prevents eDP-1 from being enumerated as a CRTC.
   boot.kernelParams = [ "video=eDP-1:d" ];
 
   ############################################################
   # Networking
   ############################################################
-  # Required for WireGuard routing
   networking.firewall.checkReversePath = false;
 
   ############################################################
@@ -44,8 +28,6 @@
 
   ############################################################
   # GPU — Intel UHD 620 (Kaby Lake GT2)
-  # intel-media-driver required for VA-API; without it Steam CEF falls back
-  # to software rendering and shows a black window.
   ############################################################
   hardware.graphics = {
     enable      = true;
@@ -63,10 +45,6 @@
     dpi = 288;  # TV at 3× scale — matches Xft.dpi in .Xresources, fixes greeter size
   };
   services.xserver.desktopManager.xfce.enable = true;
-
-  # ProtonVPN WireGuard — disabled until config file is in place.
-  # To enable: add ../../modules/protonvpn.nix to imports, set protonvpn.configFile,
-  # add sudo rules, and enable waybar.protonvpn in home/family/waybar.nix.
 
   ############################################################
   # Printing
@@ -95,7 +73,6 @@
     extraGroups  = [ "networkmanager" "wheel" ];
   };
 
-  # Override base default (zsh) — prepko uses bash on this machine
   users.users.prepko.shell = lib.mkForce pkgs.bash;
 
   ############################################################

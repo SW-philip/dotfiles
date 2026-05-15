@@ -1,4 +1,3 @@
-# hosts/desktop/config.nix
 { inputs, config, pkgs, ... }:
 
 {
@@ -6,18 +5,15 @@
   # Imports
   ############################################################
   imports = [
-    # Profiles (system-wide)
     ../../profiles/base.nix
     ../../profiles/secure-boot.nix
     ../../profiles/desktop.nix
     ../../profiles/niri.nix
 
-    # Hardware & boot
     ./hardware.nix
     ./boot.nix
     ./gpu-nvidia.nix
 
-    # Services & modules
     ./services.nix
     inputs.sops-nix.nixosModules.sops
     ../../profiles/sops-shared.nix

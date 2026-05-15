@@ -1,4 +1,3 @@
-# hosts/surface/boot.nix
 { lib, ... }:
 
 {
@@ -7,7 +6,6 @@
   boot.initrd.systemd.enable = true;
   boot.initrd.kernelModules = [ "i915" ];
 
-  # Cosmetic / quiet boot
   boot.kernelParams = lib.mkAfter [
     "quiet" "splash" "loglevel=0"
     "rd.systemd.show_status=false"

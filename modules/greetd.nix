@@ -1,4 +1,3 @@
-# modules/greetd.nix
 { pkgs, lib, config, ... }:
 {
   options.greetd.greeting = lib.mkOption {

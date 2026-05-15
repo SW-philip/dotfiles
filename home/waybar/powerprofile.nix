@@ -12,7 +12,6 @@ in {
   config = lib.mkIf config.waybar.powerprofile.enable {
     home.packages = [ ppScript ];
 
-    # ADDED THE UNDERSCORE HERE TO MATCH YOUR LOGS
     programs.waybar.settings.${bar}."custom/power_profile" = {
       exec = "${ppScript}/bin/waybar-powerprofile";
       "return-type" = "json";

@@ -1,4 +1,3 @@
-# hosts/surface/gpu-intel.nix
 { lib, ... }:
 
 {

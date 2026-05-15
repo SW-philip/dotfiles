@@ -12,8 +12,6 @@
   ############################################################
   # Documentation
   ############################################################
-  # Disable offline doc output installation — avoids broken upstream doc builds
-  # (e.g. python3.12-doc on nixpkgs-unstable). Man pages are unaffected.
   documentation.doc.enable = false;
 
   ############################################################
@@ -93,7 +91,6 @@
   # Base system packages
   ############################################################
   environment.systemPackages = with pkgs; [
-    # Core utilities
     curl
     pciutils
     usbutils
@@ -104,24 +101,19 @@
     bemenu
     smartmontools
 
-    # Filesystem / storage
     btrfs-progs      # btrfs maintenance (balance, scrub, subvolume ops)
     cryptsetup       # LUKS runtime management / recovery
     nvme-cli         # NVMe diagnostics
 
-    # Boot / firmware
     tpm2-tools       # TPM2 diagnostics (used in boot, needed in userspace)
     efibootmgr       # EFI boot entry management (lanzaboote debugging)
 
-    # Secrets (available system-wide for recovery / root contexts)
     age
     sops
 
-    # System diagnostics
     iotop            # Disk I/O monitoring
     lsof             # List open files
 
-    # Networking
     iputils          # ping, tracepath, etc.
     iw               # nl80211 wireless configuration / debugging
   ];

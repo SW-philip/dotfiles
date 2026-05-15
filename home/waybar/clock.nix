@@ -2,7 +2,6 @@
 
 let
   isDesktop = config.myConfig.isDesktop;
-  # Keeping your previous logic for clock placement
   bar = if config.waybar.barName != "" then config.waybar.barName
         else if isDesktop then "leftBar" else "surfaceBottomBar";
 
@@ -20,7 +19,6 @@ in
       exec = "${clockScript}/bin/quantum-clock";
       return-type = "json";
       interval = 1;
-      # Opens the calendar on click
       on-click       = "${clockScript}/bin/quantum-clock next";
       on-click-right = "${pkgs.gnome-calendar}/bin/gnome-calendar";
     };

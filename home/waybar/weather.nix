@@ -3,7 +3,6 @@ let
   scriptsDir = "${config.home.homeDirectory}/.config/waybar/scripts";
   isDesktop = config.myConfig.isDesktop;
 
-  # Match surfaceBottomBar where it is listed in modules-center
   bar = if config.waybar.barName != "" then config.waybar.barName
         else if isDesktop then "leftBar" else "surfaceTopBar";
 

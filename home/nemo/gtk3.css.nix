@@ -1,6 +1,3 @@
-# Nemo file manager — palette-aware GTK3 CSS
-# Injected via ~/.config/gtk-3.0/gtk.css; survives toggle-theme swaps.
-# Selectors are Nemo-specific enough not to bleed into other GTK3 apps.
 p: ''
 /* ============================================================
  * NEMO — Rosé Pine colour overlays

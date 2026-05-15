@@ -2,8 +2,6 @@
 let
   p = import ../../themes/Rose-Pine/moon/palette-moon.nix;
 
-  # --- Helpers ---
-  # ANSI Escape for TrueColor support
   esc = (builtins.fromTOML "x = \"\\u001B\"").x;
   toAnsi = color: let
     hex = builtins.substring 1 6 color;
@@ -35,9 +33,6 @@ let
       (( days >= 14 )) && echo "''${days}d (stale)" || ((( days >= 7 )) && echo "''${days}d (aging)" || echo "''${days}d (fresh)")
     '';
 
-    # Resolve artist + title from the active player (excluding sqlch db cache).
-    # Streams report "Artist - Title" as a combined xesam:title with no xesam:artist —
-    # detect and split on " - " as a fallback.
     npArtistTitle = pkgs.writeShellScript "ff-np-resolve" ''
       TITLE=$(playerctl --ignore-player=sqlch metadata xesam:title 2>/dev/null)
       ARTIST=$(playerctl --ignore-player=sqlch metadata xesam:artist 2>/dev/null)
@@ -77,7 +72,6 @@ let
     '';
   };
 
-  # Main Fetch Wrapper
   ff = pkgs.writeShellScriptBin "ff" "exec fastfetch";
 in
 {
@@ -95,7 +89,6 @@ in
         { type = "gpu"; key = "󰾲  GPU"; }
         { type = "os"; key = "󱄅  OS"; }
         { type = "command"; key = "🍦 Lix"; text = "${scripts.lix}"; }
-        # --- Updated Kernel Glyph to Tux ---
         { type = "kernel"; key = "  Kernel"; }
         { type = "uptime"; key = "󰔛  Uptime"; }
         { type = "packages"; key = "󰏖  Packages"; }
@@ -116,7 +109,6 @@ in
         { type = "custom"; format = "${toAnsi p.GOLD}│ 󰄨  SIGNAL${reset}"; }
         { type = "weather"; key = "󰖐  Weather"; location = "Philadelphia"; }
         { type = "command"; key = "󰖂  vpn"; text = "${scripts.vpn}"; }
-        # --- Updated Rebuild Glyph to Hard Hat ---
         { type = "command"; key = "󱁤 rebuild"; text = "${scripts.rebuild}"; }
         "break"
         { type = "custom"; format = "${toAnsi p.ROSE}│ 󰄨  NOW PLAYING${reset}"; }

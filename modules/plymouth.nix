@@ -1,4 +1,3 @@
-# modules/plymouth.nix
 { pkgs, ... }:
 
 {

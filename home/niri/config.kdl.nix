@@ -1,6 +1,3 @@
-# home/niri/config.kdl.nix
-# Generates niri/config.kdl with colors sourced from the palette.
-# All other KDL settings are inert — only the color fields interpolate.
 { p, l, barHeight ? 45, cursorSize ? 48 }: ''
 // home/niri/config.kdl — niri cleanroom compositor config
 

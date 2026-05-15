@@ -1,20 +1,17 @@
 { pkgs, ... }:
 
 {
-  # Kernel tuning
   boot.kernel.sysctl = {
     "vm.swappiness" = 10;
     "kernel.nmi_watchdog" = 0;
     "vm.dirty_writeback_centisecs" = 1500;
   };
 
-  # Audio power management
   boot.extraModprobeConfig = ''
     options snd_hda_intel power_save=1 power_save_controller=Y
     options snd_sof_intel_hda_common hda_model=dell-headset-multi
   '';
 
-  # Runtime PM for all PCI devices
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto"
     ACTION=="change", SUBSYSTEM=="pci", ATTR{power/control}="auto"
@@ -31,18 +28,12 @@
     '';
   };
 
-  # WiFi power saving
   networking.networkmanager.wifi.powersave = true;
 
-  # Power profiles daemon (already running, just making it declarative)
   services.power-profiles-daemon.enable = true;
 
-  # General power management
   powerManagement.enable = true;
 
-  # Sleep drain tracker — records BAT1 energy before/after each sleep cycle.
-  # ExecStart fires before sleep (pre), ExecStop fires on wake (post).
-  # Signals waybar (SIGRTMIN+2) to refresh the sleep_drain module immediately.
   systemd.services.sleep-drain = {
     description = "Record battery drain across sleep cycles";
     before   = [ "sleep.target" ];
