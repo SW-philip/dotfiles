@@ -1,7 +1,7 @@
 # home/niri/config.kdl.nix
 # Generates niri/config.kdl with colors sourced from the palette.
 # All other KDL settings are inert — only the color fields interpolate.
-{ p, l, barHeight ? 45 }: ''
+{ p, l, barHeight ? 45, cursorSize ? 48 }: ''
 // home/niri/config.kdl — niri cleanroom compositor config
 
 // ── Input ──────────────────────────────────────────────────
@@ -93,12 +93,12 @@ prefer-no-csd
 
 cursor {
     xcursor-theme "posys_cursor_scalable"
-    xcursor-size 48
+    xcursor-size ${toString cursorSize}
 }
 
 environment {
     XCURSOR_THEME "posys_cursor_scalable"
-    XCURSOR_SIZE "48"
+    XCURSOR_SIZE "${toString cursorSize}"
     XDG_CURRENT_DESKTOP "niri"
     // xwayland-satellite binds to :0; set DISPLAY here so all niri-spawned
     // apps (Steam, etc.) inherit it rather than racing import-environment.

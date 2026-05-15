@@ -8,6 +8,9 @@
     inputs.ignis.homeManagerModules.default
   ];
 
+  # Desktop uses smaller cursor — 1080p screens don't need the HiDPI 48px size
+  home.pointerCursor.size = lib.mkForce 24;
+
   # Hyprland monitor layout – stored under $XDG_CONFIG_HOME/hypr/monitor.conf
   xdg.configFile."hypr/monitor.conf".text = ''
     monitor = DP-4, 1920x1080@60, 0x0, 1.0
