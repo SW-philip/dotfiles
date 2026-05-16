@@ -14,7 +14,7 @@
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs"; # Follow your nixpkgs ver
     lix = {
-      url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
+      url = "https://git.lix.systems/lix-project/lix/archive/2.95.3.tar.gz";
       flake = false;
     };
     lix-module = {
