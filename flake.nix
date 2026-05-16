@@ -13,9 +13,14 @@
     ignis.url = "github:linkfrg/ignis";
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs"; # Follow your nixpkgs ver
+    lix = {
+      url = "https://git.lix.systems/lix-project/lix/archive/2.95.3.tar.gz";
+      flake = false;
+    };
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.lix.follows = "lix";
     };
     posys-cursor = {
       url = "github:Morxemplum/posys-cursor-scalable";
@@ -33,6 +38,7 @@
     home-manager-unstable,
     lanzaboote,
     claude-code,
+    lix,
     lix-module,
     ...
   }:
