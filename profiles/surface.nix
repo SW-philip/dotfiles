@@ -7,6 +7,16 @@
   nix.settings.experimental-features = lib.mkForce [ "nix-command" "flakes" ];
 
   ############################################################
+  # Audio (PipeWire)
+  ############################################################
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+    alsa.enable = true;
+    wireplumber.enable = true;
+  };
+
+  ############################################################
   # Bluetooth
   ############################################################
   hardware.bluetooth.enable = true;
