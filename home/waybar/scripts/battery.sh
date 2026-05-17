@@ -28,12 +28,7 @@ else
     PERCENT="100"; bucket="full"; GLYPH="󰚥"; status="AC"
 fi
 
-# AC = anything not actively discharging
-if [[ "$status" == "Full" ]]; then
-    BAT_TEXT="${GLYPH} ∞"
-else
-    BAT_TEXT="${GLYPH} ${PERCENT}%"
-fi
+BAT_TEXT="${GLYPH} ${PERCENT}%"
 
 snark="System operational."
 if [[ -f "$SNARK_FILE" ]]; then

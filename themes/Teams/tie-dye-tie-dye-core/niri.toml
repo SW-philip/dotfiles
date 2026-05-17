@@ -1,0 +1,13 @@
+# Niri Theme: tie-dye -  Tie-Dye Core
+[colors]
+background = "#ff6e61"
+text = "#ffffff"
+cursor = "#ffa142"
+
+[colors.selection]
+border = "#1b35a2"
+background = "#ff6247"
+
+[colors.hints]
+start = "#f98b1f"
+end = "#f6d55a"
