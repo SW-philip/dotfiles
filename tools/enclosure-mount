@@ -1,0 +1,151 @@
+#!/usr/bin/env bash
+# enclosure-mount: mount a foreign NixOS disk for chroot recovery
+#
+# Phase 1: mount and drop into chroot. Verify, then exit.
+# Cleanup happens automatically on exit via the trap.
+
+set -euo pipefail
+
+# --- helpers ---
+ask() {
+    local prompt="$1" default="${2:-}" reply
+    if [[ -n "$default" ]]; then
+        read -rp "$prompt [$default]: " reply
+        echo "${reply:-$default}"
+    else
+        read -rp "$prompt: " reply
+        echo "$reply"
+    fi
+}
+
+confirm() {
+    local reply
+    read -rp "$1 [y/N]: " reply
+    [[ "$reply" =~ ^[Yy]$ ]]
+}
+
+log() { printf '\033[1;34m::\033[0m %s\n' "$*"; }
+warn() { printf '\033[1;33m!!\033[0m %s\n' "$*" >&2; }
+die() { printf '\033[1;31m!!\033[0m %s\n' "$*" >&2; exit 1; }
+
+# --- root check ---
+[[ $EUID -eq 0 ]] || die "must run as root"
+
+# --- show what's plugged in ---
+log "current block devices:"
+lsblk -o NAME,SIZE,FSTYPE,MOUNTPOINTS
+echo
+
+# --- gather info ---
+ROOT_DEV=$(ask "root partition device (e.g. /dev/sdc2)")
+[[ -b "$ROOT_DEV" ]] || die "$ROOT_DEV is not a block device"
+
+BOOT_DEV=$(ask "boot partition device (e.g. /dev/sdc1)")
+[[ -b "$BOOT_DEV" ]] || die "$BOOT_DEV is not a block device"
+
+FSTYPE=$(ask "filesystem type (btrfs/ext4)" "btrfs")
+[[ "$FSTYPE" == "btrfs" || "$FSTYPE" == "ext4" ]] || die "unsupported fstype: $FSTYPE"
+
+MOUNTPOINT=$(ask "mountpoint" "/mnt")
+
+# luks unlock
+LUKS_NAME="enclosure_root"
+ROOT_MAPPER="/dev/mapper/$LUKS_NAME"
+
+if cryptsetup isLuks "$ROOT_DEV" 2>/dev/null; then
+    if [[ -b "$ROOT_MAPPER" ]]; then
+        log "$ROOT_MAPPER already unlocked, reusing"
+    else
+        log "unlocking $ROOT_DEV as $LUKS_NAME"
+        cryptsetup open "$ROOT_DEV" "$LUKS_NAME"
+    fi
+    ACTUAL_ROOT="$ROOT_MAPPER"
+else
+    warn "$ROOT_DEV is not LUKS, using directly"
+    ACTUAL_ROOT="$ROOT_DEV"
+fi
+
+# btrfs subvolume discovery
+if [[ "$FSTYPE" == "btrfs" ]]; then
+    log "inspecting btrfs top-level for subvolumes"
+    TMPMOUNT=$(mktemp -d)
+    mount -o subvolid=0 "$ACTUAL_ROOT" "$TMPMOUNT"
+    echo "found at top level:"
+    ls "$TMPMOUNT" | sed 's/^/  /'
+    umount "$TMPMOUNT"
+    rmdir "$TMPMOUNT"
+    echo
+
+    ROOT_SUBVOL=$(ask "root subvolume" "@")
+    HOME_SUBVOL=$(ask "home subvolume (empty to skip)" "@home")
+fi
+
+# --- show the plan ---
+echo
+log "plan:"
+echo "  root: $ACTUAL_ROOT ($FSTYPE) -> $MOUNTPOINT"
+if [[ "$FSTYPE" == "btrfs" ]]; then
+    echo "    subvol=$ROOT_SUBVOL, compress=zstd"
+    [[ -n "$HOME_SUBVOL" ]] && echo "    home: subvol=$HOME_SUBVOL -> $MOUNTPOINT/home"
+fi
+echo "  boot: $BOOT_DEV -> $MOUNTPOINT/boot"
+echo "  then: nixos-enter --root $MOUNTPOINT"
+echo
+confirm "proceed?" || die "aborted"
+
+# --- cleanup trap ---
+# tracks what we mounted so we only unmount what we created
+MOUNTED=()
+cleanup() {
+    log "cleaning up"
+    # reverse order
+    for ((i=${#MOUNTED[@]}-1; i>=0; i--)); do
+        umount "${MOUNTED[i]}" 2>/dev/null || warn "couldn't unmount ${MOUNTED[i]}"
+    done
+    if [[ -b "$ROOT_MAPPER" ]]; then
+        cryptsetup close "$LUKS_NAME" 2>/dev/null || warn "couldn't close $LUKS_NAME (still mounted?)"
+    fi
+}
+trap cleanup EXIT
+
+# --- mount ---
+mkdir -p "$MOUNTPOINT"
+
+if [[ "$FSTYPE" == "btrfs" ]]; then
+    log "mounting root subvolume"
+    mount -o "subvol=$ROOT_SUBVOL,compress=zstd" "$ACTUAL_ROOT" "$MOUNTPOINT"
+    MOUNTED+=("$MOUNTPOINT")
+
+    if [[ -n "$HOME_SUBVOL" ]]; then
+        mkdir -p "$MOUNTPOINT/home"
+        log "mounting home subvolume"
+        mount -o "subvol=$HOME_SUBVOL,compress=zstd" "$ACTUAL_ROOT" "$MOUNTPOINT/home"
+        MOUNTED+=("$MOUNTPOINT/home")
+    fi
+else
+    log "mounting ext4 root"
+    mount "$ACTUAL_ROOT" "$MOUNTPOINT"
+    MOUNTED+=("$MOUNTPOINT")
+fi
+
+mkdir -p "$MOUNTPOINT/boot"
+log "mounting boot"
+mount "$BOOT_DEV" "$MOUNTPOINT/boot"
+MOUNTED+=("$MOUNTPOINT/boot")
+
+# --- verify ---
+echo
+log "mounted. quick sanity check:"
+echo "  $MOUNTPOINT/etc/nixos:"
+ls "$MOUNTPOINT/etc/nixos" 2>/dev/null | sed 's/^/    /' || warn "  no /etc/nixos found"
+echo "  $MOUNTPOINT/boot:"
+ls "$MOUNTPOINT/boot" 2>/dev/null | sed 's/^/    /' || warn "  /boot is empty"
+echo
+
+# --- chroot ---
+log "entering chroot. exit shell to unmount everything."
+echo
+nixos-enter --root "$MOUNTPOINT" || warn "nixos-enter returned nonzero"
+
+# trap handles unmount
+log "done"
