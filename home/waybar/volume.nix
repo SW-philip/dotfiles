@@ -17,10 +17,6 @@ in {
       exec = "${volScript}/bin/volume";
       return-type = "json";
       signal = 1;
-      on-scroll-up = "${volScript}/bin/volume right";
-      on-scroll-down = "${volScript}/bin/volume left";
-      on-scroll-right = "${volScript}/bin/volume right";
-      on-scroll-left = "${volScript}/bin/volume left";
       on-click = "${volScript}/bin/volume toggle";
       on-click-right = "${config.home.homeDirectory}/.config/waybar/scripts/volume-popup.sh";
       on-click-middle = "${pkgs.pavucontrol}/bin/pavucontrol";
