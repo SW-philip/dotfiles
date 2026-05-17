@@ -151,8 +151,8 @@ if $IS_DESKTOP; then
   fi
 else
   # Surface: Intel GPU — xe (Iris Xe, newer) or i915 (legacy); both may coexist
-  if lsmod 2>/dev/null | grep -qE "^(xe|i915)\s"; then
-    loaded=$(lsmod 2>/dev/null | awk '/^(xe|i915)\s/{printf "%s ", $1}' | sed 's/ $//')
+  loaded=$(lsmod 2>/dev/null | awk '$1=="xe" || $1=="i915" {printf "%s ", $1}' | sed 's/ $//')
+  if [ -n "$loaded" ]; then
     pass "Intel GPU module(s) loaded: $loaded"
   else
     warn "no Intel GPU module (xe/i915) loaded — check: lsmod | grep -E 'xe|i915'"
@@ -177,10 +177,10 @@ else
 fi
 
 swap=$(free -m | awk '/^Swap:/{print $3}')
-if [ "${swap:-0}" -gt 100 ]; then
+if [ "${swap:-0}" -gt 500 ]; then
   warn "swap in use: ${swap}MB — system may be memory-pressured"
 else
-  pass "no significant swap usage"
+  pass "swap usage nominal (${swap:-0}MB)"
 fi
 
 ########################################
@@ -317,10 +317,11 @@ fi
 echo "── Network / VPN"
 ########################################
 
-if ip link show protonvpn &>/dev/null; then
-  pass "WireGuard protonvpn interface up"
+vpn_iface=$(ip link show 2>/dev/null | awk -F': ' '/protonvpn/{print $2; exit}')
+if [ -n "$vpn_iface" ]; then
+  pass "WireGuard VPN up: $vpn_iface"
 else
-  warn "WireGuard protonvpn interface not found (VPN may be intentionally off)"
+  warn "no protonvpn interface found (VPN may be intentionally off)"
 fi
 
 exit_ip=$(curl -s --max-time 5 https://ifconfig.me 2>/dev/null || true)

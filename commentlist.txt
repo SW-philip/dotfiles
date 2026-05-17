@@ -1,5 +1,5 @@
 # comment review list
-# generated: Sat May 16 10:27:10 PM EDT 2026
+# generated: Sun May 17 10:56:25 AM EDT 2026
 # root: /home/prepko/nixos
 
 ── home/family/waybar.nix
@@ -30,14 +30,17 @@
   50: Ensure the loopback module is loaded with exclusive_caps for OpenCV compatibility.
   69: Required directories for Howdy's operation
 
+── profiles/base.nix
+  183: HM activation already runs at switch-time; skip the redundant boot-time run
+
 ── profiles/desktop.nix
   52: i2c — required for RGB and hardware sensor access
 
 ── profiles/home/surface.nix
-  16: Surface HiDPI cursor override (base sets 48px; Surface needs 32px at 1.5x scale)
-  21: GNOME session — dark mode + cursor
+  8: Surface HiDPI cursor override (base sets 48px; Surface needs 32px at 1.5x scale)
+  13: GNOME session — dark mode + cursor
 
 ── profiles/surface.nix
   5: Lix 2.93.3 still requires nix-command and flakes to be listed explicitly.
 
-# total: 18 comments
+# total: 19 comments
