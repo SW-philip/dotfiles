@@ -1,0 +1,13 @@
+# Niri Theme: batman - Batman
+[colors]
+background = "#1f1f2e"
+text = "#ffffff"
+cursor = "#5c5c94"
+
+[colors.selection]
+border = "#f5a600"
+background = "#282a3e"
+
+[colors.hints]
+start = "#f9c058"
+end = "#6d6d8d"

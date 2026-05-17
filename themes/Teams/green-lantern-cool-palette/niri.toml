@@ -1,0 +1,13 @@
+# Niri Theme: green lantern - Cool Palette
+[colors]
+background = "#3b9b5b"
+text = "#ffffff"
+cursor = "#7fd959"
+
+[colors.selection]
+border = "#ea9a39"
+background = "#40b05e"
+
+[colors.hints]
+start = "#f2cb79"
+end = "#c7df9f"

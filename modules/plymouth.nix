@@ -10,7 +10,7 @@
   };
 
   boot.plymouth = {
-    enable = true;
+    enable = false;
     theme = "colorful";
     themePackages = [
       (pkgs.adi1090x-plymouth-themes.override {
