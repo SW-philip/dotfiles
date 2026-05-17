@@ -29,7 +29,7 @@ else
 fi
 
 # AC = anything not actively discharging
-if [[ "$status" != "Discharging" ]]; then
+if [[ "$status" == "Full" ]]; then
     BAT_TEXT="${GLYPH} ∞"
 else
     BAT_TEXT="${GLYPH} ${PERCENT}%"
