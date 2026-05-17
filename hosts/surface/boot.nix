@@ -3,6 +3,8 @@
 {
   imports = [ ../../modules/plymouth.nix ];
 
+  boot.loader.timeout = 0;
+
   boot.initrd.systemd.enable = true;
   boot.initrd.kernelModules = [ "i915" ];
 

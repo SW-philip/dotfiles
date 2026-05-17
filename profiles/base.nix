@@ -180,6 +180,9 @@
     persistent = true;
   };
 
+  # HM activation already runs at switch-time; skip the redundant boot-time run
+  systemd.services."home-manager-${config.myConfig.user}".wantedBy = lib.mkForce [ ];
+
   hardware.enableRedistributableFirmware = true;
   }; # end config
 }
