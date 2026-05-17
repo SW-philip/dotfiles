@@ -57,10 +57,7 @@ in
 
   programs.waybar = {
     enable = true;
-    systemd = {
-      enable = true;
-      targets = [ "graphical-session.target" ];
-    };
+    systemd.enable = true;
 
     settings = {
       # ── Desktop Bars ──────────────────────────────────────────────────
