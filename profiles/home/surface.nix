@@ -2,15 +2,7 @@
 {
   imports = [
     ./base.nix
-    inputs.ignis.homeManagerModules.default
   ];
-
-  programs.ignis = {
-    enable = true;
-    services.audio.enable   = true;
-    services.network.enable  = true;
-    services.bluetooth.enable = true;
-  };
 
   ########################################
   # Surface HiDPI cursor override (base sets 48px; Surface needs 32px at 1.5x scale)

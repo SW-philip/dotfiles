@@ -10,7 +10,6 @@
     lanzaboote.url = "github:nix-community/lanzaboote";
     claude-code.url = "github:sadjow/claude-code-nix";
     helium.url = "gitlab:ntgn/helium-flake";
-    ignis.url = "github:linkfrg/ignis";
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs"; # Follow your nixpkgs ver
     lix = {

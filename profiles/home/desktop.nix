@@ -4,7 +4,6 @@
   imports = [
     ./base.nix
     ../packages/fastfetch-desktop.nix
-    inputs.ignis.homeManagerModules.default
   ];
 
   home.pointerCursor.size = lib.mkForce 24;
@@ -17,13 +16,6 @@
   '';
 
   myConfig.isDesktop = true;
-
-  programs.ignis = {
-    enable = true;
-    services.audio.enable   = true;
-    services.network.enable  = true;
-    services.bluetooth.enable = true;
-  };
 
   home.packages = with pkgs; [
     awww

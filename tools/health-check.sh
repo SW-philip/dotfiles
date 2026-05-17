@@ -150,11 +150,12 @@ if $IS_DESKTOP; then
     warn "nvidia-smi not available — add linuxPackages.nvidia_x11 tools to PATH"
   fi
 else
-  # Surface: Intel Iris Xe — check via i915 module
-  if lsmod 2>/dev/null | grep -q "^i915 "; then
-    pass "i915 (Intel GPU) kernel module loaded"
+  # Surface: Intel GPU — xe (Iris Xe, newer) or i915 (legacy); both may coexist
+  if lsmod 2>/dev/null | grep -qE "^(xe|i915)\s"; then
+    loaded=$(lsmod 2>/dev/null | awk '/^(xe|i915)\s/{printf "%s ", $1}' | sed 's/ $//')
+    pass "Intel GPU module(s) loaded: $loaded"
   else
-    warn "i915 module not loaded — check: lsmod | grep i915"
+    warn "no Intel GPU module (xe/i915) loaded — check: lsmod | grep -E 'xe|i915'"
   fi
 fi
 
@@ -319,7 +320,7 @@ echo "── Network / VPN"
 if ip link show protonvpn &>/dev/null; then
   pass "WireGuard protonvpn interface up"
 else
-  fail "WireGuard protonvpn interface not found"
+  warn "WireGuard protonvpn interface not found (VPN may be intentionally off)"
 fi
 
 exit_ip=$(curl -s --max-time 5 https://ifconfig.me 2>/dev/null || true)
@@ -350,7 +351,6 @@ echo "── Key Services"
 # common services
 services=(
   "NetworkManager"
-  "wg-quick-protonvpn"
   "sshd"
   "bluetooth"
   "pipewire"
