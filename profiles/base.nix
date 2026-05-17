@@ -58,6 +58,7 @@
   ############################################################
   networking.networkmanager.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services.NetworkManager-dispatcher.enable = false;
   services.openssh = {
     enable = true;
     settings = {

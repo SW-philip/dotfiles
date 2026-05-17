@@ -3,6 +3,7 @@
 {
   imports = [ ../../modules/plymouth.nix ];
 
+  boot.loader.timeout = 0;
   boot.initrd.systemd.enable = true;
   boot.kernelParams = lib.mkAfter [
     "8250.nr_uarts=0"
