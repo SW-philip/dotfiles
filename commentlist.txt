@@ -1,5 +1,5 @@
 # comment review list
-# generated: Fri May 15 10:04:57 PM EDT 2026
+# generated: Sat May 16 10:27:10 PM EDT 2026
 # root: /home/prepko/nixos
 
 ── home/family/waybar.nix
@@ -20,8 +20,15 @@
 ── hosts/surface/config.nix
   53: Distributed builds — offload to desktop (desktop)
 
+── hosts/surface/hardware.nix
+  14: 1. Add v4l2loopback to the kernel modules to load at boot
+  17: 2. Add the actual package to the kernel's module path
+  20: 3. Force the "Capture" capability and set the device ID
+
 ── modules/howdy.nix
-  26: v4l2loopback kernel module — virtual V4L2 device that OpenCV can read.
+  2: Facial recognition login via howdy (from unstable).
+  50: Ensure the loopback module is loaded with exclusive_caps for OpenCV compatibility.
+  69: Required directories for Howdy's operation
 
 ── profiles/desktop.nix
   52: i2c — required for RGB and hardware sensor access
@@ -33,4 +40,4 @@
 ── profiles/surface.nix
   5: Lix 2.93.3 still requires nix-command and flakes to be listed explicitly.
 
-# total: 13 comments
+# total: 18 comments
