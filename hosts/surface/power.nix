@@ -5,6 +5,8 @@
     "vm.swappiness" = 10;
     "kernel.nmi_watchdog" = 0;
     "vm.dirty_writeback_centisecs" = 1500;
+    "vm.dirty_background_ratio" = 5;
+    "vm.dirty_ratio" = 10;
   };
 
   boot.extraModprobeConfig = ''
@@ -31,6 +33,8 @@
   networking.networkmanager.wifi.powersave = true;
 
   services.power-profiles-daemon.enable = true;
+  services.thermald.enable = true;
+  services.irqbalance.enable = true;
 
   powerManagement.enable = true;
 
