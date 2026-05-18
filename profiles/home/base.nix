@@ -493,7 +493,7 @@ in
     librewolf ladybird helium
 
     eza sshfs yt-dlp aria2 imagemagick
-    delta lazygit tealdeer nix-your-shell comma helix
+    delta lazygit gh tealdeer nix-your-shell comma helix
     dua mtr sqlite nodejs pavucontrol nvd
     easyeffects nwg-look
     (pkgs.supertux or pkgs.superTux)
