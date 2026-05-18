@@ -1,13 +1,9 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   boot.consoleLogLevel = 0;
 
-  boot.initrd = {
-    verbose = false;
-    systemd.packages = [ pkgs.plymouth ];
-    systemd.services.plymouth.enable = true;
-  };
+  boot.initrd.verbose = false;
 
   boot.plymouth = {
     enable = false;
