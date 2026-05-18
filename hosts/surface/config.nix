@@ -52,6 +52,7 @@
   ############################################################
   # Distributed builds — offload to desktop (desktop)
   ############################################################
+  nix.settings.max-jobs = "auto";
   nix.distributedBuilds = true;
   nix.buildMachines = [{
     hostName = "desktop.local";
