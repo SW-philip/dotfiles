@@ -1,5 +1,5 @@
 # comment review list
-# generated: Sun May 17 10:56:25 AM EDT 2026
+# generated: Sun May 17 09:57:12 PM EDT 2026
 # root: /home/prepko/nixos
 
 ── home/family/waybar.nix
@@ -31,7 +31,7 @@
   69: Required directories for Howdy's operation
 
 ── profiles/base.nix
-  183: HM activation already runs at switch-time; skip the redundant boot-time run
+  184: HM activation already runs at switch-time; skip the redundant boot-time run
 
 ── profiles/desktop.nix
   52: i2c — required for RGB and hardware sensor access

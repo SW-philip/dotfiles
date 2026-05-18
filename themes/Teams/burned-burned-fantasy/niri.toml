@@ -1,0 +1,13 @@
+# Niri Theme: burned - Burned Fantasy
+[colors]
+background = "#682c2f"
+text = "#ffffff"
+cursor = "#b56c30"
+
+[colors.selection]
+border = "#e4881b"
+background = "#7c323a"
+
+[colors.hints]
+start = "#c78247"
+end = "#d7b77e"

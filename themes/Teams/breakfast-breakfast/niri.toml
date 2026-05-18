@@ -1,0 +1,13 @@
+# Niri Theme: breakfast - Breakfast
+[colors]
+background = "#f7c94b"
+text = "#1a1a1a"
+cursor = "#f5a524"
+
+[colors.selection]
+border = "#ff8a47"
+background = "#f8cf30"
+
+[colors.hints]
+start = "#e08910"
+end = "#f76e6e"

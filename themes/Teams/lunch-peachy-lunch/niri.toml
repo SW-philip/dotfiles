@@ -1,0 +1,13 @@
+# Niri Theme: lunch - Peachy Lunch
+[colors]
+background = "#f8caaf"
+text = "#1a1a1a"
+cursor = "#fcb25f"
+
+[colors.selection]
+border = "#ff8a47"
+background = "#f7c096"
+
+[colors.hints]
+start = "#f79b3b"
+end = "#ffc070"
