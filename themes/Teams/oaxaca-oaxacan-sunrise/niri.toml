@@ -1,0 +1,13 @@
+# Niri Theme: oaxaca - Oaxacan Sunrise
+[colors]
+background = "#e9b79f"
+text = "#1a1a1a"
+cursor = "#f1c84b"
+
+[colors.selection]
+border = "#bea037"
+background = "#e6ad89"
+
+[colors.hints]
+start = "#d26c1d"
+end = "#e97d2f"

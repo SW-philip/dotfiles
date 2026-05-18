@@ -1,0 +1,13 @@
+# Niri Theme: borneo - Borneo Bliss
+[colors]
+background = "#8c5a2b"
+text = "#ffffff"
+cursor = "#4a8bba"
+
+[colors.selection]
+border = "#2655ab"
+background = "#a2602f"
+
+[colors.hints]
+start = "#93724e"
+end = "#e1b298"
