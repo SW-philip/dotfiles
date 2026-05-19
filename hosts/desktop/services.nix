@@ -48,9 +48,9 @@
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.python3}/bin/python3 -m http.server 8765";
-      WorkingDirectory = "/srv/live";
+      ExecStart = "${pkgs.python3}/bin/python3 -m http.server 8765 --directory /srv/live";
       Restart = "on-failure";
+      RestartSec = "2s";
       User = "prepko";
     };
   };
