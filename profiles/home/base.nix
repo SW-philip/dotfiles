@@ -495,7 +495,7 @@ in
     eza sshfs yt-dlp aria2 imagemagick
     delta lazygit gh tealdeer nix-your-shell comma helix
     dua mtr sqlite nodejs pavucontrol nvd
-    easyeffects nwg-look
+    easyeffects nwg-look uv
     (pkgs.supertux or pkgs.superTux)
     (pkgs.supertuxkart or pkgs.superTuxKart)
 

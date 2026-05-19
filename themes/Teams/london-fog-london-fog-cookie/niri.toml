@@ -1,0 +1,13 @@
+# Niri Theme: london fog - London Fog Cookie
+[colors]
+background = "#c4b6a6"
+text = "#1a1a1a"
+cursor = "#cbab72"
+
+[colors.selection]
+border = "#c9c49c"
+background = "#bcac95"
+
+[colors.hints]
+start = "#e49f5d"
+end = "#b89765"
