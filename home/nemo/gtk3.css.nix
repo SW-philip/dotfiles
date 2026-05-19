@@ -5,11 +5,24 @@ p: ''
  * Targets: sidebar, path-bar, views, header, statusbar
  * ============================================================ */
 
+/* ── Main window surface ─────────────────────────────────── */
+
+.nemo-window {
+  background-color: ${p.SURFACE};
+}
+
+.nemo-window .view,
+.nemo-window .icon-view,
+.nemo-window .list-view {
+  background-color: ${p.OVERLAY};
+  color: ${p.TEXT};
+}
+
 /* ── Sidebar ─────────────────────────────────────────────── */
 
 placessidebar {
-  background-color: ${p.SURFACE};
-  border-right: 1px solid ${p.OVERLAY};
+  background-color: ${p.BASE};
+  border-right: 1px solid ${p.HIGHLIGHT_MED};
 }
 
 placessidebar > viewport > list {

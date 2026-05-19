@@ -238,7 +238,7 @@ let
 
   mkWofiCss = p: ''
     window {
-      background-color: ${p.BASE};
+      background-color: ${p.OVERLAY};
       font-family: "JetBrainsMono Nerd Font";
       font-size: 12px;
     }
@@ -247,12 +247,12 @@ let
       margin: 5px;
       padding: 8px;
       border-radius: ${toString l.radiusSm}px;
-      background-color: ${p.BASE};
+      background-color: ${p.OVERLAY};
       color: ${p.TEXT};
     }
 
     #entry:selected {
-      background-color: ${p.OVERLAY};
+      background-color: ${p.HIGHLIGHT_MED};
       color: ${p.PINE};
     }
 

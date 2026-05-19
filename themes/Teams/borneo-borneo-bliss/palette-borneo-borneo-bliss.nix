@@ -1,8 +1,8 @@
 {
   # ── Base ──────────────────────────────────────────────────────
   BASE           = "#8c5a2b";
-  SURFACE        = "#a2602f";
-  OVERLAY        = "#b86332";
+  SURFACE        = "#c47f3f";
+  OVERLAY        = "#d3a172";
   HIGHLIGHT_LOW  = "#bb7839";
   HIGHLIGHT_MED  = "#cf8a4a";
   HIGHLIGHT_HIGH = "#db9d62";
@@ -66,9 +66,9 @@
   SHADOW_A_OUTER = "0.50";
   SHADOW_A_DROP  = "0.55";
   SHADOW_A_HOVER = "0.65";
-  INSET_TOP_A    = "0.08";
-  INSET_BOT_A    = "0.30";
-  BORDER_TOP_A   = "0.07";
+  INSET_TOP_A    = "0.40";
+  INSET_BOT_A    = "0.25";
+  BORDER_TOP_A   = "0.50";
 
   # ── Battery ───────────────────────────────────────────────────
   BATTERY_FULL = "#c2925c";

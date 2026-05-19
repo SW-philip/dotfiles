@@ -86,7 +86,7 @@
   SHADOW_A_OUTER = "0.50";
   SHADOW_A_DROP  = "0.55";
   SHADOW_A_HOVER = "0.65";
-  INSET_TOP_A    = "0.08";
-  INSET_BOT_A    = "0.30";
-  BORDER_TOP_A   = "0.07";
+  INSET_TOP_A    = "0.40";
+  INSET_BOT_A    = "0.20";
+  BORDER_TOP_A   = "0.50";
 }

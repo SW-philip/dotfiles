@@ -26,7 +26,7 @@ window#waybar {
   padding: 4px 14px;
   margin: 5px 3px;
   border-radius: ${toString l.radiusMd}px;
-  border: 1px solid rgba(${p.BORDER_ACCENT_RGB},0.18);
+  border: 1px solid rgba(${p.BORDER_ACCENT_RGB},0.30);
   border-top-color: rgba(255,255,255,${p.BORDER_TOP_A});
   box-shadow:
     0 1px 0 rgba(255,255,255,${p.INSET_TOP_A}) inset,
@@ -44,7 +44,7 @@ window#waybar {
 .module:hover {
   background: ${p.WB_OVERLAY};
   color: ${p.TEXT};
-  border-color: rgba(${p.BORDER_ACCENT_RGB},0.30);
+  border-color: rgba(${p.BORDER_ACCENT_RGB},0.45);
   border-top-color: rgba(255,255,255,${p.BORDER_TOP_A});
   box-shadow:
     0 1px 0 rgba(255,255,255,${p.INSET_TOP_A}) inset,
@@ -60,7 +60,7 @@ window#waybar {
 #custom-clock,
 #custom-battery {
   background: ${p.WB_OVERLAY};
-  border-color: rgba(${p.BORDER_IRIS_RGB},0.14);
+  border-color: rgba(${p.BORDER_IRIS_RGB},0.28);
 }
 
 #custom-weather,
@@ -74,7 +74,7 @@ window#waybar {
 #custom-bluetooth,
 #tray {
   background: ${p.WB_BASE};
-  border-color: rgba(${p.BORDER_ACCENT_RGB},0.08);
+  border-color: rgba(${p.BORDER_ACCENT_RGB},0.18);
 }
 
 /* -----------------------------------------------------------------

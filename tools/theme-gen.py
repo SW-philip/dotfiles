@@ -712,11 +712,11 @@ class ThemeGenerator:
 
         # Base-derived colors
         palette['BASE'] = self.primary_color
-        palette['SURFACE'] = ColorMath.calc_color(self.primary_color, "lighten", 10)
-        palette['OVERLAY'] = ColorMath.calc_color(self.primary_color, "lighten", 20)
+        palette['SURFACE'] = ColorMath.calc_color(self.primary_color, "lighten", 15)
+        palette['OVERLAY'] = ColorMath.calc_color(self.primary_color, "lighten", 28)
         palette['HIGHLIGHT_LOW'] = ColorMath.calc_color(self.primary_color, "lighten", 5)
-        palette['HIGHLIGHT_MED'] = ColorMath.calc_color(self.primary_color, "lighten", 12)
-        palette['HIGHLIGHT_HIGH'] = ColorMath.calc_color(self.primary_color, "lighten", 25)
+        palette['HIGHLIGHT_MED'] = ColorMath.calc_color(self.primary_color, "lighten", 10)
+        palette['HIGHLIGHT_HIGH'] = ColorMath.calc_color(self.primary_color, "lighten", 20)
 
         palette['MUTED'] = ColorMath.calc_color(
             ColorMath.calc_color(self.primary_color, "desaturate", 40), "lighten", 30
@@ -879,9 +879,9 @@ class ThemeGenerator:
   SHADOW_A_OUTER = "0.10";
   SHADOW_A_DROP  = "0.07";
   SHADOW_A_HOVER = "0.10";
-  INSET_TOP_A    = "0.50";
-  INSET_BOT_A    = "0.08";
-  BORDER_TOP_A   = "0.65";
+  INSET_TOP_A    = "0.40";
+  INSET_BOT_A    = "0.20";
+  BORDER_TOP_A   = "0.50";
 
   # ── Battery (anchored to theme semantic colors) ───────────────
   BATTERY_FULL = "{palette['BATTERY_FULL']}";
