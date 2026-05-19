@@ -9,7 +9,7 @@ theme-tui — unified theme manager.
   Create  → color picker TUI → generate + activate
   Browse  → list registered themes → activate instantly
   Tweak   → select theme → reload colors into picker → regenerate
-  Edit    → select theme → open $EDITOR on palette.sh → re-activate
+  Edit    → select theme → interactive palette editor (swatch + hex field per color)
 """
 
 import importlib.util
@@ -20,11 +20,15 @@ import sys
 from pathlib import Path
 from typing import Optional
 
+from rich.color import Color as RColor
+from rich.style import Style as RStyle
+from rich.text import Text as RText
 from textual.app import App, ComposeResult
 from textual.binding import Binding
-from textual.containers import Vertical
+from textual.containers import Horizontal, VerticalScroll, Vertical
 from textual.screen import Screen
-from textual.widgets import Footer, Header, Label, ListItem, ListView, Static
+from textual.widget import Widget
+from textual.widgets import Footer, Header, Input, Label, ListItem, ListView, Static
 
 # ── Sibling module loader ─────────────────────────────────────────────────────
 
@@ -48,7 +52,7 @@ _derive   = _auto.derive_full_palette
 _register = _auto.register_theme
 _activate = _auto.activate_theme
 _TDIR     = _auto.TEAMS_DIR
-_pick     = getattr(_gen, "_tui_pick", None)  # None if textual import failed in theme-gen
+_pick     = getattr(_gen, "_tui_pick", None)
 
 # ── Theme discovery ───────────────────────────────────────────────────────────
 
@@ -89,7 +93,40 @@ def _read_cols(palette_sh: Path) -> list[Optional[str]]:
         for k in ("BASE", "LOVE", "ROSE", "PINE", "FOAM", "IRIS", "GOLD")
     ]
 
-# ── Action runners (called after TUI exits) ───────────────────────────────────
+# ── Palette editor helpers ────────────────────────────────────────────────────
+
+_HEX_RE = re.compile(r'^#[0-9a-fA-F]{6}$')
+
+
+def _mk_swatch(hex_val: str) -> RText:
+    h = hex_val.lstrip("#")
+    st = RStyle(bgcolor=RColor.from_rgb(int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)))
+    return RText("     ", style=st)
+
+
+def _parse_palette(path: Path) -> list[tuple[str, str]]:
+    """Return [(KEY, value), ...] for every export line."""
+    entries = []
+    for line in path.read_text().splitlines():
+        m = re.match(r'^export (\w+)="([^"]*)"', line)
+        if m:
+            entries.append((m.group(1), m.group(2)))
+    return entries
+
+
+def _write_palette(path: Path, updated: dict[str, str]) -> None:
+    """Overwrite only the changed values; preserve comments and structure."""
+    text = path.read_text()
+    for key, val in updated.items():
+        text = re.sub(
+            rf'^(export {key}=)"[^"]*"',
+            rf'\1"{val}"',
+            text,
+            flags=re.MULTILINE,
+        )
+    path.write_text(text)
+
+# ── Action runners ────────────────────────────────────────────────────────────
 
 def _generate(result: dict) -> None:
     """Derive full palette from picker result, register and activate."""
@@ -100,7 +137,6 @@ def _generate(result: dict) -> None:
         "PINE": result["pine"],
         "FOAM": result["foam"],
     })
-    # Honour the user's picked IRIS/GOLD rather than auto-derived values
     p["IRIS"] = result["accent"]
     p["GOLD"] = result["gold"]
     slug, _ = _register(result["theme_name"], p, "manual")
@@ -114,9 +150,11 @@ def _do_activate(t: dict) -> None:
 
 
 def _do_edit(t: dict) -> None:
-    subprocess.run([os.environ.get("EDITOR", "nano"), str(t["palette_sh"])])
-    _activate(t["slug"], t["dir"])
-    print(f"✨  {t['slug']} re-activated.")
+    app = PaletteEditorApp(t["palette_sh"])
+    app.run()
+    if app.saved:
+        _activate(t["slug"], t["dir"])
+        print(f"✨  {t['slug']} re-activated.")
 
 
 def _do_tweak(t: dict) -> None:
@@ -124,7 +162,115 @@ def _do_tweak(t: dict) -> None:
     if result:
         _generate(result)
 
-# ── Textual screens ───────────────────────────────────────────────────────────
+# ── Palette editor TUI ────────────────────────────────────────────────────────
+
+class ColorRow(Widget):
+    """One palette entry: KEY  [swatch]  hex-input  (or plain input for non-hex)."""
+
+    DEFAULT_CSS = """
+    ColorRow {
+        layout: horizontal;
+        height: 3;
+        margin: 0;
+    }
+    ColorRow .cr-key {
+        width: 26;
+        padding: 1 0 1 2;
+        color: $text-muted;
+        content-align: left middle;
+    }
+    ColorRow .cr-swatch {
+        width: 7;
+        content-align: center middle;
+    }
+    ColorRow .cr-input {
+        width: 16;
+    }
+    ColorRow .cr-plain {
+        width: 40;
+    }
+    """
+
+    def __init__(self, key: str, value: str) -> None:
+        super().__init__(id=f"row-{key}")
+        self.key_name      = key
+        self.current_value = value
+        self._is_hex       = bool(_HEX_RE.match(value))
+
+    def compose(self) -> ComposeResult:
+        yield Label(f" {self.key_name}", classes="cr-key")
+        if self._is_hex:
+            yield Static(_mk_swatch(self.current_value), id=f"sw-{self.key_name}", classes="cr-swatch")
+            yield Input(
+                value=self.current_value,
+                id=f"in-{self.key_name}",
+                max_length=7,
+                classes="cr-input",
+            )
+        else:
+            yield Input(
+                value=self.current_value,
+                id=f"in-{self.key_name}",
+                classes="cr-plain",
+            )
+
+    def on_input_changed(self, event: Input.Changed) -> None:
+        val = event.value
+        self.current_value = val
+        if self._is_hex and _HEX_RE.match(val):
+            try:
+                self.query_one(f"#sw-{self.key_name}", Static).update(_mk_swatch(val))
+            except Exception:
+                pass
+
+
+class PaletteEditorApp(App):
+    """Interactive palette editor: swatch + hex field per color variable."""
+
+    CSS = """
+    Screen { padding: 0; }
+    #pal-title { margin: 1 2; color: $text-muted; }
+    #pal-scroll { height: 1fr; margin: 0 1 1 1; border: solid $surface; }
+    """
+
+    BINDINGS = [
+        Binding("ctrl+s", "save",   "Save & activate"),
+        Binding("escape", "cancel", "Cancel"),
+    ]
+
+    def __init__(self, palette_sh: Path) -> None:
+        super().__init__()
+        self.palette_sh = palette_sh
+        self.saved      = False
+        self._entries   = _parse_palette(palette_sh)
+
+    def compose(self) -> ComposeResult:
+        yield Header(show_clock=False)
+        yield Label(
+            f"  Editing: {self.palette_sh.name}    [Ctrl+S = save & activate,  Esc = cancel]",
+            id="pal-title",
+        )
+        with VerticalScroll(id="pal-scroll"):
+            for key, val in self._entries:
+                yield ColorRow(key, val)
+        yield Footer()
+
+    def action_save(self) -> None:
+        updated = {}
+        for key, _ in self._entries:
+            try:
+                row = self.query_one(f"#row-{key}", ColorRow)
+                updated[key] = row.current_value
+            except Exception:
+                pass
+        _write_palette(self.palette_sh, updated)
+        self.saved = True
+        self.exit()
+
+    def action_cancel(self) -> None:
+        self.exit()
+
+# ── Menu TUI ─────────────────────────────────────────────────────────────────
 
 class BrowseScreen(Screen):
     BINDINGS = [
@@ -153,7 +299,7 @@ class BrowseScreen(Screen):
         yield Footer()
 
     def on_list_view_selected(self, event: ListView.Selected) -> None:
-        idx = int(event.item.id[1:])  # strip leading 't'
+        idx = int(event.item.id[1:])
         self.app.selected_theme = self._themes[idx]
         self.app.action = self._purpose
         self.app.exit()
@@ -173,7 +319,7 @@ class MainMenuScreen(Screen):
                 ListItem(Static("  Create new theme"),         id="create"),
                 ListItem(Static("  Browse & activate"),        id="activate"),
                 ListItem(Static("  Tweak existing theme"),     id="tweak"),
-                ListItem(Static("  Edit palette in $EDITOR"),  id="edit"),
+                ListItem(Static("  Edit palette colors"),      id="edit"),
                 id="menu-list",
             )
         yield Footer()
