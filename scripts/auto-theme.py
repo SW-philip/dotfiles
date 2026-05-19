@@ -785,6 +785,17 @@ def load_cache() -> dict:
     return {}
 # ── File Generators ───────────────────────────────────────────────────────────
 
+def _read_sh_palette(sh_path: Path) -> dict:
+    """Parse a palette.sh file back into a dict of exported variables."""
+    palette = {}
+    for line in sh_path.read_text().splitlines():
+        if line.startswith('export '):
+            rest = line[7:]
+            if '=' in rest:
+                key, _, val = rest.partition('=')
+                palette[key.strip()] = val.strip().strip('"')
+    return palette
+
 def slugify(name: str) -> str:
     name = unicodedata.normalize("NFKD", name)
     name = name.encode("ascii", "ignore").decode()
@@ -1521,15 +1532,26 @@ def write_waybar_css(path: Path, p: dict, name: str):
 
 # ── Core Logic ────────────────────────────────────────────────────────────────
 
-def register_theme(name: str, palette: dict, source: str) -> tuple[str, bool]:
-    """Write all theme files and return (slug, already_existed)."""
+def register_theme(name: str, palette: dict, source: str, force: bool = False) -> tuple[str, bool]:
+    """Write all theme files and return (slug, already_existed).
+
+    If the theme directory already exists with a palette.sh, that palette is
+    used for regenerating derived files instead of the auto-derived one — this
+    preserves hand-crafted palettes.  Pass force=True to overwrite everything.
+    """
     slug = slugify(name)
     theme_dir = TEAMS_DIR / slug
     already = theme_dir.exists()
     theme_dir.mkdir(parents=True, exist_ok=True)
 
-    write_nix(theme_dir / f"palette-{slug}.nix", palette, name)
-    write_sh(theme_dir / f"palette-{slug}.sh", palette, name)
+    existing_sh = theme_dir / f"palette-{slug}.sh"
+    if already and existing_sh.exists() and not force:
+        palette = _read_sh_palette(existing_sh)
+        print(f"  ℹ️  Preserving existing palette for {slug} (use --force to regenerate)")
+    else:
+        write_nix(theme_dir / f"palette-{slug}.nix", palette, name)
+        write_sh(theme_dir / f"palette-{slug}.sh", palette, name)
+
     write_nemo(theme_dir / "nemo.css", palette, name)
     write_ghostty(theme_dir / "ghostty.conf", palette, name)
     write_niri(theme_dir / "niri.toml", palette, name)
@@ -1664,6 +1686,7 @@ def main():
     parser.add_argument("--list", action="store_true", help="List available teams")
     parser.add_argument("--list-api", metavar="KEYWORD", help="Preview API results for a keyword")
     parser.add_argument("--register-only", action="store_true", help="Generate files but don't activate")
+    parser.add_argument("--force", action="store_true", help="Overwrite existing hand-crafted palette files")
     args = parser.parse_args()
 
     # 1. PRE-FLIGHT DATA LOADING
@@ -1706,7 +1729,7 @@ def main():
             }
 
         p = derive_full_palette(initial)
-        slug, _ = register_theme(name, p, "manual")
+        slug, _ = register_theme(name, p, "manual", force=args.force)
         if not args.register_only:
             activate_theme(slug, TEAMS_DIR / slug)
         return
@@ -1719,7 +1742,7 @@ def main():
             return
         initial = {"BASE": codes[0], "LOVE": codes[1], "ROSE": codes[2], "PINE": codes[3], "FOAM": codes[4]}
         p = derive_full_palette(initial)
-        slug, _ = register_theme("Manual Theme", p, "manual")
+        slug, _ = register_theme("Manual Theme", p, "manual", force=args.force)
         if not args.register_only:
             activate_theme(slug, TEAMS_DIR / slug)
         return
@@ -1749,9 +1772,8 @@ def main():
 
     if team_match:
         print(f"🏆 Found Team: {team_match['name']} ({team_match['league']})")
-        # Ensure team palettes also get the full depth treatment
         p = derive_full_palette(team_match["palette"])
-        slug, _ = register_theme(team_match["name"], p, "team")
+        slug, _ = register_theme(team_match["name"], p, "team", force=args.force)
         if not args.register_only:
             activate_theme(slug, TEAMS_DIR / slug)
         return
@@ -1766,7 +1788,7 @@ def main():
 
     p = api_result["palette"]
     theme_name = f"{api_result['query']} - {api_result['palette_name']}"
-    slug, _ = register_theme(theme_name, p, "api")
+    slug, _ = register_theme(theme_name, p, "api", force=args.force)
 
     print(f"  ✅ Generated: {slug}")
     if not args.register_only:

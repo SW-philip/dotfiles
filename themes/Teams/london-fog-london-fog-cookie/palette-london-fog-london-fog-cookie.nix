@@ -1,68 +1,68 @@
 {
   # ── Base ──────────────────────────────────────────────────────
-  BASE           = "#c4b6a6";
-  SURFACE        = "#bcac95";
-  OVERLAY        = "#b09e7d";
-  HIGHLIGHT_LOW  = "#ac9881";
-  HIGHLIGHT_MED  = "#a38665";
-  HIGHLIGHT_HIGH = "#94744f";
+  BASE           = "#c2b6c8";
+  SURFACE        = "#b8b0c8";
+  OVERLAY        = "#a89ab8";
+  HIGHLIGHT_LOW  = "#a898b8";
+  HIGHLIGHT_MED  = "#9888a8";
+  HIGHLIGHT_HIGH = "#887898";
 
   # ── Text & accents ────────────────────────────────────────────
-  MUTED  = "#9a9083";
-  SUBTLE = "#786a59";
-  TEXT   = "#1a1a1a";
-  LOVE   = "#cbab72";
-  ROSE   = "#b89765";
+  MUTED  = "#9890a0";
+  SUBTLE = "#786878";
+  TEXT   = "#1a1828";
+  LOVE   = "#c4a8d4";
+  ROSE   = "#b498c8";
   GOLD   = "#e49f5d";
-  PINE   = "#edb57d";
-  FOAM   = "#c5b4a0";
-  IRIS   = "#c9c49c";
+  PINE   = "#9da8c2";
+  FOAM   = "#ccc4dc";
+  IRIS   = "#b0a8d0";
 
   # ── Extended ──────────────────────────────────────────────────
-  CRITICAL   = "#cbab72";
-  WARNING    = "#cbc672";
+  CRITICAL   = "#c4a8d4";
+  WARNING    = "#c8c4e8";
   CAUTION    = "#e49f5d";
-  MUTED_ICON = "#9b8469";
+  MUTED_ICON = "#9884a8";
 
   # ── Structural ────────────────────────────────────────────────
-  INACTIVE_BORDER = "#9a9083";
-  SHADOW          = "#6b4033";
+  INACTIVE_BORDER = "#9890a0";
+  SHADOW          = "#3d2460";
 
   # ── Waybar ────────────────────────────────────────────────────
-  WB_BASE    = "#bfb09e";
-  WB_SURFACE = "#bcac95";
-  WB_OVERLAY = "#b09e7d";
+  WB_BASE    = "#c0b4cc";
+  WB_SURFACE = "#b8b0c8";
+  WB_OVERLAY = "#a89ab8";
 
   # ── Gradients ─────────────────────────────────────────────────
-  GRAD_SURFACE_HI = "#c5b6a0";
-  GRAD_SURFACE_LO = "#b2a28a";
-  GRAD_OVERLAY_HI = "#baa888";
-  GRAD_OVERLAY_LO = "#a69473";
-  GRAD_BASE_HI    = "#cdc0b1";
-  GRAD_BASE_LO    = "#baac9b";
+  GRAD_SURFACE_HI = "#c4b8d4";
+  GRAD_SURFACE_LO = "#b0a4c4";
+  GRAD_OVERLAY_HI = "#b4a4cc";
+  GRAD_OVERLAY_LO = "#a090bc";
+  GRAD_BASE_HI    = "#ccc0d8";
+  GRAD_BASE_LO    = "#b8acc8";
 
   # ── Borders ───────────────────────────────────────────────────
-  BORDER_ACCENT_RGB = "203,171,114";
-  BORDER_IRIS_RGB   = "201,196,156";
+  BORDER_ACCENT_RGB = "180,168,208";
+  BORDER_IRIS_RGB   = "176,168,208";
 
   # ── Tints ─────────────────────────────────────────────────────
-  TINT_PINE_DARK   = "#e18223";
-  TINT_PINE_MID    = "#e79c50";
-  TINT_CRITICAL_BG = "#88734f";
+  TINT_PINE_DARK   = "#7888b8";
+  TINT_PINE_MID    = "#8898c4";
+  TINT_CRITICAL_BG = "#7a6888";
 
   # ── Hovers ────────────────────────────────────────────────────
-  HOVER_MUTED_BG  = "#7d6b53";
-  HOVER_TEAL_BG   = "#b38f65";
-  HOVER_GREEN_BG  = "#ef8f2f";
+  HOVER_MUTED_BG  = "#7a6888";
+  HOVER_TEAL_BG   = "#8498b8";
+  HOVER_GREEN_BG  = "#7888c0";
   HOVER_GOLD_BG   = "#de7817";
-  HOVER_ORANGE_BG = "#b0a941";
+  HOVER_ORANGE_BG = "#9888c0";
 
   # ── Typography ────────────────────────────────────────────────
   FONT_SIZE_BAR = "12px";
   ICON_SHADOW   = "0 1px 2px rgba(0,0,0,0.80)";
 
   # ── Shadows ───────────────────────────────────────────────────
-  SHADOW_RGB     = "107,64,51";
+  SHADOW_RGB     = "61,36,96";
   SHADOW_A_OUTER = "0.50";
   SHADOW_A_DROP  = "0.55";
   SHADOW_A_HOVER = "0.65";
@@ -71,16 +71,16 @@
   BORDER_TOP_A   = "0.07";
 
   # ── Battery ───────────────────────────────────────────────────
-  BATTERY_FULL = "#edb57d";
-  BATTERY_HIGH = "#c5b4a0";
-  BATTERY_MED  = "#b89765";
+  BATTERY_FULL = "#9da8c2";
+  BATTERY_HIGH = "#ccc4dc";
+  BATTERY_MED  = "#b498c8";
   BATTERY_LOW  = "#e49f5d";
-  BATTERY_CRIT = "#cbab72";
+  BATTERY_CRIT = "#c4a8d4";
 
   # ── Roles ─────────────────────────────────────────────────────
-  BORDER_ACCENT    = "#c4a05f";
-  ACCENT_PRIMARY   = "#c9c49c";
-  TEXT_PRIMARY     = "#1a1a1a";
-  TEXT_SECONDARY   = "#5a5a5a";
-  ACCENT_SECONDARY = "#c5b4a0";
+  BORDER_ACCENT    = "#b4a0cc";
+  ACCENT_PRIMARY   = "#b0a8d0";
+  TEXT_PRIMARY     = "#1a1828";
+  TEXT_SECONDARY   = "#5a5870";
+  ACCENT_SECONDARY = "#ccc4dc";
 }

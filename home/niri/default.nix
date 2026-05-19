@@ -425,6 +425,12 @@ let
 
       systemctl --user restart swaybg 2>/dev/null || true
       pkill -USR1 zsh 2>/dev/null || true
+      pkill -SIGUSR1 waybar 2>/dev/null || true
+      makoctl reload 2>/dev/null || true
+      sleep 0.3
+      pkill -f waybar-weather 2>/dev/null || true
+      pkill -SIGUSR2 waybar 2>/dev/null || true
+      pkill -SIGUSR2 ghostty 2>/dev/null || true
 
       echo "✅ Theme set to: $THEME"
     ''
