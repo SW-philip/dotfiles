@@ -1,0 +1,13 @@
+# Niri Theme: dark rain - Grimdark Rainbow
+[colors]
+background = "#3e2a5a"
+text = "#ffffff"
+cursor = "#8a4c9a"
+
+[colors.selection]
+border = "#edce36"
+background = "#46316d"
+
+[colors.hints]
+start = "#bf967d"
+end = "#b77c5c"

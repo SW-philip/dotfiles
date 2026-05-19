@@ -83,16 +83,22 @@ in
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = true; };
           modules = [ "custom/battery" "custom/cpu_temp" "custom/perf" ];
+          "on-scroll-up" = "";
+          "on-scroll-down" = "";
         };
         "group/storage" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = true; };
           modules = [ "custom/btrfs" "custom/flake-drift" ];
+          "on-scroll-up" = "";
+          "on-scroll-down" = "";
         };
         "group/toggles" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = false; };
           modules = [ "custom/utilities-handle" "custom/power_profile" "custom/idle_inhibit" "custom/dnd" "custom/choose_mode" ];
+          "on-scroll-up" = "";
+          "on-scroll-down" = "";
         };
         "custom/utilities-handle" = {
           format = "󰙴";
@@ -102,6 +108,8 @@ in
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = false; };
           modules = [ "custom/wleave" "custom/uniremote" ];
+          "on-scroll-up" = "";
+          "on-scroll-down" = "";
         };
         "custom/choose_mode" = {
           exec = "${chooseModeExec}";
@@ -152,11 +160,15 @@ in
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = true; };
           modules = [ "custom/battery" "custom/cpu_temp" "custom/perf" ];
+          "on-scroll-up" = "";
+          "on-scroll-down" = "";
         };
         "group/storage" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = true; };
           modules = [ "custom/btrfs" "custom/flake-drift" ];
+          "on-scroll-up" = "";
+          "on-scroll-down" = "";
         };
         "group/connectivity" = {
           orientation = "horizontal";
@@ -166,6 +178,8 @@ in
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = false; };
           modules = [ "custom/utilities-handle" "custom/idle_inhibit" "custom/power_profile" "custom/dnd" "custom/choose_mode" ];
+          "on-scroll-up" = "";
+          "on-scroll-down" = "";
         };
         "custom/utilities-handle" = {
           format = "󰙴";
@@ -182,6 +196,8 @@ in
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = false; };
           modules = [ "custom/wleave" "custom/uniremote" ];
+          "on-scroll-up" = "";
+          "on-scroll-down" = "";
         };
       };
     };
@@ -216,6 +232,7 @@ in
         "GIO_USE_VFS=local"
         "G_MESSAGES_DEBUG=none"
         "GTK_THEME=rose-pine-moon"
+        "DCONF_PROFILE=/dev/null"
       ];
       ExecStart = lib.mkForce "${pkgs.waybar}/bin/waybar";
       Restart = lib.mkForce "on-failure";
