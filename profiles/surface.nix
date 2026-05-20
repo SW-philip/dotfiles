@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   ############################################################
   # Nix / Lix — experimental features
@@ -25,6 +25,7 @@
   # GVfs — needed for Nemo to mount network shares (SMB etc.)
   ############################################################
   services.gvfs.enable = true;
+  environment.systemPackages = [ pkgs.gvfs ];
 
   ############################################################
   # Steam
