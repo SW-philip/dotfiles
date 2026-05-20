@@ -83,16 +83,24 @@ in
         "group/system-stats" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = true; };
-          modules = [ "custom/battery" "custom/cpu_temp" "custom/perf" ];
+          modules = [ "custom/stats-handle" "custom/battery" "custom/cpu_temp" "custom/perf" ];
           "on-scroll-up" = "";
           "on-scroll-down" = "";
+        };
+        "custom/stats-handle" = {
+          format = "󰓅";
+          tooltip-format = "System stats";
         };
         "group/storage" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = true; };
-          modules = [ "custom/btrfs" "custom/flake-drift" ];
+          modules = [ "custom/storage-handle" "custom/btrfs" "custom/flake-drift" ];
           "on-scroll-up" = "";
           "on-scroll-down" = "";
+        };
+        "custom/storage-handle" = {
+          format = "󰋊";
+          tooltip-format = "Storage";
         };
         "group/toggles" = {
           orientation = "horizontal";
@@ -160,16 +168,24 @@ in
         "group/system-stats" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = true; };
-          modules = [ "custom/battery" "custom/cpu_temp" "custom/perf" ];
+          modules = [ "custom/stats-handle" "custom/battery" "custom/cpu_temp" "custom/perf" ];
           "on-scroll-up" = "";
           "on-scroll-down" = "";
+        };
+        "custom/stats-handle" = {
+          format = "󰓅";
+          tooltip-format = "System stats";
         };
         "group/storage" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = true; };
-          modules = [ "custom/btrfs" "custom/flake-drift" ];
+          modules = [ "custom/storage-handle" "custom/btrfs" "custom/flake-drift" ];
           "on-scroll-up" = "";
           "on-scroll-down" = "";
+        };
+        "custom/storage-handle" = {
+          format = "󰋊";
+          tooltip-format = "Storage";
         };
         "group/connectivity" = {
           orientation = "horizontal";
