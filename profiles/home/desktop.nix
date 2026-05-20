@@ -8,6 +8,15 @@
 
   home.pointerCursor.size = lib.mkForce 24;
 
+  ########################################
+  # Fix nrs alias — hostname desktop != flake attr desktop
+  ########################################
+  programs.zsh.shellAliases = {
+    nrs = "sudo nixos-rebuild switch --flake .#desktop";
+    nrb = "sudo nixos-rebuild boot --flake .#desktop";
+    nrt = "sudo nixos-rebuild test --flake .#desktop";
+  };
+
   xdg.configFile."hypr/monitor.conf".text = ''
     monitor = DP-4, 1920x1080@60, 0x0, 1.0
     monitor = DP-3, 1920x1080@60, 1920x0, 1.0

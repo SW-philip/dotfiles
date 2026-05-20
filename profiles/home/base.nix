@@ -183,9 +183,9 @@ in
       lg = "lazygit";
       gds = "git diff --staged";
       lb = "sudo rm -f /boot/EFI/systemd/systemd-bootx64.efi /boot/EFI/BOOT/BOOTX64.EFI && sudo rm -f /boot/EFI/Linux/nixos-*.efi";
-      nrs = "sudo nixos-rebuild switch --flake";
-      nrb = "sudo nixos-rebuild boot --flake";
-      nrt = "sudo nixos-rebuild test --flake";
+      nrs = "sudo nixos-rebuild switch --flake .";
+      nrb = "sudo nixos-rebuild boot --flake .";
+      nrt = "sudo nixos-rebuild test --flake .";
       nfu = "nix flake update";
       ".." = "cd ..";
       "..." = "cd ../..";

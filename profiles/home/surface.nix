@@ -10,6 +10,15 @@
   home.pointerCursor.size = lib.mkForce 32;
 
   ########################################
+  # Fix nrs alias — hostname surface != flake attr surface
+  ########################################
+  programs.zsh.shellAliases = {
+    nrs = "sudo nixos-rebuild switch --flake .#surface";
+    nrb = "sudo nixos-rebuild boot --flake .#surface";
+    nrt = "sudo nixos-rebuild test --flake .#surface";
+  };
+
+  ########################################
   # GNOME session — dark mode + cursor
   ########################################
   dconf.settings = {
