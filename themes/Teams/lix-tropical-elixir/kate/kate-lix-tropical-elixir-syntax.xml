@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language SYSTEM "language.dtd">
-<language name="earl grey - Earl Grey" version="1.0" kateversion="5.0" section="Sources" extensions="" mimetype="" priority="0">
+<language name="lix - Tropical Elixir" version="1.0" kateversion="5.0" section="Sources" extensions="" mimetype="" priority="0">
   <highlighting>
     <list name="keywords">
       <item>def</item><item>class</item><item>return</item><item>if</item><item>else</item>
@@ -22,13 +22,13 @@
     </contexts>
     <itemDatas>
       <itemData name="Normal Text" defStyleNum="dsNormal" spellChecking="false" />
-      <itemData name="Keyword" defStyleNum="dsKeyword" color="#393f36" selColor="#8e9177" />
-      <itemData name="Function" defStyleNum="dsFunction" color="#3b3c39" selColor="#8e9177" />
-      <itemData name="Decimal" defStyleNum="dsDecVal" color="#888888" selColor="#8e9177" />
-      <itemData name="Float" defStyleNum="dsFloat" color="#888888" selColor="#8e9177" />
-      <itemData name="String" defStyleNum="dsString" color="#5b5d5b" selColor="#8e9177" />
-      <itemData name="Comment" defStyleNum="dsComment" color="#8f8f8f" selColor="#8e9177" />
-      <itemData name="Alert" defStyleNum="dsAlert" color="#9c9d9b" selColor="#8e9177" />
+      <itemData name="Keyword" defStyleNum="dsKeyword" color="#f3e09b" selColor="#d28f70" />
+      <itemData name="Function" defStyleNum="dsFunction" color="#f0c19e" selColor="#d28f70" />
+      <itemData name="Decimal" defStyleNum="dsDecVal" color="#cab79b" selColor="#d28f70" />
+      <itemData name="Float" defStyleNum="dsFloat" color="#cab79b" selColor="#d28f70" />
+      <itemData name="String" defStyleNum="dsString" color="#e8b5c0" selColor="#d28f70" />
+      <itemData name="Comment" defStyleNum="dsComment" color="#bd886f" selColor="#d28f70" />
+      <itemData name="Alert" defStyleNum="dsAlert" color="#b85856" selColor="#d28f70" />
     </itemDatas>
   </highlighting>
   <general>

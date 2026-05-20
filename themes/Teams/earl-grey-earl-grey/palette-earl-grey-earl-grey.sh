@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# earl-grey-earl-grey — generated palette
+# earl grey - Earl Grey — generated palette
 
 # --- All Theme Variables ---
 export BASE="#b8b9b1"
@@ -62,8 +62,6 @@ export BATTERY_HIGH="#3b3c39"
 export BATTERY_FULL="#5b5d5b"
 export ACCENT_PRIMARY="#393f36"
 export ACCENT_SECONDARY="#3b3c39"
-export FONT_SIZE_BAR="13px"
-export ICON_SHADOW="0 1px 2px rgba(0,0,0,0.80)"
 
 # --- Wallpaper Mapping ---
 export BG_DARK="#b8b9b1"

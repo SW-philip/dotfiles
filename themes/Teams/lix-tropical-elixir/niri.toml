@@ -1,0 +1,13 @@
+# Niri Theme: lix - Tropical Elixir
+[colors]
+background = "#a55d3b"
+text = "#ffffff"
+cursor = "#b85856"
+
+[colors.selection]
+border = "#f3e09b"
+background = "#ba5f3f"
+
+[colors.hints]
+start = "#cab79b"
+end = "#c1a77b"

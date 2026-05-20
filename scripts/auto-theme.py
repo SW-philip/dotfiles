@@ -1695,7 +1695,9 @@ def activate_theme(slug: str, theme_dir: Path) -> None:
         wvkbd_dst.parent.mkdir(parents=True, exist_ok=True)
         wvkbd_dst.unlink(missing_ok=True)
         shutil.copy2(wvkbd_src, wvkbd_dst)
-        subprocess.run(["systemctl", "--user", "restart", "wvkbd"], capture_output=True)
+        active = subprocess.run(["systemctl", "--user", "is-active", "wvkbd"], capture_output=True)
+        if active.returncode == 0:
+            subprocess.run(["systemctl", "--user", "restart", "wvkbd"], capture_output=True)
         print("  → wvkbd theme applied")
 
     # ── Reload Waybar (CSS first, then full restart) ──────────────────────────
