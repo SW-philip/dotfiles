@@ -536,6 +536,7 @@ in
 
   home.activation.applyTheme = lib.hm.dag.entryAfter ["writeBoundary"] ''
     $DRY_RUN_CMD ${applyThemeScript}/bin/apply-theme
+    ${pkgs.niri}/bin/niri msg action reload-config 2>/dev/null || true
   '';
 
   ########################################
