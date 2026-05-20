@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language SYSTEM "language.dtd">
-<language name="london fog - London Fog Cookie" version="1.0" kateversion="5.0" section="Sources" extensions="" mimetype="" priority="0">
+<language name="english breakfast - English Breakfast" version="1.0" kateversion="5.0" section="Sources" extensions="" mimetype="" priority="0">
   <highlighting>
     <list name="keywords">
       <item>def</item><item>class</item><item>return</item><item>if</item><item>else</item>
@@ -22,13 +22,13 @@
     </contexts>
     <itemDatas>
       <itemData name="Normal Text" defStyleNum="dsNormal" spellChecking="false" />
-      <itemData name="Keyword" defStyleNum="dsKeyword" color="#b0a8d0" selColor="#9888a8" />
-      <itemData name="Function" defStyleNum="dsFunction" color="#ccc4dc" selColor="#9888a8" />
-      <itemData name="Decimal" defStyleNum="dsDecVal" color="#e49f5d" selColor="#9888a8" />
-      <itemData name="Float" defStyleNum="dsFloat" color="#e49f5d" selColor="#9888a8" />
-      <itemData name="String" defStyleNum="dsString" color="#9da8c2" selColor="#9888a8" />
-      <itemData name="Comment" defStyleNum="dsComment" color="#9890a0" selColor="#9888a8" />
-      <itemData name="Alert" defStyleNum="dsAlert" color="#c4a8d4" selColor="#9888a8" />
+      <itemData name="Keyword" defStyleNum="dsKeyword" color="#375faa" selColor="#ec9e7f" />
+      <itemData name="Function" defStyleNum="dsFunction" color="#3c87a5" selColor="#ec9e7f" />
+      <itemData name="Decimal" defStyleNum="dsDecVal" color="#f3bb8b" selColor="#ec9e7f" />
+      <itemData name="Float" defStyleNum="dsFloat" color="#f3bb8b" selColor="#ec9e7f" />
+      <itemData name="String" defStyleNum="dsString" color="#50ddcd" selColor="#ec9e7f" />
+      <itemData name="Comment" defStyleNum="dsComment" color="#dc9579" selColor="#ec9e7f" />
+      <itemData name="Alert" defStyleNum="dsAlert" color="#f4a462" selColor="#ec9e7f" />
     </itemDatas>
   </highlighting>
   <general>
