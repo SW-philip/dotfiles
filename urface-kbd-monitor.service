@@ -1,0 +1,14 @@
+[0;1;32m●[0m niri-rotation.service - Auto-rotate niri output via iio-sensor-proxy
+     Loaded: loaded (]8;;file://surface/home/prepko/.config/systemd/user/niri-rotation.service\/home/prepko/.config/systemd/user/niri-rotation.service]8;;\; [0;1;32menabled[0m; preset: ignored)
+     Active: [0;1;32mactive (running)[0m since Wed 2026-05-20 12:20:35 EDT; 31s ago
+ Invocation: b7c28caa7eda431089e94cc074a038df
+   Main PID: 45680 (3x9b3dm9vjl3i5q)
+      Tasks: 6[0;38:5:245m (limit: 9282)[0m
+     Memory: 27.8M (peak: 32.1M)
+        CPU: 31ms
+     CGroup: /user.slice/user-1000.slice/user@1000.service/app.slice/niri-rotation.service
+             ├─[0;38:5:245m45680 /nix/store/3hgg7pr65imdrifqqh3flg3arvkc2r22-bash-5.3p3/bin/bash /nix/store/3x9b3dm9vjl3i5qznav285kcl29xhm5l-niri-rotation[0m
+             ├─[0;38:5:245m45684 /nix/store/b10ssk0hv6smhldj3y11j57x6qklxp56-iio-sensor-proxy-3.8/bin/monitor-sensor[0m
+             └─[0;38:5:245m45685 /nix/store/3hgg7pr65imdrifqqh3flg3arvkc2r22-bash-5.3p3/bin/bash /nix/store/3x9b3dm9vjl3i5qznav285kcl29xhm5l-niri-rotation[0m
+
+May 20 12:20:35 surface systemd[1504]: Started Auto-rotate niri output via iio-sensor-proxy.

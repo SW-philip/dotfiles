@@ -36,8 +36,8 @@
   # iio orientations → niri CCW transforms:
   #   normal    → normal  (landscape)
   #   bottom-up → 180     (upside-down landscape)
-  #   right-up  → 90      (portrait, volume buttons on right)
-  #   left-up   → 270     (portrait, volume buttons on left)
+  #   right-up  → 270     (portrait, volume buttons on left)
+  #   left-up   → 90      (portrait, volume buttons on right)
   ########################################
   systemd.user.services.niri-rotation = {
     Unit = {
@@ -53,8 +53,8 @@
               case "$line" in
                 *"normal"*)    ${pkgs.niri}/bin/niri msg output eDP-1 transform normal ;;
                 *"bottom-up"*) ${pkgs.niri}/bin/niri msg output eDP-1 transform 180 ;;
-                *"right-up"*)  ${pkgs.niri}/bin/niri msg output eDP-1 transform 90 ;;
-                *"left-up"*)   ${pkgs.niri}/bin/niri msg output eDP-1 transform 270 ;;
+                *"right-up"*)  ${pkgs.niri}/bin/niri msg output eDP-1 transform 270 ;;
+                *"left-up"*)   ${pkgs.niri}/bin/niri msg output eDP-1 transform 90 ;;
               esac
             done
       '';
