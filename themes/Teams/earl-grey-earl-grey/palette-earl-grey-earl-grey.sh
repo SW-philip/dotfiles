@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# earl grey - Earl Grey — generated palette
+# earl-grey-earl-grey — generated palette
 
 # --- All Theme Variables ---
 export BASE="#b8b9b1"
@@ -18,7 +18,7 @@ export TEXT_PRIMARY="#1a1a1a"
 export TEXT_SECONDARY="#5a5a5a"
 export SUBTLE="#696968"
 export MUTED="#8f8f8f"
-export MUTED_ICON="#525448"
+export MUTED_ICON="#87897b"
 export IRIS="#393f36"
 export GOLD="#888888"
 export HOVER_BG="#989a83"
@@ -62,6 +62,8 @@ export BATTERY_HIGH="#3b3c39"
 export BATTERY_FULL="#5b5d5b"
 export ACCENT_PRIMARY="#393f36"
 export ACCENT_SECONDARY="#3b3c39"
+export FONT_SIZE_BAR="13px"
+export ICON_SHADOW="0 1px 2px rgba(0,0,0,0.80)"
 
 # --- Wallpaper Mapping ---
 export BG_DARK="#b8b9b1"

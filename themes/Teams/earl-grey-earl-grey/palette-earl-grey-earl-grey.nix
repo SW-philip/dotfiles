@@ -22,7 +22,7 @@
   CRITICAL   = "#9c9d9b";
   WARNING    = "#9b9d9b";
   CAUTION    = "#888888";
-  MUTED_ICON = "#525448";
+  MUTED_ICON = "#87897b";
 
   # ── Structural ────────────────────────────────────────────────
   INACTIVE_BORDER = "#8f8f8f";
