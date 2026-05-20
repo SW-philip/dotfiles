@@ -195,6 +195,7 @@ in
       diff = "delta";
       gen-theme = "${pythonEnv}/bin/python3 ~/nixos/tools/theme-gen.py";
       harmonize = "bash ~/nixos/tools/harmonize-themes.sh";
+      drmis = "uv run ~/nixos/tools/theme-tui.py";
     };
 
     oh-my-zsh = {

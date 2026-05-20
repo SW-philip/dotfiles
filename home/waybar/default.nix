@@ -53,6 +53,7 @@ in
     ./sleep-drain.nix
     ./flake-drift.nix
     ./perf.nix
+    ./rotation-lock.nix
   ];
 
   programs.waybar = {
@@ -177,7 +178,7 @@ in
         "group/toggles" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = false; };
-          modules = [ "custom/utilities-handle" "custom/idle_inhibit" "custom/power_profile" "custom/dnd" "custom/choose_mode" ];
+          modules = [ "custom/utilities-handle" "custom/idle_inhibit" "custom/power_profile" "custom/dnd" "custom/rotation_lock" "custom/choose_mode" ];
           "on-scroll-up" = "";
           "on-scroll-down" = "";
         };
@@ -273,5 +274,6 @@ in
     sleepDrain.enable = true;
     flake-drift.enable = true;
     perf.enable = true;
+    rotation_lock.enable = true;
   };
 }

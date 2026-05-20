@@ -159,6 +159,14 @@ window#waybar {
 #custom-bluetooth:hover { color: #e0def4; background: #26233a; border-color: rgba(168,96,119,0.25); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 3px 10px rgba(168,96,119,0.15), 0 3px 8px rgba(0,0,0,0.6); }
 
 /* -----------------------------------------------------------------
+   Rotation Lock — gold when locked, foam on hover when unlocked
+   ----------------------------------------------------------------- */
+#custom-rotation_lock                  { color: #c4c0d8; }
+#custom-rotation_lock.locked           { color: #f6c177; }
+#custom-rotation_lock.locked:hover     { color: #f6c177; background: #2e2210; border-color: rgba(246,193,119,0.28); }
+#custom-rotation_lock.unlocked:hover   { color: #9ccfd8; background: #163234; border-color: rgba(156,207,216,0.2); }
+
+/* -----------------------------------------------------------------
    Workspaces — inactive dim, active always lit
    ----------------------------------------------------------------- */
 #workspaces button {
