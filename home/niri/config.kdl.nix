@@ -156,6 +156,7 @@ binds {
     Mod+Space  { spawn "fuzzel"; }
     Mod+E      { spawn "nemo"; }
     Mod+V      { spawn "bash" "-c" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
+    Mod+W      { spawn "bash" "-c" "pkill wvkbd-mobintl || wvkbd-mobintl"; }
 
     // Windows
     Mod+Q { close-window; }
