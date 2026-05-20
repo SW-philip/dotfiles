@@ -156,7 +156,7 @@ binds {
     Mod+Space  { spawn "fuzzel"; }
     Mod+E      { spawn "nemo"; }
     Mod+V      { spawn "bash" "-c" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
-    ${if !isDesktop then ''Mod+Shift+W { spawn "bash" "-c" "systemctl --user is-active --quiet wvkbd && systemctl --user stop wvkbd || systemctl --user start wvkbd"; }'' else ""}
+    ${if !isDesktop then ''Mod+Shift+W { spawn "toggle-wvkbd"; }'' else ""}
 
     // Windows
     Mod+Q { close-window; }
@@ -185,7 +185,7 @@ binds {
 
     // Resize
     Mod+R { switch-preset-column-width; }
-    Mod+Shift+R { spawn "niri" "msg" "action" "reload-config"; }
+    Mod+Shift+R { spawn "niri" "msg" "action" "load-config-file"; }
     Mod+Minus { set-column-width "-5%"; }
     Mod+Equal { set-column-width "+5%"; }
     Mod+Shift+Minus { set-window-height "-5%"; }

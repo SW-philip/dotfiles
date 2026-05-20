@@ -520,6 +520,12 @@ let
     pygobject3
   ]);
 
+  toggleWvkbd = pkgs.writeShellScriptBin "toggle-wvkbd" ''
+    ${pkgs.systemd}/bin/systemctl --user is-active --quiet wvkbd \
+      && ${pkgs.systemd}/bin/systemctl --user stop wvkbd \
+      || ${pkgs.systemd}/bin/systemctl --user start wvkbd
+  '';
+
   sqlchPopup = pkgs.writeShellScriptBin "sqlch-popup" ''
     # Toggle: kill running instance, or launch fresh
     if pgrep -f "sqlch-popup.py" > /dev/null 2>&1; then
@@ -536,7 +542,7 @@ in
 
   home.activation.applyTheme = lib.hm.dag.entryAfter ["writeBoundary"] ''
     $DRY_RUN_CMD ${applyThemeScript}/bin/apply-theme
-    ${pkgs.niri}/bin/niri msg action reload-config 2>/dev/null || true
+    ${pkgs.niri}/bin/niri msg action load-config-file 2>/dev/null || true
   '';
 
   ########################################
@@ -558,7 +564,7 @@ in
     };
   };
 
-  home.packages = [ pkgs.swaybg pkgs.cava toggleDisplayMode applyThemeScript setTheme toggleTheme sqlchPopup mprisWatch ];
+  home.packages = [ pkgs.swaybg pkgs.cava toggleDisplayMode applyThemeScript setTheme toggleTheme sqlchPopup mprisWatch toggleWvkbd ];
 
   xdg.configFile."xdg-desktop-portal/niri-portals.conf".text = ''
     [preferred]
