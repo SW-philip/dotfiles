@@ -865,8 +865,8 @@ def write_nix(path: Path, p: dict, name: str):
   HOVER_ORANGE_BG = "{p['HOVER_ORANGE_BG']}";
 
   # ── Typography ────────────────────────────────────────────────
-  FONT_SIZE_BAR = "12px";
-  ICON_SHADOW   = "0 1px 2px rgba(0,0,0,0.80)";
+  FONT_SIZE_BAR = "{p.get('FONT_SIZE_BAR', '12px')}";
+  ICON_SHADOW   = "{p.get('ICON_SHADOW', '0 1px 2px rgba(0,0,0,0.80)')}";
 
   # ── Shadows ───────────────────────────────────────────────────
   SHADOW_RGB     = "{p['SHADOW_RGB']}";

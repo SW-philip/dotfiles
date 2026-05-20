@@ -158,9 +158,26 @@ def _do_edit(t: dict) -> None:
 
 
 def _do_tweak(t: dict) -> None:
-    result = _pick(name0=t["slug"], initial_cols=_read_cols(t["palette_sh"]))
-    if result:
-        _generate(result)
+    existing = _auto._read_sh_palette(t["palette_sh"])
+    base5 = {k: existing[k] for k in ("BASE", "LOVE", "ROSE", "PINE", "FOAM") if k in existing}
+    if len(base5) < 5:
+        print(f"❌ Cannot tweak {t['slug']}: palette missing base colors.")
+        return
+
+    p = _derive(base5)
+
+    # Carry forward manually-tuned typography rather than resetting to defaults
+    nix_path = t["palette_sh"].with_suffix(".nix")
+    if nix_path.exists():
+        nix_text = nix_path.read_text()
+        for key, default in [("FONT_SIZE_BAR", "12px"), ("ICON_SHADOW", "0 1px 2px rgba(0,0,0,0.80)")]:
+            m = re.search(rf'{key}\s*=\s*"([^"]+)"', nix_text)
+            if m:
+                p[key] = m.group(1)
+
+    _register(t["slug"], p, "manual", force=True)
+    _activate(t["slug"], t["dir"])
+    print(f"✨  {t['slug']} tweaked.")
 
 # ── Palette editor TUI ────────────────────────────────────────────────────────
 
