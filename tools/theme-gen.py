@@ -1232,6 +1232,28 @@ window {{
         wofi_css.write_text(content)
         print(f"✅ Created Wofi CSS: {wofi_css}")
 
+    def generate_wvkbd_args(self, palette: dict, theme_dir: Path):
+        """Generate wvkbd color args file (sourced by the systemd service at launch)."""
+        strip = lambda h: h.lstrip('#')
+        content = (
+            f'#!/usr/bin/env bash\n'
+            f'# wvkbd color args for {self.theme_name}\n'
+            f'WVKBD_ARGS="'
+            f'--bg {strip(palette["BASE"])} '
+            f'--fg {strip(palette["WB_SURFACE"])} '
+            f'--fg-sp {strip(palette["WB_OVERLAY"])} '
+            f'--press {strip(palette["LOVE"])} '
+            f'--press-sp {strip(palette["PINE"])} '
+            f'--swipe {strip(palette["FOAM"])} '
+            f'--swipe-sp {strip(palette["IRIS"])} '
+            f'--text {strip(palette["TEXT"])} '
+            f'--text-sp {strip(palette["SUBTLE"])}"\n'
+        )
+        wvkbd_sh = theme_dir / "wvkbd-colors.sh"
+        wvkbd_sh.write_text(content)
+        wvkbd_sh.chmod(0o755)
+        print(f"✅ Created {wvkbd_sh}")
+
     def generate_fuzzel_ini(self, palette: dict, theme_dir: Path):
         """Generate Fuzzel launcher INI with palette colors."""
         def c(hex_color: str) -> str:
@@ -1582,6 +1604,7 @@ WX_STORM_HEAVY="$LOVE"
         self.generate_nemo_css(palette, nemo_css_src)
         self.generate_wofi_css(palette, theme_dir)
         self.generate_fuzzel_ini(palette, theme_dir)
+        self.generate_wvkbd_args(palette, theme_dir)
         self.generate_wallpaper(palette, slug)
 
         # Symlink nemo.css into ~/.config/nemo/
@@ -1604,6 +1627,7 @@ WX_STORM_HEAVY="$LOVE"
         print(f"     - nemo.css")
         print(f"     - wofi.css")
         print(f"     - fuzzel.ini")
+        print(f"     - wvkbd-colors.sh")
         print(f"     - wallpaper-{slug}.png")
         print("\n   Next steps:")
         print("   1. Review palette file")

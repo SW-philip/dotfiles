@@ -74,7 +74,14 @@
     };
     Service = {
       Type = "simple";
-      ExecStart = "${pkgs.wvkbd}/bin/wvkbd-mobintl -L 300";
+      ExecStart = pkgs.writeShellScript "wvkbd-launch" ''
+        colors_file="$HOME/.config/wvkbd/colors.sh"
+        WVKBD_ARGS=""
+        if [ -f "$colors_file" ]; then
+          . "$colors_file"
+        fi
+        exec ${pkgs.wvkbd}/bin/wvkbd-mobintl -L 300 $WVKBD_ARGS
+      '';
       Restart = "on-failure";
       RestartSec = "2s";
     };

@@ -1527,6 +1527,26 @@ button:focus {{
 """
     path.write_text(content)
 
+def write_wvkbd(path: Path, p: dict, name: str):
+    """Generates wvkbd color args file (sourced by the systemd service at launch)."""
+    strip = lambda h: h.lstrip('#')
+    content = (
+        f'#!/usr/bin/env bash\n'
+        f'# wvkbd color args for {name}\n'
+        f'WVKBD_ARGS="'
+        f'--bg {strip(p["BASE"])} '
+        f'--fg {strip(p["WB_SURFACE"])} '
+        f'--fg-sp {strip(p["WB_OVERLAY"])} '
+        f'--press {strip(p["LOVE"])} '
+        f'--press-sp {strip(p["PINE"])} '
+        f'--swipe {strip(p["FOAM"])} '
+        f'--swipe-sp {strip(p["IRIS"])} '
+        f'--text {strip(p["TEXT"])} '
+        f'--text-sp {strip(p["SUBTLE"])}"\n'
+    )
+    path.write_text(content)
+    path.chmod(0o755)
+
 def write_waybar_css(path: Path, p: dict, name: str):
     path.write_text(generate_waybar_css(p))
 
@@ -1557,6 +1577,7 @@ def register_theme(name: str, palette: dict, source: str, force: bool = False) -
     write_niri(theme_dir / "niri.toml", palette, name)
     write_fuzzel(theme_dir / "fuzzel.ini", palette, name)
     write_wleave(theme_dir / "wleave.css", palette, name)
+    write_wvkbd(theme_dir / "wvkbd-colors.sh", palette, name)
     write_waybar_css(theme_dir / "waybar-style.css", palette, name)
 
     kate_colors, kate_syntax = write_kate(theme_dir / "kate", palette, name)
@@ -1666,6 +1687,16 @@ def activate_theme(slug: str, theme_dir: Path) -> None:
         wleave_css_dst.unlink(missing_ok=True)  # remove nix store symlink if present
         shutil.copy2(wleave_css_src, wleave_css_dst)
         print("  → wleave theme applied")
+
+    # ── wvkbd ─────────────────────────────────────────────────────────────────
+    wvkbd_src = theme_dir / "wvkbd-colors.sh"
+    wvkbd_dst = Path.home() / ".config/wvkbd/colors.sh"
+    if wvkbd_src.exists():
+        wvkbd_dst.parent.mkdir(parents=True, exist_ok=True)
+        wvkbd_dst.unlink(missing_ok=True)
+        shutil.copy2(wvkbd_src, wvkbd_dst)
+        subprocess.run(["systemctl", "--user", "restart", "wvkbd"], capture_output=True)
+        print("  → wvkbd theme applied")
 
     # ── Reload Waybar (CSS first, then full restart) ──────────────────────────
     subprocess.run(["pkill", "-SIGUSR1", "waybar"], capture_output=True)
