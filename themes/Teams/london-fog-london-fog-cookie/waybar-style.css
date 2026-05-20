@@ -14,6 +14,7 @@ window#waybar {
 .module {
   background: #b8b0c8;
   color: #1a1828;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.80);
   padding: 4px 14px;
   margin: 5px 3px;
   border-radius: 8px;
@@ -87,24 +88,24 @@ window#waybar {
 #custom-clock          { font-weight: 600; letter-spacing: 0.05em; color: #1a1828; }
 #custom-clock:hover    { color: #1a1828; background: #a89ab8; border-color: rgba(180,168,208,0.25); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 3px 10px rgba(180,168,208,0.15), 0 3px 8px rgba(61,36,96,0.65); }
 
-#custom-weather        { color: #5a5870; }
+#custom-weather        { color: #9884a8; }
 #custom-weather:hover  { color: #1a1828; background: #a89ab8; border-color: rgba(180,168,208,0.25); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 3px 10px rgba(180,168,208,0.15), 0 3px 8px rgba(61,36,96,0.65); }
 
-#custom-cpu_temp               { color: #5a5870; }
+#custom-cpu_temp               { color: #9884a8; }
 #custom-cpu_temp.cool:hover     { color: #ccc4dc; }
 #custom-cpu_temp.warm:hover     { color: #e49f5d; }
 #custom-cpu_temp.hot:hover      { color: #c8c4e8; }
 #custom-cpu_temp.critical:hover { color: #c4a8d4; }
 
-#custom-battery                { color: #5a5870; }
+#custom-battery                { color: #9884a8; }
 #custom-battery.full:hover     { color: #ccc4dc; }
 #custom-battery.high:hover     { color: #7ab3c0; }
 #custom-battery.medium:hover   { color: #a0d44e; }
 #custom-battery.low:hover      { color: #c8c4e8; }
 #custom-battery.critical:hover { color: #c4a8d4; }
 
-#custom-volume         { color: #5a5870; }
-#custom-volume.muted   { color: #5a5870; }
+#custom-volume         { color: #9884a8; }
+#custom-volume.muted   { color: #9890a0; }
 
 #custom-volume.muted:hover,
 #custom-volume.vol-0:hover   { background: #7a6888; color: #9890a0; }
@@ -129,20 +130,20 @@ window#waybar {
 #custom-volume.vol-95:hover  { background: #7a6888; color: #e0306a; }
 #custom-volume.vol-100:hover { background: #7a6888; color: #c4a8d4; border-color: rgba(240,64,160,0.4); }
 
-#custom-mpris              { color: #5a5870; }
+#custom-mpris              { color: #9884a8; }
 #custom-mpris.playing      { color: #ccc4dc; }
 #custom-mpris.paused       { color: #786878; }
 #custom-mpris.stopped      { opacity: 0.45; }
 #custom-mpris:hover        { color: #1a1828; background: #a89ab8; border-color: rgba(180,168,208,0.25); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 3px 10px rgba(180,168,208,0.15), 0 3px 8px rgba(61,36,96,0.65); }
 
-#custom-sqlch              { color: #5a5870; }
+#custom-sqlch              { color: #9884a8; }
 #custom-sqlch.playing      { color: #ccc4dc; }
 #custom-sqlch.paused       { color: #786878; }
-#custom-sqlch.idle         { color: #5a5870; opacity: 0.7; }
+#custom-sqlch.idle         { color: #9890a0; opacity: 0.6; }
 #custom-sqlch.inactive     { opacity: 0.35; }
 #custom-sqlch:hover        { color: #1a1828; background: #a89ab8; border-color: rgba(180,168,208,0.25); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 3px 10px rgba(180,168,208,0.15), 0 3px 8px rgba(61,36,96,0.65); }
 
-#custom-network                    { color: #5a5870; }
+#custom-network                    { color: #9884a8; }
 #custom-network.wifi.low:hover     { color: #c8c4e8; }
 #custom-network.wifi.mid:hover     { color: #e49f5d; }
 #custom-network.wifi.high:hover    { color: #7ab3c0; }
@@ -152,51 +153,51 @@ window#waybar {
 #custom-network.offline            { opacity: 0.45; }
 #custom-network.offline:hover      { opacity: 0.7; color: #9890a0; }
 
-#custom-bluetooth      { color: #5a5870; }
+#custom-bluetooth      { color: #9884a8; }
 #custom-bluetooth.off  { opacity: 0.45; }
 #custom-bluetooth:hover { color: #1a1828; }
 
-#custom-btrfs                  { color: #5a5870; }
+#custom-btrfs                  { color: #9884a8; }
 #custom-btrfs.fresh:hover      { color: #ccc4dc; }
 #custom-btrfs.ok:hover         { color: #e49f5d; }
 #custom-btrfs.warn:hover       { color: #c8c4e8; }
 #custom-btrfs.critical:hover   { color: #c4a8d4; }
 
-#custom-flake-drift              { color: #5a5870; }
+#custom-flake-drift              { color: #9884a8; }
 #custom-flake-drift.fresh:hover  { color: #ccc4dc; }
 #custom-flake-drift.ok:hover     { color: #e49f5d; }
 #custom-flake-drift.aging:hover  { color: #c8c4e8; }
 #custom-flake-drift.stale:hover  { color: #c4a8d4; }
 
-#custom-perf                   { color: #5a5870; }
+#custom-perf                   { color: #9884a8; }
 #custom-perf.idle:hover        { color: #ccc4dc; }
 #custom-perf.active:hover      { color: #e49f5d; }
 #custom-perf.warn:hover        { color: #c8c4e8; }
 #custom-perf.critical:hover    { color: #c4a8d4; }
 
-#custom-power_profile                  { color: #5a5870; }
+#custom-power_profile                  { color: #9884a8; }
 #custom-power_profile.power-saver      { color: #ccc4dc; }
 #custom-power_profile.performance      { color: #c4a8d4; }
 #custom-power_profile:hover            { color: #1a1828; }
 
-#custom-idle_inhibit           { color: #5a5870; }
+#custom-idle_inhibit           { color: #9884a8; }
 #custom-idle_inhibit.active    { color: #ccc4dc; }
-#custom-idle_inhibit.inhibited { color: #5a5870; opacity: 0.7; }
+#custom-idle_inhibit.inhibited { color: #9890a0; opacity: 0.6; }
 #custom-idle_inhibit:hover     { color: #1a1828; opacity: 1; }
 
-#custom-dnd          { color: #5a5870; }
+#custom-dnd          { color: #9884a8; }
 #custom-dnd.dnd      { color: #e49f5d; }
 #custom-dnd:hover    { color: #1a1828; }
 
-#custom-utilities-handle       { color: #5a5870; }
-#custom-utilities-handle:hover { color: #5a5870; }
-#custom-choose_mode            { color: #5a5870; }
+#custom-utilities-handle       { color: #9890a0; }
+#custom-utilities-handle:hover { color: #9884a8; }
+#custom-choose_mode            { color: #9884a8; }
 #custom-choose_mode:hover      { color: #1a1828; }
 
-#custom-wleave       { color: #5a5870; }
+#custom-wleave       { color: #9884a8; }
 #custom-wleave:hover { color: #c4a8d4; }
 
-#custom-uniremote       { color: #5a5870; }
+#custom-uniremote       { color: #9884a8; }
 #custom-uniremote:hover { color: #1a1828; }
 
 #toggles {
@@ -363,7 +364,7 @@ window#waybar {
 
 #workspaces button {
   background: transparent;
-  color: #5a5870;
+  color: #9890a0;
   padding: 0 7px;
   margin: 0 1px;
   border-radius: 6px;
@@ -380,7 +381,7 @@ window#waybar {
 
 #workspaces button:hover {
   background: #ccc0d8;
-  color: #5a5870;
+  color: #9884a8;
   border-color: rgba(180,168,208,0.18);
 }
 

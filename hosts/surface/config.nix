@@ -14,6 +14,7 @@
     ../../profiles/sops-shared.nix
     ../../modules/greetd.nix
     #  ../../modules/howdy.nix
+    ../../modules/tailscale.nix
     ../../modules/protonvpn.nix
     ../../modules/sqlch.nix
     ./hardware.nix

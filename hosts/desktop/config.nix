@@ -21,6 +21,8 @@
     ../../modules/jellyfin.nix
     ../../modules/sqlch.nix
     ../../modules/greetd.nix
+    ../../modules/tailscale.nix
+    ../../modules/samba.nix
   ];
 
   ############################################################
