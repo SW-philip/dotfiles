@@ -12,9 +12,9 @@
   # Fix nrs alias — hostname desktop != flake attr desktop
   ########################################
   programs.zsh.shellAliases = {
-    nrs = "sudo nixos-rebuild switch --flake .#desktop";
-    nrb = "sudo nixos-rebuild boot --flake .#desktop";
-    nrt = "sudo nixos-rebuild test --flake .#desktop";
+    nrs = lib.mkForce "sudo nixos-rebuild switch --flake .#desktop";
+    nrb = lib.mkForce "sudo nixos-rebuild boot --flake .#desktop";
+    nrt = lib.mkForce "sudo nixos-rebuild test --flake .#desktop";
   };
 
   xdg.configFile."hypr/monitor.conf".text = ''

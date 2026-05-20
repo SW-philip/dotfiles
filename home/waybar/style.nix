@@ -22,6 +22,7 @@ window#waybar {
 .module {
   background: ${p.WB_SURFACE};
   color: ${p.TEXT};
+  font-weight: 500;
   text-shadow: ${p.ICON_SHADOW};
   padding: 4px 14px;
   margin: 5px 3px;

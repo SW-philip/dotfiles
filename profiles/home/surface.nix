@@ -13,9 +13,9 @@
   # Fix nrs alias — hostname surface != flake attr surface
   ########################################
   programs.zsh.shellAliases = {
-    nrs = "sudo nixos-rebuild switch --flake .#surface";
-    nrb = "sudo nixos-rebuild boot --flake .#surface";
-    nrt = "sudo nixos-rebuild test --flake .#surface";
+    nrs = lib.mkForce "sudo nixos-rebuild switch --flake .#surface";
+    nrb = lib.mkForce "sudo nixos-rebuild boot --flake .#surface";
+    nrt = lib.mkForce "sudo nixos-rebuild test --flake .#surface";
   };
 
   ########################################

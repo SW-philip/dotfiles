@@ -22,7 +22,7 @@
   CRITICAL   = "#9c9d9b";
   WARNING    = "#9b9d9b";
   CAUTION    = "#888888";
-  MUTED_ICON = "#87897b";
+  MUTED_ICON = "#525448";
 
   # ── Structural ────────────────────────────────────────────────
   INACTIVE_BORDER = "#8f8f8f";
@@ -58,7 +58,7 @@
   HOVER_ORANGE_BG = "#757775";
 
   # ── Typography ────────────────────────────────────────────────
-  FONT_SIZE_BAR = "12px";
+  FONT_SIZE_BAR = "13px";
   ICON_SHADOW   = "0 1px 2px rgba(0,0,0,0.80)";
 
   # ── Shadows ───────────────────────────────────────────────────
