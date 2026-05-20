@@ -1,4 +1,4 @@
-{ p, l, barHeight ? 45, cursorSize ? 48, isDesktop ? false }: ''
+{ p, l, barHeight ? 45, cursorSize ? 48, isDesktop ? false, toggleWvkbdBin ? "toggle-wvkbd" }: ''
 // home/niri/config.kdl — niri cleanroom compositor config
 
 // ── Input ──────────────────────────────────────────────────
@@ -120,23 +120,6 @@ animations {
 // ── Window rules ──────────────────────────────────────────
 // Lock windows to the right side of the left monitor (DP-4)
 window-rule {
-    match on-output="eDP-1"
-    window-column-alignment "center"
-}
-
-window-rule {
-    match on-output="DP-4"
-    window-column-alignment "end"
-}
-
-// Lock windows to the left side of the right monitor (DP-3)
-// This is technically the default, but explicit is better for this setup.
-window-rule {
-    match on-output="DP-3"
-    window-column-alignment "start"
-}
-
-window-rule {
     match is-floating=true
     shadow {
         on
@@ -156,7 +139,7 @@ binds {
     Mod+Space  { spawn "fuzzel"; }
     Mod+E      { spawn "nemo"; }
     Mod+V      { spawn "bash" "-c" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
-    ${if !isDesktop then ''Mod+Shift+W { spawn "toggle-wvkbd"; }'' else ""}
+    ${if !isDesktop then ''Mod+Shift+W { spawn "${toggleWvkbdBin}"; }'' else ""}
 
     // Windows
     Mod+Q { close-window; }
