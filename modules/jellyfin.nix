@@ -3,7 +3,7 @@
 {
   services.jellyfin = {
     enable = true;
-    openFirewall = true;
+    openFirewall = false;
   };
 
   users.users.jellyfin.extraGroups = [ "video" "render" "users" ];

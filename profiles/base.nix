@@ -65,7 +65,7 @@
       UseDns = lib.mkForce false;
       GSSAPIAuthentication = false;
       PermitRootLogin = "no";
-      PasswordAuthentication = true;
+      PasswordAuthentication = false;
       X11Forwarding = false;
       AllowTcpForwarding = false;
       ClientAliveInterval = 300;

@@ -193,7 +193,11 @@ EOF
 
   ############################################################
   # Firewall
+  # Port 8096 (Jellyfin) is NOT in global allowedTCPPorts — access is via:
+  #   tailscale0 (trusted interface, all ports open)
+  #   enp4s0 (LAN, explicit allow below)
   ############################################################
-  networking.firewall.allowedTCPPorts = [ 8096 8080 8765 ];
+  networking.firewall.allowedTCPPorts = [ 8080 8765 ];
+  networking.firewall.interfaces."enp4s0".allowedTCPPorts = [ 8096 ];
 
 }
