@@ -25,7 +25,7 @@
   # GVfs — needed for Nemo to mount network shares (SMB etc.)
   ############################################################
   services.gvfs.enable = true;
-  environment.systemPackages = [ pkgs.gvfs ];
+  environment.systemPackages = with pkgs; [ gvfs sshfs ];
 
   ############################################################
   # Steam
