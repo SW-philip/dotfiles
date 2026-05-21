@@ -126,11 +126,15 @@ let
   # ── Per-theme derivations — generated from allThemes ─────────────────────
   themeConfigs = lib.mapAttrs (slug: t:
     let
-      subtleBorder = if t.isLight then "#0000000a" else "#ffffff0a";
-      faintBorder  = if t.isLight then "#00000006" else "#ffffff06";
-      wallpaper    = if t.wallpaper != null then t.wallpaper
-                     else if t.isLight then "${home}/Images/rothkos_dawn_tall.png"
-                     else "${home}/Images/rothkos_moon_tall.png";
+      subtleBorder      = if t.isLight then "#0000000a" else "#ffffff0a";
+      faintBorder       = if t.isLight then "#00000006" else "#ffffff06";
+      wallpaperFallback = if t.isLight then "${home}/Images/rothkos_dawn_tall.png"
+                          else "${home}/Images/rothkos_moon_tall.png";
+      # wallpaper-*.png files are gitignored so builtins.readDir never sees them;
+      # record the live FS dir so apply-theme can find them at runtime instead.
+      wallpaperLiveDir  = "${home}/nixos/themes/${t.family}/${builtins.baseNameOf t.dir}";
+      # pandora config still needs a path baked in — use fallback since PNGs aren't in store
+      pandoraWallpaper  = wallpaperFallback;
     in {
       mako       = pkgs.writeText "mako-config-${slug}"       (mkMakoConfig t.palette subtleBorder faintBorder);
       niriKdl    = pkgs.writeText "niri-config-${slug}.kdl"   (import ./config.kdl.nix { p = t.palette; inherit l; cursorSize = if config.myConfig.isDesktop then 24 else 48; isDesktop = config.myConfig.isDesktop; toggleWvkbdBin = "${toggleWvkbd}/bin/toggle-wvkbd"; });
@@ -143,8 +147,8 @@ let
       cava          = pkgs.writeText "cava-config-${slug}"       (mkCavaConfig t.palette);
       ghostty       = pkgs.writeText "ghostty-config-${slug}"    (mkGhosttyConfig t.palette);
       librewolfCss  = pkgs.writeText "librewolf-chrome-${slug}.css" (import ../librewolf/userChrome.css.nix t.palette);
-      pandora       = pkgs.writeText "pandora-${slug}.kdl"       (mkPandoraCfg wallpaper);
-      wallpaperPath = wallpaper;
+      pandora       = pkgs.writeText "pandora-${slug}.kdl"       (mkPandoraCfg pandoraWallpaper);
+      inherit wallpaperFallback wallpaperLiveDir;
       fastfetchLogo = mkFastfetchLogo t;
     }
   ) allThemes;
@@ -359,7 +363,8 @@ let
           WOFI_CSS="${cfgs.wofiCss}"
           FUZZEL_INI="${cfgs.fuzzelIni}"
           PANDORA_CFG="${cfgs.pandora}"
-          WALLPAPER_PATH="${cfgs.wallpaperPath}"
+          WALLPAPER_DIR="${cfgs.wallpaperLiveDir}"
+          WALLPAPER_FALLBACK="${cfgs.wallpaperFallback}"
           WLEAVE_CSS="${cfgs.wleaveCss}"
           CAVA_CFG="${cfgs.cava}"
           GHOSTTY_CFG="${cfgs.ghostty}"
@@ -387,6 +392,8 @@ let
       mkdir -p "$HOME/.config/fuzzel"
       cp --remove-destination "$FUZZEL_INI" "$HOME/.config/fuzzel/fuzzel.ini"
       mkdir -p "$HOME/.local/state"
+      WALLPAPER_PATH=$(find "$WALLPAPER_DIR" -maxdepth 1 -name "wallpaper-*.png" 2>/dev/null | sort | head -1)
+      if [ -z "$WALLPAPER_PATH" ]; then WALLPAPER_PATH="$WALLPAPER_FALLBACK"; fi
       echo "$WALLPAPER_PATH" > "$HOME/.local/state/wallpaper"
       mkdir -p "$HOME/.config/cava"
       cp --remove-destination "$CAVA_CFG" "$HOME/.config/cava/config"
