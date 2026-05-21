@@ -4,6 +4,13 @@ p: ''
   --toolbar-bgcolor: ${p.BASE} !important;
   --toolbar-color: ${p.TEXT} !important;
   --tab-selected-bgcolor: ${p.SURFACE} !important;
+  /* URL bar bg — prevents Firefox's focus-state from going white */
+  --urlbar-box-bgcolor: ${p.OVERLAY} !important;
+  --urlbar-box-focus-bgcolor: ${p.OVERLAY} !important;
+  --urlbar-box-hover-bgcolor: ${p.HIGHLIGHT_LOW} !important;
+  --urlbar-box-active-bgcolor: ${p.HIGHLIGHT_MED} !important;
+  --urlbar-popup-bgcolor: ${p.SURFACE} !important;
+  --urlbar-popup-color: ${p.TEXT} !important;
 }
 
 /* ── Tab bar ─────────────────────────────────────────────── */
@@ -60,6 +67,15 @@ p: ''
 
 #urlbar-input {
   color: ${p.TEXT} !important;
+  background-color: transparent !important;
+}
+
+#urlbar-background {
+  background-color: ${p.OVERLAY} !important;
+}
+
+#urlbar[focused="true"] #urlbar-background {
+  background-color: ${p.OVERLAY} !important;
 }
 
 .urlbar-icon,

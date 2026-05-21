@@ -665,11 +665,13 @@ def derive_full_palette(mapped: dict) -> dict:
         return f"{int(h[0:2],16)},{int(h[2:4],16)},{int(h[4:6],16)}"
 
     # --- 1. STRUCTURAL DEPTH ---
-    surface_l = 0.05 if is_dark else -0.05
-    overlay_l = 0.10 if is_dark else -0.12
+    # Larger L gaps (9%/17% vs 5%/10%) and wider hue shift (9°/16° vs 3.6°/7.2°) so each
+    # elevation is visually distinct even at low saturation.
+    surface_l = 0.09 if is_dark else -0.08
+    overlay_l = 0.17 if is_dark else -0.18
 
-    mapped["SURFACE"] = _adjust(mapped["BASE"], l=surface_l, s=0.02, h=-0.01 if is_dark else 0.01)
-    mapped["OVERLAY"] = _adjust(mapped["BASE"], l=overlay_l, s=0.04, h=-0.02 if is_dark else 0.02)
+    mapped["SURFACE"] = _adjust(mapped["BASE"], l=surface_l, s=0.03, h=-0.025 if is_dark else 0.025)
+    mapped["OVERLAY"] = _adjust(mapped["BASE"], l=overlay_l, s=0.06, h=-0.044 if is_dark else 0.044)
     mapped["OVERLAY_RGB"] = _to_rgb(mapped["OVERLAY"])
 
     # --- 2. HIGHLIGHTS ---

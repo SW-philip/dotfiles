@@ -1,4 +1,4 @@
-# Niri Theme: asteroid - Asteroid Contrast
+# Niri Theme: asteroid-asteroid-contrast
 [colors]
 background = "#4a4e68"
 text = "#ffffff"
@@ -6,7 +6,7 @@ cursor = "#f0a400"
 
 [colors.selection]
 border = "#819cb1"
-background = "#535a79"
+background = "#5a6686"
 
 [colors.hints]
 start = "#f5c88a"

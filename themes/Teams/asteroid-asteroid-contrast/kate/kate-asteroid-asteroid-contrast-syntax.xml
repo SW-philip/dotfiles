@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language SYSTEM "language.dtd">
-<language name="asteroid - Asteroid Contrast" version="1.0" kateversion="5.0" section="Sources" extensions="" mimetype="" priority="0">
+<language name="asteroid-asteroid-contrast" version="1.0" kateversion="5.0" section="Sources" extensions="" mimetype="" priority="0">
   <highlighting>
     <list name="keywords">
       <item>def</item><item>class</item><item>return</item><item>if</item><item>else</item>
