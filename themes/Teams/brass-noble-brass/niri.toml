@@ -1,0 +1,13 @@
+# Niri Theme: brass - Noble Brass
+[colors]
+background = "#d6c44c"
+text = "#1a1a1a"
+cursor = "#a88f3e"
+
+[colors.selection]
+border = "#28282f"
+background = "#d4c935"
+
+[colors.hints]
+start = "#856e38"
+end = "#7a6b2e"

@@ -1,0 +1,13 @@
+# Niri Theme: new orleans - Cool Palette
+[colors]
+background = "#f9c54e"
+text = "#1a1a1a"
+cursor = "#f8a32a"
+
+[colors.selection]
+border = "#505e95"
+background = "#faca33"
+
+[colors.hints]
+start = "#eb8a0e"
+end = "#f3712b"

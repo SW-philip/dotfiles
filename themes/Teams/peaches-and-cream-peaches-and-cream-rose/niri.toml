@@ -1,0 +1,13 @@
+# Niri Theme: peaches and cream - Peaches and Cream & Rose
+[colors]
+background = "#f6c8a7"
+text = "#1a1a1a"
+cursor = "#f66a37"
+
+[colors.selection]
+border = "#ff5633"
+background = "#f5bf8f"
+
+[colors.hints]
+start = "#eaa14e"
+end = "#dc609e"

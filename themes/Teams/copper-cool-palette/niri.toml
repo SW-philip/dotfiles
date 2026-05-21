@@ -1,0 +1,13 @@
+# Niri Theme: copper - Cool Palette
+[colors]
+background = "#ff7e2e"
+text = "#ffffff"
+cursor = "#ffa047"
+
+[colors.selection]
+border = "#f5ff2e"
+background = "#ff7c15"
+
+[colors.hints]
+start = "#f98b24"
+end = "#ffb65c"

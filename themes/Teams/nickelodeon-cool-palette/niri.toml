@@ -1,0 +1,13 @@
+# Niri Theme: nickelodeon - Cool Palette
+[colors]
+background = "#ff6d1f"
+text = "#ffffff"
+cursor = "#ffb84d"
+
+[colors.selection]
+border = "#ff6c3d"
+background = "#ff6b05"
+
+[colors.hints]
+start = "#faa02a"
+end = "#a5e63d"

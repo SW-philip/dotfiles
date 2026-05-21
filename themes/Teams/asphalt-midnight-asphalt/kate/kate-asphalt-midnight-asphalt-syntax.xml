@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<language name="asphalt - Midnight Asphalt" version="1.0" kateversion="5.0" section="Sources" extensions="" mimetype="" priority="0">
+  <highlighting>
+    <list name="keywords">
+      <item>def</item><item>class</item><item>return</item><item>if</item><item>else</item>
+      <item>for</item><item>while</item><item>import</item><item>from</item><item>pass</item>
+      <item>True</item><item>False</item><item>None</item><item>and</item><item>or</item><item>not</item>
+    </list>
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#stay">
+        <Keyword attribute="Keyword" context="#stay" String="keywords" />
+        <Float attribute="Float" context="#stay" />
+        <Int attribute="Decimal" context="#stay" />
+        <String attribute="String" context="#stay" />
+        <DetectChar attribute="Comment" context="Comment" char="#" />
+        <RegExpr attribute="Function" context="#stay" String="[a-zA-Z_][a-zA-Z0-9_]*(?=\()" />
+      </context>
+      <context name="Comment" attribute="Comment" lineEndContext="#pop">
+        <IncludeRules context="##Alerts" />
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal" spellChecking="false" />
+      <itemData name="Keyword" defStyleNum="dsKeyword" color="#dbd8d7" selColor="#514949" />
+      <itemData name="Function" defStyleNum="dsFunction" color="#d9d9d9" selColor="#514949" />
+      <itemData name="Decimal" defStyleNum="dsDecVal" color="#8e7676" selColor="#514949" />
+      <itemData name="Float" defStyleNum="dsFloat" color="#8e7676" selColor="#514949" />
+      <itemData name="String" defStyleNum="dsString" color="#8c8c8c" selColor="#514949" />
+      <itemData name="Comment" defStyleNum="dsComment" color="#424242" selColor="#514949" />
+      <itemData name="Alert" defStyleNum="dsAlert" color="#796363" selColor="#514949" />
+    </itemDatas>
+  </highlighting>
+  <general>
+    <keywords weakDeliminator="" />
+    <indentation mode="normal" />
+  </general>
+</language>

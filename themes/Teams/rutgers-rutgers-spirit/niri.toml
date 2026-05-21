@@ -1,0 +1,13 @@
+# Niri Theme: rutgers - Rutgers Spirit
+[colors]
+background = "#a30034"
+text = "#ffffff"
+cursor = "#c62a41"
+
+[colors.selection]
+border = "#f9fbac"
+background = "#bc0047"
+
+[colors.hints]
+start = "#f6c9a7"
+end = "#e76a5a"

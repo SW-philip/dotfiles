@@ -1,0 +1,13 @@
+# Niri Theme: periodic table - Polonium Periodic Table
+[colors]
+background = "#d2e2f9"
+text = "#1a1a1a"
+cursor = "#f5a524"
+
+[colors.selection]
+border = "#9356d2"
+background = "#bbd0f7"
+
+[colors.hints]
+start = "#e08910"
+end = "#ff8052"

@@ -1,0 +1,13 @@
+# Niri Theme: patina - Patina Bliss
+[colors]
+background = "#53b2a6"
+text = "#ffffff"
+cursor = "#93c8a7"
+
+[colors.selection]
+border = "#ecc15f"
+background = "#46a59f"
+
+[colors.hints]
+start = "#6fbd5c"
+end = "#75cd8b"
