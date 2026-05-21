@@ -1,0 +1,13 @@
+# Niri Theme: smoking - Cool Palette
+[colors]
+background = "#3a2b27"
+text = "#ffffff"
+cursor = "#ba7376"
+
+[colors.selection]
+border = "#dbf46c"
+background = "#4a3430"
+
+[colors.hints]
+start = "#deba91"
+end = "#a76c6f"
