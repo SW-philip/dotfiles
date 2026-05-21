@@ -3,6 +3,8 @@ set -euo pipefail
 # shellcheck source=/dev/null
 source "$HOME/.config/waybar/palette.sh"
 
+SNARK_FILE="$HOME/.config/waybar/snark.json"
+
 # ── Main disk (/) ──────────────────────────────────────────────────
 read -r used avail pct < <(df -h / | awk 'NR==2{ gsub(/%/,"",$5); print $3,$4,$5 }')
 
@@ -80,6 +82,12 @@ if [[ -n "$backup_used" ]]; then
     TT+="${NL}${NL}<span foreground='${IRIS}'><b>󰋊 /mnt/backup</b></span>${NL}"
     TT+="<span foreground='${SUBTLE}'>Used:</span>  <span foreground='${BCOL}'>$backup_used</span>  "
     TT+="<span foreground='${SUBTLE}'>Free:</span> <span foreground='${FOAM}'>$backup_avail</span>"
+fi
+
+if [[ -f "$SNARK_FILE" ]] && command -v jq >/dev/null; then
+    _snark=$(jq -r ".btrfs.${state}[]?" "$SNARK_FILE" 2>/dev/null | shuf -n1 || true)
+    [[ -n "$_snark" && "$_snark" != "null" ]] && \
+        TT+="${NL}<span foreground='${SUBTLE}'>────────────────────</span>${NL}<span foreground='${IRIS}'>$_snark</span>"
 fi
 
 jq -nc \

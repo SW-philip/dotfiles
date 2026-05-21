@@ -45,10 +45,18 @@ elif (( mem_pct >= 70 )); then MEM_COLOR="$GOLD"
 else                           MEM_COLOR="$FOAM"
 fi
 
+SNARK_FILE="$HOME/.config/waybar/snark.json"
+
 TEXT="󰻠 ${cpu_pct}%  󰍛 ${mem_pct}%"
 TOOLTIP=$(printf \
     "<span foreground='${SUBTLE}'>CPU:</span>  <span foreground='${CPU_COLOR}'>%d%%</span>\n<span foreground='${SUBTLE}'>RAM:</span>  <span foreground='${MEM_COLOR}'>%s / %s GiB</span>  <span foreground='${SUBTLE}'>(%d%%)</span>" \
     "$cpu_pct" "$mem_used_g" "$mem_total_g" "$mem_pct")
+
+if [[ -f "$SNARK_FILE" ]] && command -v jq >/dev/null; then
+    _snark=$(jq -r ".perf.${cpu_state}[]?" "$SNARK_FILE" 2>/dev/null | shuf -n1 || true)
+    [[ -n "$_snark" && "$_snark" != "null" ]] && \
+        TOOLTIP+=$'\n'"<span foreground='${SUBTLE}'>────────────────────</span>"$'\n'"<span foreground='${IRIS}'>$_snark</span>"
+fi
 
 jq -nc \
     --arg text    "$TEXT" \

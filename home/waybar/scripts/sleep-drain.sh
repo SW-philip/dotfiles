@@ -30,6 +30,18 @@ fi
 # shellcheck source=/dev/null
 source "$HOME/.config/waybar/palette.sh"
 
+SNARK_FILE="$HOME/.config/waybar/snark.json"
+
+snark_for() {
+    local bucket="$1" fallback="${2:-}"
+    if [[ -f "$SNARK_FILE" ]] && command -v jq >/dev/null; then
+        local s
+        s=$(jq -r ".sleep_drain.${bucket}[]?" "$SNARK_FILE" 2>/dev/null | shuf -n1 || true)
+        [[ -n "$s" && "$s" != "null" ]] && echo "$s" && return
+    fi
+    echo "$fallback"
+}
+
 if [[ ! -d "$BAT_PATH" ]]; then
     jq -nc '{text:"", tooltip:"", class:"hidden"}'
     exit 0
@@ -87,6 +99,7 @@ BAR_TEXT="󰒲 <span foreground='${COLOR}'>${display}</span>"
 TOOLTIP=$(printf \
     "<span foreground='${SUBTLE}'>Sleep drain</span>\n<span foreground='${SUBTLE}'>Duration:</span> <span foreground='${TEXT}'>%dh %dm</span>\n<span foreground='${SUBTLE}'>Drained:</span>  <span foreground='${COLOR}'>%s</span>\n<span foreground='${SUBTLE}'>Rate:</span>     <span foreground='${SUBTLE}'>%s%%/hr</span>" \
     "$sleep_h" "$sleep_m" "$display" "$drain_hr")
+TOOLTIP+=$'\n'"<span foreground='${SUBTLE}'>────────────────────</span>"$'\n'"<span foreground='${IRIS}'>$(snark_for "$state" 'Sleep metrics available.')</span>"
 
 jq -nc \
     --arg text    "$BAR_TEXT" \

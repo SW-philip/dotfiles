@@ -471,6 +471,248 @@
             "Stay inside. The sky is upset."
         ]
     },
+    "bluetooth": {
+        "off": [
+            "Radio silence achieved.",
+            "Bluetooth off. Personal space: restored.",
+            "No short-range comms. Blessed.",
+            "The adapter rests.",
+            "Wireless? Not today.",
+            "2.4 GHz: unoccupied.",
+            "Off. Like your social obligations.",
+            "No pairing anxiety. Truly free."
+        ],
+        "idle": [
+            "Bluetooth on, nobody home.",
+            "Advertising into the void.",
+            "Ready to pair. Tragically alone.",
+            "Scanning… nothing.",
+            "On, but unattached. Relatable.",
+            "Broadcasting hope. No takers.",
+            "The adapter waits patiently.",
+            "No device found. Or welcomed."
+        ],
+        "on": [
+            "Wirelessly entangled.",
+            "Short-range bond established.",
+            "2.4 GHz friendship detected.",
+            "Paired and dangerous.",
+            "Connection established. Don't wander too far.",
+            "Bluetooth: the short leash of wireless.",
+            "They see each other now.",
+            "Wireless intimacy achieved."
+        ]
+    },
+    "protonvpn": {
+        "on": [
+            "Traffic disguised. Mostly.",
+            "Swiss neutrality activated.",
+            "Your packets wear hats now.",
+            "VPN: the digital witness protection program.",
+            "Nobody knows you're a dog. Or do they.",
+            "Traffic tunneled through Switzerland. Classy.",
+            "Encrypted. Anonymous-ish.",
+            "ProtonVPN: because trust is for amateurs."
+        ],
+        "off": [
+            "Exposed to the open internet. Brave.",
+            "Traffic: naked.",
+            "ISP is watching. Casually.",
+            "No VPN. YOLO.",
+            "Your packets travel unmasked.",
+            "Direct route to everywhere. Including shame.",
+            "Bare connection. No shame.",
+            "Unencrypted. Bold choice."
+        ]
+    },
+    "btrfs": {
+        "fresh": [
+            "Plenty of room. Don't get comfortable.",
+            "Disk full of potential. And empty space.",
+            "Space to breathe.",
+            "btrfs is pleased with you.",
+            "Generous headroom. For now.",
+            "Storage: abundant. Direction: unclear.",
+            "Ample space. No excuses left.",
+            "Low disk pressure. High disk anxiety anyway."
+        ],
+        "ok": [
+            "Halfway there. Halfway somewhere.",
+            "Usage acceptable. Accumulation continues.",
+            "Not concerning. Yet.",
+            "Moderate disk entropy.",
+            "Room enough. For now.",
+            "Fine. Entirely fine.",
+            "Moderate hoarding confirmed.",
+            "50-75%: the responsible zone."
+        ],
+        "warn": [
+            "Getting cozy in here.",
+            "Time to prune something.",
+            "Snapshots: perhaps too many.",
+            "The disk is clearing its throat.",
+            "High occupancy detected.",
+            "Maybe delete some old generations.",
+            "75% used. 100% your problem.",
+            "Concerned, but not panicking. Yet."
+        ],
+        "critical": [
+            "btrfs is wheezing.",
+            "Delete something. Anything. Now.",
+            "Out of space soon. Out of excuses already.",
+            "The filesystem demands sacrifice.",
+            "btrfs balance won't save you from yourself.",
+            "Disk critically full. Build: probably failing.",
+            "Emergency pruning required.",
+            "This is not a drill. It's a disk."
+        ]
+    },
+    "perf": {
+        "idle": [
+            "System at rest. Pretending to be busy.",
+            "Low utilization. Maximum dignity.",
+            "Idle cores: dreaming of workloads.",
+            "CPU is bored. Give it something.",
+            "System loafing. Judgmentally.",
+            "Efficient. Or underutilized. Hard to say.",
+            "Nothing to stress about. Stressing anyway.",
+            "Resources available. Ambitions: unclear."
+        ],
+        "active": [
+            "Meaningful work in progress. Maybe.",
+            "CPU engaged. RAM: keeping up.",
+            "Something is happening. Good.",
+            "Resources committed to a cause.",
+            "Productive warmth spreading.",
+            "System doing its thing.",
+            "Utilization: honest.",
+            "Workload accepted. Effort noted."
+        ],
+        "warn": [
+            "Load elevated. Fan opinions forming.",
+            "CPU sweating a little.",
+            "Something is trying very hard.",
+            "Resources stretched. Excuses too.",
+            "High load. Low patience.",
+            "Cores running warm with ambition.",
+            "Performance: committed. Cooling: skeptical.",
+            "Thermal awareness increasing."
+        ],
+        "critical": [
+            "Full send. Fan concurs.",
+            "CPU has no more to give.",
+            "Thermal throttle waiting in the wings.",
+            "The cores are disappointed in your batch job.",
+            "Everything at once. As usual.",
+            "Maximum throughput. Maximum heat.",
+            "100% effort. 0% cooling left.",
+            "The system screams silently."
+        ]
+    },
+    "flake_drift": {
+        "fresh": [
+            "Just rebuilt. Still new car smell.",
+            "Fresh generation. Unblemished.",
+            "The flake is current. You can relax.",
+            "Recent. Practically modern.",
+            "Just baked. Still warm.",
+            "Your system is suspiciously up to date.",
+            "Rebuilt today. Responsible.",
+            "Hours old. Practically ephemeral."
+        ],
+        "ok": [
+            "Fresh enough. Don't overthink it.",
+            "A few days old. Normal.",
+            "Recent, by NixOS standards.",
+            "Still viable. Probably.",
+            "Not stale. Not sprightly.",
+            "Acceptable drift. Move on.",
+            "Within reason.",
+            "Week-ish. Fine."
+        ],
+        "aging": [
+            "Updates are accumulating. Like debt.",
+            "Flake drift: noticeable.",
+            "Starting to feel the pull of nix flake update.",
+            "Getting dated in there.",
+            "Two weeks? Time to think about it.",
+            "Aging gracefully. Or not.",
+            "The flake is developing opinions.",
+            "A week behind. Maybe two."
+        ],
+        "stale": [
+            "Ancient by NixOS standards.",
+            "How many CVEs by now? Don't check.",
+            "The flake cobwebs are visible.",
+            "Update. Now. Seriously.",
+            "Two weeks+ behind. The patches mock you.",
+            "Your system has vintage character.",
+            "This is fine. (It is not fine.)",
+            "Security posture: nostalgic."
+        ]
+    },
+    "sleep_drain": {
+        "great": [
+            "Barely breathed during sleep.",
+            "Sleep efficiency: excellent.",
+            "The battery barely noticed.",
+            "Near-zero drain. Almost suspicious.",
+            "You could sleep all week on this.",
+            "Power discipline: impressive.",
+            "Modern standby? More like modern miracle.",
+            "Slept like a NAS. Minimal draw."
+        ],
+        "ok": [
+            "Acceptable sleep drain.",
+            "Woke up with dignity intact.",
+            "Battery gave a little. Not much.",
+            "Normal overnight toll.",
+            "Nothing alarming. Yet.",
+            "Drained like a polite houseguest.",
+            "Sleep overhead: reasonable.",
+            "Slept fine. Battery agreed."
+        ],
+        "warn": [
+            "Something was awake that shouldn't be.",
+            "Sleep efficiency: questionable.",
+            "Background activity detected. Suspicious.",
+            "Battery lost more than it should.",
+            "Who was running at 3am?",
+            "Higher drain. Check your services.",
+            "Drain higher than ideal.",
+            "Sleep: interrupted by unknown forces."
+        ],
+        "critical": [
+            "Something ate your battery while you slept.",
+            "Sleep drain: alarming.",
+            "Wake-on-LAN? Wake-on-everything?",
+            "Check your systemd timers. Seriously.",
+            "More drain than expected. Much more.",
+            "Something is not sleeping properly. Neither is your battery.",
+            "The machine moonlighted as a heater.",
+            "The battery did not rest."
+        ],
+        "charging": [
+            "Gained charge overnight. Responsible.",
+            "The battery woke up better than you.",
+            "Net positive overnight. Rare.",
+            "Charged while sleeping. Living the dream.",
+            "Plugged in. Well done.",
+            "Charged. Ready. Smug about it.",
+            "Sleep + power = morning confidence.",
+            "AC power: the responsible choice."
+        ],
+        "unknown": [
+            "No sleep data yet. Sleep on it.",
+            "Accumulates after the first sleep cycle.",
+            "Unknown. Like your sleep schedule.",
+            "Data pending. Nap first.",
+            "No metrics yet. Go to bed.",
+            "Sleep is required to measure sleep.",
+            "Check back after hibernation.",
+            "Come back after you've dreamed."
+        ]
+    },
     "rotation_lock": {
         "locked": [
             "Orientation frozen. No more surprises.",
