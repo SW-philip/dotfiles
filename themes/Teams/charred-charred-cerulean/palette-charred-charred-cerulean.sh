@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# charred - Charred Cerulean — generated palette
+# charred-charred-cerulean — generated palette
 
 # --- All Theme Variables ---
 export BASE="#1f3a61"
@@ -62,6 +62,8 @@ export BATTERY_HIGH="#84d6e1"
 export BATTERY_FULL="#59a5b1"
 export ACCENT_PRIMARY="#80b5e5"
 export ACCENT_SECONDARY="#84d6e1"
+export FONT_SIZE_BAR="12px"
+export ICON_SHADOW="0 1px 2px rgba(0,0,0,0.80)"
 
 # --- Wallpaper Mapping ---
 export BG_DARK="#1f3a61"

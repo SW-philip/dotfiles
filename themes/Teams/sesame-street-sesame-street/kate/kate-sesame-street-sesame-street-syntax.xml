@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language SYSTEM "language.dtd">
-<language name="charred-charred-cerulean" version="1.0" kateversion="5.0" section="Sources" extensions="" mimetype="" priority="0">
+<language name="sesame street - Sesame Street" version="1.0" kateversion="5.0" section="Sources" extensions="" mimetype="" priority="0">
   <highlighting>
     <list name="keywords">
       <item>def</item><item>class</item><item>return</item><item>if</item><item>else</item>
@@ -22,13 +22,13 @@
     </contexts>
     <itemDatas>
       <itemData name="Normal Text" defStyleNum="dsNormal" spellChecking="false" />
-      <itemData name="Keyword" defStyleNum="dsKeyword" color="#80b5e5" selColor="#3165b1" />
-      <itemData name="Function" defStyleNum="dsFunction" color="#84d6e1" selColor="#3165b1" />
-      <itemData name="Decimal" defStyleNum="dsDecVal" color="#7ab998" selColor="#3165b1" />
-      <itemData name="Float" defStyleNum="dsFloat" color="#7ab998" selColor="#3165b1" />
-      <itemData name="String" defStyleNum="dsString" color="#59a5b1" selColor="#3165b1" />
-      <itemData name="Comment" defStyleNum="dsComment" color="#3c5f91" selColor="#3165b1" />
-      <itemData name="Alert" defStyleNum="dsAlert" color="#4493d5" selColor="#3165b1" />
+      <itemData name="Keyword" defStyleNum="dsKeyword" color="#ec6431" selColor="#3a61df" />
+      <itemData name="Function" defStyleNum="dsFunction" color="#e63746" selColor="#3a61df" />
+      <itemData name="Decimal" defStyleNum="dsDecVal" color="#f99024" selColor="#3a61df" />
+      <itemData name="Float" defStyleNum="dsFloat" color="#f99024" selColor="#3a61df" />
+      <itemData name="String" defStyleNum="dsString" color="#f57e00" selColor="#3a61df" />
+      <itemData name="Comment" defStyleNum="dsComment" color="#3a5cc9" selColor="#3a61df" />
+      <itemData name="Alert" defStyleNum="dsAlert" color="#7ecd3d" selColor="#3a61df" />
     </itemDatas>
   </highlighting>
   <general>

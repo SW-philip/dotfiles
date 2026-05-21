@@ -76,8 +76,13 @@ for _name in protonvpn-ny protonvpn-au protonvpn-ca; do
   fi
 done
 
+tailscale_on=false
+systemctl is-active --quiet tailscaled.service 2>/dev/null && tailscale_on=true
+
 if [ -n "$vpn_region" ]; then
   vpn_status="<span foreground='${IRIS}'>VPN on (${vpn_region})</span>"
+elif $tailscale_on; then
+  vpn_status="<span foreground='${FOAM}'>Tailscale on</span>"
 else
   vpn_status="<span foreground='${SUBTLE}'>VPN off</span>"
 fi
