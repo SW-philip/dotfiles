@@ -38,6 +38,7 @@
     xournalpp       # stylus note-taking
     foliate         # ebook reader
     koreader        # ebook reader (alternative)
+    yacreader       # comic reader
   ];
 
   ########################################
