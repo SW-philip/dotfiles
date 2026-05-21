@@ -1,0 +1,13 @@
+# Niri Theme: charred - Charred Cerulean
+[colors]
+background = "#1f3a61"
+text = "#ffffff"
+cursor = "#4493d5"
+
+[colors.selection]
+border = "#80b5e5"
+background = "#244a76"
+
+[colors.hints]
+start = "#7ab998"
+end = "#3a7a9c"
