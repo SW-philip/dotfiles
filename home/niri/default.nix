@@ -396,8 +396,16 @@ let
       cp --remove-destination "$WLEAVE_CSS" "$HOME/.config/wleave/style.css"
       mkdir -p "$HOME/.local/share/fastfetch"
       ln -sf "$FASTFETCH_LOGO" "$HOME/.local/share/fastfetch/logo.png"
-      mkdir -p "$HOME/.librewolf/default/chrome"
-      cp --remove-destination "$LIBREWOLF_CSS" "$HOME/.librewolf/default/chrome/userChrome.css"
+      while IFS='=' read -r _key _val; do
+        _val="''${_val%$'\r'}"
+        [ "$_key" = "Path" ] && {
+          mkdir -p "$HOME/.librewolf/$_val/chrome"
+          cp --remove-destination "$LIBREWOLF_CSS" "$HOME/.librewolf/$_val/chrome/userChrome.css"
+        }
+      done < "$HOME/.librewolf/profiles.ini" 2>/dev/null || {
+        mkdir -p "$HOME/.librewolf/default/chrome"
+        cp --remove-destination "$LIBREWOLF_CSS" "$HOME/.librewolf/default/chrome/userChrome.css"
+      }
       echo "apply-theme: applied ''${THEME}"
     ''
   );
