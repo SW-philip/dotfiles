@@ -12,7 +12,7 @@
   # Fix nrs alias — hostname desktop != flake attr desktop
   ########################################
   programs.zsh.shellAliases = {
-    nrs = lib.mkForce "sudo nixos-rebuild switch --flake .#desktop";
+    nrs = lib.mkForce "sudo nixos-rebuild switch --flake .#desktop && sudo systemctl restart home-manager-prepko.service";
     nrb = lib.mkForce "sudo nixos-rebuild boot --flake .#desktop";
     nrt = lib.mkForce "sudo nixos-rebuild test --flake .#desktop";
   };
