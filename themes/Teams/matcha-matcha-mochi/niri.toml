@@ -1,0 +1,13 @@
+# Niri Theme: matcha - Matcha Mochi
+[colors]
+background = "#b3d99b"
+text = "#1a1a1a"
+cursor = "#8ad251"
+
+[colors.selection]
+border = "#d9bf59"
+background = "#a0d487"
+
+[colors.hints]
+start = "#dcb67b"
+end = "#bde27e"

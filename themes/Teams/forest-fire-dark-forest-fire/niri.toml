@@ -1,0 +1,13 @@
+# Niri Theme: forest fire - Dark Forest Fire
+[colors]
+background = "#1a3d2b"
+text = "#ffffff"
+cursor = "#d85f0e"
+
+[colors.selection]
+border = "#eff0f5"
+background = "#205035"
+
+[colors.hints]
+start = "#fa9a2e"
+end = "#ff8c00"
