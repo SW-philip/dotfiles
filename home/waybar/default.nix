@@ -79,7 +79,6 @@ in
         output = "DP-4";
         height = 46;
         modules-left   = [ "group/system-stats" "group/storage" ];
-        modules-right  = [ "group/toggles" "group/actions" ];
         "group/system-stats" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = true; };
@@ -102,23 +101,17 @@ in
           format = "󰋊";
           tooltip-format = "Storage";
         };
+        modules-right  = [ "group/toggles" "custom/wleave" ];
         "group/toggles" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = false; };
-          modules = [ "custom/utilities-handle" "custom/power_profile" "custom/idle_inhibit" "custom/dnd" "custom/choose_mode" ];
+          modules = [ "custom/utilities-handle" "custom/power_profile" "custom/idle_inhibit" "custom/dnd" "custom/uniremote" "custom/choose_mode" ];
           "on-scroll-up" = "";
           "on-scroll-down" = "";
         };
         "custom/utilities-handle" = {
           format = "󰙴";
           tooltip-format = "System utilities";
-        };
-        "group/actions" = {
-          orientation = "horizontal";
-          drawer = { transition-duration = 300; transition-left-to-right = false; };
-          modules = [ "custom/wleave" "custom/uniremote" ];
-          "on-scroll-up" = "";
-          "on-scroll-down" = "";
         };
         "custom/choose_mode" = {
           exec = "${chooseModeExec}";
@@ -164,7 +157,7 @@ in
         height = 45;
         modules-left   = [ "group/system-stats" "group/storage" ];
         modules-center = [ "custom/clock" ];
-        modules-right  = [ "group/connectivity" "tray" "group/toggles" "group/actions" ];
+        modules-right  = [ "group/connectivity" "group/tray" "group/toggles" "custom/wleave" ];
         "group/system-stats" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = true; };
@@ -189,12 +182,30 @@ in
         };
         "group/connectivity" = {
           orientation = "horizontal";
-          modules = [ "custom/bluetooth" "custom/network" ];
+          drawer = { transition-duration = 300; transition-left-to-right = false; };
+          modules = [ "custom/connectivity-handle" "custom/bluetooth" "custom/network" ];
+          "on-scroll-up" = "";
+          "on-scroll-down" = "";
+        };
+        "custom/connectivity-handle" = {
+          format = "󰛳";
+          tooltip-format = "Connectivity";
+        };
+        "group/tray" = {
+          orientation = "horizontal";
+          drawer = { transition-duration = 300; transition-left-to-right = false; };
+          modules = [ "custom/tray-handle" "tray" ];
+          "on-scroll-up" = "";
+          "on-scroll-down" = "";
+        };
+        "custom/tray-handle" = {
+          format = "󱊫";
+          tooltip-format = "System tray";
         };
         "group/toggles" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = false; };
-          modules = [ "custom/utilities-handle" "custom/idle_inhibit" "custom/power_profile" "custom/dnd" "custom/rotation_lock" "custom/choose_mode" ];
+          modules = [ "custom/utilities-handle" "custom/idle_inhibit" "custom/power_profile" "custom/dnd" "custom/rotation_lock" "custom/uniremote" "custom/choose_mode" ];
           "on-scroll-up" = "";
           "on-scroll-down" = "";
         };
@@ -208,13 +219,6 @@ in
           on-click-right = "python3 ${./scripts/theme-picker.py}";
           return-type = "json";
           interval = "once";
-        };
-        "group/actions" = {
-          orientation = "horizontal";
-          drawer = { transition-duration = 300; transition-left-to-right = false; };
-          modules = [ "custom/wleave" "custom/uniremote" ];
-          "on-scroll-up" = "";
-          "on-scroll-down" = "";
         };
       };
     };
