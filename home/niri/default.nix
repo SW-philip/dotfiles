@@ -142,6 +142,7 @@ let
       wleaveCss     = pkgs.writeText "wleave-style-${slug}.css"  (mkWleaveCSS t.palette);
       cava          = pkgs.writeText "cava-config-${slug}"       (mkCavaConfig t.palette);
       ghostty       = pkgs.writeText "ghostty-config-${slug}"    (mkGhosttyConfig t.palette);
+      librewolfCss  = pkgs.writeText "librewolf-chrome-${slug}.css" (import ../librewolf/userChrome.css.nix t.palette);
       pandora       = pkgs.writeText "pandora-${slug}.kdl"       (mkPandoraCfg wallpaper);
       wallpaperPath = wallpaper;
       fastfetchLogo = mkFastfetchLogo t;
@@ -363,6 +364,7 @@ let
           CAVA_CFG="${cfgs.cava}"
           GHOSTTY_CFG="${cfgs.ghostty}"
           FASTFETCH_LOGO="${cfgs.fastfetchLogo}"
+          LIBREWOLF_CSS="${cfgs.librewolfCss}"
           ;;
       '') themeConfigs)
     + ''
@@ -394,6 +396,8 @@ let
       cp --remove-destination "$WLEAVE_CSS" "$HOME/.config/wleave/style.css"
       mkdir -p "$HOME/.local/share/fastfetch"
       ln -sf "$FASTFETCH_LOGO" "$HOME/.local/share/fastfetch/logo.png"
+      mkdir -p "$HOME/.librewolf/default/chrome"
+      cp --remove-destination "$LIBREWOLF_CSS" "$HOME/.librewolf/default/chrome/userChrome.css"
       echo "apply-theme: applied ''${THEME}"
     ''
   );

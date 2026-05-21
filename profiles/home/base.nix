@@ -15,6 +15,7 @@ in
     ../../home/waybar
     ../../home/mako
     ../../home/niri
+    ../../home/librewolf
     ../packages/fastfetch.nix
     ../../modules/home-options.nix
   ];
