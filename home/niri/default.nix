@@ -329,7 +329,6 @@ let
       [main]
       font=monospace:size=13
       dpi-aware=auto
-      prompt=
       terminal=ghostty -e
       layer=overlay
       show-actions=yes
