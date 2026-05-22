@@ -1,10 +1,10 @@
 [General]
-Name=asteroid-asteroid-contrast
+Name=asteroid - Asteroid Contrast
 
 [Colors]
 BackgroundNormal=#4a4e68
 BackgroundSelection=#7077a4
-BackgroundInactive=#535a79
+BackgroundInactive=#5a6686
 ForegroundNormal=#ffffff
 ForegroundSelection=#ffffff
 ForegroundInactive=#777988
@@ -18,13 +18,13 @@ Cursor=#f0a400
 CursorText=#ffffff
 SelectionBackground=#7077a4
 SelectionForeground=#ffffff
-HighlightWord=#5b678a
+HighlightWord=#687fa0
 MatchBackground=#f5c88a
 MatchForeground=#4a4e68
 
 [View]
 LineNumbers=#777988
-CurrentLine=#5b678a
+CurrentLine=#687fa0
 BracketMatching=#819cb1
 SearchHighlight=#f5c88a
 SearchHighlightCurrent=#f0a400

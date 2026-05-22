@@ -264,836 +264,638 @@ def run_enrich(artist: str, track: str) -> dict | None:
     return None
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
-CSS = b"""
-* { -gtk-icon-style: symbolic; }
-window { background: transparent; }
+def _load_palette() -> dict:
+    """Parse ~/.config/waybar/palette.sh into a color dict. Falls back to Rosé Pine Moon."""
+    p = {
+        "BASE": "#232136", "SURFACE": "#2a273f", "OVERLAY": "#393552",
+        "HIGHLIGHT_LOW": "#2a283e", "HIGHLIGHT_MED": "#44415a", "HIGHLIGHT_HIGH": "#56526e",
+        "MUTED": "#6e6a86", "SUBTLE": "#908caa", "TEXT": "#e0def4",
+        "LOVE": "#eb6f92", "PINE": "#3e8fb0", "FOAM": "#9ccfd8",
+        "ROSE": "#ea9a97", "IRIS": "#c4a7e7", "GOLD": "#f6c177",
+        "SHADOW": "#0f0e17", "SHADOW_RGB": "15,14,23",
+    }
+    path = Path.home() / ".config" / "waybar" / "palette.sh"
+    if path.exists():
+        try:
+            for line in path.read_text().splitlines():
+                m = re.match(r'^export\s+(\w+)="([^"]*)"', line)
+                if m:
+                    p[m.group(1)] = m.group(2)
+        except Exception:
+            pass
+    return p
 
-/* -- Outer chassis -- */
-.popup {
-  background:
-    radial-gradient(ellipse 80% 25% at 50% 0%, rgba(30,60,110,0.22) 0%, transparent 100%),
-    #0d0d0d;
-  border: 1px solid #222;
-  border-top: 1px solid #444;
-  border-left: 1px solid #444;
-  border-radius: 6px;
-  outline: 1px solid #111;
-  outline-offset: -3px;
+
+def _build_css(p: dict) -> bytes:
+    B  = p.get("BASE",           "#232136")
+    S  = p.get("SURFACE",        "#2a273f")
+    O  = p.get("OVERLAY",        "#393552")
+    HL = p.get("HIGHLIGHT_LOW",  "#2a283e")
+    HM = p.get("HIGHLIGHT_MED",  "#44415a")
+    HH = p.get("HIGHLIGHT_HIGH", "#56526e")
+    MU = p.get("MUTED",          "#6e6a86")
+    SU = p.get("SUBTLE",         "#908caa")
+    TX = p.get("TEXT",           "#e0def4")
+    LV = p.get("LOVE",           "#eb6f92")
+    PI = p.get("PINE",           "#3e8fb0")
+    FM = p.get("FOAM",           "#9ccfd8")
+    RS = p.get("ROSE",           "#ea9a97")
+    IR = p.get("IRIS",           "#c4a7e7")
+    GD = p.get("GOLD",           "#f6c177")
+    SH = p.get("SHADOW",         "#0f0e17")
+    SR = p.get("SHADOW_RGB",     "15,14,23")
+    return f"""
+* {{ -gtk-icon-style: symbolic; }}
+window {{ background: transparent; }}
+
+/* ── Outer popup (paper card) ── */
+.popup {{
+  background: {B};
+  border: 2px solid {SH};
+  border-radius: 12px;
   margin: 4px;
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.9),
-    0 0 0 2px #181818,
-    0 0 0 3px rgba(80,80,80,0.15),
-    0 6px 32px rgba(0,0,0,0.95),
-    0 0 80px rgba(0,15,50,0.35);
-}
+  box-shadow: 4px 5px 0 0 {SH};
+}}
 
-/* -- LCD display panel (now-playing area) -- */
-.now-playing {
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 3px,
-      rgba(0,0,0,0.10) 3px,
-      rgba(0,0,0,0.10) 4px
-    ),
-    linear-gradient(127deg, transparent 38%, rgba(255,255,255,0.022) 39%, transparent 40%),
-    linear-gradient(53deg,  transparent 58%, rgba(255,255,255,0.014) 59%, transparent 60%),
-    linear-gradient(161deg, transparent 72%, rgba(255,255,255,0.018) 73%, transparent 74%);
-  background-color: #050810;
-  border-radius: 4px 4px 0 0;
+/* ── Now-playing card ── */
+.now-playing {{
+  background: {S};
+  border-radius: 10px 10px 4px 4px;
   padding: 10px 12px;
-  border-bottom: 1px solid #0a1628;
-  border-top: 1px solid rgba(255,255,255,0.07);
-  border-left: 1px solid rgba(255,255,255,0.04);
-  box-shadow:
-    inset 0 2px 8px rgba(0,0,0,0.85),
-    inset 0 -1px 3px rgba(0,0,0,0.5),
-    inset 1px 0 4px rgba(0,0,0,0.4),
-    inset -1px 0 4px rgba(0,0,0,0.4);
-}
+  border-bottom: 2px solid {SH};
+}}
 
-/* -- Inset panels: art, text info, controls tray -- */
-.art-panel {
-  background: transparent;
-  border-radius: 6px;
-  border: none;
+/* ── Art panel ── */
+.art-panel {{
+  background: {B};
+  border-radius: 8px;
+  border: 2px solid {SH};
   padding: 2px;
   min-width: 86px;
   min-height: 86px;
-  box-shadow:
-    0 0 18px rgba(50, 130, 230, 0.40),
-    0 0 40px rgba(20, 80, 180, 0.22),
-    0 4px 24px rgba(0,0,0,0.75);
-}
+  box-shadow: 2px 3px 0 0 {SH};
+}}
 
-.info-panel {
-  background: #0c1422;
-  border-radius: 6px;
+/* ── Info panel (right of art) ── */
+.info-panel {{
+  background: {O};
+  border-radius: 8px;
   padding: 4px 8px;
-  border: 1px solid rgba(20, 42, 72, 0.55);
-  border-top: 1px solid rgba(91,200,255,0.07);
-  box-shadow:
-    inset 0 2px 8px rgba(0,0,0,0.55),
-    inset 0 0 0 1px rgba(0,0,0,0.3),
-    0 1px 0 rgba(255,255,255,0.025);
-}
+  border: 2px solid {SH};
+  box-shadow: 2px 3px 0 0 {SH};
+}}
 
-/* -- Text display bars (station name + track info) -- */
-/* margin exposes 3-4px of info-panel bg as a lighter frame */
-.display-bar {
-  background: #040810;
-  border-radius: 3px;
+/* ── Text display bubbles ── */
+.display-bar {{
+  background: {B};
+  border-radius: 6px;
   margin: 3px 0 0;
   padding: 2px 6px;
-  border: 1px solid #0a1520;
-  border-top: 1px solid #0f1e32;
-  box-shadow:
-    inset 0 1px 5px rgba(0,0,0,0.75),
-    inset 0 0 0 1px rgba(0,0,0,0.35),
-    0 1px 0 rgba(255,255,255,0.02);
-}
+  border: 1px solid {SH};
+}}
 
-/* -- Indicator strip (orbit + receiver buttons) -- */
-/* margin exposes 3-4px of info-panel bg as a lighter frame */
-.indicator-panel {
-  background: #040810;
-  background-image: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(0,30,60,0.25) 3px,
-    rgba(0,30,60,0.25) 4px
-  );
-  border-radius: 2px;
+/* ── Indicator strip ── */
+.indicator-panel {{
+  background: {B};
+  border-radius: 6px;
   margin: 4px 0 2px;
   padding: 4px 6px;
-  border: 1px solid #0a1520;
-  border-top: 1px solid #0f1e32;
-  box-shadow:
-    inset 0 1px 5px rgba(0,0,0,0.75),
-    inset 0 0 0 1px rgba(0,0,0,0.35),
-    0 1px 0 rgba(255,255,255,0.02);
-}
+  border: 1px solid {SH};
+}}
 
-.station-name {
+/* ── Text ── */
+.station-name {{
   font-family: "JetBrains Mono", "Courier New", monospace;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #5bc8ff;
-}
-
-.track-info {
+  color: {TX};
+}}
+.track-info {{
   font-family: "JetBrains Mono", "Courier New", monospace;
   font-size: 10px;
   letter-spacing: 0.05em;
-  color: #2a7ab5;
-}
-
-/* -- Enriched meta stack (album title + year/genre, beside orbit) -- */
-.meta-album {
+  color: {PI};
+}}
+.meta-album {{
   font-family: "JetBrains Mono", "Courier New", monospace;
   font-size: 10px;
   font-weight: 600;
-  color: #2a5a8a;
+  color: {SU};
   letter-spacing: 0.04em;
-}
-.meta-sub {
+}}
+.meta-sub {{
   font-family: "JetBrains Mono", "Courier New", monospace;
   font-size: 9px;
-  color: #1a3a58;
+  color: {MU};
   letter-spacing: 0.03em;
-}
+}}
 
-/* -- Orbit indicator (center circle + 4 sweeping comet dots) -- */
-/* opacity+shadow only - no size changes, so text never bounces */
-@keyframes orbit-center-pulse {
-  0%, 100% { opacity: 0.55; }
-  50%       { opacity: 1.0;  }
-}
-@keyframes orbit-n {
-  0%   { opacity: 0.12; box-shadow: none; }
-  6%   { opacity: 1.0;  box-shadow: 0 -5px 6px rgba(91,200,255,0.75), 0 -10px 4px rgba(91,200,255,0.2); }
-  40%  { opacity: 0.4;  box-shadow: 0 -3px 3px rgba(91,200,255,0.25); }
-  100% { opacity: 0.12; box-shadow: none; }
-}
-@keyframes orbit-e {
-  0%   { opacity: 0.12; box-shadow: none; }
-  6%   { opacity: 1.0;  box-shadow: 5px 0 6px rgba(91,200,255,0.75), 10px 0 4px rgba(91,200,255,0.2); }
-  40%  { opacity: 0.4;  box-shadow: 3px 0 3px rgba(91,200,255,0.25); }
-  100% { opacity: 0.12; box-shadow: none; }
-}
-@keyframes orbit-s {
-  0%   { opacity: 0.12; box-shadow: none; }
-  6%   { opacity: 1.0;  box-shadow: 0 5px 6px rgba(91,200,255,0.75), 0 10px 4px rgba(91,200,255,0.2); }
-  40%  { opacity: 0.4;  box-shadow: 0 3px 3px rgba(91,200,255,0.25); }
-  100% { opacity: 0.12; box-shadow: none; }
-}
-@keyframes orbit-w {
-  0%   { opacity: 0.12; box-shadow: none; }
-  6%   { opacity: 1.0;  box-shadow: -5px 0 6px rgba(91,200,255,0.75), -10px 0 4px rgba(91,200,255,0.2); }
-  40%  { opacity: 0.4;  box-shadow: -3px 0 3px rgba(91,200,255,0.25); }
-  100% { opacity: 0.12; box-shadow: none; }
-}
+/* ── Orbit animations ── */
+@keyframes orbit-center-pulse {{
+  0%, 100% {{ opacity: 0.5; }}
+  50%       {{ opacity: 1.0; }}
+}}
+@keyframes orbit-n {{
+  0%   {{ opacity: 0.12; }}
+  6%   {{ opacity: 1.0;  }}
+  40%  {{ opacity: 0.35; }}
+  100% {{ opacity: 0.12; }}
+}}
+@keyframes orbit-e {{
+  0%   {{ opacity: 0.12; }}
+  6%   {{ opacity: 1.0;  }}
+  40%  {{ opacity: 0.35; }}
+  100% {{ opacity: 0.12; }}
+}}
+@keyframes orbit-s {{
+  0%   {{ opacity: 0.12; }}
+  6%   {{ opacity: 1.0;  }}
+  40%  {{ opacity: 0.35; }}
+  100% {{ opacity: 0.12; }}
+}}
+@keyframes orbit-w {{
+  0%   {{ opacity: 0.12; }}
+  6%   {{ opacity: 1.0;  }}
+  40%  {{ opacity: 0.35; }}
+  100% {{ opacity: 0.12; }}
+}}
 
-/* -- Signal bars (replace meta-sub) -- */
-@keyframes sig-pulse-1 { 0%,100%{opacity:0.14} 45%{opacity:0.78} }
-@keyframes sig-pulse-2 { 0%,100%{opacity:0.14} 38%{opacity:1.00} }
-@keyframes sig-pulse-3 { 0%,100%{opacity:0.14} 55%{opacity:0.88} }
-@keyframes sig-pulse-4 { 0%,100%{opacity:0.14} 30%{opacity:0.72} }
-@keyframes sig-pulse-5 { 0%,100%{opacity:0.14} 50%{opacity:0.95} }
-@keyframes sig-pulse-6 { 0%,100%{opacity:0.14} 42%{opacity:0.82} }
-@keyframes sig-pulse-7 { 0%,100%{opacity:0.14} 60%{opacity:0.70} }
-@keyframes sig-pulse-8 { 0%,100%{opacity:0.14} 35%{opacity:0.90} }
-@keyframes sig-pulse-9 { 0%,100%{opacity:0.14} 48%{opacity:0.76} }
+/* ── Signal bar animations ── */
+@keyframes sig-pulse-1 {{ 0%,100%{{ opacity:0.15; }} 45%{{ opacity:0.80; }} }}
+@keyframes sig-pulse-2 {{ 0%,100%{{ opacity:0.15; }} 38%{{ opacity:1.00; }} }}
+@keyframes sig-pulse-3 {{ 0%,100%{{ opacity:0.15; }} 55%{{ opacity:0.88; }} }}
+@keyframes sig-pulse-4 {{ 0%,100%{{ opacity:0.15; }} 30%{{ opacity:0.72; }} }}
+@keyframes sig-pulse-5 {{ 0%,100%{{ opacity:0.15; }} 50%{{ opacity:0.95; }} }}
+@keyframes sig-pulse-6 {{ 0%,100%{{ opacity:0.15; }} 42%{{ opacity:0.82; }} }}
+@keyframes sig-pulse-7 {{ 0%,100%{{ opacity:0.15; }} 60%{{ opacity:0.70; }} }}
+@keyframes sig-pulse-8 {{ 0%,100%{{ opacity:0.15; }} 35%{{ opacity:0.90; }} }}
+@keyframes sig-pulse-9 {{ 0%,100%{{ opacity:0.15; }} 48%{{ opacity:0.76; }} }}
 
-.sig-bar {
+.sig-bar {{
   min-width: 2px;
   border-radius: 1px 1px 0 0;
-  background: linear-gradient(180deg, #5bc8ff 0%, #1a5a8a 100%);
-  opacity: 0.28;
-}
-.sig-bar-1 { min-height: 4px;  }
-.sig-bar-2 { min-height: 7px;  }
-.sig-bar-3 { min-height: 11px; }
-.sig-bar-4 { min-height: 15px; }
-.sig-bar-5 { min-height: 17px; }
-.sig-bar-6 { min-height: 14px; }
-.sig-bar-7 { min-height: 10px; }
-.sig-bar-8 { min-height: 6px;  }
-.sig-bar-9 { min-height: 4px;  }
+  background: {LV};
+  opacity: 0.25;
+}}
+.sig-bar-1 {{ min-height: 4px;  }}
+.sig-bar-2 {{ min-height: 7px;  }}
+.sig-bar-3 {{ min-height: 11px; }}
+.sig-bar-4 {{ min-height: 15px; }}
+.sig-bar-5 {{ min-height: 17px; }}
+.sig-bar-6 {{ min-height: 14px; }}
+.sig-bar-7 {{ min-height: 10px; }}
+.sig-bar-8 {{ min-height: 6px;  }}
+.sig-bar-9 {{ min-height: 4px;  }}
 
-.sig-bar-1.playing { animation: sig-pulse-1 0.83s ease-in-out infinite 0.00s; }
-.sig-bar-2.playing { animation: sig-pulse-2 1.12s ease-in-out infinite 0.20s; }
-.sig-bar-3.playing { animation: sig-pulse-3 0.77s ease-in-out infinite 0.08s; }
-.sig-bar-4.playing { animation: sig-pulse-4 0.95s ease-in-out infinite 0.35s; }
-.sig-bar-5.playing { animation: sig-pulse-5 0.68s ease-in-out infinite 0.12s; }
-.sig-bar-6.playing { animation: sig-pulse-6 1.08s ease-in-out infinite 0.28s; }
-.sig-bar-7.playing { animation: sig-pulse-7 0.88s ease-in-out infinite 0.05s; }
-.sig-bar-8.playing { animation: sig-pulse-8 0.72s ease-in-out infinite 0.42s; }
-.sig-bar-9.playing { animation: sig-pulse-9 1.00s ease-in-out infinite 0.17s; }
+.sig-bar-1.playing {{ animation: sig-pulse-1 0.83s ease-in-out infinite 0.00s; }}
+.sig-bar-2.playing {{ animation: sig-pulse-2 1.12s ease-in-out infinite 0.20s; }}
+.sig-bar-3.playing {{ animation: sig-pulse-3 0.77s ease-in-out infinite 0.08s; }}
+.sig-bar-4.playing {{ animation: sig-pulse-4 0.95s ease-in-out infinite 0.35s; }}
+.sig-bar-5.playing {{ animation: sig-pulse-5 0.68s ease-in-out infinite 0.12s; }}
+.sig-bar-6.playing {{ animation: sig-pulse-6 1.08s ease-in-out infinite 0.28s; }}
+.sig-bar-7.playing {{ animation: sig-pulse-7 0.88s ease-in-out infinite 0.05s; }}
+.sig-bar-8.playing {{ animation: sig-pulse-8 0.72s ease-in-out infinite 0.42s; }}
+.sig-bar-9.playing {{ animation: sig-pulse-9 1.00s ease-in-out infinite 0.17s; }}
 
-/* -- Receiver button strip -- */
-.radio-btn {
+/* ── Status indicator labels (MONO/ST/LOUD/MUTE) — GtkLabel, not button ── */
+.radio-btn {{
   font-family: "JetBrains Mono", monospace;
   font-size: 9px;
+  font-weight: 700;
   letter-spacing: 0.10em;
-  color: #1a3a50;
-  background: linear-gradient(180deg, #0c1825 0%, #070d16 100%);
-  border: 1px solid #0e1e2e;
-  border-top: 1px solid #182d40;
-  border-bottom: 1px solid #050a10;
-  border-radius: 2px;
+  color: {MU};
+  background: {B};
+  border: 2px solid {SH};
+  border-radius: 6px;
   padding: 1px 7px;
-  box-shadow:
-    inset 0 1px 4px rgba(0,0,0,0.7),
-    inset 0 -1px 0 rgba(255,255,255,0.03),
-    0 1px 0 rgba(255,255,255,0.04);
-}
-.radio-btn.playing {
-  color: #5bc8ff;
-  background: linear-gradient(180deg, #0d1e30 0%, #060d14 100%);
-  border-color: #1a3a5a;
-  border-top-color: #224a6a;
-  box-shadow: inset 0 1px 4px rgba(0,0,0,0.5), 0 0 6px rgba(91,200,255,0.12);
-  text-shadow: 0 0 7px rgba(91,200,255,0.80);
-}
-.radio-btn.st-ind.playing {
-  color: #2ecc44;
-  border-color: #1a4a22;
-  border-top-color: #225a2a;
-  box-shadow: inset 0 1px 4px rgba(0,0,0,0.5), 0 0 7px rgba(46,204,68,0.15);
-  text-shadow: 0 0 8px rgba(46,204,68,0.95), 0 0 14px rgba(46,204,68,0.45);
-}
-.radio-btn.loud-ind.playing {
-  color: #f0a020;
-  border-color: #4a3010;
-  border-top-color: #5a3a14;
-  box-shadow: inset 0 1px 4px rgba(0,0,0,0.5), 0 0 7px rgba(240,160,32,0.15);
-  text-shadow: 0 0 8px rgba(240,160,32,0.95), 0 0 14px rgba(240,160,32,0.45);
-}
-/* MUTE lit */
-.radio-btn.mute-ind.playing {
-  color: #e05555;
-  border-color: #4a1515;
-  border-top-color: #5a1e1e;
-  box-shadow: inset 0 1px 4px rgba(0,0,0,0.5), 0 0 7px rgba(224,85,85,0.15);
-  text-shadow: 0 0 8px rgba(224,85,85,0.95), 0 0 14px rgba(224,85,85,0.45);
-}
-/* MONO -- inherits cyan from .radio-btn.playing but made explicit */
-.radio-btn.mono-ind.playing {
-  color: #5bc8ff;
-  text-shadow: 0 0 7px rgba(91,200,255,0.80);
-}
-/* Static flicker -- dims but doesn't extinguish the indicator */
-.radio-btn.playing.flicker {
-  opacity: 0.35;
-  text-shadow: none;
-}
-/* LOUD overdrive (>100% vol or BT active) */
-.radio-btn.loud-ind.overdrive {
-  color: #ffb030;
-  border-color: #6a3a08;
-  border-top-color: #7a4a10;
-  box-shadow: inset 0 1px 4px rgba(0,0,0,0.4), 0 0 12px rgba(255,140,0,0.35);
-  text-shadow: 0 0 6px rgba(255,176,48,1.0), 0 0 18px rgba(255,100,0,0.7), 0 0 28px rgba(255,80,0,0.3);
-}
+  box-shadow: 1px 2px 0 0 {SH};
+}}
+.radio-btn.playing    {{ color: {SH}; background: {LV}; }}
+.radio-btn.st-ind.playing   {{ background: {FM}; color: {SH}; }}
+.radio-btn.loud-ind.playing {{ background: {GD}; color: {SH}; }}
+.radio-btn.mute-ind.playing {{ background: {RS}; color: {SH}; }}
+.radio-btn.mono-ind.playing {{ background: {LV}; color: {SH}; }}
+.radio-btn.playing.flicker  {{ opacity: 0.4; }}
+.radio-btn.loud-ind.overdrive {{ background: {LV}; color: {SH}; }}
 
-.orbit-grid { margin-top: 5px; }
-.orbit-center {
+/* ── Orbit ── */
+.orbit-grid {{ margin-top: 5px; }}
+.orbit-center {{
   min-width: 6px; min-height: 6px;
   border-radius: 3px;
-  background: #3a7aaa;
-  opacity: 0.45;
-}
-.orbit-center.playing {
-  background: #5bc8ff;
+  background: {MU};
+  opacity: 0.5;
+}}
+.orbit-center.playing {{
+  background: {LV};
+  opacity: 1.0;
   animation: orbit-center-pulse 2.4s ease-in-out infinite;
-}
-.orbit-dot {
+}}
+.orbit-dot {{
   min-width: 4px; min-height: 4px;
   border-radius: 2px;
-  background: #5bc8ff;
+  background: {LV};
   opacity: 0.12;
-}
-.orbit-dot.playing             { animation-duration: 1.2s; animation-timing-function: linear; animation-iteration-count: infinite; }
-.orbit-dot-n.playing           { animation-name: orbit-n; animation-delay: 0.0s; }
-.orbit-dot-e.playing           { animation-name: orbit-e; animation-delay: 0.3s; }
-.orbit-dot-s.playing           { animation-name: orbit-s; animation-delay: 0.6s; }
-.orbit-dot-w.playing           { animation-name: orbit-w; animation-delay: 0.9s; }
+}}
+.orbit-dot.playing           {{ animation-duration: 1.2s; animation-timing-function: linear; animation-iteration-count: infinite; }}
+.orbit-dot-n.playing         {{ animation-name: orbit-n; animation-delay: 0.0s; }}
+.orbit-dot-e.playing         {{ animation-name: orbit-e; animation-delay: 0.3s; }}
+.orbit-dot-s.playing         {{ animation-name: orbit-s; animation-delay: 0.6s; }}
+.orbit-dot-w.playing         {{ animation-name: orbit-w; animation-delay: 0.9s; }}
 
-/* -- Transport controls -- */
-.controls {
-  margin-top: 8px;
-  background: #0c1422;
-  border-radius: 6px;
-  border: 1px solid rgba(20, 42, 72, 0.55);
-  border-top: 1px solid rgba(91,200,255,0.10);
+/* ── Controls tray ── */
+.controls {{
+  margin-top: 6px;
+  background: {S};
+  border-radius: 8px;
+  border: 2px solid {SH};
   padding: 4px;
-  box-shadow:
-    inset 0 1px 6px rgba(0,0,0,0.5),
-    0 1px 0 rgba(255,255,255,0.025);
-}
+  box-shadow: 2px 3px 0 0 {SH};
+}}
 
-.controls button {
-  background: linear-gradient(180deg, #222 0%, #141414 60%, #1a1a1a 100%);
-  color: #8ad4f5;
-  border: 1px solid #2a2a2a;
-  border-top: 1px solid #3a3a3a;
-  border-bottom: 1px solid #111;
-  border-radius: 4px;
-  padding: 3px 8px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  min-width: 0;
-  box-shadow:
-    0 2px 5px rgba(0,0,0,0.75),
-    0 1px 0 rgba(0,0,0,0.9),
-    inset 0 1px 0 rgba(255,255,255,0.07),
-    inset 0 -1px 0 rgba(0,0,0,0.4);
-  text-shadow: 0 0 6px rgba(91, 200, 255, 0.5);
-}
-.controls button:hover {
-  background: linear-gradient(180deg, #1a2a3a 0%, #0f1e2e 100%);
-  border-color: #1e5a8a;
-  border-top-color: #2a6a9a;
-  color: #5bc8ff;
-  text-shadow: 0 0 10px rgba(91, 200, 255, 0.9);
-  box-shadow:
-    0 2px 8px rgba(0,0,0,0.8),
-    inset 0 1px 0 rgba(91,200,255,0.08),
-    inset 0 -1px 0 rgba(0,0,0,0.5);
-}
-.controls button:active {
-  background: #070f1a;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.85), inset 0 0 0 1px rgba(0,0,0,0.4);
-}
-
-/* -- Divider -- */
-.divider {
-  background-color: #0e2540;
-  margin: 0;
-  min-height: 1px;
-  box-shadow:
-    0 -1px 0 rgba(0,0,0,0.6),
-    0 1px 0 rgba(91,200,255,0.12),
-    0 2px 4px rgba(91,200,255,0.04);
-}
-
-.seam {
-  min-height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    #2a2a2a 15%,
-    #444 40%,
-    #555 50%,
-    #444 60%,
-    #2a2a2a 85%,
-    transparent 100%
-  );
-  margin: 0;
-}
-.seam-shadow {
-  min-height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    #0a0a0a 15%,
-    #111 50%,
-    #0a0a0a 85%,
-    transparent 100%
-  );
-  margin: 0;
-}
-.mfr-badge {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 7px;
-  letter-spacing: 0.20em;
-  color: #2a2a2a;
-  text-shadow: 0 1px 0 rgba(80,80,80,0.3);
-  padding: 2px 8px 1px 0;
-}
-
-/* -- Toolbar -- */
-.toolbar {
-  background: #080808;
-  padding: 4px 6px;
-  border-bottom: 1px solid #111;
-}
-.toolbar entry {
-  background: #0a0f18;
-  color: #4a9ac8;
-  border: 1px solid #1a2a3a;
-  border-radius: 3px;
-  padding: 2px 6px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  min-height: 0;
-}
-.toolbar entry:focus { border-color: #2a5a8a; color: #5bc8ff; }
-.toolbar button {
-  background: #0f0f0f;
-  color: #3a7aaa;
-  border: 1px solid #1a2a3a;
-  border-radius: 3px;
-  padding: 2px 7px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 12px;
-  min-width: 0;
-  min-height: 0;
-}
-.toolbar button:hover { background: #0f1e2e; color: #5bc8ff; border-color: #2a5a8a; }
-.toolbar button.active { background: #0f2030; color: #5bc8ff; border-color: #2a5a8a; }
-
-/* -- Station list -- */
-.station-list {
-  padding: 2px 4px 4px;
-  background: #0a0a0a;
-}
-
-.station-row {
-  font-family: "JetBrains Mono", "Courier New", monospace;
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  color: #2a6a9a;
-  border-radius: 3px;
-  border: none;
-  background: transparent;
-  padding: 3px 8px;
-  min-height: 0;
-  text-shadow: 0 0 4px rgba(42, 106, 154, 0.4);
-}
-.station-row:hover {
-  background: rgba(30, 90, 160, 0.15);
-  color: #4ab4e8;
-}
-.station-row.active {
-  background: linear-gradient(90deg, rgba(30,90,160,0.35) 0%, rgba(30,90,160,0.15) 100%);
-  color: #5bc8ff;
-  text-shadow: 0 0 10px rgba(91, 200, 255, 0.8);
-  border-left: 2px solid rgba(91,200,255,0.6);
-  box-shadow: inset 2px 0 8px rgba(91,200,255,0.08);
-}
-
-/* -- Frequency badge on station rows (clickable button) -- */
-.freq-badge {
-  color: #4a9ac8;
-  font-size: 9px;
-  font-family: monospace;
-  padding: 1px 5px;
-  min-width: 0;
-  background: rgba(0,20,45,0.7);
-  border: 1px solid rgba(91,200,255,0.12);
-  border-radius: 2px;
-  text-shadow: 0 0 6px rgba(91,200,255,0.45);
-  box-shadow: none;
-}
-.freq-badge:hover {
-  background: rgba(0,35,70,0.9);
-  border-color: rgba(91,200,255,0.4);
-}
-/* -- Frequency picker in popover -- */
-.freq-pick {
-  color: #4a9ac8;
-  font-size: 10px;
-  font-family: monospace;
-  padding: 2px 10px;
-  background: transparent;
-  border: none;
-  border-radius: 2px;
-  box-shadow: none;
-  min-height: 0;
-}
-.freq-pick:hover {
-  background: rgba(91,200,255,0.15);
-}
-
-/* -- Per-row action buttons -- */
-.row-action {
-  background: transparent;
-  color: #1a3a5a;
-  border: none;
-  border-radius: 3px;
-  padding: 1px 5px;
-  font-size: 11px;
-  min-width: 0;
-  min-height: 0;
-}
-.row-action:hover { background: rgba(30,90,160,0.2); color: #4ab4e8; }
-.row-action.confirm { color: #e86060; }
-.row-action.confirm:hover { background: rgba(160,30,30,0.2); color: #ff8080; }
-
-/* -- Inline form (edit / add-by-URL) -- */
-.inline-form {
-  background: #06090f;
-  border-bottom: 1px solid #0e2540;
-  padding: 6px 8px;
-}
-.inline-form label {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 10px;
-  color: #2a5a8a;
-  min-width: 30px;
-}
-.form-title {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  color: #3a7ab8;
-  font-weight: bold;
-}
-.inline-form entry {
-  background: #070f1c;
-  color: #4a9ac8;
-  border: 1px solid #1a2a3a;
-  border-radius: 3px;
-  padding: 2px 6px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  min-height: 0;
-}
-.inline-form entry:focus { border-color: #2a5a8a; color: #5bc8ff; }
-.inline-form button {
-  background: #0f1e2e;
-  color: #3a9ac8;
-  border: 1px solid #1a3a5a;
-  border-radius: 3px;
-  padding: 2px 8px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  min-height: 0;
-}
-.inline-form button:hover { background: #1a3a5a; color: #5bc8ff; }
-.inline-form .cancel:hover { background: #2a1010; color: #e86060; border-color: #6a2020; }
-.form-error {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 10px;
-  color: #e86060;
-}
-
-/* -- Discover panel -- */
-.discover-panel {
-  background: #070a10;
-  padding: 4px;
-  border-radius: 0 0 5px 5px;
-}
-.discover-entry {
-  background: #0a0f18;
-  color: #4a9ac8;
-  border: 1px solid #1a2a3a;
-  border-radius: 3px;
-  padding: 3px 8px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-}
-.discover-entry:focus { border-color: #2a5a8a; color: #5bc8ff; }
-.discover-status {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  color: #1a4a6a;
-  padding: 6px 4px;
-}
-.discover-result {
-  border-bottom: 1px solid #0d1a2a;
-  padding: 4px 4px;
-}
-.discover-name {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  color: #3a8ab8;
-  font-weight: bold;
-}
-.discover-meta {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 10px;
-  color: #1a4a6a;
-}
-.discover-add {
-  background: transparent;
-  color: #1a6a3a;
-  border: 1px solid #1a3a2a;
-  border-radius: 3px;
-  padding: 2px 6px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  min-width: 0;
-  min-height: 0;
-}
-.discover-add:hover { background: rgba(30,120,60,0.2); color: #4ae888; border-color: #2a7a4a; }
-.discover-add.added { color: #4ae888; border-color: #2a7a4a; }
-
-/* -- Discover back button -- */
-.back-btn {
-  background: linear-gradient(180deg, #0f1e2e 0%, #080f18 100%);
-  color: #3a9ac8;
-  border: 1px solid #1a3a5a;
-  border-top: 1px solid #2a5a8a;
-  border-radius: 4px;
+/* ── Universal paper bubble: all GtkButton widgets ── */
+button {{
+  background: {O};
+  color: {TX};
+  border: 2px solid {SH};
+  border-radius: 8px;
   padding: 3px 10px;
   font-family: "JetBrains Mono", monospace;
   font-size: 11px;
   min-width: 0;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.5), inset 0 1px 0 rgba(91,200,255,0.05);
-  text-shadow: 0 0 6px rgba(91, 200, 255, 0.3);
-}
-.back-btn:hover {
-  background: linear-gradient(180deg, #1a3a5a 0%, #0f2030 100%);
-  color: #5bc8ff;
-  border-color: #2a6a9a;
-  text-shadow: 0 0 10px rgba(91, 200, 255, 0.7);
-}
-.back-btn:active {
-  background: #050c18;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
-}
-/* -- Group/page selector bar -- */
-.group-bar {
-  background: #050b14;
-  background-image: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 5px,
-    rgba(0,20,45,0.18) 5px,
-    rgba(0,20,45,0.18) 6px
-  );
-  border: 1px solid #0a1520;
-  border-top: 1px solid rgba(255,255,255,0.04);
-  border-bottom: 1px solid #030609;
-  border-radius: 4px;
+  box-shadow: 2px 2px 0 0 {SH};
+}}
+button:hover {{
+  background: {HH};
+  color: {TX};
+  box-shadow: 1px 1px 0 0 {SH};
+}}
+button:active {{
+  background: {HM};
+  box-shadow: none;
+}}
+
+/* ── Divider + seam ── */
+.divider {{
+  background-color: {SH};
+  margin: 0;
+  min-height: 2px;
+}}
+.seam {{
+  min-height: 1px;
+  background: {HL};
+  margin: 0;
+}}
+.seam-shadow {{
+  min-height: 1px;
+  background: {SH};
+  margin: 0;
+}}
+.mfr-badge {{
+  font-family: "JetBrains Mono", monospace;
+  font-size: 7px;
+  letter-spacing: 0.20em;
+  color: {MU};
+  padding: 2px 8px 1px 0;
+}}
+
+/* ── Toolbar ── */
+.toolbar {{
+  background: {S};
+  padding: 4px 6px;
+  border-bottom: 2px solid {SH};
+}}
+.toolbar entry {{
+  background: {B};
+  color: {TX};
+  border: 2px solid {SH};
+  border-radius: 8px;
+  padding: 2px 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  min-height: 0;
+  box-shadow: 1px 2px 0 0 {SH};
+}}
+.toolbar entry:focus {{ border-color: {LV}; }}
+.toolbar button.active {{
+  background: {LV};
+  color: {SH};
+  border-color: {SH};
+  box-shadow: 1px 2px 0 0 {SH};
+}}
+
+/* ── Station list ── */
+.station-list {{
+  padding: 2px 4px 4px;
+  background: {B};
+}}
+.station-row {{
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: {SU};
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background: transparent;
+  padding: 3px 8px;
+  min-height: 0;
+}}
+.station-row:hover {{
+  background: {O};
+  color: {TX};
+  border-color: {SH};
+  box-shadow: 1px 2px 0 0 {SH};
+}}
+.station-row.active {{
+  background: {LV};
+  color: {SH};
+  border-color: {SH};
+  font-weight: 700;
+  box-shadow: 2px 3px 0 0 {SH};
+}}
+
+/* ── Frequency badge: small teal pill ── */
+.freq-badge {{
+  color: {SH};
+  font-size: 9px;
+  font-family: monospace;
+  font-weight: 700;
+  padding: 1px 5px;
+  min-width: 0;
+  background: {FM};
+  border: 2px solid {SH};
+  border-radius: 8px;
+  box-shadow: 1px 1px 0 0 {SH};
+}}
+.freq-badge:hover {{ background: {IR}; box-shadow: none; }}
+
+/* ── Frequency picker in popover ── */
+.freq-pick {{
+  color: {TX};
+  font-size: 10px;
+  font-family: monospace;
+  padding: 2px 10px;
+  background: {O};
+  border: 2px solid {SH};
+  border-radius: 6px;
+  box-shadow: 1px 1px 0 0 {SH};
+  min-height: 0;
+}}
+.freq-pick:hover {{ background: {HH}; box-shadow: none; }}
+
+/* ── Per-row action buttons (edit / delete) ── */
+.row-action {{
+  background: transparent;
+  color: {MU};
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 1px 5px;
+  font-size: 11px;
+  min-width: 0;
+  min-height: 0;
+  box-shadow: none;
+}}
+.row-action:hover {{
+  background: {O};
+  color: {TX};
+  border-color: {SH};
+  box-shadow: 1px 1px 0 0 {SH};
+}}
+.row-action.confirm {{ color: {RS}; }}
+.row-action.confirm:hover {{
+  background: {RS};
+  color: {SH};
+  border-color: {SH};
+  box-shadow: 1px 1px 0 0 {SH};
+}}
+
+/* ── Inline form ── */
+.inline-form {{
+  background: {S};
+  border-bottom: 2px solid {SH};
+  padding: 6px 8px;
+}}
+.inline-form label {{
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: {SU};
+  min-width: 30px;
+}}
+.form-title {{
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: {TX};
+  font-weight: bold;
+}}
+.inline-form entry {{
+  background: {B};
+  color: {TX};
+  border: 2px solid {SH};
+  border-radius: 8px;
+  padding: 2px 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  min-height: 0;
+  box-shadow: 1px 2px 0 0 {SH};
+}}
+.inline-form entry:focus {{ border-color: {LV}; }}
+.inline-form .cancel:hover {{ background: {RS}; color: {SH}; border-color: {SH}; }}
+.form-error {{
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: {RS};
+  font-weight: bold;
+}}
+
+/* ── Discover panel ── */
+.discover-panel {{
+  background: {B};
+  padding: 4px;
+  border-radius: 0 0 10px 10px;
+}}
+.discover-entry {{
+  background: {S};
+  color: {TX};
+  border: 2px solid {SH};
+  border-radius: 8px;
+  padding: 3px 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  box-shadow: 1px 2px 0 0 {SH};
+}}
+.discover-entry:focus {{ border-color: {LV}; }}
+.discover-status {{
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: {MU};
+  padding: 6px 4px;
+}}
+.discover-result {{
+  border-bottom: 1px solid rgba({SR}, 0.4);
+  padding: 4px;
+}}
+.discover-name {{
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: {TX};
+  font-weight: bold;
+}}
+.discover-meta {{
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: {SU};
+}}
+.discover-add {{ background: {FM}; color: {SH}; border-color: {SH}; }}
+.discover-add:hover {{ background: {PI}; box-shadow: 1px 1px 0 0 {SH}; }}
+.discover-add.added {{ background: {PI}; color: {SH}; }}
+
+/* ── Group/page selector bar ── */
+.group-bar {{
+  background: {S};
+  border: 2px solid {SH};
+  border-radius: 8px;
   padding: 3px 4px;
   margin-bottom: 2px;
-  box-shadow:
-    inset 0 2px 8px rgba(0,0,0,0.80),
-    inset 0 0 0 1px rgba(0,0,0,0.45),
-    0 1px 0 rgba(255,255,255,0.025);
-}
-.group-tab {
+  box-shadow: 2px 3px 0 0 {SH};
+}}
+.group-tab {{
   background: transparent;
-  color: #1a4060;
-  border: 1px solid transparent;
-  border-bottom: 2px solid transparent;
-  border-radius: 2px 2px 0 0;
-  padding: 1px 7px 0;
+  color: {MU};
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 1px 7px;
   font-family: "JetBrains Mono", monospace;
   font-size: 10px;
   letter-spacing: 0.06em;
   min-width: 0;
   min-height: 0;
   box-shadow: none;
-}
-.group-tab:hover {
-  color: #4a9ac8;
-  background: rgba(91,200,255,0.04);
-  border-bottom-color: rgba(91,200,255,0.20);
-}
-.group-tab.active {
-  color: #5bc8ff;
-  background: rgba(91,200,255,0.06);
-  border-color: rgba(91,200,255,0.12);
-  border-bottom: 2px solid rgba(91,200,255,0.70);
-  text-shadow:
-    0 0 5px rgba(91,200,255,0.65),
-    0 0 12px rgba(91,200,255,0.25);
-  box-shadow:
-    inset 0 1px 0 rgba(91,200,255,0.05),
-    0 0 6px rgba(91,200,255,0.08);
-}
-/* -- Group badge on station rows -- */
-.group-badge {
-  color: #2a7a4a;
+}}
+.group-tab:hover {{
+  color: {TX};
+  background: {O};
+  border-color: {SH};
+}}
+.group-tab.active {{
+  color: {SH};
+  background: {LV};
+  border-color: {SH};
+  font-weight: 700;
+  box-shadow: 1px 2px 0 0 {SH};
+}}
+
+/* ── Group badge: pale-yellow tag pill ── */
+.group-badge {{
+  color: {SH};
   font-size: 9px;
   font-family: monospace;
+  font-weight: 700;
   padding: 1px 4px;
   min-width: 0;
-  background: rgba(0,20,10,0.7);
-  border: 1px solid rgba(91,200,91,0.12);
-  border-radius: 2px;
-  box-shadow: none;
-}
-.group-badge:hover {
-  background: rgba(0,35,20,0.9);
-  border-color: rgba(91,200,91,0.35);
-}
-.group-pick {
-  color: #2a9a5a;
+  background: {PI};
+  border: 2px solid {SH};
+  border-radius: 8px;
+  box-shadow: 1px 1px 0 0 {SH};
+}}
+.group-badge:hover {{ background: {GD}; box-shadow: none; }}
+
+/* ── Group picker in popover ── */
+.group-pick {{
+  color: {TX};
   font-size: 10px;
   font-family: monospace;
   padding: 2px 10px;
-  background: transparent;
-  border: none;
-  border-radius: 2px;
-  box-shadow: none;
+  background: {O};
+  border: 2px solid {SH};
+  border-radius: 6px;
+  box-shadow: 1px 1px 0 0 {SH};
   min-height: 0;
-}
-.group-pick:hover { background: rgba(91,200,91,0.12); }
-/* -- Collapsed quick-pick number bar -- */
-.collapsed-quick-bar {
+}}
+.group-pick:hover {{ background: {HH}; box-shadow: none; }}
+
+/* ── Collapsed quick-pick bar ── */
+.collapsed-quick-bar {{
   padding: 4px 8px 6px;
-  background: rgba(0,8,18,0.8);
-  border-top: 1px solid #0a1628;
-}
-.quick-nav {
+  background: {S};
+  border-top: 2px solid {SH};
+}}
+.quick-nav {{
   font-family: "JetBrains Mono", monospace;
   font-size: 10px;
-  color: #1a3a5a;
-  background: #080f18;
-  border: 1px solid #0f1e2e;
-  border-top: 1px solid #152535;
-  border-radius: 3px;
+  color: {SU};
+  background: {O};
+  border: 2px solid {SH};
+  border-radius: 8px;
   min-width: 26px;
   min-height: 26px;
   padding: 0;
-  box-shadow: none;
-}
-.quick-nav:hover { color: #3a8ab5; border-color: rgba(91,200,255,0.22); background: #0d1a28; }
-.quick-num {
+  box-shadow: 1px 2px 0 0 {SH};
+}}
+.quick-nav:hover {{ background: {HH}; color: {TX}; box-shadow: 1px 1px 0 0 {SH}; }}
+.quick-num {{
   font-family: "JetBrains Mono", monospace;
   font-size: 13px;
   font-weight: 700;
-  color: #1a4a6a;
-  background: #0c1422;
-  border: 1px solid #1a2a3a;
-  border-radius: 3px;
+  color: {TX};
+  background: {O};
+  border: 2px solid {SH};
+  border-radius: 8px;
   min-width: 34px;
   min-height: 26px;
   padding: 0;
-  box-shadow: none;
-}
-.quick-num:hover { color: #5bc8ff; border-color: rgba(91,200,255,0.3); }
-.quick-num:disabled { color: #111d2a; border-color: #0f1a26; }
-/* -- Group name readout: framed LCD panel between nav arrows -- */
-.group-label-btn {
+  box-shadow: 1px 2px 0 0 {SH};
+}}
+.quick-num:hover {{ background: {LV}; color: {SH}; box-shadow: 1px 1px 0 0 {SH}; }}
+.quick-num:disabled {{ color: {MU}; background: {B}; box-shadow: none; border-color: {HL}; }}
+
+/* ── Group label readout ── */
+.group-label-btn {{
   font-family: "JetBrains Mono", monospace;
   font-size: 8px;
   letter-spacing: 0.18em;
-  color: #2a6a9a;
-  text-shadow: 0 0 5px rgba(42,106,154,0.55);
+  color: {SU};
   min-width: 48px;
   min-height: 26px;
   padding: 1px 6px;
-  background: #040810;
-  border: 1px solid #0a1520;
-  border-top: 1px solid #0f1e32;
-  border-bottom: 1px solid #030609;
-  border-radius: 3px;
-  box-shadow:
-    inset 0 1px 5px rgba(0,0,0,0.80),
-    inset 0 0 0 1px rgba(0,0,0,0.4),
-    0 1px 0 rgba(255,255,255,0.02);
-}
-.group-label-btn:hover {
-  color: #4a9ac8;
-  background: #060d18;
-  border-color: rgba(91,200,255,0.18);
-  border-top-color: rgba(91,200,255,0.12);
-  text-shadow: 0 0 8px rgba(91,200,255,0.45);
-  box-shadow:
-    inset 0 1px 5px rgba(0,0,0,0.70),
-    0 0 5px rgba(91,200,255,0.06);
-}
-/* Override .controls button base for this widget (higher specificity) */
-.controls .group-label-btn {
-  background: #040810;
-  border: 1px solid #0a1520;
-  border-top: 1px solid #0f1e32;
-  border-bottom: 1px solid #030609;
-  color: #2a6a9a;
-  text-shadow: 0 0 5px rgba(42,106,154,0.55);
-  box-shadow:
-    inset 0 1px 5px rgba(0,0,0,0.80),
-    inset 0 0 0 1px rgba(0,0,0,0.4),
-    0 1px 0 rgba(255,255,255,0.02);
-}
-.controls .group-label-btn:hover {
-  color: #4a9ac8;
-  background: #060d18;
-  border-color: rgba(91,200,255,0.18);
-  border-top-color: rgba(91,200,255,0.12);
-  text-shadow: 0 0 8px rgba(91,200,255,0.45);
-  box-shadow:
-    inset 0 1px 5px rgba(0,0,0,0.70),
-    0 0 5px rgba(91,200,255,0.06);
-}
-/* -- Mode toggle button: inherits .controls button, adds bright center glow -- */
-.controls .mode-toggle {
-  color: #5bc8ff;
-  font-size: 16px;
-  text-shadow:
-    0 0 8px  rgba(91,200,255,1.0),
-    0 0 18px rgba(91,200,255,0.6),
-    0 0 32px rgba(91,200,255,0.3);
-}
-.controls .mode-toggle:hover {
-  color: #a0e8ff;
-  text-shadow:
-    0 0 10px rgba(91,200,255,1.0),
-    0 0 24px rgba(91,200,255,0.8),
-    0 0 40px rgba(91,200,255,0.4);
-}
-/* -- Station number buttons: match transport button base styling -- */
-.controls .quick-num {
+  background: {B};
+  border: 2px solid {SH};
+  border-radius: 6px;
+  box-shadow: 1px 2px 0 0 {SH};
+}}
+.group-label-btn:hover {{ color: {TX}; background: {O}; box-shadow: 1px 1px 0 0 {SH}; }}
+.controls .group-label-btn {{
+  background: {B};
+  border: 2px solid {SH};
+  color: {SU};
+  box-shadow: 1px 2px 0 0 {SH};
+}}
+.controls .group-label-btn:hover {{ color: {TX}; background: {O}; box-shadow: 1px 1px 0 0 {SH}; }}
+
+/* ── Mode toggle ── */
+.controls .mode-toggle {{ color: {LV}; font-size: 16px; }}
+.controls .mode-toggle:hover {{ color: {SH}; background: {LV}; }}
+
+/* ── Controls: station num + nav (override global button for size) ── */
+.controls .quick-num {{
   font-family: "JetBrains Mono", monospace;
   font-size: 13px;
   font-weight: 700;
   min-width: 0;
   min-height: 26px;
   padding: 0;
-}
-.controls .quick-num:disabled {
-  color: #2a3a4a;
-  text-shadow: none;
-}
-/* -- Station nav buttons: match transport, slightly smaller font -- */
-.controls .quick-nav {
+}}
+.controls .quick-num:disabled {{ color: {MU}; background: {B}; box-shadow: none; }}
+.controls .quick-nav {{
   font-family: "JetBrains Mono", monospace;
   font-size: 10px;
   min-width: 22px;
   min-height: 26px;
   padding: 0;
-}
-"""
+}}
+""".encode()
+
+CSS = _build_css(_load_palette())
 
 
 # ── Daemon comms ───────────────────────────────────────────────────────────────
