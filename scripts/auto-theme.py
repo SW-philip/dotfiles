@@ -85,6 +85,7 @@ window#waybar {
 .module {
   background: ${WB_SURFACE};
   color: ${TEXT};
+  font-weight: 600;
   padding: 4px 14px;
   margin: 5px 3px;
   border-radius: 8px;

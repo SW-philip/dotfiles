@@ -1,0 +1,13 @@
+# Niri Theme: scifi - Scifi Nebula
+[colors]
+background = "#2b3d50"
+text = "#ffffff"
+cursor = "#4d7dad"
+
+[colors.selection]
+border = "#ec8a37"
+background = "#395c70"
+
+[colors.hints]
+start = "#98dda7"
+end = "#5d6d7e"
