@@ -1,7 +1,5 @@
 { inputs, pkgs, lib, config, ... }:
 let
-  helium = inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
-
   pythonEnv = pkgs.python312.withPackages (ps: with ps; [
     pygobject3 textual rich pystray pillow pydbus cairosvg
     requests watchdog python-dateutil
@@ -428,7 +426,7 @@ in
     yazi = { enable = true; shellWrapperName = "yy"; };
     zoxide.enable    = true;
     fzf.enable       = true;
-    firefox = { enable = true; configPath = ".mozilla/firefox"; };
+    firefox.enable = false;
     gpg.enable       = true;
   };
 
@@ -485,18 +483,18 @@ in
     jq ripgrep fd bat
     gitleaks unzip resvg
     pythonEnv claude-code
-    grim slurp wl-clipboard swappy
+    grim slurp wl-clipboard
     fuzzel cliphist
     ffmpeg mediainfo vlc playerctl libnotify
 
-    zoom kdePackages.kdenlive
-    brave thunderbird libreoffice
-    nemo zed-editor krita uniremote ghostty
-    librewolf ladybird helium
+    zoom
+    thunderbird libreoffice
+    nemo zed-editor ghostty
+    librewolf ladybird
 
     eza sshfs yt-dlp aria2 imagemagick
     delta lazygit gh tealdeer nix-your-shell comma helix
-    dua mtr sqlite nodejs pavucontrol nvd
+    dua mtr sqlite nodejs nvd
     easyeffects nwg-look uv
     (pkgs.supertux or pkgs.superTux)
     (pkgs.supertuxkart or pkgs.superTuxKart)

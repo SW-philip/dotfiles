@@ -9,8 +9,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     lanzaboote.url = "github:nix-community/lanzaboote";
     claude-code.url = "github:sadjow/claude-code-nix";
-    helium.url = "gitlab:ntgn/helium-flake";
-    nur.url = "github:nix-community/NUR";
+nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs"; # Follow your nixpkgs ver
     lix = {
       url = "https://git.lix.systems/lix-project/lix/archive/2.95.3.tar.gz";

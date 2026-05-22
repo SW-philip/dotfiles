@@ -36,6 +36,7 @@
     foliate         # ebook reader
     koreader        # ebook reader (alternative)
     yacreader       # comic reader
+    kdePackages.kdenlive krita uniremote
   ];
 
   ########################################

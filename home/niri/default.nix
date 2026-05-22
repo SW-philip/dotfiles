@@ -331,7 +331,7 @@ let
       dpi-aware=auto
       terminal=ghostty -e
       layer=overlay
-      show-actions=yes
+      show-actions=no
       width=35
       lines=8
 
