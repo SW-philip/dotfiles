@@ -53,11 +53,11 @@ let
     width=400
     margin=16
     padding=12
-    border-size=2
+    border-size=3
     border-radius=${toString (l.radiusSm + 1)}
     sort=-time
     max-visible=5
-    font=JetBrains Mono 11
+    font=JetBrains Mono SemiBold 11
     background-color=${p.SURFACE}ff
     text-color=${p.TEXT}ff
     border-color=${p.SHADOW}
@@ -65,7 +65,7 @@ let
 
     [app-name=sqlch]
     default-timeout=8000
-    border-size=2
+    border-size=3
     border-color=${p.FOAM}
     background-color=${p.TINT_PINE_MID}ff
     text-color=${p.FOAM}ff
