@@ -1,0 +1,13 @@
+# Niri Theme: comet - Comet Flash
+[colors]
+background = "#6a2c90"
+text = "#ffffff"
+cursor = "#9b58b6"
+
+[colors.selection]
+border = "#d1f708"
+background = "#7133b7"
+
+[colors.hints]
+start = "#f0a53e"
+end = "#e92063"
