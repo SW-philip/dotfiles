@@ -142,10 +142,10 @@ sed -i 's|<svg[^>]*>|<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1
 
 # 2. Create the background gradient and centering group
 # We inject a radial gradient background and wrap the original content in a transform group
-BG_DEFS="<defs><radialGradient id='bgGradient' cx='50%' cy='50%' r='50%'><stop offset='0%' style='stop-color:${BG_LIGHT}' /><stop offset='100%' style='stop-color:${BG_DARK}' /></radialGradient></defs>"
+BG_DEFS="<defs><radialGradient id='bgGradient' cx='50%' cy='50%' r='50%'><stop offset='0%' style='stop-color:${BG_LIGHT}' /><stop offset='100%' style='stop-color:${BG_DARK}' /></radialGradient><filter id='cone-shadow' x='-20%' y='-20%' width='145%' height='145%'><feDropShadow dx='14' dy='18' stdDeviation='5' flood-color='${BG_DARK}' flood-opacity='0.65'/></filter></defs>"
 BG_RECT="<rect width='100%' height='100%' fill='url(#bgGradient)' />"
 # Adjust transform: scale(0.7) and translate(1250, 500) to position the cone
-TRANSFORM_GROUP="<g transform='scale(0.7) translate(1250, 500)'>"
+TRANSFORM_GROUP="<g filter='url(#cone-shadow)' transform='scale(0.7) translate(1250, 500)'>"
 
 # Inject the defs and background rect right after the opening svg tag
 # We replace the opening tag with itself + defs + rect + group start
