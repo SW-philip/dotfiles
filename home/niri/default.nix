@@ -239,7 +239,6 @@ let
 
     window-padding-x = 14
     window-padding-y = 10
-    window-padding-color = ${p.SURFACE}
   '';
 
   mkWofiCss = p: ''
