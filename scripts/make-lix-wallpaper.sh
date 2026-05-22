@@ -31,7 +31,7 @@ fi
 PALETTE_SH=$(find "$THEME_DIR" -name "palette-*.sh" | head -n1)
 
 # Default Fallbacks (Prevents B&W if variables are missing)
-BG_DARK="#1a1a1a"; BG_LIGHT="#2a2a2a"
+BG_DARK="#1a1a1a"; BG_LIGHT="#2a2a2a"; SHADOW="#000000"
 ICE_SHADOW="#3d2205"; ICE_MID="#d4a030"; ICE_HIGHLIGHT="#fff8e0"
 CONE_SHADOW="#F38D30"; CONE_MID="#F9A454"; STICKER_COLOR="#ffffff"
 
@@ -142,7 +142,7 @@ sed -i 's|<svg[^>]*>|<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1
 
 # 2. Create the background gradient and centering group
 # We inject a radial gradient background and wrap the original content in a transform group
-BG_DEFS="<defs><radialGradient id='bgGradient' cx='50%' cy='50%' r='50%'><stop offset='0%' style='stop-color:${BG_LIGHT}' /><stop offset='100%' style='stop-color:${BG_DARK}' /></radialGradient><filter id='cone-shadow' x='-20%' y='-20%' width='145%' height='145%'><feDropShadow dx='14' dy='18' stdDeviation='5' flood-color='${BG_DARK}' flood-opacity='0.65'/></filter></defs>"
+BG_DEFS="<defs><radialGradient id='bgGradient' cx='50%' cy='50%' r='50%'><stop offset='0%' style='stop-color:${BG_LIGHT}' /><stop offset='100%' style='stop-color:${BG_DARK}' /></radialGradient><filter id='cone-shadow' x='-20%' y='-20%' width='145%' height='145%'><feDropShadow dx='20' dy='25' stdDeviation='1' flood-color='${SHADOW}' flood-opacity='0.85'/></filter></defs>"
 BG_RECT="<rect width='100%' height='100%' fill='url(#bgGradient)' />"
 # Adjust transform: scale(0.7) and translate(1250, 500) to position the cone
 TRANSFORM_GROUP="<g filter='url(#cone-shadow)' transform='scale(0.7) translate(1250, 500)'>"

@@ -11,7 +11,7 @@ in
   imports = [
     ../../modules/home-options.nix
     ../../home/waybar
-    ../../home/mako
+    ../../home/swaync
     ../../home/niri
     ../../home/librewolf
     ../packages/fastfetch.nix

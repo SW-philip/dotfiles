@@ -23,19 +23,20 @@ window#waybar {
 .module {
   background: ${p.WB_SURFACE};
   color: ${p.TEXT};
-  font-weight: 500;
+  font-weight: 600;
+  text-shadow: 1px 2px 0 ${sh};
   padding: 4px 14px;
   margin: 5px 3px;
   border-radius: ${toString l.radiusMd}px;
   border: 2px solid ${sh};
-  box-shadow: 2px 3px 0 0 ${sh};
-  transition: background 0.10s ease, color 0.10s ease;
+  box-shadow: 3px 4px 0 0 ${sh};
+  transition: background 0.10s ease, box-shadow 0.10s ease;
 }
 
 .module:hover {
   background: ${p.WB_OVERLAY};
   color: ${p.TEXT};
-  box-shadow: 1px 2px 0 0 ${sh};
+  box-shadow: 2px 3px 0 0 ${sh};
 }
 
 /* -----------------------------------------------------------------

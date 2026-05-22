@@ -48,47 +48,155 @@ let
 
   # ── Theme config templates ────────────────────────────────────────────────
 
-  mkMakoConfig = p: _subtleBorder: _faintBorder: ''
-    default-timeout=5000
-    width=400
-    margin=16
-    padding=12
-    border-size=3
-    border-radius=${toString (l.radiusSm + 1)}
-    sort=-time
-    max-visible=5
-    font=JetBrains Mono SemiBold 11
-    background-color=${p.SURFACE}ff
-    text-color=${p.TEXT}ff
-    border-color=${p.SHADOW}
-    progress-color=over ${p.TINT_PINE_DARK}ff
+  # Static swaync config.json — palette-independent, only style.css carries colors
+  swayncConfig = pkgs.writeText "swaync-config.json" ''
+    {
+      "positionX": "right",
+      "positionY": "top",
+      "control-center-margin-top": 8,
+      "control-center-margin-bottom": 8,
+      "control-center-margin-right": 8,
+      "control-center-margin-left": 0,
+      "notification-icon-size": 48,
+      "notification-body-image-height": 100,
+      "notification-body-image-width": 200,
+      "timeout": 5,
+      "timeout-low": 3,
+      "timeout-critical": 0,
+      "fit-to-screen": false,
+      "control-center-width": 500,
+      "notification-window-width": 400,
+      "keyboard-shortcuts": true,
+      "image-visibility": "when-available",
+      "transition-time": 100,
+      "hide-on-clear": false,
+      "hide-on-action": true,
+      "script-fail-notify": true,
+      "scripts": {},
+      "notification-visibility": {},
+      "widgets": ["title", "notifications"],
+      "widget-config": {
+        "title": {
+          "text": "Notifications",
+          "clear-all-button": true,
+          "button-text": "Clear All"
+        },
+        "notifications": {}
+      }
+    }
+  '';
 
-    [app-name=sqlch]
-    default-timeout=8000
-    border-size=3
-    border-color=${p.FOAM}
-    background-color=${p.TINT_PINE_MID}ff
-    text-color=${p.FOAM}ff
+  mkSwayncCss = p: ''
+    * {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+    }
 
-    [urgency=low]
-    background-color=${p.BASE}ff
-    text-color=${p.SUBTLE}ff
-    border-color=${p.SHADOW}
-    default-timeout=3000
+    .notification-row {
+      outline: none;
+    }
 
-    [urgency=normal]
-    background-color=${p.SURFACE}ff
-    text-color=${p.TEXT}ff
-    border-color=${p.SHADOW}
+    .notification-row:focus,
+    .notification-row:hover {
+      background: none;
+    }
 
-    [urgency=critical]
-    background-color=${p.TINT_CRITICAL_BG}ff
-    text-color=${p.CRITICAL}ff
-    border-color=${p.CRITICAL}
-    default-timeout=0
+    .notification {
+      background: ${p.SURFACE};
+      border: 2px solid ${p.SHADOW};
+      border-radius: ${toString (l.radiusSm + 1)}px;
+      box-shadow: 3px 4px 0 0 ${p.SHADOW};
+      margin: 6px 12px;
+      padding: 0;
+    }
 
-    [mode=do-not-disturb]
-    invisible=1
+    .notification-content {
+      background: transparent;
+      padding: 8px 12px;
+      border-radius: ${toString l.radiusSm}px;
+    }
+
+    .notification-default-action,
+    .notification-action {
+      padding: 4px;
+      background: transparent;
+      border: none;
+      color: ${p.TEXT};
+      border-radius: ${toString l.radiusSm}px;
+    }
+
+    .notification-default-action:hover,
+    .notification-action:hover {
+      background: ${p.OVERLAY};
+      color: ${p.TEXT};
+    }
+
+    .close-button {
+      background: transparent;
+      color: ${p.MUTED};
+      border: none;
+      border-radius: ${toString l.radiusSm}px;
+      padding: 2px;
+    }
+
+    .close-button:hover {
+      color: ${p.LOVE};
+      background: ${p.OVERLAY};
+    }
+
+    .summary {
+      font-size: 13px;
+      font-weight: 700;
+      color: ${p.TEXT};
+      text-shadow: 1px 2px 0 ${p.SHADOW};
+    }
+
+    .time {
+      font-size: 11px;
+      font-weight: 600;
+      color: ${p.MUTED};
+    }
+
+    .body {
+      font-size: 12px;
+      font-weight: 600;
+      color: ${p.TEXT};
+      text-shadow: 1px 2px 0 ${p.SHADOW};
+    }
+
+    .app-icon-image {
+      border-radius: ${toString l.radiusSm}px;
+      box-shadow: 1px 2px 0 0 ${p.SHADOW};
+    }
+
+    .notification.critical {
+      background: ${p.TINT_CRITICAL_BG};
+      border-color: ${p.CRITICAL};
+    }
+
+    .notification.critical .summary {
+      color: ${p.CRITICAL};
+    }
+
+    .control-center {
+      background: ${p.BASE};
+      border: 2px solid ${p.SHADOW};
+      border-radius: ${toString l.radiusLg}px;
+      box-shadow: 4px 5px 0 0 ${p.SHADOW};
+    }
+
+    .control-center-list {
+      background: transparent;
+    }
+
+    .control-center-list .notification {
+      margin: 4px 8px;
+    }
+
+    #label-count {
+      font-weight: 700;
+      color: ${p.LOVE};
+    }
   '';
 
   # ── Per-theme fastfetch logo (color-injected cone PNG) ───────────────────
@@ -136,7 +244,7 @@ let
       # pandora config still needs a path baked in — use fallback since PNGs aren't in store
       pandoraWallpaper  = wallpaperFallback;
     in {
-      mako       = pkgs.writeText "mako-config-${slug}"       (mkMakoConfig t.palette subtleBorder faintBorder);
+      swayncCss  = pkgs.writeText "swaync-style-${slug}.css"  (mkSwayncCss t.palette);
       niriKdl    = pkgs.writeText "niri-config-${slug}.kdl"   (import ./config.kdl.nix { p = t.palette; inherit l; cursorSize = if config.myConfig.isDesktop then 24 else 48; isDesktop = config.myConfig.isDesktop; toggleWvkbdBin = "${toggleWvkbd}/bin/toggle-wvkbd"; });
       waybarCss  = pkgs.writeText "waybar-style-${slug}.css"  (import ../waybar/style.nix { p = t.palette; inherit l; });
       waybarSh   = pkgs.writeText "waybar-palette-${slug}.sh" t.shContent;
@@ -358,7 +466,7 @@ let
     ''
     + lib.concatStrings (lib.mapAttrsToList (slug: cfgs: ''
         ${slug})
-          MAKO_CFG="${cfgs.mako}"
+          SWAYNC_CSS="${cfgs.swayncCss}"
           NIRI_CFG="${cfgs.niriKdl}"
           WAYBAR_CSS="${cfgs.waybarCss}"
           WAYBAR_PALETTE="${cfgs.waybarSh}"
@@ -381,8 +489,9 @@ let
           exit 1
           ;;
       esac
-      mkdir -p "$HOME/.config/mako"
-      cp --remove-destination "$MAKO_CFG" "$HOME/.config/mako/config"
+      mkdir -p "$HOME/.config/swaync"
+      cp --remove-destination "${swayncConfig}" "$HOME/.config/swaync/config.json"
+      cp --remove-destination "$SWAYNC_CSS" "$HOME/.config/swaync/style.css"
       mkdir -p "$HOME/.config/niri"
       cp --remove-destination "$NIRI_CFG" "$HOME/.config/niri/config.kdl"
       mkdir -p "$HOME/.config/waybar"
@@ -448,7 +557,7 @@ let
       systemctl --user restart swaybg 2>/dev/null || true
       pkill -USR1 zsh 2>/dev/null || true
       pkill -SIGUSR1 waybar 2>/dev/null || true
-      makoctl reload 2>/dev/null || true
+      swaync-client -R 2>/dev/null || true
       sleep 0.3
       pkill -f waybar-weather 2>/dev/null || true
       pkill -SIGUSR2 waybar 2>/dev/null || true
