@@ -48,43 +48,43 @@ let
 
   # ── Theme config templates ────────────────────────────────────────────────
 
-  mkMakoConfig = p: subtleBorder: faintBorder: ''
+  mkMakoConfig = p: _subtleBorder: _faintBorder: ''
     default-timeout=5000
     width=400
     margin=16
     padding=12
-    border-size=1
+    border-size=2
     border-radius=${toString (l.radiusSm + 1)}
     sort=-time
     max-visible=5
     font=JetBrains Mono 11
     background-color=${p.SURFACE}ff
     text-color=${p.TEXT}ff
-    border-color=${subtleBorder}
+    border-color=${p.SHADOW}
     progress-color=over ${p.TINT_PINE_DARK}ff
 
     [app-name=sqlch]
     default-timeout=8000
     border-size=2
-    border-color=${p.FOAM}aa
+    border-color=${p.FOAM}
     background-color=${p.TINT_PINE_MID}ff
     text-color=${p.FOAM}ff
 
     [urgency=low]
     background-color=${p.BASE}ff
     text-color=${p.SUBTLE}ff
-    border-color=${faintBorder}
+    border-color=${p.SHADOW}
     default-timeout=3000
 
     [urgency=normal]
     background-color=${p.SURFACE}ff
     text-color=${p.TEXT}ff
-    border-color=${subtleBorder}
+    border-color=${p.SHADOW}
 
     [urgency=critical]
     background-color=${p.TINT_CRITICAL_BG}ff
     text-color=${p.CRITICAL}ff
-    border-color=${p.CRITICAL}59
+    border-color=${p.CRITICAL}
     default-timeout=0
 
     [mode=do-not-disturb]
@@ -237,8 +237,9 @@ let
     font-family = JetBrainsMono Nerd Font
     font-family = Symbols Nerd Font Mono
 
-    window-padding-x = 12
-    window-padding-y = 8
+    window-padding-x = 14
+    window-padding-y = 10
+    window-padding-color = ${p.SURFACE}
   '';
 
   mkWofiCss = p: ''
@@ -246,6 +247,8 @@ let
       background-color: ${p.OVERLAY};
       font-family: "JetBrainsMono Nerd Font";
       font-size: 12px;
+      border: 2px solid ${p.SHADOW};
+      box-shadow: 3px 4px 0 0 ${p.SHADOW};
     }
 
     #entry {
@@ -264,7 +267,7 @@ let
     #input {
       background-color: ${p.SURFACE};
       color: ${p.TEXT};
-      border: 2px solid ${p.IRIS};
+      border: 2px solid ${p.SHADOW};
       padding: 6px;
       margin: 5px;
     }
@@ -292,11 +295,11 @@ let
     button {
         color: ${p.TEXT};
         background-color: ${p.SURFACE};
-        border: 2px solid ${p.OVERLAY};
+        border: 2px solid ${p.SHADOW};
         border-radius: ${toString l.radiusLg}px;
         margin: 8px;
         outline-style: none;
-        box-shadow: none;
+        box-shadow: 3px 4px 0 0 ${p.SHADOW};
         text-shadow: none;
         background-repeat: no-repeat;
         background-position: center 35%;
@@ -306,7 +309,8 @@ let
 
     button:hover {
         background-color: ${p.OVERLAY};
-        border-color: ${p.SUBTLE};
+        border-color: ${p.SHADOW};
+        box-shadow: 2px 3px 0 0 ${p.SHADOW};
         color: ${p.TEXT};
         background-size: 23%;
         outline-style: none;
@@ -315,6 +319,7 @@ let
     button:focus {
         background-color: ${p.OVERLAY};
         border-color: ${p.IRIS};
+        box-shadow: 2px 3px 0 0 ${p.SHADOW};
         outline-style: none;
     }
   '';
@@ -342,7 +347,7 @@ let
       border=${c p.PINE}
 
       [border]
-      width=1
+      width=2
       radius=${toString l.radiusSm}
     '';
 
@@ -564,9 +569,6 @@ in
     ${pkgs.niri}/bin/niri msg action load-config-file 2>/dev/null || true
   '';
 
-  ########################################
-  # swaybg — wallpaper daemon for all machines
-  ########################################
   systemd.user.services.swaybg = {
     Unit = {
       Description = "swaybg wallpaper";
@@ -601,7 +603,6 @@ in
   services.kanshi = {
     enable = true;
     settings = [
-      # Desktop: both monitors connected and active
       { profile = {
           name = "desktop-dual";
           outputs = [

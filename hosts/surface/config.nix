@@ -50,9 +50,6 @@
     protonvpn-ca = config.sops.secrets.protonvpn_ca_conf.path;
   };
 
-  ############################################################
-  # Distributed builds — offload to desktop (desktop)
-  ############################################################
   nix.settings.max-jobs = "auto";
   nix.distributedBuilds = true;
   nix.buildMachines = [{

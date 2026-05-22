@@ -18,9 +18,6 @@
     nrt = lib.mkForce "sudo nixos-rebuild test --flake .#surface";
   };
 
-  ########################################
-  # GNOME session — dark mode + cursor
-  ########################################
   dconf.settings = {
     "org/gnome/desktop/interface" = lib.mkForce {
       color-scheme = "prefer-dark";

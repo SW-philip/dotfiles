@@ -1,24 +1,38 @@
 # comment review list
-# generated: Sun May 17 09:57:12 PM EDT 2026
+# generated: Thu May 21 09:31:56 PM EDT 2026
 # root: /home/prepko/nixos
 
 ── home/family/waybar.nix
   3: TV-scaled palette: bump font size for 55" couch viewing at scale 2.0
   119: Pre-seed weather location
 
+── home/librewolf/default.nix
+  3: Usability overrides layered on top of LibreWolf's hardened defaults.
+  4: These use defaultPref so the user can still override them in about:config.
+  24: Seed a fixed-path profile so apply-theme always knows where userChrome.css lives.
+  25: Written as a real writable file (not a nix store symlink) so LibreWolf can update it.
+
 ── home/mako/default.nix
   3: Config file is deployed via home.activation in home/niri/default.nix
 
 ── home/niri/default.nix
-  536: swaybg — wallpaper daemon for all machines
-  572: Desktop: both monitors connected and active
+  133: wallpaper-*.png files are gitignored so builtins.readDir never sees them;
+  134: record the live FS dir so apply-theme can find them at runtime instead.
+  136: pandora config still needs a path baked in — use fallback since PNGs aren't in store
+  568: swaybg — wallpaper daemon for all machines
+  604: Desktop: both monitors connected and active
+
+── hosts/desktop/services.nix
+  196: Port 8096 (Jellyfin) is NOT in global allowedTCPPorts — access is via:
+  197: tailscale0 (trusted interface, all ports open)
+  198: enp4s0 (LAN, explicit allow below)
 
 ── hosts/family/config.nix
   30: GPU — Intel UHD 620 (Kaby Lake GT2)
   90: Lid is closed permanently (broken screen) — don't suspend on lid events
 
 ── hosts/surface/config.nix
-  53: Distributed builds — offload to desktop (desktop)
+  54: Distributed builds — offload to desktop (desktop)
 
 ── hosts/surface/hardware.nix
   14: 1. Add v4l2loopback to the kernel modules to load at boot
@@ -31,16 +45,29 @@
   69: Required directories for Howdy's operation
 
 ── profiles/base.nix
-  184: HM activation already runs at switch-time; skip the redundant boot-time run
+  185: HM activation already runs at switch-time; skip the redundant boot-time run
 
 ── profiles/desktop.nix
   52: i2c — required for RGB and hardware sensor access
 
+── profiles/home/desktop.nix
+  12: Fix nrs alias — hostname desktop != flake attr desktop
+
 ── profiles/home/surface.nix
   8: Surface HiDPI cursor override (base sets 48px; Surface needs 32px at 1.5x scale)
-  13: GNOME session — dark mode + cursor
+  13: Fix nrs alias — hostname surface != flake attr surface
+  22: GNOME session — dark mode + cursor
+  46: iio orientations → niri CCW transforms:
+  47: normal    → normal  (landscape)
+  48: bottom-up → 180     (upside-down landscape)
+  49: right-up  → 270     (portrait, volume buttons on left)
+  50: left-up   → 90      (portrait, volume buttons on right)
+  98: No WantedBy — demand-started by surface-kbd-monitor
+  103: Shows wvkbd when "Microsoft Surface Type Cover Keyboard"
+  104: disappears from /sys/class/input, hides it when it returns.
 
 ── profiles/surface.nix
   5: Lix 2.93.3 still requires nix-command and flakes to be listed explicitly.
+  25: GVfs — needed for Nemo to mount network shares (SMB etc.)
 
-# total: 19 comments
+# total: 40 comments

@@ -116,7 +116,6 @@ in
     recursive = true;
   };
 
-  # Pre-seed weather location
   home.activation.weatherLocation = lib.hm.dag.entryAfter ["writeBoundary"] ''
     LOC="$HOME/.config/waybar/weather_location.json"
     if [ ! -f "$LOC" ]; then

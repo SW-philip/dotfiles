@@ -26,9 +26,6 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
-  ############################################################
-  # GPU — Intel UHD 620 (Kaby Lake GT2)
-  ############################################################
   hardware.graphics = {
     enable      = true;
     enable32Bit = true;

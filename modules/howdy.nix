@@ -1,5 +1,4 @@
 # modules/howdy.nix
-# Facial recognition login via howdy (from unstable).
 { pkgs, pkgsUnstable, config, ... }:
 let
   howdy    = pkgsUnstable.howdy;
@@ -66,7 +65,6 @@ in
     };
   };
 
-  # Required directories for Howdy's operation
   systemd.tmpfiles.rules = [
     "d /var/lib/howdy          0755 root root -"
     "d /var/lib/howdy/models   0700 root root -"
