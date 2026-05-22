@@ -1,0 +1,13 @@
+# Niri Theme: dark void - Dark Void
+[colors]
+background = "#1d1e2f"
+text = "#ffffff"
+cursor = "#4a4d82"
+
+[colors.selection]
+border = "#7c7391"
+background = "#2d334d"
+
+[colors.hints]
+start = "#805e96"
+end = "#606395"

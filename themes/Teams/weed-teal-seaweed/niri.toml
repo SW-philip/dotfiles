@@ -1,0 +1,13 @@
+# Niri Theme: weed - Teal Seaweed
+[colors]
+background = "#a4d6d5"
+text = "#1a1a1a"
+cursor = "#64b4a4"
+
+[colors.selection]
+border = "#074f5f"
+background = "#85c3cc"
+
+[colors.hints]
+start = "#164520"
+end = "#3e8e7e"

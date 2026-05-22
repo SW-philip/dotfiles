@@ -1,0 +1,13 @@
+# Niri Theme: raspberry - Black Raspberry & Plum
+[colors]
+background = "#6d2c4d"
+text = "#ffffff"
+cursor = "#9b507d"
+
+[colors.selection]
+border = "#ebc1c7"
+background = "#913672"
+
+[colors.hints]
+start = "#dea1a5"
+end = "#d77f94"

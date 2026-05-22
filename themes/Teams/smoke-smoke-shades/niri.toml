@@ -1,0 +1,13 @@
+# Niri Theme: smoke - Smoke Shades
+[colors]
+background = "#b3b3b3"
+text = "#1a1a1a"
+cursor = "#a1a1a1"
+
+[colors.selection]
+border = "#514c49"
+background = "#a8a5a4"
+
+[colors.hints]
+start = "#8d8d8d"
+end = "#8c8c8c"
