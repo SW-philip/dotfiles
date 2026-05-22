@@ -66,6 +66,14 @@ layout {
         urgent-color "${p.LOVE}"
     }
 
+    shadow {
+        on
+        softness 2
+        spread 1
+        offset x=3 y=4
+        color "${p.SHADOW}"
+    }
+
     focus-ring {
         off
     }
@@ -123,9 +131,10 @@ window-rule {
     match is-floating=true
     shadow {
         on
-        softness 8
-        offset x=0 y=4
-        color "${p.SHADOW}80"
+        softness 2
+        spread 2
+        offset x=3 y=4
+        color "${p.SHADOW}"
     }
     border {
         active-color "${p.INACTIVE_BORDER}"
