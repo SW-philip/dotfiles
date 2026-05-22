@@ -1,0 +1,13 @@
+# Niri Theme: haunted - Haunted Forest
+[colors]
+background = "#2b3d50"
+text = "#ffffff"
+cursor = "#4c6d90"
+
+[colors.selection]
+border = "#dbd8d7"
+background = "#395c70"
+
+[colors.hints]
+start = "#d3d6d1"
+end = "#678a8e"
