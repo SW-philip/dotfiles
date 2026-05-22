@@ -1724,7 +1724,10 @@ def activate_theme(slug: str, theme_dir: Path) -> None:
         swaync_css_dst.parent.mkdir(parents=True, exist_ok=True)
         swaync_css_dst.unlink(missing_ok=True)
         shutil.copy2(swaync_css_src, swaync_css_dst)
-        subprocess.run(["swaync-client", "--reload-css"], capture_output=True)
+        try:
+            subprocess.run(["swaync-client", "--reload-css"], capture_output=True, timeout=5)
+        except subprocess.TimeoutExpired:
+            pass
         print("  → swaync CSS applied")
 
     subprocess.run(["pkill", "-SIGUSR1", "waybar"], capture_output=True)

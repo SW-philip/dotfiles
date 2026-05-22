@@ -1,0 +1,13 @@
+# Niri Theme: smoked - Smoked Cheese Cookie
+[colors]
+background = "#d8b95a"
+text = "#1a1a1a"
+cursor = "#bfa06e"
+
+[colors.selection]
+border = "#dcd242"
+background = "#d4c535"
+
+[colors.hints]
+start = "#b88c56"
+end = "#8a6d5c"

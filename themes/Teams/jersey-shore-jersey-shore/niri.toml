@@ -1,0 +1,13 @@
+# Niri Theme: jersey shore - Jersey Shore
+[colors]
+background = "#f5a300"
+text = "#1a1a1a"
+cursor = "#f5b400"
+
+[colors.selection]
+border = "#4d7cff"
+background = "#cca600"
+
+[colors.hints]
+start = "#c78705"
+end = "#fac400"

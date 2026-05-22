@@ -14,6 +14,8 @@ window#waybar {
 .module {
   background: #395c70;
   color: #ffffff;
+  font-weight: 600;
+  text-shadow: 1px 2px 0 #000000;
   padding: 4px 14px;
   margin: 5px 3px;
   border-radius: 8px;
