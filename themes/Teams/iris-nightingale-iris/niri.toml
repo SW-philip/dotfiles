@@ -1,0 +1,13 @@
+# Niri Theme: iris - Nightingale Iris
+[colors]
+background = "#5c3f8d"
+text = "#ffffff"
+cursor = "#685b9a"
+
+[colors.selection]
+border = "#f4cdd7"
+background = "#6049b0"
+
+[colors.hints]
+start = "#d4bfd0"
+end = "#8e7fa4"
