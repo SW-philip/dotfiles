@@ -1,0 +1,13 @@
+# Niri Theme: silent film - Silent Film Elegance
+[colors]
+background = "#1f1f1f"
+text = "#ffffff"
+cursor = "#a3a3a3"
+
+[colors.selection]
+border = "#9356d2"
+background = "#383435"
+
+[colors.hints]
+start = "#d6b280"
+end = "#f0e78e"
