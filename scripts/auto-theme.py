@@ -1604,10 +1604,16 @@ def register_theme(name: str, palette: dict, source: str, force: bool = False) -
     # Wallpaper Generation
     if MAKE_WALLPAPER.exists():
         print(f"🖼️  Generating wallpaper for {slug}...")
-        # cwd ensures we are in your config root when running bash
-        result = subprocess.run(["bash", str(MAKE_WALLPAPER), slug], cwd=str(NIXOS_ROOT))
-        if result.returncode != 0:
-            print(f"⚠️  Wallpaper generation failed (exit {result.returncode})")
+        try:
+            result = subprocess.run(
+                ["bash", str(MAKE_WALLPAPER), slug],
+                cwd=str(NIXOS_ROOT),
+                timeout=60,
+            )
+            if result.returncode != 0:
+                print(f"⚠️  Wallpaper generation failed (exit {result.returncode})")
+        except subprocess.TimeoutExpired:
+            print("⚠️  Wallpaper generation timed out after 60s, skipping")
 
     return slug, already
 
@@ -1727,7 +1733,11 @@ def activate_theme(slug: str, theme_dir: Path) -> None:
         try:
             subprocess.run(["swaync-client", "--reload-css"], capture_output=True, timeout=5)
         except subprocess.TimeoutExpired:
+<<<<<<< HEAD
             pass
+=======
+            print("  ⚠️  swaync-client timed out (swaync not running?)")
+>>>>>>> 886f9fe (fix swaync hang)
         print("  → swaync CSS applied")
 
     subprocess.run(["pkill", "-SIGUSR1", "waybar"], capture_output=True)
