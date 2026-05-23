@@ -1409,6 +1409,154 @@ def write_wvkbd(path: Path, p: dict, name: str):
     path.write_text(content)
     path.chmod(0o755)
 
+def write_librewolf(path: Path, p: dict, name: str):
+    iris_rgb = p.get("BORDER_IRIS_RGB", "136,114,170")
+    content = f"""\
+/* ── Reset Firefox chrome defaults ──────────────────────── */
+:root {{
+  --toolbar-bgcolor: {p['BASE']} !important;
+  --toolbar-color: {p['TEXT']} !important;
+  --tab-selected-bgcolor: {p['SURFACE']} !important;
+  --urlbar-box-bgcolor: {p['OVERLAY']} !important;
+  --urlbar-box-focus-bgcolor: {p['OVERLAY']} !important;
+  --urlbar-box-hover-bgcolor: {p['HIGHLIGHT_LOW']} !important;
+  --urlbar-box-active-bgcolor: {p['HIGHLIGHT_MED']} !important;
+  --urlbar-popup-bgcolor: {p['SURFACE']} !important;
+  --urlbar-popup-color: {p['TEXT']} !important;
+}}
+
+/* ── Tab bar ─────────────────────────────────────────────── */
+#TabsToolbar {{
+  background-color: {p['BASE']} !important;
+  border-bottom: 1px solid {p['OVERLAY']} !important;
+}}
+
+.tab-background {{
+  background-color: transparent !important;
+  border-radius: 6px 6px 0 0 !important;
+  border: none !important;
+}}
+
+.tabbrowser-tab[selected="true"] .tab-background {{
+  background-color: {p['SURFACE']} !important;
+  box-shadow: inset 0 2px 0 {p['IRIS']} !important;
+}}
+
+.tabbrowser-tab:not([selected]):hover .tab-background {{
+  background-color: {p['HIGHLIGHT_LOW']} !important;
+}}
+
+.tab-label {{
+  color: {p['MUTED']} !important;
+}}
+
+.tabbrowser-tab[selected="true"] .tab-label {{
+  color: {p['TEXT']} !important;
+}}
+
+.tabbrowser-tab[attention] .tab-label {{
+  color: {p['GOLD']} !important;
+}}
+
+/* ── Nav / URL bar ───────────────────────────────────────── */
+#nav-bar {{
+  background-color: {p['BASE']} !important;
+  border-bottom: 1px solid {p['OVERLAY']} !important;
+  box-shadow: none !important;
+}}
+
+#urlbar {{
+  background-color: {p['OVERLAY']} !important;
+  border: 1px solid {p['HIGHLIGHT_MED']} !important;
+  border-radius: 8px !important;
+  color: {p['TEXT']} !important;
+}}
+
+#urlbar[focused="true"] {{
+  border-color: {p['IRIS']} !important;
+  box-shadow: 0 0 0 2px rgba({iris_rgb}, 0.25) !important;
+}}
+
+#urlbar-input {{
+  color: {p['TEXT']} !important;
+  background-color: transparent !important;
+}}
+
+#urlbar-background {{
+  background-color: {p['OVERLAY']} !important;
+}}
+
+#urlbar[focused="true"] #urlbar-background {{
+  background-color: {p['OVERLAY']} !important;
+}}
+
+.urlbar-icon,
+.urlbar-icon-wrapper {{
+  color: {p['MUTED']} !important;
+  fill: {p['MUTED']} !important;
+}}
+
+/* ── Bookmarks / personal toolbar ────────────────────────── */
+#PersonalToolbar {{
+  background-color: {p['BASE']} !important;
+  border-bottom: 1px solid {p['OVERLAY']} !important;
+}}
+
+.bookmark-item > .toolbarbutton-text {{
+  color: {p['MUTED']} !important;
+}}
+
+.bookmark-item:hover > .toolbarbutton-text {{
+  color: {p['TEXT']} !important;
+}}
+
+/* ── Toolbar buttons ─────────────────────────────────────── */
+#nav-bar .toolbarbutton-1 {{
+  color: {p['MUTED']} !important;
+  fill: {p['MUTED']} !important;
+  border-radius: 6px !important;
+}}
+
+#nav-bar .toolbarbutton-1:hover {{
+  background-color: {p['HIGHLIGHT_LOW']} !important;
+  color: {p['TEXT']} !important;
+  fill: {p['TEXT']} !important;
+}}
+
+#nav-bar .toolbarbutton-1[open],
+#nav-bar .toolbarbutton-1:active {{
+  background-color: {p['HIGHLIGHT_MED']} !important;
+  color: {p['IRIS']} !important;
+  fill: {p['IRIS']} !important;
+}}
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+#sidebar-box {{
+  background-color: {p['SURFACE']} !important;
+  border-right: 1px solid {p['OVERLAY']} !important;
+}}
+
+#sidebar-header {{
+  background-color: {p['BASE']} !important;
+  color: {p['TEXT']} !important;
+  border-bottom: 1px solid {p['OVERLAY']} !important;
+}}
+
+/* ── Find bar ────────────────────────────────────────────── */
+.findbar-container {{
+  background-color: {p['OVERLAY']} !important;
+  border-top: 1px solid {p['HIGHLIGHT_MED']} !important;
+}}
+
+.findbar-textbox {{
+  background-color: {p['SURFACE']} !important;
+  color: {p['TEXT']} !important;
+  border: 1px solid {p['HIGHLIGHT_MED']} !important;
+  border-radius: 4px !important;
+}}
+"""
+    path.write_text(content)
+
 def write_waybar_css(path: Path, p: dict, name: str):
     path.write_text(generate_waybar_css(p))
 
@@ -1534,6 +1682,7 @@ def register_theme(name: str, palette: dict, source: str, force: bool = False) -
     write_wvkbd(theme_dir / "wvkbd-colors.sh", palette, name)
     write_waybar_css(theme_dir / "waybar-style.css", palette, name)
     write_swaync_css(theme_dir / "swaync-style.css", palette, name)
+    write_librewolf(theme_dir / "userChrome.css", palette, name)
 
     kate_colors, kate_syntax = write_kate(theme_dir / "kate", palette, name)
     print(f"  ✅ Generated Kate theme: {name}")
@@ -1660,6 +1809,15 @@ def activate_theme(slug: str, theme_dir: Path) -> None:
         if active.returncode == 0:
             subprocess.run(["systemctl", "--user", "restart", "wvkbd"], capture_output=True)
         print("  → wvkbd theme applied")
+
+    # ── Librewolf userChrome ──────────────────────────────────────────────────
+    lw_css_src = theme_dir / "userChrome.css"
+    lw_css_dst = Path.home() / ".librewolf/default/chrome/userChrome.css"
+    if lw_css_src.exists():
+        lw_css_dst.parent.mkdir(parents=True, exist_ok=True)
+        lw_css_dst.unlink(missing_ok=True)
+        shutil.copy2(lw_css_src, lw_css_dst)
+        print("  → Librewolf userChrome.css applied (restart Librewolf to pick up)")
 
     # ── Reload Waybar (CSS first, then full restart) ──────────────────────────
     # ── swaync ────────────────────────────────────────────────────────────────

@@ -1,0 +1,63 @@
+/* ── Reset Firefox chrome defaults ──────────────────────── */
+:root {
+  --toolbar-bgcolor: #121226 !important;
+  --toolbar-color: #ffffff !important;
+  --tab-selected-bgcolor: #191b38 !important;
+  --urlbar-box-bgcolor: #20254b !important;
+  --urlbar-box-focus-bgcolor: #20254b !important;
+  --urlbar-box-hover-bgcolor: #262650 !important;
+  --urlbar-box-active-bgcolor: #2e2e6c !important;
+  --urlbar-popup-bgcolor: #191b38 !important;
+  --urlbar-popup-color: #ffffff !important;
+}
+#TabsToolbar {
+  background-color: #121226 !important;
+  border-bottom: 1px solid #20254b !important;
+}
+.tab-background {
+  background-color: transparent !important;
+  border-radius: 6px 6px 0 0 !important;
+  border: none !important;
+}
+.tabbrowser-tab[selected="true"] .tab-background {
+  background-color: #191b38 !important;
+  box-shadow: inset 0 2px 0 #7d62ac !important;
+}
+.tabbrowser-tab:not([selected]):hover .tab-background {
+  background-color: #262650 !important;
+}
+.tab-label { color: #313153 !important; }
+.tabbrowser-tab[selected="true"] .tab-label { color: #ffffff !important; }
+.tabbrowser-tab[attention] .tab-label { color: #7e4e9d !important; }
+#nav-bar {
+  background-color: #121226 !important;
+  border-bottom: 1px solid #20254b !important;
+  box-shadow: none !important;
+}
+#urlbar {
+  background-color: #20254b !important;
+  border: 1px solid #2e2e6c !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+}
+#urlbar[focused="true"] {
+  border-color: #7d62ac !important;
+  box-shadow: 0 0 0 2px rgba(125,98,172, 0.25) !important;
+}
+#urlbar-input { color: #ffffff !important; background-color: transparent !important; }
+#urlbar-background { background-color: #20254b !important; }
+#urlbar[focused="true"] #urlbar-background { background-color: #20254b !important; }
+.urlbar-icon, .urlbar-icon-wrapper { color: #313153 !important; fill: #313153 !important; }
+#PersonalToolbar {
+  background-color: #121226 !important;
+  border-bottom: 1px solid #20254b !important;
+}
+.bookmark-item > .toolbarbutton-text { color: #313153 !important; }
+.bookmark-item:hover > .toolbarbutton-text { color: #ffffff !important; }
+#nav-bar .toolbarbutton-1 { color: #313153 !important; fill: #313153 !important; border-radius: 6px !important; }
+#nav-bar .toolbarbutton-1:hover { background-color: #262650 !important; color: #ffffff !important; fill: #ffffff !important; }
+#nav-bar .toolbarbutton-1[open], #nav-bar .toolbarbutton-1:active { background-color: #2e2e6c !important; color: #7d62ac !important; fill: #7d62ac !important; }
+#sidebar-box { background-color: #191b38 !important; border-right: 1px solid #20254b !important; }
+#sidebar-header { background-color: #121226 !important; color: #ffffff !important; border-bottom: 1px solid #20254b !important; }
+.findbar-container { background-color: #20254b !important; border-top: 1px solid #2e2e6c !important; }
+.findbar-textbox { background-color: #191b38 !important; color: #ffffff !important; border: 1px solid #2e2e6c !important; border-radius: 4px !important; }
