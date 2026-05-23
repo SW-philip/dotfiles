@@ -254,6 +254,7 @@ let
       wleaveCss     = pkgs.writeText "wleave-style-${slug}.css"  (mkWleaveCSS t.palette);
       cava          = pkgs.writeText "cava-config-${slug}"       (mkCavaConfig t.palette);
       ghostty       = pkgs.writeText "ghostty-config-${slug}"    (mkGhosttyConfig t.palette);
+      hyprlockConf  = pkgs.writeText "hyprlock-${slug}.conf"     (mkHyprlock t.palette);
       librewolfCss  = pkgs.writeText "librewolf-chrome-${slug}.css" (import ../librewolf/userChrome.css.nix t.palette);
       pandora       = pkgs.writeText "pandora-${slug}.kdl"       (mkPandoraCfg pandoraWallpaper);
       inherit wallpaperFallback wallpaperLiveDir;
@@ -457,6 +458,158 @@ let
       radius=${toString l.radiusSm}
     '';
 
+  mkHyprlock = p:
+    let
+      h          = col: lib.removePrefix "#" col;
+      isLight    = (p.FONT_SIZE_BAR or "12px") == "13px";
+      brightness = if isLight then "0.15" else "0.08";
+      configHome = config.xdg.configHome;
+      cacheHome  = config.xdg.cacheHome;
+    in ''
+      general {
+          disable_loading    = true
+          hide_cursor        = true
+          no_fade_in         = false
+          fractional_scaling = 1
+      }
+
+      background {
+          path        = screenshot
+          blur_passes = 0
+          brightness  = ${brightness}
+          contrast    = 0.9
+      }
+
+      image {
+          path         = ${cacheHome}/sqlch/covers/current.jpg
+          reload_time  = 2
+          reload_cmd   = ${configHome}/waybar/scripts/hyprlock_art.sh
+          size         = 380
+          rounding     = 8
+          border_size  = 5
+          border_color = rgba(${h p.IRIS}ff)
+          position     = 0, 0
+          halign       = center
+          valign       = center
+      }
+
+      label {
+          text        = cmd[update:1000] quantum-clock 2>/dev/null | jq -r '.text // "--:--"'
+          color       = rgba(000000ff)
+          font_size   = 64
+          font_family = JetBrainsMono Nerd Font ExtraBold
+          position    = 2, 283
+          halign      = center
+          valign      = center
+      }
+      label {
+          text        = cmd[update:1000] quantum-clock 2>/dev/null | jq -r '.text // "--:--"'
+          color       = rgba(${h p.GOLD}ff)
+          font_size   = 64
+          font_family = JetBrainsMono Nerd Font ExtraBold
+          position    = 0, 285
+          halign      = center
+          valign      = center
+      }
+
+      label {
+          text        = cmd[update:60000] date +"%A, %d %B"
+          color       = rgba(000000ff)
+          font_size   = 24
+          font_family = JetBrainsMono Nerd Font
+          position    = 2, 220
+          halign      = center
+          valign      = center
+      }
+      label {
+          text        = cmd[update:60000] date +"%A, %d %B"
+          color       = rgba(${h p.FOAM}ff)
+          font_size   = 24
+          font_family = JetBrainsMono Nerd Font
+          position    = 0, 222
+          halign      = center
+          valign      = center
+      }
+
+      label {
+          text        = cmd[update:2000] ${configHome}/waybar/scripts/mpris_status.sh 2>/dev/null | jq -r '.text // ""'
+          color       = rgba(000000ff)
+          font_size   = 24
+          font_family = JetBrainsMono Nerd Font
+          position    = 2, -217
+          halign      = center
+          valign      = center
+      }
+      label {
+          text        = cmd[update:2000] ${configHome}/waybar/scripts/mpris_status.sh 2>/dev/null | jq -r '.text // ""'
+          color       = rgba(${h p.TEXT}ff)
+          font_size   = 24
+          font_family = JetBrainsMono Nerd Font
+          position    = 0, -215
+          halign      = center
+          valign      = center
+      }
+
+      label {
+          text        = cmd[update:2000] ${configHome}/waybar/scripts/mpris_status.sh 2>/dev/null | jq -r '(.tooltip // "") | split("\n") | .[0]'
+          color       = rgba(${h p.SUBTLE}cc)
+          font_size   = 24
+          font_family = JetBrainsMono Nerd Font
+          position    = 0, -242
+          halign      = center
+          valign      = center
+      }
+
+      label {
+          text        = cmd[update:300000] waybar-weather --mode default 2>/dev/null | jq -r '.text // ""'
+          color       = rgba(000000ff)
+          font_size   = 24
+          font_family = JetBrainsMono Nerd Font
+          position    = 2, 73
+          halign      = center
+          valign      = bottom
+      }
+      label {
+          text        = cmd[update:300000] waybar-weather --mode default 2>/dev/null | jq -r '.text // ""'
+          color       = rgba(${h p.ROSE}ff)
+          font_size   = 24
+          font_family = JetBrainsMono Nerd Font
+          position    = 0, 75
+          halign      = center
+          valign      = bottom
+      }
+
+      label {
+          text        = cmd[update:300000] waybar-weather --mode forecast 2>/dev/null | jq -r '.text // ""'
+          color       = rgba(${h p.SUBTLE}d9)
+          font_size   = 24
+          font_family = JetBrainsMono Nerd Font
+          position    = 0, 30
+          halign      = center
+          valign      = bottom
+      }
+
+      input-field {
+          size              = 320, 52
+          outline_thickness = 4
+          dots_size         = 0.25
+          dots_spacing      = 0.35
+          dots_center       = true
+          outer_color       = rgba(${h p.IRIS}ff)
+          inner_color       = rgba(${h p.BASE}fa)
+          font_color        = rgba(${h p.TEXT}ff)
+          fade_on_empty     = true
+          rounding          = 6
+          check_color       = rgb(${h p.GOLD})
+          fail_color        = rgb(${h p.LOVE})
+          placeholder_text  =
+          hide_input        = false
+          position          = 0, 215
+          halign            = center
+          valign            = bottom
+      }
+    '';
+
   applyThemeScript = pkgs.writeShellScriptBin "apply-theme" (
     ''
       THEME="''${1:-$(cat "$HOME/.local/state/theme" 2>/dev/null || echo "main")}"
@@ -481,6 +634,7 @@ let
           GHOSTTY_CFG="${cfgs.ghostty}"
           FASTFETCH_LOGO="${cfgs.fastfetchLogo}"
           LIBREWOLF_CSS="${cfgs.librewolfCss}"
+          HYPRLOCK_CFG="${cfgs.hyprlockConf}"
           ;;
       '') themeConfigs)
     + ''
@@ -513,6 +667,8 @@ let
       cp --remove-destination "$GHOSTTY_CFG" "$HOME/.config/ghostty/config"
       mkdir -p "$HOME/.config/wleave"
       cp --remove-destination "$WLEAVE_CSS" "$HOME/.config/wleave/style.css"
+      mkdir -p "$HOME/.config/hypr"
+      cp --remove-destination "$HYPRLOCK_CFG" "$HOME/.config/hypr/hyprlock.conf"
       mkdir -p "$HOME/.local/share/fastfetch"
       ln -sf "$FASTFETCH_LOGO" "$HOME/.local/share/fastfetch/logo.png"
       while IFS='=' read -r _key _val; do

@@ -375,6 +375,7 @@ tooltip label {
   color: ${p.TEXT};
   font-size: 13px;
   font-weight: 600;
+  text-shadow: 1px 2px 0 ${sh};
   padding: 3px 10px;
 }
 ''
