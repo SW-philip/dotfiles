@@ -384,7 +384,7 @@ window#waybar {
 #tray > .needs-attention  { -gtk-icon-effect: highlight; }
 
 window.background.tooltip {
-  background-color: transparent;
+  background: transparent;
   border-radius: 8px;
 }
 
@@ -393,6 +393,7 @@ tooltip {
   border: 2px solid ${SHADOW};
   border-radius: 8px;
   padding: 4px 2px;
+  margin: 0 4px 5px 0;
   box-shadow: 3px 4px 0 0 ${SHADOW};
 }
 

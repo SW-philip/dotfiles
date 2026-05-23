@@ -1,0 +1,13 @@
+# Niri Theme: blackboard - Blackboard Seminar
+[colors]
+background = "#1a1e23"
+text = "#ffffff"
+cursor = "#6e7e96"
+
+[colors.selection]
+border = "#ffb82e"
+background = "#2c373f"
+
+[colors.hints]
+start = "#f0b633"
+end = "#a1a7aa"
