@@ -1,0 +1,13 @@
+# Niri Theme: night beach - Night Beach
+[colors]
+background = "#1a2a6b"
+text = "#ffffff"
+cursor = "#4f4f92"
+
+[colors.selection]
+border = "#dcc6b1"
+background = "#204893"
+
+[colors.hints]
+start = "#a59b88"
+end = "#6a6e9a"

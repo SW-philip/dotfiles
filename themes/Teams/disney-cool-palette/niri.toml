@@ -1,0 +1,13 @@
+# Niri Theme: disney - Cool Palette
+[colors]
+background = "#ff6d1f"
+text = "#ffffff"
+cursor = "#faa700"
+
+[colors.selection]
+border = "#2d58e1"
+background = "#f57a00"
+
+[colors.hints]
+start = "#cc8105"
+end = "#f1c40e"

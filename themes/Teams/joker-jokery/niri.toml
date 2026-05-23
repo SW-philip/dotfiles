@@ -1,0 +1,13 @@
+# Niri Theme: joker - Jokery
+[colors]
+background = "#d33131"
+text = "#ffffff"
+cursor = "#f57a00"
+
+[colors.selection]
+border = "#132ed8"
+background = "#de5469"
+
+[colors.hints]
+start = "#f98e24"
+end = "#fbc02d"
