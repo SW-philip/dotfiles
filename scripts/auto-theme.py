@@ -1669,10 +1669,16 @@ def activate_theme(slug: str, theme_dir: Path) -> None:
         swaync_css_dst.parent.mkdir(parents=True, exist_ok=True)
         swaync_css_dst.unlink(missing_ok=True)
         shutil.copy2(swaync_css_src, swaync_css_dst)
-        try:
+        swaync_active = subprocess.run(
+            ["systemctl", "--user", "is-active", "swaync"], capture_output=True
+        )
+        if swaync_active.returncode == 0:
             subprocess.run(["swaync-client", "--reload-css"], capture_output=True, timeout=5)
+<<<<<<< HEAD
         except subprocess.TimeoutExpired:
             print("  ⚠️  swaync-client timed out (swaync not running?)")
+=======
+>>>>>>> b000596 (update surface)
         print("  → swaync CSS applied")
 
     subprocess.run(["pkill", "-SIGUSR1", "waybar"], capture_output=True)
