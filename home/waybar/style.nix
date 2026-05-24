@@ -359,8 +359,8 @@ window#waybar {
    Tooltips
    ----------------------------------------------------------------- */
 window.background.tooltip {
-  background: transparent;
-  padding: 0 5px 6px 0;
+  background: ${sh};
+  border-radius: ${toString l.radiusMd}px;
 }
 
 tooltip {
@@ -368,7 +368,7 @@ tooltip {
   border: 2px solid ${sh};
   border-radius: ${toString l.radiusMd}px;
   padding: 4px 2px;
-  box-shadow: 3px 4px 0 0 ${sh};
+  margin: 0 3px 4px 0;
 }
 
 tooltip label {
