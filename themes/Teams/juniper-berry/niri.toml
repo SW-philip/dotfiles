@@ -1,0 +1,13 @@
+# Niri Theme: juniper berry
+[colors]
+background = "#6f4c3e"
+text = "#ffffff"
+cursor = "#436f9e"
+
+[colors.selection]
+border = "#ec8a37"
+background = "#90544b"
+
+[colors.hints]
+start = "#f0a53e"
+end = "#8d43ad"

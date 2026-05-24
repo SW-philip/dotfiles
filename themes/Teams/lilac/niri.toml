@@ -1,0 +1,13 @@
+# Niri Theme: lilac
+[colors]
+background = "#e8e7f3"
+text = "#1a1a1a"
+cursor = "#9c7ec3"
+
+[colors.selection]
+border = "#9d3569"
+background = "#d1cbe7"
+
+[colors.hints]
+start = "#9b5a8b"
+end = "#b79bc5"

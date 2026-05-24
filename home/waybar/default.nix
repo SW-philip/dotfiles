@@ -157,7 +157,7 @@ in
         height = 45;
         modules-left   = [ "group/system-stats" "group/storage" ];
         modules-center = [ "custom/clock" ];
-        modules-right  = [ "group/connectivity" "group/tray" "group/toggles" "custom/wleave" ];
+        modules-right  = [ "group/connectivity" "group/toggles" "custom/wleave" ];
         "group/system-stats" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = true; };
@@ -191,18 +191,7 @@ in
           format = "󰛳";
           tooltip-format = "Connectivity";
         };
-        "group/tray" = {
-          orientation = "horizontal";
-          drawer = { transition-duration = 300; transition-left-to-right = false; };
-          modules = [ "custom/tray-handle" "tray" ];
-          "on-scroll-up" = "";
-          "on-scroll-down" = "";
-        };
-        "custom/tray-handle" = {
-          format = "󱊫";
-          tooltip-format = "System tray";
-        };
-        "group/toggles" = {
+"group/toggles" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = false; };
           modules = [ "custom/utilities-handle" "custom/idle_inhibit" "custom/power_profile" "custom/dnd" "custom/rotation_lock" "custom/uniremote" "custom/choose_mode" ];

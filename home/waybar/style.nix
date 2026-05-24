@@ -40,27 +40,6 @@ window#waybar {
 }
 
 /* -----------------------------------------------------------------
-   Elevation tiers (resting backgrounds only)
-   ----------------------------------------------------------------- */
-#custom-clock,
-#custom-battery {
-  background: ${p.WB_OVERLAY};
-}
-
-#custom-weather,
-#custom-cpu_temp,
-#custom-volume,
-#custom-mpris {
-  background: ${p.WB_SURFACE};
-}
-
-#custom-network,
-#custom-bluetooth,
-#tray {
-  background: ${p.WB_BASE};
-}
-
-/* -----------------------------------------------------------------
    Start button — anchor pill with IRIS border
    ----------------------------------------------------------------- */
 #custom-start {

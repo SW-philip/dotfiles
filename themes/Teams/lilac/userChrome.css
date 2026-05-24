@@ -1,0 +1,148 @@
+/* ── Reset Firefox chrome defaults ──────────────────────── */
+:root {
+  --toolbar-bgcolor: #e8e7f3 !important;
+  --toolbar-color: #1a1a1a !important;
+  --tab-selected-bgcolor: #d1cbe7 !important;
+  /* Modern URL bar variables */
+  --urlbar-box-bgcolor: #b7a6d8 !important;
+  --urlbar-box-focus-bgcolor: #b7a6d8 !important;
+  --urlbar-box-hover-bgcolor: #c1bedf !important;
+  --urlbar-box-active-bgcolor: #a7a2d6 !important;
+  --urlbar-popup-bgcolor: #d1cbe7 !important;
+  --urlbar-popup-color: #1a1a1a !important;
+  /* Legacy LWT variables — some LibreWolf builds read these instead */
+  --lwt-toolbar-field-background-color: #b7a6d8 !important;
+  --lwt-toolbar-field-focus: #b7a6d8 !important;
+  --lwt-toolbar-field-color: #1a1a1a !important;
+  --lwt-toolbar-field-focus-color: #1a1a1a !important;
+}
+
+/* ── Tab bar ─────────────────────────────────────────────── */
+#TabsToolbar {
+  background-color: #e8e7f3 !important;
+  border-bottom: 1px solid #b7a6d8 !important;
+}
+
+.tab-background {
+  background-color: transparent !important;
+  border-radius: 6px 6px 0 0 !important;
+  border: none !important;
+}
+
+.tabbrowser-tab[selected="true"] .tab-background {
+  background-color: #d1cbe7 !important;
+  box-shadow: inset 0 2px 0 #9d3569 !important;
+}
+
+.tabbrowser-tab:not([selected]):hover .tab-background {
+  background-color: #c1bedf !important;
+}
+
+.tab-label {
+  color: #bcbad4 !important;
+}
+
+.tabbrowser-tab[selected="true"] .tab-label {
+  color: #1a1a1a !important;
+}
+
+.tabbrowser-tab[attention] .tab-label {
+  color: #9b5a8b !important;
+}
+
+/* ── Nav / URL bar ───────────────────────────────────────── */
+#nav-bar {
+  background-color: #e8e7f3 !important;
+  border-bottom: 1px solid #b7a6d8 !important;
+  box-shadow: none !important;
+}
+
+#urlbar {
+  background-color: #b7a6d8 !important;
+  border: 1px solid #a7a2d6 !important;
+  border-radius: 8px !important;
+  color: #1a1a1a !important;
+}
+
+#urlbar[focused="true"] {
+  border-color: #9d3569 !important;
+  box-shadow: 0 0 0 2px rgba(157,53,105, 0.25) !important;
+}
+
+#urlbar-input {
+  color: #1a1a1a !important;
+  background-color: transparent !important;
+}
+
+#urlbar-background {
+  background-color: #b7a6d8 !important;
+}
+
+#urlbar[focused="true"] #urlbar-background {
+  background-color: #b7a6d8 !important;
+}
+
+.urlbar-icon,
+.urlbar-icon-wrapper {
+  color: #bcbad4 !important;
+  fill: #bcbad4 !important;
+}
+
+/* ── Bookmarks / personal toolbar ────────────────────────── */
+#PersonalToolbar {
+  background-color: #e8e7f3 !important;
+  border-bottom: 1px solid #b7a6d8 !important;
+}
+
+.bookmark-item > .toolbarbutton-text {
+  color: #bcbad4 !important;
+}
+
+.bookmark-item:hover > .toolbarbutton-text {
+  color: #1a1a1a !important;
+}
+
+/* ── Toolbar buttons ─────────────────────────────────────── */
+#nav-bar .toolbarbutton-1 {
+  color: #bcbad4 !important;
+  fill: #bcbad4 !important;
+  border-radius: 6px !important;
+}
+
+#nav-bar .toolbarbutton-1:hover {
+  background-color: #c1bedf !important;
+  color: #1a1a1a !important;
+  fill: #1a1a1a !important;
+}
+
+#nav-bar .toolbarbutton-1[open],
+#nav-bar .toolbarbutton-1:active {
+  background-color: #a7a2d6 !important;
+  color: #9d3569 !important;
+  fill: #9d3569 !important;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+#sidebar-box {
+  background-color: #d1cbe7 !important;
+  border-right: 1px solid #b7a6d8 !important;
+}
+
+#sidebar-header {
+  background-color: #e8e7f3 !important;
+  color: #1a1a1a !important;
+  border-bottom: 1px solid #b7a6d8 !important;
+}
+
+/* ── Find bar ────────────────────────────────────────────── */
+.findbar-container {
+  background-color: #b7a6d8 !important;
+  border-top: 1px solid #a7a2d6 !important;
+}
+
+.findbar-textbox {
+  background-color: #d1cbe7 !important;
+  color: #1a1a1a !important;
+  border: 1px solid #a7a2d6 !important;
+  border-radius: 4px !important;
+}
