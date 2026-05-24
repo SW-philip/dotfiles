@@ -1,0 +1,13 @@
+# Niri Theme: titanium - Titanium Dreams
+[colors]
+background = "#1a8e8a"
+text = "#ffffff"
+cursor = "#3dc7b2"
+
+[colors.selection]
+border = "#fcc036"
+background = "#1eb89c"
+
+[colors.hints]
+start = "#f3d587"
+end = "#82e3d4"

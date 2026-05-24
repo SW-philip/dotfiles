@@ -499,7 +499,7 @@ def _theme_mode(hex_color: str) -> str:
 
 def generate_waybar_css(p: dict) -> str:
     """Substitute palette into the waybar CSS template (port of home/waybar/style.nix)."""
-    tooltip_bg = f"rgba({p['OVERLAY_RGB']},0.99)" if 'OVERLAY_RGB' in p else p['WB_BASE']
+    tooltip_bg = f"rgba({p['OVERLAY_RGB']},1)" if 'OVERLAY_RGB' in p else p['WB_BASE']
     # Constants that live in write_nix but are not in the runtime palette dict
     defaults = {
         'FONT_SIZE_BAR': '12px',

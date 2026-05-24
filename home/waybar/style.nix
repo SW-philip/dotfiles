@@ -1,6 +1,6 @@
 { p, l }:
 let
-  tooltipBg = if p ? OVERLAY_RGB then "rgba(${p.OVERLAY_RGB},0.99)" else p.WB_BASE;
+  tooltipBg = if p ? OVERLAY_RGB then "rgba(${p.OVERLAY_RGB},1)" else p.WB_BASE;
   sh = p.SHADOW;
 in
 ''

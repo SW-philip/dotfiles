@@ -22,6 +22,7 @@ import random
 import re
 import subprocess
 import sys
+import time
 import unicodedata
 from collections import defaultdict
 from datetime import date as date_type, datetime, timezone
@@ -40,6 +41,9 @@ STATE_FILE = CACHE_DIR / "weather_state"
 if not STATE_FILE.exists():
     STATE_FILE.write_text("default")
 STATE = STATE_FILE.read_text().strip()   # "default" | "forecast"
+
+FORECAST_CACHE_FILE = CACHE_DIR / "weather_forecast_cache.json"
+FORECAST_CACHE_TTL  = 3600  # seconds; refresh hourly
 
 PALETTE_FILE    = HOME / ".config/waybar/palette.sh"
 LOCATION_CONFIG = HOME / ".config/waybar/weather_location.json"
@@ -148,6 +152,12 @@ GLYPHS = {
     "unknown": {"medium": "󰔟"},
 }
 
+FORECAST_EMOJI = {
+    "clear": "☀️", "clouds": "☁️", "rain": "🌧️",
+    "drizzle": "🌦️", "snow": "❄️", "thunderstorm": "⛈️",
+    "mist": "🌫️", "fog": "🌫️", "haze": "🌫️",
+}
+
 # ──────────────────────────────────────────────────────────────────────
 # Intensity helpers
 # ──────────────────────────────────────────────────────────────────────
@@ -177,6 +187,21 @@ def sanitize(text):
 
 def wrap_json(text, tooltip, cls):
     return json.dumps({"text": text, "tooltip": tooltip, "class": cls}, ensure_ascii=False)
+
+def load_forecast_cache() -> Optional[dict]:
+    try:
+        data = json.loads(FORECAST_CACHE_FILE.read_text())
+        if time.time() - data.get("ts", 0) < FORECAST_CACHE_TTL:
+            return data["payload"]
+    except Exception:
+        pass
+    return None
+
+def save_forecast_cache(payload: dict) -> None:
+    try:
+        FORECAST_CACHE_FILE.write_text(json.dumps({"ts": time.time(), "payload": payload}))
+    except Exception:
+        pass
 
 # ──────────────────────────────────────────────────────────────────────
 # Location config
@@ -375,6 +400,10 @@ def main() -> None:
     RP_GOLD   = PALETTE.get("GOLD",   "#f6c177")   # alert / warm accent
     DIVIDER   = f'<span foreground="{RP_MUTED}">────────────────────</span>'
 
+    def sec(label: str) -> str:
+        dashes = "─" * max(0, 16 - len(label))
+        return f'<span foreground="{RP_MUTED}">── {label} {dashes}</span>'
+
     # Forecast mode
     if STATE == "forecast":
         try:
@@ -397,11 +426,6 @@ def main() -> None:
             def closest_entry(entries, target_hour):
                 return min(entries, key=lambda x: abs(x[0].hour - target_hour))
 
-            FORECAST_EMOJI = {
-                "clear": "☀️", "clouds": "☁️", "rain": "🌧️",
-                "drizzle": "🌦️", "snow": "❄️", "thunderstorm": "⛈️",
-                "mist": "🌫️", "fog": "🌫️", "haze": "🌫️",
-            }
             tooltip_lines = []
             bar_days = []
             today = datetime.now().astimezone().date()
@@ -490,19 +514,55 @@ def main() -> None:
         wind_line += f"   <span foreground='{RP_MUTED}'>gusts</span> <span foreground='{RP_GOLD}'>{gust} mph</span>"
 
     tooltip_lines = [
-        f"<b>{city}</b>",
+        f"<b>{glyph_span}  {city}</b>",
         f"<span foreground='{RP_SUBTLE}'>{description.capitalize()}</span>",
         "",
         f"<span foreground='{temp_color(temp)}'>{temp}°F</span>  <span foreground='{RP_MUTED}'>feels</span>  <span foreground='{temp_color(feels)}'>{feels}°F</span>",
-        f"<span foreground='{RP_MUTED}'>High</span> <span foreground='{temp_color(temp_max)}'>{temp_max}°</span>   <span foreground='{RP_MUTED}'>Low</span> <span foreground='{temp_color(temp_min)}'>{temp_min}°</span>",
+        f"<span foreground='{RP_MUTED}'>▲</span> <span foreground='{temp_color(temp_max)}'>{temp_max}°</span>   <span foreground='{RP_MUTED}'>▼</span> <span foreground='{temp_color(temp_min)}'>{temp_min}°</span>",
         "",
+        sec("Conditions"),
         f"<span foreground='{RP_MUTED}'>Humidity:</span> <span foreground='{RP_TEXT}'>{humidity}%</span>   <span foreground='{RP_MUTED}'>Pressure:</span> <span foreground='{RP_TEXT}'>{pressure} hPa</span>",
         wind_line,
         f"<span foreground='{RP_MUTED}'>Visibility:</span> <span foreground='{RP_TEXT}'>{vis_mi} mi</span>   <span foreground='{RP_MUTED}'>Clouds:</span> <span foreground='{RP_TEXT}'>{clouds}%</span>",
         "",
-        DIVIDER,
+        sec("Sun"),
         f"<span foreground='{RP_MUTED}'>Sunrise</span> <span foreground='{RP_FOAM}'>{sunrise_str}</span>   <span foreground='{RP_MUTED}'>Sunset</span> <span foreground='{RP_FOAM}'>{sunset_str}</span>",
     ]
+
+    # ── Mini forecast ──────────────────────────────────────────────────
+    try:
+        fc_data = load_forecast_cache()
+        if fc_data is None:
+            fc_resp = requests.get(
+                "https://api.openweathermap.org/data/2.5/forecast",
+                params={"lat": lat, "lon": lon, "appid": API_KEY, "units": UNITS},
+                timeout=6,
+            ).json()
+            if "list" in fc_resp:
+                save_forecast_cache(fc_resp)
+                fc_data = fc_resp
+        if fc_data:
+            now_utc = datetime.now(timezone.utc)
+            slots = []
+            for entry in fc_data.get("list", []):
+                dt_utc = datetime.fromtimestamp(entry["dt"], timezone.utc)
+                if dt_utc <= now_utc:
+                    continue
+                local_dt = dt_utc.astimezone()
+                t = round(entry["main"]["temp"])
+                cond = entry["weather"][0]["main"].lower()
+                emoji = FORECAST_EMOJI.get(cond, "❓")
+                hour_str = local_dt.strftime("%-I%p").lower()
+                slots.append(
+                    f"<span foreground='{RP_MUTED}'>{hour_str}</span> {emoji}<span foreground='{temp_color(t)}'>{t}°</span>"
+                )
+                if len(slots) >= 3:
+                    break
+            if slots:
+                tooltip_lines += ["", sec("Later"), "  ".join(slots)]
+    except Exception:
+        pass
+
     if snark:
         tooltip_lines += ["", f"<span foreground='{RP_IRIS}'>{snark}</span>"]
     tooltip = sanitize("\n".join(tooltip_lines))

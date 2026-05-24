@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language SYSTEM "language.dtd">
-<language name="earl-grey-earl-grey" version="1.0" kateversion="5.0" section="Sources" extensions="" mimetype="" priority="0">
+<language name="earl grey - Earl Grey" version="1.0" kateversion="5.0" section="Sources" extensions="" mimetype="" priority="0">
   <highlighting>
     <list name="keywords">
       <item>def</item><item>class</item><item>return</item><item>if</item><item>else</item>
