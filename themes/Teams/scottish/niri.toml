@@ -1,0 +1,13 @@
+# Niri Theme: scottish
+[colors]
+background = "#6b7c94"
+text = "#ffffff"
+cursor = "#b1c4c1"
+
+[colors.selection]
+border = "#dd543c"
+background = "#8399aa"
+
+[colors.hints]
+start = "#f0ab85"
+end = "#f5e69e"

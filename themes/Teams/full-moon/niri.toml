@@ -1,0 +1,13 @@
+# Niri Theme: full moon
+[colors]
+background = "#f0e78e"
+text = "#1a1a1a"
+cursor = "#b4c59b"
+
+[colors.selection]
+border = "#283271"
+background = "#e6ee67"
+
+[colors.hints]
+start = "#aab186"
+end = "#7da6a0"

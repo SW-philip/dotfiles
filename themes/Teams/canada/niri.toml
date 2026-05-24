@@ -1,0 +1,13 @@
+# Niri Theme: canada
+[colors]
+background = "#ff4d3d"
+text = "#ffffff"
+cursor = "#ffb84d"
+
+[colors.selection]
+border = "#b52297"
+background = "#ff4b14"
+
+[colors.hints]
+start = "#faa02a"
+end = "#4cae4f"

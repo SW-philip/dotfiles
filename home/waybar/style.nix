@@ -12,7 +12,7 @@ in
 
 window#waybar {
   background: transparent;
-  font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", "Maple Mono", "Noto Sans Mono", monospace;
+  font-family: "Hack Nerd Font", "HackNerdFont", "JetBrainsMono Nerd Font", "JetBrains Mono", "Noto Sans Mono", monospace;
   font-size: ${p.FONT_SIZE_BAR};
   color: ${p.TEXT};
 }
@@ -23,7 +23,7 @@ window#waybar {
 .module {
   background: ${p.WB_SURFACE};
   color: ${p.TEXT};
-  font-weight: 600;
+  font-weight: 700;
   text-shadow: 1px 2px 0 ${sh};
   padding: 4px 14px;
   margin: 5px 3px;
@@ -67,7 +67,7 @@ window#waybar {
   color: ${p.IRIS};
   background: ${p.WB_OVERLAY};
   border-color: ${p.IRIS};
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.04em;
   padding-left: 16px;
   padding-right: 16px;
@@ -82,7 +82,7 @@ window#waybar {
 /* -----------------------------------------------------------------
    Clock — always lit, it's the anchor
    ----------------------------------------------------------------- */
-#custom-clock { font-weight: 600; letter-spacing: 0.05em; color: ${p.TEXT}; }
+#custom-clock { font-weight: 700; letter-spacing: 0.05em; color: ${p.TEXT}; }
 
 /* -----------------------------------------------------------------
    Weather
@@ -374,7 +374,7 @@ tooltip {
 tooltip label {
   color: ${p.TEXT};
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   text-shadow: 1px 2px 0 ${sh};
   padding: 3px 10px;
 }

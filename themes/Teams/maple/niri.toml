@@ -1,0 +1,13 @@
+# Niri Theme: maple
+[colors]
+background = "#9f512d"
+text = "#ffffff"
+cursor = "#d25e28"
+
+[colors.selection]
+border = "#fbf5b2"
+background = "#c74c33"
+
+[colors.hints]
+start = "#e7b274"
+end = "#e6a34c"

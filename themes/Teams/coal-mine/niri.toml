@@ -1,0 +1,13 @@
+# Niri Theme: coal mine
+[colors]
+background = "#4b5b7c"
+text = "#ffffff"
+cursor = "#6a7f9a"
+
+[colors.selection]
+border = "#c8b59d"
+background = "#59799c"
+
+[colors.hints]
+start = "#e8e6de"
+end = "#a1b8c9"

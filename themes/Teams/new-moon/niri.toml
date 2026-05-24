@@ -1,0 +1,13 @@
+# Niri Theme: new moon
+[colors]
+background = "#1f1b79"
+text = "#ffffff"
+cursor = "#3e4a8e"
+
+[colors.selection]
+border = "#e5f7b5"
+background = "#202ea1"
+
+[colors.hints]
+start = "#7b51a4"
+end = "#7995b9"

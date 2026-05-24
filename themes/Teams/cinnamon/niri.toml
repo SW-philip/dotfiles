@@ -1,0 +1,13 @@
+# Niri Theme: cinnamon
+[colors]
+background = "#6b9cd1"
+text = "#ffffff"
+cursor = "#5786db"
+
+[colors.selection]
+border = "#5e4d26"
+background = "#4873cb"
+
+[colors.hints]
+start = "#d7a57f"
+end = "#da7f3f"

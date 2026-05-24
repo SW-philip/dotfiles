@@ -1,0 +1,13 @@
+# Niri Theme: oak
+[colors]
+background = "#c3b192"
+text = "#1a1a1a"
+cursor = "#a77d52"
+
+[colors.selection]
+border = "#513d1a"
+background = "#b8a975"
+
+[colors.hints]
+start = "#86684a"
+end = "#8e5b3e"

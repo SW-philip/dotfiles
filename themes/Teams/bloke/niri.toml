@@ -1,0 +1,13 @@
+# Niri Theme: bloke
+[colors]
+background = "#a3c2e0"
+text = "#1a1a1a"
+cursor = "#f9863e"
+
+[colors.selection]
+border = "#d85b27"
+background = "#82a1d8"
+
+[colors.hints]
+start = "#d96a11"
+end = "#f9d64e"
