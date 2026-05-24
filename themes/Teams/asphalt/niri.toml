@@ -1,0 +1,13 @@
+# Niri Theme: asphalt
+[colors]
+background = "#1c1c1c"
+text = "#ffffff"
+cursor = "#796363"
+
+[colors.selection]
+border = "#dbd8d7"
+background = "#2a2828"
+
+[colors.hints]
+start = "#8e7676"
+end = "#967e7e"
