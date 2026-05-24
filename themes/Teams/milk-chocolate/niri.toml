@@ -1,0 +1,13 @@
+# Niri Theme: milk chocolate
+[colors]
+background = "#795939"
+text = "#ffffff"
+cursor = "#8d6a4e"
+
+[colors.selection]
+border = "#f4f0cd"
+background = "#9c6344"
+
+[colors.hints]
+start = "#dcccbd"
+end = "#b59c78"
