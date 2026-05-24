@@ -521,24 +521,24 @@ let
           valign      = center
       }
 
-      # weather — top right, same row as clock
+      # weather — bottom right (away from clock)
       label {
           text        = cmd[update:300000] waybar-weather --mode default 2>/dev/null | jq -r '.text // ""'
           color       = rgba(000000ff)
           font_size   = 20
           font_family = JetBrainsMono Nerd Font
-          position    = 492, 298
+          position    = 492, 238
           halign      = center
-          valign      = center
+          valign      = bottom
       }
       label {
           text        = cmd[update:300000] waybar-weather --mode default 2>/dev/null | jq -r '.text // ""'
           color       = rgba(${h p.ROSE}ff)
           font_size   = 20
           font_family = JetBrainsMono Nerd Font
-          position    = 490, 300
+          position    = 490, 240
           halign      = center
-          valign      = center
+          valign      = bottom
       }
 
       label {
@@ -546,9 +546,9 @@ let
           color       = rgba(${h p.SUBTLE}d9)
           font_size   = 16
           font_family = JetBrainsMono Nerd Font
-          position    = 490, 250
+          position    = 490, 185
           halign      = center
-          valign      = center
+          valign      = bottom
       }
 
       # album art — left column, center-ish vertically
