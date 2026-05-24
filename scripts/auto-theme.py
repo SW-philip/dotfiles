@@ -384,7 +384,7 @@ window#waybar {
 #tray > .needs-attention  { -gtk-icon-effect: highlight; }
 
 window.background.tooltip {
-  background: transparent;
+  background: ${SHADOW};
   border-radius: 8px;
 }
 
@@ -393,14 +393,14 @@ tooltip {
   border: 2px solid ${SHADOW};
   border-radius: 8px;
   padding: 4px 2px;
-  margin: 0 4px 5px 0;
-  box-shadow: 3px 4px 0 0 ${SHADOW};
+  margin: 0 3px 4px 0;
 }
 
 tooltip label {
   color: ${TEXT};
   font-size: 13px;
   font-weight: 600;
+  text-shadow: 1px 2px 0 ${SHADOW};
   padding: 3px 10px;
 }
 """
@@ -1418,12 +1418,18 @@ def write_librewolf(path: Path, p: dict, name: str):
   --toolbar-bgcolor: {p['BASE']} !important;
   --toolbar-color: {p['TEXT']} !important;
   --tab-selected-bgcolor: {p['SURFACE']} !important;
+  /* Modern URL bar variables */
   --urlbar-box-bgcolor: {p['OVERLAY']} !important;
   --urlbar-box-focus-bgcolor: {p['OVERLAY']} !important;
   --urlbar-box-hover-bgcolor: {p['HIGHLIGHT_LOW']} !important;
   --urlbar-box-active-bgcolor: {p['HIGHLIGHT_MED']} !important;
   --urlbar-popup-bgcolor: {p['SURFACE']} !important;
   --urlbar-popup-color: {p['TEXT']} !important;
+  /* Legacy LWT variables — some LibreWolf builds read these instead */
+  --lwt-toolbar-field-background-color: {p['OVERLAY']} !important;
+  --lwt-toolbar-field-focus: {p['OVERLAY']} !important;
+  --lwt-toolbar-field-color: {p['TEXT']} !important;
+  --lwt-toolbar-field-focus-color: {p['TEXT']} !important;
 }}
 
 /* ── Tab bar ─────────────────────────────────────────────── */
@@ -1953,7 +1959,8 @@ def main():
         sys.exit(1)
 
     p = api_result["palette"]
-    theme_name = f"{api_result['query']} - {api_result['palette_name']}"
+    print(f"  🎨 Palette: {api_result['palette_name']}")
+    theme_name = api_result['query']
     slug, _ = register_theme(theme_name, p, "api", force=args.force)
 
     print(f"  ✅ Generated: {slug}")

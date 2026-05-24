@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# mossy-oak-mossy-oak-cabin — generated palette
+# mossy oak — generated palette
 
 # --- All Theme Variables ---
 export BASE="#4b3c2a"
@@ -62,8 +62,6 @@ export BATTERY_HIGH="#f4ebd2"
 export BATTERY_FULL="#d9c2a5"
 export ACCENT_PRIMARY="#f2f5d1"
 export ACCENT_SECONDARY="#f4ebd2"
-export FONT_SIZE_BAR="12px"
-export ICON_SHADOW="0 1px 2px rgba(0,0,0,0.80)"
 
 # --- Wallpaper Mapping ---
 export BG_DARK="#4b3c2a"
