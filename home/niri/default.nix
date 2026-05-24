@@ -481,25 +481,13 @@ let
           contrast    = 0.9
       }
 
-      image {
-          path         = ${cacheHome}/sqlch/covers/current.jpg
-          reload_time  = 2
-          reload_cmd   = ${configHome}/waybar/scripts/hyprlock_art.sh
-          size         = 380
-          rounding     = 8
-          border_size  = 5
-          border_color = rgba(${h p.IRIS}ff)
-          position     = 0, 0
-          halign       = center
-          valign       = center
-      }
-
+      # clock — top center (shadows offset +2x, -2y)
       label {
           text        = cmd[update:1000] quantum-clock 2>/dev/null | jq -r '.text // "--:--"'
           color       = rgba(000000ff)
           font_size   = 64
           font_family = JetBrainsMono Nerd Font ExtraBold
-          position    = 2, 283
+          position    = 2, 298
           halign      = center
           valign      = center
       }
@@ -508,17 +496,18 @@ let
           color       = rgba(${h p.GOLD}ff)
           font_size   = 64
           font_family = JetBrainsMono Nerd Font ExtraBold
-          position    = 0, 285
+          position    = 0, 300
           halign      = center
           valign      = center
       }
 
+      # date — below clock
       label {
           text        = cmd[update:60000] date +"%A, %d %B"
           color       = rgba(000000ff)
           font_size   = 24
           font_family = JetBrainsMono Nerd Font
-          position    = 2, 220
+          position    = 2, 228
           halign      = center
           valign      = center
       }
@@ -527,69 +516,87 @@ let
           color       = rgba(${h p.FOAM}ff)
           font_size   = 24
           font_family = JetBrainsMono Nerd Font
-          position    = 0, 222
+          position    = 0, 230
+          halign      = center
+          valign      = center
+      }
+
+      # weather — top right, same row as clock
+      label {
+          text        = cmd[update:300000] waybar-weather --mode default 2>/dev/null | jq -r '.text // ""'
+          color       = rgba(000000ff)
+          font_size   = 20
+          font_family = JetBrainsMono Nerd Font
+          position    = 492, 298
+          halign      = center
+          valign      = center
+      }
+      label {
+          text        = cmd[update:300000] waybar-weather --mode default 2>/dev/null | jq -r '.text // ""'
+          color       = rgba(${h p.ROSE}ff)
+          font_size   = 20
+          font_family = JetBrainsMono Nerd Font
+          position    = 490, 300
           halign      = center
           valign      = center
       }
 
       label {
+          text        = cmd[update:300000] waybar-weather --mode forecast 2>/dev/null | jq -r '.text // ""'
+          color       = rgba(${h p.SUBTLE}d9)
+          font_size   = 16
+          font_family = JetBrainsMono Nerd Font
+          position    = 490, 250
+          halign      = center
+          valign      = center
+      }
+
+      # album art — left column, center-ish vertically
+      image {
+          path         = ${cacheHome}/sqlch/covers/current.jpg
+          reload_time  = 2
+          reload_cmd   = ${configHome}/waybar/scripts/hyprlock_art.sh
+          size         = 220
+          rounding     = 8
+          border_size  = 4
+          border_color = rgba(${h p.IRIS}ff)
+          position     = -490, 30
+          halign       = center
+          valign       = center
+      }
+
+      # MPRIS track — below album art
+      label {
           text        = cmd[update:2000] ${configHome}/waybar/scripts/mpris_status.sh 2>/dev/null | jq -r '.text // ""'
           color       = rgba(000000ff)
-          font_size   = 24
+          font_size   = 20
           font_family = JetBrainsMono Nerd Font
-          position    = 2, -217
+          position    = -488, -107
           halign      = center
           valign      = center
       }
       label {
           text        = cmd[update:2000] ${configHome}/waybar/scripts/mpris_status.sh 2>/dev/null | jq -r '.text // ""'
           color       = rgba(${h p.TEXT}ff)
-          font_size   = 24
+          font_size   = 20
           font_family = JetBrainsMono Nerd Font
-          position    = 0, -215
+          position    = -490, -105
           halign      = center
           valign      = center
       }
 
+      # MPRIS artist — below track
       label {
           text        = cmd[update:2000] ${configHome}/waybar/scripts/mpris_status.sh 2>/dev/null | jq -r '(.tooltip // "") | split("\n") | .[0]'
           color       = rgba(${h p.SUBTLE}cc)
-          font_size   = 24
+          font_size   = 16
           font_family = JetBrainsMono Nerd Font
-          position    = 0, -242
+          position    = -490, -135
           halign      = center
           valign      = center
       }
 
-      label {
-          text        = cmd[update:300000] waybar-weather --mode default 2>/dev/null | jq -r '.text // ""'
-          color       = rgba(000000ff)
-          font_size   = 24
-          font_family = JetBrainsMono Nerd Font
-          position    = 2, 73
-          halign      = center
-          valign      = bottom
-      }
-      label {
-          text        = cmd[update:300000] waybar-weather --mode default 2>/dev/null | jq -r '.text // ""'
-          color       = rgba(${h p.ROSE}ff)
-          font_size   = 24
-          font_family = JetBrainsMono Nerd Font
-          position    = 0, 75
-          halign      = center
-          valign      = bottom
-      }
-
-      label {
-          text        = cmd[update:300000] waybar-weather --mode forecast 2>/dev/null | jq -r '.text // ""'
-          color       = rgba(${h p.SUBTLE}d9)
-          font_size   = 24
-          font_family = JetBrainsMono Nerd Font
-          position    = 0, 30
-          halign      = center
-          valign      = bottom
-      }
-
+      # input — bottom center
       input-field {
           size              = 320, 52
           outline_thickness = 4
@@ -605,7 +612,7 @@ let
           fail_color        = rgb(${h p.LOVE})
           placeholder_text  =
           hide_input        = false
-          position          = 0, 215
+          position          = 0, 90
           halign            = center
           valign            = bottom
       }
