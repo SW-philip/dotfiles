@@ -1,0 +1,13 @@
+# Niri Theme: morning fog - Morning Fog
+[colors]
+background = "#a8c8e6"
+text = "#1a1a1a"
+cursor = "#5da9da"
+
+[colors.selection]
+border = "#abbfde"
+background = "#86a7df"
+
+[colors.hints]
+start = "#74d7a1"
+end = "#84bacd"

@@ -1,0 +1,13 @@
+# Niri Theme: evening - Japanese Tori Gate in the Evening
+[colors]
+background = "#c22e3c"
+text = "#ffffff"
+cursor = "#e57c71"
+
+[colors.selection]
+border = "#466590"
+background = "#d7466a"
+
+[colors.hints]
+start = "#f3bc8b"
+end = "#f4a662"

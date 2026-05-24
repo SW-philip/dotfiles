@@ -1,0 +1,13 @@
+# Niri Theme: soft pastel - Soft Pastel Dreams
+[colors]
+background = "#e6b7dd"
+text = "#1a1a1a"
+cursor = "#f0d83d"
+
+[colors.selection]
+border = "#c8bcbc"
+background = "#de97c5"
+
+[colors.hints]
+start = "#e6b81e"
+end = "#49c1d5"

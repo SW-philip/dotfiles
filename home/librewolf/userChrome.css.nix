@@ -74,7 +74,9 @@ p: ''
   background-color: ${p.OVERLAY} !important;
 }
 
-#urlbar[focused="true"] #urlbar-background {
+#urlbar[focused="true"] #urlbar-background,
+#urlbar[usertyping] #urlbar-background,
+#urlbar[open] #urlbar-background {
   background-color: ${p.OVERLAY} !important;
 }
 

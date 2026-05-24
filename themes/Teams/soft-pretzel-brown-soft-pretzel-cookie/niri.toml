@@ -1,0 +1,13 @@
+# Niri Theme: soft pretzel - Brown Soft Pretzel Cookie
+[colors]
+background = "#d6c5a8"
+text = "#1a1a1a"
+cursor = "#c0a67c"
+
+[colors.selection]
+border = "#504b20"
+background = "#cbbd8a"
+
+[colors.hints]
+start = "#865e41"
+end = "#a86e48"
