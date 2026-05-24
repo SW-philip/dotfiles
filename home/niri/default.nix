@@ -475,7 +475,8 @@ let
 
       background {
           path        = screenshot
-          blur_passes = 0
+          blur_passes = 3
+          blur_size   = 8
           brightness  = ${brightness}
           contrast    = 0.9
       }
