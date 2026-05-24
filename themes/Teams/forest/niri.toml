@@ -1,0 +1,13 @@
+# Niri Theme: forest
+[colors]
+background = "#7d9a6a"
+text = "#ffffff"
+cursor = "#b6c69f"
+
+[colors.selection]
+border = "#d79656"
+background = "#618655"
+
+[colors.hints]
+start = "#f64d18"
+end = "#edd445"

@@ -63,24 +63,42 @@ p: ''
   border: 1px solid ${p.HIGHLIGHT_MED} !important;
   border-radius: 8px !important;
   color: ${p.TEXT} !important;
+  -moz-appearance: none !important;
 }
 
-#urlbar[focused="true"] {
+#urlbar[focused="true"],
+#urlbar[open] {
   border-color: ${p.IRIS} !important;
   box-shadow: 0 0 0 2px rgba(${p.BORDER_IRIS_RGB}, 0.25) !important;
+}
+
+/* -moz-appearance: none strips the native UA draw call that can paint white
+   over background-color regardless of !important specificity. */
+#urlbar-background {
+  background-color: ${p.OVERLAY} !important;
+  -moz-appearance: none !important;
+  border: none !important;
+}
+
+#urlbar[focused="true"] #urlbar-background,
+#urlbar[open] #urlbar-background {
+  background-color: ${p.OVERLAY} !important;
+}
+
+#urlbar-input-container {
+  background-color: transparent !important;
+  color: ${p.TEXT} !important;
 }
 
 #urlbar-input {
   color: ${p.TEXT} !important;
   background-color: transparent !important;
+  -moz-appearance: none !important;
 }
 
-#urlbar-background {
-  background-color: ${p.OVERLAY} !important;
-}
-
-#urlbar[focused="true"] #urlbar-background {
-  background-color: ${p.OVERLAY} !important;
+#urlbar-input::placeholder {
+  color: ${p.MUTED} !important;
+  opacity: 1 !important;
 }
 
 .urlbar-icon,
