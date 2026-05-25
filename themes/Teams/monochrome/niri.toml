@@ -1,0 +1,13 @@
+# Niri Theme: monochrome
+[colors]
+background = "#f4f1eb"
+text = "#1a1a1a"
+cursor = "#c8ac8d"
+
+[colors.selection]
+border = "#b0a755"
+background = "#e7e2d0"
+
+[colors.hints]
+start = "#bcad9e"
+end = "#bd9c75"

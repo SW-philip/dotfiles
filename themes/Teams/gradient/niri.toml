@@ -1,0 +1,13 @@
+# Niri Theme: gradient
+[colors]
+background = "#1d243a"
+text = "#ffffff"
+cursor = "#4661aa"
+
+[colors.selection]
+border = "#afb3d5"
+background = "#2a3d5b"
+
+[colors.hints]
+start = "#78618a"
+end = "#7176b7"

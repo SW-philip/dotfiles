@@ -1,0 +1,13 @@
+# Niri Theme: deep jungle
+[colors]
+background = "#005c37"
+text = "#ffffff"
+cursor = "#00e08f"
+
+[colors.selection]
+border = "#00d5e6"
+background = "#008a3e"
+
+[colors.hints]
+start = "#2eff42"
+end = "#05ffa3"
