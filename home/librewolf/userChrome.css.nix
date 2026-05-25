@@ -107,6 +107,55 @@ p: ''
   fill: ${p.MUTED} !important;
 }
 
+/* ── URL bar dropdown (suggestions panel) ────────────────── */
+.urlbarView {
+  background-color: ${p.SURFACE} !important;
+  color: ${p.TEXT} !important;
+  -moz-appearance: none !important;
+  border: 1px solid ${p.OVERLAY} !important;
+  border-top: none !important;
+  border-radius: 0 0 8px 8px !important;
+}
+
+.urlbarView-body-inner {
+  background-color: transparent !important;
+}
+
+.urlbarView-results {
+  background-color: transparent !important;
+  padding: 4px !important;
+}
+
+.urlbarView-row {
+  background-color: transparent !important;
+  border-radius: 4px !important;
+}
+
+.urlbarView-row[selected],
+.urlbarView-row:hover {
+  background-color: ${p.HIGHLIGHT_LOW} !important;
+}
+
+.urlbarView-row-inner {
+  color: ${p.TEXT} !important;
+}
+
+.urlbarView-title,
+.urlbarView-title-separator,
+.urlbarView-secondary {
+  color: ${p.SUBTLE} !important;
+}
+
+.urlbarView-url {
+  color: ${p.FOAM} !important;
+}
+
+.urlbarView-row[selected] .urlbarView-title,
+.urlbarView-row[selected] .urlbarView-url,
+.urlbarView-row[selected] .urlbarView-secondary {
+  color: ${p.TEXT} !important;
+}
+
 /* ── Bookmarks / personal toolbar ────────────────────────── */
 #PersonalToolbar {
   background-color: ${p.BASE} !important;
