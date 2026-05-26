@@ -15,13 +15,6 @@
         "99-bt-priority" = {
           "monitor.bluez.rules" = [
             {
-              matches = [{ "api.bluez5.address" = "YOUR-BT-HEADSET-MAC"; }];
-              actions.update-props = {
-                "priority.session" = 3000;
-                "priority.driver"  = 3000;
-              };
-            }
-            {
               matches = [{ "node.name" = "~bluez_output.*"; }];
               actions.update-props = {
                 "priority.session" = 2000;

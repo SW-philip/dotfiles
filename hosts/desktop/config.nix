@@ -48,6 +48,21 @@
   };
 
   ############################################################
+  # Audio — BT headset priority (MAC specific to this machine)
+  ############################################################
+  services.pipewire.wireplumber.extraConfig."99-bt-headset" = {
+    "monitor.bluez.rules" = [
+      {
+        matches = [{ "api.bluez5.address" = "YOUR-BT-HEADSET-MAC"; }];
+        actions.update-props = {
+          "priority.session" = 3000;
+          "priority.driver"  = 3000;
+        };
+      }
+    ];
+  };
+
+  ############################################################
   # ProtonVPN
   ############################################################
   protonvpn.configs = {

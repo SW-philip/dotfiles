@@ -45,7 +45,6 @@ in
     ./mpris.nix
     ./sqlch.nix
     ./wleave.nix
-    ./uniremote.nix
     ./powerprofile.nix
     ./idle-inhibit.nix
     ./dnd.nix
@@ -105,7 +104,7 @@ in
         "group/toggles" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = false; };
-          modules = [ "custom/utilities-handle" "custom/power_profile" "custom/idle_inhibit" "custom/dnd" "custom/uniremote" "custom/choose_mode" ];
+          modules = [ "custom/utilities-handle" "custom/power_profile" "custom/idle_inhibit" "custom/dnd" "custom/choose_mode" ];
           "on-scroll-up" = "";
           "on-scroll-down" = "";
         };
@@ -194,7 +193,7 @@ in
 "group/toggles" = {
           orientation = "horizontal";
           drawer = { transition-duration = 300; transition-left-to-right = false; };
-          modules = [ "custom/utilities-handle" "custom/idle_inhibit" "custom/power_profile" "custom/dnd" "custom/rotation_lock" "custom/uniremote" "custom/choose_mode" ];
+          modules = [ "custom/utilities-handle" "custom/idle_inhibit" "custom/power_profile" "custom/dnd" "custom/rotation_lock" "custom/choose_mode" ];
           "on-scroll-up" = "";
           "on-scroll-down" = "";
         };
@@ -275,7 +274,6 @@ in
     mpris.enable = true;
     sqlch.enable = true;
     wleave.enable = true;
-    uniremote.enable = true;
     powerprofile.enable = true;
     idle_inhibit.enable = true;
     dnd.enable = true;

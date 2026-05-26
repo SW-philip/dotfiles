@@ -11,3 +11,17 @@ __pycache__/
 
 # Theme wallpapers (stay on disk, not in git)
 themes/**/wallpaper-*.png
+
+# Generated / profiling outputs (no reason to track these)
+boot_profile*
+commentlist.txt
+urface-kbd-monitor.service
+
+# Private key material (belt-and-suspenders; sops handles actual secrets)
+*.key
+*.pem
+id_rsa
+id_ed25519
+.env
+.env.*
+.direnv/

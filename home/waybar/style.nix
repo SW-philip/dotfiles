@@ -218,12 +218,6 @@ window#waybar {
 #custom-wleave:hover { color: ${p.LOVE}; }
 
 /* -----------------------------------------------------------------
-   Uniremote launcher
-   ----------------------------------------------------------------- */
-#custom-uniremote       { color: ${p.MUTED_ICON}; }
-#custom-uniremote:hover { color: ${p.TEXT}; }
-
-/* -----------------------------------------------------------------
    Pill groups — flat card, bold outline, hard shadow
    ----------------------------------------------------------------- */
 #toggles,
