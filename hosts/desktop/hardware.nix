@@ -17,13 +17,13 @@
   ############################################################
   # LUKS
   ############################################################
-  boot.initrd.luks.devices."luks-YOUR-DESKTOP-ROOT-UUID" = {
+  boot.initrd.luks.devices."luks-root" = {
     device = "/dev/disk/by-uuid/YOUR-DESKTOP-ROOT-UUID";
     allowDiscards = true;
     crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=7" ];
   };
 
-  boot.initrd.luks.devices."luks-YOUR-DESKTOP-SRV-UUID" = {
+  boot.initrd.luks.devices."luks-srv" = {
     device = "/dev/disk/by-uuid/YOUR-DESKTOP-SRV-UUID";
     allowDiscards = false;
     crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=7" ];
@@ -42,13 +42,13 @@
   # Filesystems
   ############################################################
   fileSystems."/" = {
-    device = "/dev/mapper/luks-YOUR-DESKTOP-ROOT-UUID";
+    device = "/dev/mapper/luks-root";
     fsType = "btrfs";
     options = [ "subvol=@" ];
   };
 
   fileSystems."/home" = {
-    device = "/dev/mapper/luks-YOUR-DESKTOP-ROOT-UUID";
+    device = "/dev/mapper/luks-root";
     fsType = "btrfs";
     options = [ "subvol=@home" ];
   };
@@ -60,13 +60,13 @@
   };
 
   fileSystems."/mnt/backup" = {
-    device = "/dev/mapper/luks-YOUR-DESKTOP-SRV-UUID";
+    device = "/dev/mapper/luks-srv";
     fsType = "btrfs";
     options = [ "defaults" "nofail" "x-systemd.device-timeout=10" ];
   };
 
   fileSystems."/srv" = {
-    device = "/dev/mapper/luks-YOUR-DESKTOP-SRV-UUID";
+    device = "/dev/mapper/luks-srv";
     fsType = "btrfs";
     options = [ "subvol=srv" "compress=zstd" "noatime" "nofail" "x-systemd.device-timeout=10" ];
   };

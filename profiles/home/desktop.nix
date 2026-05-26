@@ -9,7 +9,7 @@
   home.pointerCursor.size = lib.mkForce 24;
 
   ########################################
-  # Fix nrs alias — hostname desktop != flake attr desktop
+  # Explicit flake attr for desktop nrs aliases
   ########################################
   programs.zsh.shellAliases = {
     nrs = lib.mkForce "sudo nixos-rebuild switch --flake .#desktop && sudo systemctl restart home-manager-prepko.service";

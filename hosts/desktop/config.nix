@@ -34,7 +34,7 @@
   # Host identity
   ############################################################
   networking.hostName = "desktop";
-  greetd.greeting = "Welcome back, Phil.";
+  greetd.greeting = "Welcome back, ${config.myConfig.user}.";
 
   ############################################################
   # Secrets (SOPS)

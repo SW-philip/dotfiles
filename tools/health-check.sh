@@ -7,7 +7,7 @@ set -uo pipefail
 HOST=$(hostname)
 IS_SURFACE=false; IS_DESKTOP=false
 [[ "$HOST" == "surface" ]] && IS_SURFACE=true
-[[ "$HOST" == "desktop"   ]] && IS_DESKTOP=true
+[[ "$HOST" == "desktop" ]] && IS_DESKTOP=true
 
 PASS=0
 WARN=0
