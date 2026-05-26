@@ -20,7 +20,6 @@
     ./hardware.nix
     ./boot.nix
     ./features.nix
-    ./msmtp.nix
     ./power.nix
     ./gpu-intel.nix
   ];
