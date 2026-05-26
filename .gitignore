@@ -25,3 +25,14 @@ id_ed25519
 .env
 .env.*
 .direnv/
+
+# Secrets — encrypted by sops but personal; forks provide their own
+secrets/
+secrets.yaml
+
+# Personal SSH public keys
+desktop_key.pub
+
+# Pytest cache and other nested tool artifacts
+**/.pytest_cache/
+nixos/
