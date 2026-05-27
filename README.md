@@ -25,7 +25,6 @@ Uses [Lix](https://lix.systems) instead of Nix.
 - **LUKS** — TPM2 PCR7-bound auto-unlock on all hosts; desktop has two volumes (root NVMe + 3TB srv/backup)
 - **SSH** — key-only auth, no root login, no X11/TCP forwarding
 - **Secrets** — sops-nix with age encryption
-- **Facial recognition** — Howdy on Surface via IPU camera → v4l2loopback → PAM (login + sudo)
 
 ## Kernel / Hardware
 
@@ -61,4 +60,4 @@ Uses [Lix](https://lix.systems) instead of Nix.
 
 ## Waybar modules
 
-btrfs health · battery drain · cpu temp · flake drift · mpris (ICY/Spotify/ad detection) · protonvpn status · bluetooth menu · network status · power profile · rotation lock · DND · weather · idle inhibit · sleep drain · eggclock
+weather · mpris (ICY metadata, Spotify, ad detection) · sqlch · volume · battery · cpu temp · perf · btrfs · flake drift · clock · bluetooth · network · idle inhibit · power profile · DND · rotation lock · theme switcher · wleave
