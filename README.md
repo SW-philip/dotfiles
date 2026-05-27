@@ -3,6 +3,7 @@
 Multi-host NixOS configuration — desktop + Surface Pro 7+
 
 ![preview](assets/preview.png)
+![preview2](assets/preview2.png)
 
 ---
 
